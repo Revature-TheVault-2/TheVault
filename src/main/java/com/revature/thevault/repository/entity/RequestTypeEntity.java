@@ -21,6 +21,7 @@ public class RequestTypeEntity {
     @GeneratedValue(generator = "request_type_table_pk_request_type_id_seq", strategy = GenerationType.SEQUENCE)
     @SequenceGenerator(allocationSize = 1, name = "request_type_table_pk_request_type_id_seq", sequenceName = "request_type_table_pk_request_type_id_seq")
     int pk_request_type_id;
+    
     @Column(name = "name")
     String name;
 }

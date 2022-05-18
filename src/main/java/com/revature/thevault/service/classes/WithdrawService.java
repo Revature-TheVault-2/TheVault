@@ -46,25 +46,22 @@ public class WithdrawService implements WithdrawServiceInterface {
                 .createdObject( Collections.singletonList(
                    convertEntityToResponse(    
                      withdrawRepository.save(new WithdrawEntity (       
-                    		 // This is generating a withdraw object
-                    	   0, // This is the ID, gets set to the correct id using the sequence generator
-                           new AccountEntity(// This makes a new account entity for some reason
-                        		   //instead of getting the account from a session, We can ignore the below ridiculousness with sessions
-                        		   withdrawRequest.getAccountId(),  // Gets the account ID from the object, we can get it from session
-                        		   new LoginCredentialEntity(),  // Make a blank username/password, We'll pull from the session or make them null with a new constructor
+                    	   0,
+                           new AccountEntity(                        		   
+                        		   withdrawRequest.getAccountId(), 
+                        		   new LoginCredentialEntity(),  
                         		   new AccountTypeEntity(), 
                         		   0, 
                         		   0), 
-                           			// End of account entity
-                           requestTypeService.getRequestTypeByName(withdrawRequest.getRequestType()), // Gets the type from the input object                    
-                           requestStatusService.getRequestStatusByName("Pending"),   // Sets the status to "pending"                          
-                           withdrawRequest.getReference(),  // Sets the reference                          
-                           Date.valueOf(LocalDate.now()),  // Sets the date to the moment it was generated                          
-                           withdrawRequest.getAmount() /* Sets the amount from the inputed object*/         )                                                                
+                           requestTypeService.getRequestTypeByName(withdrawRequest.getRequestType()),                
+                           requestStatusService.getRequestStatusByName("Pending"),                             
+                           withdrawRequest.getReference(),                        
+                           Date.valueOf(LocalDate.now()),                           
+                           withdrawRequest.getAmount())                                                                
                                                 
                                         )
                                 )
-                        )
+                    )
                 )
                 .build();
     }
@@ -208,6 +205,6 @@ public class WithdrawService implements WithdrawServiceInterface {
                 withdrawEntity.getReference(),
                 withdrawEntity.getDate_withdraw().toLocalDate(),
                 withdrawEntity.getAmount()
-        );
-    }
+		);
+	}
 }

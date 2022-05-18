@@ -11,7 +11,10 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class ProfileCreateRequest {
-    int userId;
+	//this is from angular
+    int userId; 
+    
+    //this is from input fields
     String firstName;
     String lastName;
     String email;

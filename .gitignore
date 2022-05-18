@@ -42,6 +42,7 @@ dist/
 nbdist/
 .nb-gradle/
 
+<<<<<<< HEAD
 # IDE - VSCode
 .vscode/*
 !.vscode/settings.json
@@ -56,3 +57,9 @@ nbdist/
 # System Files
 .DS_Store
 Thumbs.db
+=======
+### VS Code ###
+.vscode/
+!/theVaultDebug.log
+/.metadata/
+>>>>>>> 93c578f38aa2e8cc7b59d37a210349f96a17ba5d

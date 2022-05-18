@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 The GNU General Public License (GPL)
 
 Version 2, June 1991
@@ -345,3 +346,6 @@ exception as provided by Oracle in the LICENSE file that accompanied this code."
     you modify this library, you may extend this exception to your version of
     the library, but you are not obligated to do so.  If you do not wish to do
     so, delete this exception statement from your version.
+=======
+Please see ..\java.base\LICENSE
+>>>>>>> a714d9cab189d9b1930b6174fa9c77e6051184e3

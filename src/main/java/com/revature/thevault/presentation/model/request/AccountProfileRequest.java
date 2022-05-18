@@ -10,6 +10,7 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
+// Is referenced by com.revature.thevault.presentation.controller.AccountProfileController.java && presentation.service.classes.accountprofileservice
 public class AccountProfileRequest {
     int profileId;
 }

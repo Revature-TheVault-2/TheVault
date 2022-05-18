@@ -9,6 +9,7 @@ import lombok.experimental.FieldDefaults;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+// referenced by  service.classes.depositservice.java
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class DepositRequest {
     

@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2013, 2020, Oracle and/or its affiliates. All rights reserved.
+<<<<<<< HEAD
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
  * This code is free software; you can redistribute it and/or modify it
@@ -21,6 +22,29 @@
  * Please contact Oracle, 500 Oracle Parkway, Redwood Shores, CA 94065 USA
  * or visit www.oracle.com if you need additional information or have any
  * questions.
+=======
+ * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+>>>>>>> a714d9cab189d9b1930b6174fa9c77e6051184e3
  */
 
 var moduleSearchIndex;

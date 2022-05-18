@@ -281,7 +281,7 @@ public class AccountService implements AccountServiceInterface{
     private AccountResponseObject convertAccountEntityToResponse(AccountEntity accountEntity) {
         return new AccountResponseObject(
                 accountEntity.getPk_account_id(),
-                accountEntity.getLogincredentials().getPkUserId(),
+                accountEntity.getLogincredentials().getPkuserid(),
                 accountEntity.getAccountTypeEntity().getName(),
                 accountEntity.getAvailable_balance(),
                 accountEntity.getPending_balance()

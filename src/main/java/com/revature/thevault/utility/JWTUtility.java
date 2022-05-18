@@ -21,6 +21,7 @@ public class JWTUtility {
                 .signWith(Keys.hmacShaKeyFor(secret))
                 .compact();
     }
+
     /**
      * jwt - json web tokens
      * creates an objectMapper object, a (Jws)JSON web signature claims set(a JSON map) is initialized,
@@ -31,6 +32,7 @@ public class JWTUtility {
      * @Author Previous Batch
      * @return JWTInfo Obj
      */
+
     public static JWTInfo verifyUser(String token) {
         ObjectMapper objectMapper = new ObjectMapper();
         Jws<Claims> jws;

@@ -25,6 +25,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+/**
+ * @author chris & fred & david
+ * Service layer for deposit repository 
+ * Dependencies: DepositRepository, DepositTypeService,
+ */
 @Service("depositService")
 public class DepositService implements DepositServiceInterface {
 
@@ -34,6 +39,13 @@ public class DepositService implements DepositServiceInterface {
 	@Autowired
 	private DepositTypeService depositTypeService;
 
+	/**
+	 * Saves new deposit entity into the deposit repository and then converts to a PostResponse return.
+	 * @param DepositRequest depositRequest 
+	 * @return PostResponse containing single deposit entity in a list (singleton).
+	 * TODO: possibly refactor DepositEntity constructor variables for readability
+	 * TODO: create a deposit factory for the .builder()
+	 */
 	@Override
 	public PostResponse createDeposit(DepositRequest depositRequest) {
 		try {
@@ -51,6 +63,11 @@ public class DepositService implements DepositServiceInterface {
 		}
 	}
 
+	/**
+	 * Gets all deposit for the given user.
+	 * @param int accountId
+	 * @return GetResponse containing List of deposit response objects.
+	 */
 	@Override
 	public GetResponse getAllUserDeposits(int accountId) {
 		try {
@@ -66,6 +83,12 @@ public class DepositService implements DepositServiceInterface {
 		}
 	}
 
+	/**
+	 * Gets all of a user's deposits of a specific type.
+	 * @param int accountId
+	 * @param String depositType
+	 * @return GetResponse containing List of deposit response objects.
+	 */
 	@Override
 	public GetResponse getAlLUserDepositsOfType(int accountId, String depositType) {
 		try {
@@ -78,6 +101,11 @@ public class DepositService implements DepositServiceInterface {
 		}
 	}
 
+	/**
+	 * Finds a deposit by its id number.
+	 * @param int depositId
+	 * @return GetResponse containing singleton list for deposit entity.
+	 */
 	@Override
 	public GetResponse findByDepositId(int depositId) {
 		try {
@@ -94,6 +122,11 @@ public class DepositService implements DepositServiceInterface {
 		}
 	}
 
+	/**
+	 * Deletes all deposits by accountId.
+	 * @param Integer accountId
+	 * @return DeleteResponse
+	 */
 	@Override
 	public DeleteResponse deleteAllDeposits(Integer accountId) {
 		try {
@@ -105,23 +138,44 @@ public class DepositService implements DepositServiceInterface {
 		}
 	}
 
+	/**
+	 * Gets all deposits by user's account id and account type.
+	 * @param int accountId
+	 * @param DepositTypeEntity depositTypeEntity
+	 * @return List<DeposityEntity> 
+	 */
 	private List<DepositEntity> getUserDepositsByAccountIdAndType(int accountId, DepositTypeEntity depositTypeEntity) {
 		return depositRepository.findByAccountentityAndDeposittypeentity(
 				new AccountEntity(accountId, new LoginCredentialEntity(), new AccountTypeEntity(), 0, 0),
 				depositTypeEntity);
 	}
 
+	/**
+	 * Gets all deposits by user's account id.
+	 * @param int accountId
+	 * @return List<DepositEntity>
+	 */
 	private List<DepositEntity> getUserDepositsByAccountId(int accountId) {
 		return depositRepository.findByAccountentity(
 				new AccountEntity(accountId, new LoginCredentialEntity(), new AccountTypeEntity(), 0, 0));
 	}
 
+	/**
+	 * Helper method to convert DepositEntity object to DepositResponseObject.
+	 * @param DepositEntity depositEntity
+	 * @return DepositResponseObject
+	 */
 	private DepositResponseObject convertDepositEntityToResponse(DepositEntity depositEntity) {
 		return new DepositResponseObject(depositEntity.getPk_deposit_id(),
 				depositEntity.getAccountentity().getPk_account_id(), depositEntity.getDeposittypeentity().getName(),
 				depositEntity.getReference(), depositEntity.getDate_deposit().toLocalDate(), depositEntity.getAmount());
 	}
 
+	/** 
+	 * Helper method to convert a list of DepositEntity objects to a list of DepositResponseObject.
+	 * @param List<DepositEntity> depositEntities
+	 * @return List<DepositResponseObject>
+	 */
 	private List<DepositResponseObject> convertDepositEntitiesToResponseList(List<DepositEntity> depositEntities) {
 		List<DepositResponseObject> responseObjects = new ArrayList<>(depositEntities.size());
 		depositEntities.forEach(acc -> responseObjects.add(convertDepositEntityToResponse(acc)));

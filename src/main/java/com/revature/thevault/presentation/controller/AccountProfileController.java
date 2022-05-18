@@ -27,20 +27,47 @@ public class AccountProfileController {
     @Autowired
     private AccountProfileService accountProfileService;
 
+    /**
+     * Invokes the paired service layer and then calls its createProfile method by passing the ProfileCreateRequest
+     * @author previous team
+     * @param profileCreateRequest - this is the ?base model? (AccountProfileEntity) minus LoginCredentailEntity Obj
+     * @return PostResponse Object - which carries the request object and a success boolean
+     */
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/create")
     public PostResponse createProfile(@RequestBody ProfileCreateRequest profileCreateRequest){
         return accountProfileService.createProfile(profileCreateRequest);
     }
 
+    /**
+     * Does a session check.
+     * Invokes the paired service layer and then calls its getProfile method by passing the ID along
+     * 
+     * @param token
+     * @param userId
+     * @return GetResponse - which carries the request object and a success boolean
+     */
     @GetMapping("/get/{id}")
     public GetResponse getProfile(@RequestHeader("Authorization") String token, @PathVariable int id){
         JWTInfo parsedJWT = JWTUtility.verifyUser(token);
-        if(parsedJWT != null) return accountProfileService.getProfile(new AccountProfileRequest(id));
+        if(parsedJWT != null) {
+        	
+        	
+        	return accountProfileService.getProfile(new AccountProfileRequest(id));
+        	
+        	
+        }
         else throw new InvalidAuthorizationError(HttpStatus.UNAUTHORIZED, "No valid JWT");
     }
 
-    //remove, this is not necessary to the application
+    /**
+     * remove, this is not necessary to the application
+     * Deprecated due to comment left by other team^
+     * @param token
+     * @param accountProfileRequest
+     * @return
+     */
+    @Deprecated
     @DeleteMapping("/delete")
     public DeleteResponse deleteProfile(@RequestHeader("Authorization") String token, @RequestBody AccountProfileRequest accountProfileRequest){
         JWTInfo parsedJWT = JWTUtility.verifyUser(token);
@@ -48,6 +75,13 @@ public class AccountProfileController {
         else throw new InvalidAuthorizationError(HttpStatus.UNAUTHORIZED, "No valid JWT");
     }
 
+    /**
+     * Does a session check.
+     * Invokes the paired service layer and then calls its updateProfile method passign along the param
+     * @param token
+     * @param updateProfileRequest
+     * @return PutResponse object - which carries the request object and a success boolean
+     */
     @PutMapping("/update")
     public PutResponse updateProfile(@RequestHeader("Authorization") String token, @RequestBody UpdateProfileRequest updateProfileRequest){
         JWTInfo parsedJWT = JWTUtility.verifyUser(token);

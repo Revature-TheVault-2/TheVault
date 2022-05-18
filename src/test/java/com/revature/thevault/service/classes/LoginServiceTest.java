@@ -65,7 +65,7 @@ public class LoginServiceTest {
 
     private LoginResponseObject convertEntityToResponse(LoginCredentialEntity loginCredentialEntity){
         return new LoginResponseObject(
-                loginCredentialEntity.getPkUserId(),
+                loginCredentialEntity.getPkuserid(),
                 loginCredentialEntity.getUsername(),
                 loginCredentialEntity.getPassword(),
                 "lol"
@@ -110,7 +110,7 @@ public class LoginServiceTest {
     }
 
     @Test
-    void findUserByUserIdTest(){assertEquals(loginService.findUserByUserId(loginCredentialEntity.getPkUserId()), loginCredentialEntity);}
+    void findUserByUserIdTest(){assertEquals(loginService.findUserByUserId(loginCredentialEntity.getPkuserid()), loginCredentialEntity);}
 
 
 }

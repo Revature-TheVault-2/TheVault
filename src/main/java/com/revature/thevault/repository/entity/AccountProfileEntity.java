@@ -15,15 +15,15 @@ import javax.persistence.*;
 @Entity
 @Table(name = "account_profile_table")
 public class AccountProfileEntity {
+	
+	
     @Id
     @Column(name = "pk_profile_id")
     @GeneratedValue(generator = "account_profile_table_pk_profile_id_seq", strategy = GenerationType.SEQUENCE)
     @SequenceGenerator(allocationSize = 1, name = "account_profile_table_pk_profile_id_seq", sequenceName = "account_profile_table_pk_profile_id_seq")
     int pk_profile_id;
     
-    @OneToOne(
-            fetch = FetchType.EAGER,
-            cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "fk_user_id")
     LoginCredentialEntity logincredential;
     

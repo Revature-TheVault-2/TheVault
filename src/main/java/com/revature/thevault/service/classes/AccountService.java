@@ -29,6 +29,14 @@ public class AccountService implements AccountServiceInterface{
     @Autowired
     private AccountTypeService accountTypeService;
 
+	/**
+	 * Builds a PostResponse object containing a singleton list which holds a single
+	 * AccountEntity object produced by saving a new AccountEntity to the DataBase.
+	 * 
+	 * @Author Previous Batch
+	 * @param
+	 * @Return PostResponse obj
+	 */
     @Override
     public PostResponse createAccount(CreateAccountRequest createAccountRequest) {
         return PostResponse.builder()
@@ -45,9 +53,21 @@ public class AccountService implements AccountServiceInterface{
                                 )
                         )
                 )
-                ).build();
+                ).build(); 
     }
 
+    /**
+     * Receives an (int) account id.
+     * 
+     * Builds a GetResponse object containing a singleton
+     * list which holds a single AccountResponseObject() that 
+     * was populated by feeding the int parameter into the 
+     * getAccountById method which returns an account entity.
+     * 
+     * @Author Previous Batch
+     * @param
+     * @return GetResponse obj
+     */
     @Override
     public GetResponse getAccount(int accountId) {
             return GetResponse.builder()
@@ -58,6 +78,18 @@ public class AccountService implements AccountServiceInterface{
                     .build();
     }
 
+	/**
+	 * In the Try block: An AccountEntity object in instantiated by calling
+	 * getAccountById(accountId parameter) method. The
+	 * accountRepository.delete(accountEntity object) method deletes the AccountEntity
+	 * from the database. Returns a DeleteResponse object that is built containing a
+	 * singleton list object that holds the variables from the deleted AccountEntity
+	 * object.
+	 * 
+	 * @Author Previous Batch
+	 * @param
+	 * @Return DeleteResponse object
+	 */
     @Override
     public DeleteResponse deleteAccount(int accountId) {
         try {
@@ -73,6 +105,17 @@ public class AccountService implements AccountServiceInterface{
         }
     }
 
+    
+    /**
+     * Receives an int parameter (userId.
+     * Instantiates a list by calling the method getUserAccountsByUserId(userId)
+     * 
+     * Builds a GetResponse object containing a List(AccountResponseObject) object and returns it.
+     * 
+     * @Author Previous Batch
+     * @param
+     * @return GetResponse object
+     */
     @Override
     public GetResponse getAccounts(int userId) {
         List<AccountEntity> accountEntities = getUserAccountsByUserId(userId);
@@ -83,6 +126,20 @@ public class AccountService implements AccountServiceInterface{
                 .build();
     }
 
+	/**
+	 * An AccountEntity object(accountEntityReal) is instantiated by calling the
+	 * getAccountById({parameter}.getAccountId()) method. Uses setters on the new
+	 * AccountEntity object to replace the variable values with those of the
+	 * {parameter}. Instantiate another AccountEntity object by calling
+	 * updateAccountEntity(accountEntityReal) method. Return a PutResponse object
+	 * that is built containing a singleton list object which holds a new
+	 * instantiated AccountResponseObject with the same values as the updated
+	 * AccountEntity.
+	 * 
+	 * @Author Previous Batch
+	 * @param
+	 * @Return PutResponse
+	 */
     @Override
     public PutResponse updateAccount(UpdateAccountRequest updateAccountRequest) {
         AccountEntity accountEntityReal = getAccountById(updateAccountRequest.getAccountId());
@@ -97,7 +154,31 @@ public class AccountService implements AccountServiceInterface{
                 .build();
     }
 
-
+	/**
+	 * An AccountEntity object(accountEntityReal) is instantiated by calling the
+	 * getAccountById({parameter}.getOwnerAccountId()) method.
+	 * 
+	 * instantiates another AccountEntity by
+	 * getAccountById({parameter}.getReceiverAccountId()) if balance is
+	 * insufficient, it'll throw InvalidAmountException.
+	 * 
+	 * Else, 2 AccountEntity objects are instantiated. The first(aka the sending
+	 * AccountEntity) is instantiated by calling the updateAccountEntity() method
+	 * which calls the updateAmount() method which contains the sending
+	 * AccountEntity object, the transfer amount, and a true boolean(since they are
+	 * the sender.
+	 * 
+	 * The second(aka the receiving AccountEntity) is instantiated by calling the
+	 * updateAccountEntity() method which calls the updateAmount() method which
+	 * contains the receiving AccountEntity, the incoming balance value, and a false
+	 * boolean(since they are the receiving party.
+	 * 
+	 * Returns a PutResponse that is built containing both the updated AccountEntity objects.
+	 * 
+	 * @Author Previous Batch
+	 * @param
+	 * @Return PutResponse
+	 */
     @Override
     public PutResponse transferToAnotherAccount(TransferRequest transferRequest) {
         AccountEntity ownerAccountEntity = getAccountById(transferRequest.getOwnerAccountId());
@@ -130,32 +211,77 @@ public class AccountService implements AccountServiceInterface{
         return accountRepository.save(accountEntity);
     }
 
+	/**
+	 * Optional(AccountEntity) object is instantiated by calling the method
+	 * accountRepository.findById(accountId parameter). If isPresent() method
+	 * returns true (Optional object is not null) then get() method returns the
+	 * AccountEntity object. Else, an exception is thrown.
+	 * 
+	 * @Author Previous Batch
+	 * @param accountId
+	 * @return
+	 */
     private AccountEntity getAccountById(int accountId){
         Optional<AccountEntity> accountEntityOptional = accountRepository.findById(accountId);
         if (accountEntityOptional.isPresent()) return accountEntityOptional.get();
         else throw new EntityNotFoundException();
     }
 
+	/**
+	 * Generates a List(Account entity) using
+	 * accountRepository.findByLogincredentials() with [new
+	 * LoginCredentialEntity(userId, "", "")] as a parameter. If the list was not
+	 * populated, then an InvalidUserIdException is thrown. If the list is not null,
+	 * then the list is returned.
+	 * 
+	 * @param userId
+	 * @return
+	 */
     private List<AccountEntity> getUserAccountsByUserId(int userId){
         List<AccountEntity> accountEntities = accountRepository.findByLogincredentials(new LoginCredentialEntity(userId, "", ""));
         if(accountEntities != null) return accountEntities;
         else throw new InvalidUserIdException(HttpStatus.BAD_REQUEST, "Invalid User Id Provided: " + userId);
     }
 
+	/**
+	 * Returns an AccountEntity object after saving it to the DataBase.
+	 * 
+	 * @Author Previous batch
+	 * @param accountEntity
+	 * @return AccountEntity
+	 */
     private AccountEntity updateAccountEntity(AccountEntity accountEntity){
         return accountRepository.save(accountEntity);
     }
 
+	/**
+	 * Instantiates a new List of the same length as the parameter list. Each entry
+	 * in the parameter list is run through the method
+	 * convertAccountEntityToResponse() and stored in the new list which is then
+	 * returned.
+	 * 
+	 * @Author Previous Batch
+	 * @param accountEntities
+	 * @return
+	 */
     private List<AccountResponseObject> convertAccountEntitiesToResponseList(List<AccountEntity> accountEntities) {
         List<AccountResponseObject> responseObjects = new ArrayList<>(accountEntities.size());
         accountEntities.forEach(acc -> responseObjects.add(convertAccountEntityToResponse(acc)));
         return responseObjects;
     }
 
+	/**
+	 * Returns a new AccountResponseObject() containing all Variables held by the
+	 * given AccountEntity object.
+	 * 
+	 * @Author Previous Batch
+	 * @param accountEntity
+	 * @return
+	 */
     private AccountResponseObject convertAccountEntityToResponse(AccountEntity accountEntity) {
         return new AccountResponseObject(
                 accountEntity.getPk_account_id(),
-                accountEntity.getLogincredentials().getPkUserId(),
+                accountEntity.getLogincredentials().getPkuserid(),
                 accountEntity.getAccountTypeEntity().getName(),
                 accountEntity.getAvailable_balance(),
                 accountEntity.getPending_balance()

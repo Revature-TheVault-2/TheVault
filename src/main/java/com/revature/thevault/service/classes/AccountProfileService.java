@@ -158,7 +158,7 @@ public class AccountProfileService implements AccountProfileInterface {
     private AccountProfileResponse convertEntityToResponse(AccountProfileEntity accountProfileEntity) {
         return new AccountProfileResponse(
                 accountProfileEntity.getPk_profile_id(),
-                accountProfileEntity.getLogincredential().getPkUserId(),
+                accountProfileEntity.getLogincredential().getPkuserid(),
                 accountProfileEntity.getFirst_name(),
                 accountProfileEntity.getLast_name(),
                 accountProfileEntity.getEmail(),

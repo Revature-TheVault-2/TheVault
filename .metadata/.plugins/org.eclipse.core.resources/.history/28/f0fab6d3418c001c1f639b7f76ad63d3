@@ -1,5 +1,0 @@
-package com.revature.thevault.repository.dao;
-
-public class DepositTypeRepository {
-
-}

@@ -1,5 +1,9 @@
 package com.revature.thevault.presentation.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+
 import com.revature.thevault.presentation.model.request.WithdrawRequest;
 import com.revature.thevault.presentation.model.response.builder.DeleteResponse;
 import com.revature.thevault.presentation.model.response.builder.GetResponse;
@@ -8,9 +12,6 @@ import com.revature.thevault.service.classes.WithdrawService;
 import com.revature.thevault.service.exceptions.InvalidAuthorizationError;
 import com.revature.thevault.utility.JWTInfo;
 import com.revature.thevault.utility.JWTUtility;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin("*")
 @RestController("withdrawController")

@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+// referenced by repository.dao.loginrepository.java
 public class DeleteDepositRequest {
     int accountId;
 }

@@ -122,6 +122,7 @@ public class LoginService implements LoginServiceInterface {
                 loginCredentialEntity.getUsername(),
                 loginCredentialEntity.getPassword(),
                 JWTUtility.generateJWT(loginCredentialEntity.getPkuserid(), loginCredentialEntity.getUsername())
+
         );
     }
 }

@@ -31,12 +31,12 @@ public class LoginService implements LoginServiceInterface {
 	/**
 	 * Service layer method that checks the login credentials
 	 * @param loginRequest
-	 * @return
+	 * @return LoginResponse
 	 */
 	@Override
 	public LoginResponse checkLogin(LoginRequest loginRequest) {
 		LoginCredentialEntity loginCredentialEntity = loginRepository.findByUsername(loginRequest.getUsername());
-		if (loginCredentialEntity.getPassword().contentEquals(loginRequest.getPassword())) {//checks if what the user inputs match what's in the database
+		if (loginCredentialEntity.getPassword().contentEquals(loginRequest.getPassword())) {
 			return new LoginResponse(true);
 		} else {
 			return new LoginResponse(false);
@@ -46,7 +46,7 @@ public class LoginService implements LoginServiceInterface {
 	/**
 	 * Service layer that logs users in by getting the login credentials 
 	 * @param loginRequest
-	 * @return
+	 * @return PostResponse
 	 */
 	@Override
 	public PostResponse getLoginCredentialFromLogin(LoginRequest loginRequest) {
@@ -54,7 +54,7 @@ public class LoginService implements LoginServiceInterface {
 			return PostResponse.builder().success(true)
 					.createdObject(Collections.singletonList(convertEntityToResponse(loginRepository
 							.findByUsernameAndPassword(loginRequest.getUsername(), loginRequest.getPassword()))))
-					.build();//looks for Username and Password
+					.build();
 		} catch (Exception e) {
 			throw new InvalidInputException("User was not found");
 
@@ -63,7 +63,7 @@ public class LoginService implements LoginServiceInterface {
 /**
  * Service layer that that creates a new login or account
  * @param newLoginRequest
- * @return
+ * @return PostResponse
  */
 	@Override
 	public PostResponse createNewLogin(NewLoginCredentialsRequest newLoginRequest) {
@@ -72,7 +72,7 @@ public class LoginService implements LoginServiceInterface {
 					.createdObject(Collections
 							.singletonList(convertEntityToResponse(loginRepository.save(new LoginCredentialEntity(0,
 									newLoginRequest.getUsername(), newLoginRequest.getPassword())))))
-					.build();//creates new login by taking username and password from user
+					.build();
 		} catch (Exception e) {
 			throw new InvalidInputException("Please check the information");
 		}
@@ -80,7 +80,7 @@ public class LoginService implements LoginServiceInterface {
 	/**
 	 * Service layer that resets the password of the account
 	 * @param resetPasswordRequest
-	 * @return
+	 * @return putResponse
 	 */
 
 	@Override
@@ -97,12 +97,12 @@ public class LoginService implements LoginServiceInterface {
 		}
 		try {
 			LoginCredentialEntity loginCredentialEntity = loginRepository
-					.findByUsername(resetPasswordRequest.getUsername());//looks for Username 
+					.findByUsername(resetPasswordRequest.getUsername());
 //            AccountProfileResponse accountProfileResponse = (AccountProfileResponse) accountProfileService.getProfile(new AccountProfileRequest(loginCredentialEntity.getPk_user_id())).getGotObject().get(0);
-			loginCredentialEntity.setPassword(passwordResetter.toString());//sets new password
+			loginCredentialEntity.setPassword(passwordResetter.toString());
 //            if(accountProfileResponse.getEmail().contentEquals(resetPasswordRequest.getEmail()))
 			return PutResponse.builder().success(true)
-					.updatedObject(Collections.singletonList(loginRepository.save(loginCredentialEntity))).build();// updates the user password
+					.updatedObject(Collections.singletonList(loginRepository.save(loginCredentialEntity))).build();
 //            else throw new InvalidRequestException(HttpStatus.BAD_REQUEST, "invalid Email");
 		} catch (NullPointerException e) {
 			throw new InvalidRequestException(HttpStatus.BAD_REQUEST, "invalid request");
@@ -112,7 +112,7 @@ public class LoginService implements LoginServiceInterface {
 	/**
 	 * Service layer that finds the user by ID
 	 * @param userId
-	 * @return
+	 * @return loginRepository
 	 */
 	@Override
 	public LoginCredentialEntity findUserByUserId(int userId) {
@@ -121,13 +121,14 @@ public class LoginService implements LoginServiceInterface {
 
 	/**
 	 * Service layer that validates user credentials to login
+	 * //looks for username and password
 	 * @param loginRequest
 	 * @return
 	 */
 	public PostResponse validateLogin(LoginRequest loginRequest) {
 		try {
 			LoginCredentialEntity loginCredentialEntity = loginRepository
-					.findByUsernameAndPassword(loginRequest.getUsername(), loginRequest.getPassword());//looks for username and password
+					.findByUsernameAndPassword(loginRequest.getUsername(), loginRequest.getPassword());
 			return PostResponse.builder().success(true)
 					.createdObject(Collections.singletonList(convertEntityToResponse(loginCredentialEntity))).build();
 		} catch (Exception e) {
@@ -137,7 +138,7 @@ public class LoginService implements LoginServiceInterface {
 	/**
 	 * helper method to convert entity to response
 	 * @param loginCredentialEntity
-	 * @return
+	 * @return LoginResponseObject
 	 */
 
 	private LoginResponseObject convertEntityToResponse(LoginCredentialEntity loginCredentialEntity) {

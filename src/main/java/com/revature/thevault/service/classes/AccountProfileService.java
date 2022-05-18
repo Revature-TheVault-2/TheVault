@@ -32,6 +32,14 @@ public class AccountProfileService implements AccountProfileInterface {
     @Autowired
     private LoginService loginService;
 
+    /**
+     * Takes the ID from the param, and then creates a LoginCredential with just an ID.
+     * Then it finds the corresponding AccountProfile.
+     * Then returns it in a GetResponse
+     * @author Other Team
+     * @param AccountProfileRequest
+     * @return GetResponse
+     */
     @Override
     public GetResponse getProfile(AccountProfileRequest accountProfileRequest) {
         LoginCredentialEntity loginCredential = new LoginCredentialEntity(
@@ -44,7 +52,7 @@ public class AccountProfileService implements AccountProfileInterface {
 
         try {
             return GetResponse.builder()
-                    .success(true)
+            		.success(true)
 //                    .gotObject(Collections.singletonList(convertEntityToResponse(accountProfileRepository.getById(accountProfileRequest.getProfileId()))))
                     .gotObject(Collections.singletonList(convertEntityToResponse(profile)))
                     .build();
@@ -53,6 +61,17 @@ public class AccountProfileService implements AccountProfileInterface {
         }
     }
 
+
+
+    /**
+     * Creates an AccountProfileEntity and sets all of its fields from the parameter.
+     * DAO call to save the created profile entity.
+     * The return from the DB is the parameter for the convertEntityToResponse
+     * Then builds a PostResponse Object out of success and the convertedEntity
+     * 
+     * @param profileCreateRequest 
+     * @return PostResponse
+     */
     @Override
     public PostResponse createProfile(ProfileCreateRequest profileCreateRequest) {
         AccountProfileEntity createdProfileEntity = new AccountProfileEntity(
@@ -77,6 +96,16 @@ public class AccountProfileService implements AccountProfileInterface {
         }
     }
 
+    
+    /**
+     * This method takes the param and makes a new AccountProfileEntity setting all of its values to the param's.
+     * Then it saves it to the DB.
+     * What the DB returns is converted to an AccountProfileResponse
+     * Then the response is put into a PutResponse and sent back
+     * @author Other Team
+     * @param updateProfileRequest
+     * @return PutResponse
+     */
     @Override
     public PutResponse updateProfile(UpdateProfileRequest updateProfileRequest) {
         try {
@@ -100,6 +129,7 @@ public class AccountProfileService implements AccountProfileInterface {
 
     @Override
     @Transactional
+    @Deprecated
     public DeleteResponse deleteProfile(AccountProfileRequest accountProfileRequest) {
 
         try {
@@ -119,10 +149,16 @@ public class AccountProfileService implements AccountProfileInterface {
         }
     }
 
+    /**
+     * HELPER METHOD
+     * 
+     * @param accountProfileEntity
+     * @return AccountProfileResponse
+     */
     private AccountProfileResponse convertEntityToResponse(AccountProfileEntity accountProfileEntity) {
         return new AccountProfileResponse(
                 accountProfileEntity.getPk_profile_id(),
-                accountProfileEntity.getLogincredential().getPk_user_id(),
+                accountProfileEntity.getLogincredential().getPkUserId(),
                 accountProfileEntity.getFirst_name(),
                 accountProfileEntity.getLast_name(),
                 accountProfileEntity.getEmail(),

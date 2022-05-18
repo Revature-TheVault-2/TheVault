@@ -134,7 +134,11 @@ public class LoginService implements LoginServiceInterface {
 			throw new InvalidRequestException(HttpStatus.BAD_REQUEST, e.getMessage());
 		}
 	}
-	
+	/**
+	 * helper method to convert entity to response
+	 * @param loginCredentialEntity
+	 * @return
+	 */
 
 	private LoginResponseObject convertEntityToResponse(LoginCredentialEntity loginCredentialEntity) {
 		return new LoginResponseObject(loginCredentialEntity.getPk_user_id(), loginCredentialEntity.getUsername(),

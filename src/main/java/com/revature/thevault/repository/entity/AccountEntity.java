@@ -21,6 +21,7 @@ public class AccountEntity {
 	@GeneratedValue(generator = "account_table_pk_account_id_seq", strategy = GenerationType.SEQUENCE)
 	@SequenceGenerator(allocationSize = 1, name = "account_table_pk_account_id_seq", sequenceName = "account_table_pk_account_id_seq")
 	int pk_account_id;
+	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "fk_user_id")
 	LoginCredentialEntity logincredentials;
@@ -31,6 +32,10 @@ public class AccountEntity {
 
 	@Column(name = "available_balance")
 	float available_balance;
+	
 	@Column(name = "pending_balance")
 	float pending_balance;
+
+	
+	
 }

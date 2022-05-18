@@ -22,6 +22,7 @@ public class JWTUtility {
                 .compact();
     }
 
+   
     public static JWTInfo verifyUser(String token) {
         ObjectMapper objectMapper = new ObjectMapper();
         Jws<Claims> jws;

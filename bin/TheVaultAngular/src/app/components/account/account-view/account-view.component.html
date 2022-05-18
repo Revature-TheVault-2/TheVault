@@ -1,0 +1,29 @@
+<img class="vault-title" src="../../../../assets/vault_logo.png" alt="templogo">
+<a class="btn btn-primary" (click)="logout()">Logout</a>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="card-header">
+
+<!-- <div class="d-flex justify-content-md-center">
+    <h1 class="display-2">Hello {{profile.firstName}}</h1>
+</div> -->
+
+<br>
+<div class="d-flex justify-content-md-around">
+    <div class="p-2">
+        <app-account-profile [profile]="profile"></app-account-profile>
+    </div>
+    <div class="p-2">
+        <app-create-account (createAccountEmitter)="createAccountEvent($event)"></app-create-account>
+    </div>
+</div>
+<div class="d-flex justify-content-md-center">
+    <h1 class="display-4">Select your account</h1>
+</div>
+<app-select [userId]="userId" [accounts]="accounts"></app-select>
+
+

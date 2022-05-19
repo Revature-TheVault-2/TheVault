@@ -13,6 +13,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+
+/**
+ * @author chris & fred
+ * Handles deposit endpoints, authorization token required for all methods.
+ * dependencies: depositService
+ * TODO: move returns to a new line for better readability.
+ */
 @CrossOrigin("*")
 @RestController("depositController")
 @RequestMapping("/deposit")
@@ -21,6 +28,12 @@ public class DepositController {
 		@Autowired
 		private DepositService depositService;
 
+		/**
+		 * Creates new deposit by calling service layer method.
+		 * @param String token 
+		 * @param DepositRequest depositRequest
+		 * @return PostResponse 
+		 */
 		@ResponseStatus(HttpStatus.CREATED)
 		@PostMapping("/create")
 		public PostResponse createDeposit(@RequestHeader("Authorization") String token, @RequestBody DepositRequest depositRequest) {
@@ -29,6 +42,12 @@ public class DepositController {
         else throw new InvalidAuthorizationError(HttpStatus.UNAUTHORIZED, "No valid JWT");
 		}
 
+		/**
+		 * Verifies deposit authorization token and finds deposit by id number.
+		 * @param String token
+		 * @param int depositId
+		 * @return GetResponse 
+		 */
 		@GetMapping("/detail")
 		public GetResponse getByDepositId(@RequestHeader("Authorization") String token, @RequestParam int depositId){
 			JWTInfo parsedJWT = JWTUtility.verifyUser(token);
@@ -36,6 +55,13 @@ public class DepositController {
         else throw new InvalidAuthorizationError(HttpStatus.UNAUTHORIZED, "No valid JWT");
 		}
 
+		/** 
+		 * Verifies user by token and returns all deposits by user id.
+		 * @param String token
+		 * @param Integer id
+		 * @return GetResponse
+		 * TODO: possibly change variable name for id, it's too vague.
+		 */
 		@ResponseStatus(HttpStatus.OK)
 		@GetMapping("/all/{id}")
 		public GetResponse findAllById(@RequestHeader("Authorization") String token, @PathVariable Integer id) {
@@ -44,6 +70,13 @@ public class DepositController {
         else throw new InvalidAuthorizationError(HttpStatus.UNAUTHORIZED, "No valid JWT");
 		}
 
+		/**
+		 * Verifies user by token and then returns all deposits by account id and deposit type id.
+		 * @param String token
+		 * @param String depositType
+		 * @param Integer accountId
+		 * @return GetResponse
+		 */
 		@ResponseStatus(HttpStatus.OK)
 		@GetMapping(path = "/type/{accountId}", produces = MediaType.APPLICATION_JSON_VALUE)
 		public GetResponse findByAccountIdAndDepositTypeId(@RequestHeader("Authorization") String token, @RequestParam String depositType, @PathVariable Integer accountId) {
@@ -52,6 +85,12 @@ public class DepositController {
         else throw new InvalidAuthorizationError(HttpStatus.UNAUTHORIZED, "No valid JWT");
 		}
 
+		/**
+		 * Deletes all deposits by account id.
+		 * @param String token
+		 * @param Integer accountId
+		 * @return DeleteResponse
+		 */
 		@DeleteMapping("/clear/{accountId}")
 		public DeleteResponse deleteAllDeposits(@RequestHeader("Authorization") String token, @PathVariable Integer accountId){
 			JWTInfo parsedJWT = JWTUtility.verifyUser(token);

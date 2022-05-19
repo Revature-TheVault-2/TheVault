@@ -56,3 +56,8 @@ nbdist/
 # System Files
 .DS_Store
 Thumbs.db
+
+### VS Code ###
+.vscode/
+!/theVaultDebug.log
+/.metadata/

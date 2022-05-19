@@ -13,6 +13,13 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+/**
+ * 
+ * Transaction Service. This service implementes TransactionServiceInterface
+ * It contains getTransactionHistory, convertDepositToTransactionObject, and convertDepositToTransactionObject
+ *
+ *	
+ */
 @Service("transactionService")
 public class TransactionService implements TransactionServiceInterface {
 
@@ -22,6 +29,18 @@ public class TransactionService implements TransactionServiceInterface {
     @Autowired
     private WithdrawService withdrawService;
 
+    /**
+     * Retrieves a transaction history with the account id as parameter.
+     * To create a transaction history all the account deposits are called through deposit service,
+     * and all the account withdrawals are called through withdraw service.
+     * The list is sorted in descending order by date.
+     * 
+     * This account info is converted and returned as a ResponseObject to the requesting controllers
+     * 
+     * @param account id
+     * @return GetResponse object
+     * 
+     */
     @Override
     public GetResponse getTransactionHistory(Integer accountId) {
         GetResponse deposits = depositService.getAllUserDeposits(accountId);
@@ -37,6 +56,13 @@ public class TransactionService implements TransactionServiceInterface {
                 .build();
     }
 
+    /**
+     * 
+     * Converts withdrawals into transaction objects
+     * 
+     * @param withdrawals
+     * @return TransactionObject
+     */
     private TransactionObject convertWithdrawToTransactionObject(WithdrawResponseObject withdrawals) {
         return new TransactionObject(
                 withdrawals.getWithdrawId(),
@@ -48,6 +74,13 @@ public class TransactionService implements TransactionServiceInterface {
         );
     }
 
+    /**
+     * 
+     * Converts deposits into transaction objects
+     * 
+     * @param deposit
+     * @return TransactionObject
+     */
     private TransactionObject convertDepositToTransactionObject(DepositResponseObject deposit) {
         return new TransactionObject(
                 deposit.getDepositId(),

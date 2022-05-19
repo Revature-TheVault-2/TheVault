@@ -13,4 +13,8 @@ import lombok.experimental.FieldDefaults;
 // Is referenced by com.revature.thevault.presentation.controller.AccountProfileController.java && presentation.service.classes.accountprofileservice
 public class AccountProfileRequest {
     int profileId;
+
+    public Object getProfileId() {
+        return null;
+    }
 }

@@ -26,9 +26,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 /**
- * @author chris & fred & david
- * Service layer for deposit repository 
- * Dependencies: DepositRepository, DepositTypeService,
+ * @author chris & fred & david Service layer for deposit repository
+ *         Dependencies: DepositRepository, DepositTypeService,
  */
 @Service("depositService")
 public class DepositService implements DepositServiceInterface {
@@ -40,11 +39,13 @@ public class DepositService implements DepositServiceInterface {
 	private DepositTypeService depositTypeService;
 
 	/**
-	 * Saves new deposit entity into the deposit repository and then converts to a PostResponse return.
-	 * @param DepositRequest depositRequest 
+	 * Saves new deposit entity into the deposit repository and then converts to a
+	 * PostResponse return.
+	 * 
+	 * @param DepositRequest depositRequest
 	 * @return PostResponse containing single deposit entity in a list (singleton).
-	 * TODO: possibly refactor DepositEntity constructor variables for readability
-	 * TODO: create a deposit factory for the .builder()
+	 *         TODO: possibly refactor DepositEntity constructor variables for
+	 *         readability TODO: create a deposit factory for the .builder()
 	 */
 	@Override
 	public PostResponse createDeposit(DepositRequest depositRequest) {
@@ -65,6 +66,7 @@ public class DepositService implements DepositServiceInterface {
 
 	/**
 	 * Gets all deposit for the given user.
+	 * 
 	 * @param int accountId
 	 * @return GetResponse containing List of deposit response objects.
 	 */
@@ -85,7 +87,8 @@ public class DepositService implements DepositServiceInterface {
 
 	/**
 	 * Gets all of a user's deposits of a specific type.
-	 * @param int accountId
+	 * 
+	 * @param int    accountId
 	 * @param String depositType
 	 * @return GetResponse containing List of deposit response objects.
 	 */
@@ -103,6 +106,7 @@ public class DepositService implements DepositServiceInterface {
 
 	/**
 	 * Finds a deposit by its id number.
+	 * 
 	 * @param int depositId
 	 * @return GetResponse containing singleton list for deposit entity.
 	 */
@@ -124,6 +128,7 @@ public class DepositService implements DepositServiceInterface {
 
 	/**
 	 * Deletes all deposits by accountId.
+	 * 
 	 * @param Integer accountId
 	 * @return DeleteResponse
 	 */
@@ -140,9 +145,10 @@ public class DepositService implements DepositServiceInterface {
 
 	/**
 	 * Gets all deposits by user's account id and account type.
-	 * @param int accountId
+	 * 
+	 * @param int               accountId
 	 * @param DepositTypeEntity depositTypeEntity
-	 * @return List<DeposityEntity> 
+	 * @return List<DeposityEntity>
 	 */
 	private List<DepositEntity> getUserDepositsByAccountIdAndType(int accountId, DepositTypeEntity depositTypeEntity) {
 		return depositRepository.findByAccountentityAndDeposittypeentity(
@@ -152,6 +158,7 @@ public class DepositService implements DepositServiceInterface {
 
 	/**
 	 * Gets all deposits by user's account id.
+	 * 
 	 * @param int accountId
 	 * @return List<DepositEntity>
 	 */
@@ -162,6 +169,7 @@ public class DepositService implements DepositServiceInterface {
 
 	/**
 	 * Helper method to convert DepositEntity object to DepositResponseObject.
+	 * 
 	 * @param DepositEntity depositEntity
 	 * @return DepositResponseObject
 	 */
@@ -171,8 +179,10 @@ public class DepositService implements DepositServiceInterface {
 				depositEntity.getReference(), depositEntity.getDate_deposit().toLocalDate(), depositEntity.getAmount());
 	}
 
-	/** 
-	 * Helper method to convert a list of DepositEntity objects to a list of DepositResponseObject.
+	/**
+	 * Helper method to convert a list of DepositEntity objects to a list of
+	 * DepositResponseObject.
+	 * 
 	 * @param List<DepositEntity> depositEntities
 	 * @return List<DepositResponseObject>
 	 */

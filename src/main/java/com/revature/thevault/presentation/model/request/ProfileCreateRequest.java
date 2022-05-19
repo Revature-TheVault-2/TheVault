@@ -20,4 +20,10 @@ public class ProfileCreateRequest {
     String email;
     String phoneNumber;
     String address;
+    public int getUserId() {
+        return 0;
+    }
+    public Object getFirstName() {
+        return null;
+    }
 }

@@ -16,7 +16,11 @@ import javax.persistence.*;
 @Table(name = "account_table")
 public class AccountEntity {
 
-	@Id
+	public AccountEntity(int accountId, LoginCredentialEntity loginCredentialEntity,
+            AccountTypeEntity accountTypeEntity2, float f, float g) {
+    }
+
+    @Id
 	@Column(name = "pk_account_id")
 	@GeneratedValue(generator = "account_table_pk_account_id_seq", strategy = GenerationType.SEQUENCE)
 	@SequenceGenerator(allocationSize = 1, name = "account_table_pk_account_id_seq", sequenceName = "account_table_pk_account_id_seq")

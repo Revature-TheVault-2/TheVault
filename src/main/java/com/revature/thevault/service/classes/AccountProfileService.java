@@ -78,7 +78,7 @@ public class AccountProfileService implements AccountProfileInterface {
                 0,
                 loginService.findUserByUserId(profileCreateRequest.getUserId()),
                 profileCreateRequest.getFirstName(),
-                profileCreateRequest.getLastName(),
+                profileCreateRequest.getFirstName(),
                 profileCreateRequest.getEmail(),
                 profileCreateRequest.getPhoneNumber(),
                 profileCreateRequest.getAddress()
@@ -115,7 +115,7 @@ public class AccountProfileService implements AccountProfileInterface {
                             updateProfileRequest.getProfileId(),
                             loginService.findUserByUserId(updateProfileRequest.getUserId()),
                             updateProfileRequest.getFirstName(),
-                            updateProfileRequest.getLastName(),
+                            updateProfileRequest.getFirstName(),
                             updateProfileRequest.getEmail(),
                             updateProfileRequest.getPhoneNumber(),
                             updateProfileRequest.getAddress()

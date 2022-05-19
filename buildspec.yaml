@@ -1,16 +1,16 @@
 version: 0.2
 
-env:
-  variables:
-    JAVA_HOME: ${JAVA_HOME}
-    db_url: ${db_url}
-    db_username: ${db_username}
-    db_password: ${db_password}
-
 phases:
   install:
     commands:
-      - echo Entered the install phase...
+      - echo "          ((((((((((     updating existing packages START     ))))))))))        "
+      - sudo yum update -y
+      - echo "          ((((((((((     updating existing packages END     ))))))))))          "
+      - echo "          ((((((((((     install a couple tools that may be helpful for later START     ))))))))))          "
+      - sudo yum install wget -y
+      - sudo yum install unzip -y
+      - sudo yum install lsof -y
+      - echo "          ((((((((((     install a couple tools that may be helpful for later END     ))))))))))          "
     finally:
       - echo This always runs even if the update or install command fails 
   pre_build:

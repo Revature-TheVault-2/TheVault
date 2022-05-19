@@ -3,7 +3,7 @@ version: 0.2
 
 env:
   variables:
-    JAVA_HOME: "/usr/lib/jvm/java-8-openjdk-amd64"
+    JAVA_HOME: ${JAVA_HOME}
     db_url: ${db_url}
     db_username: ${db_username}
     db_password: ${db_password}

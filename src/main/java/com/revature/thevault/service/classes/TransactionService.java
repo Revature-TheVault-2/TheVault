@@ -9,9 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.sql.Date;
+import java.time.LocalDate;
 
 /**
  * 
@@ -45,6 +48,26 @@ public class TransactionService implements TransactionServiceInterface {
     public GetResponse getTransactionHistory(Integer accountId) {
         GetResponse deposits = depositService.getAllUserDeposits(accountId);
         GetResponse withdrawals = withdrawService.getAllUserWithdrawals(accountId);
+        List<TransactionObject> transactionObjects = new ArrayList<>();
+        deposits.getGotObject().forEach(deposit -> transactionObjects.add(convertDepositToTransactionObject((DepositResponseObject) deposit)));
+        withdrawals.getGotObject().forEach(withdrawal -> transactionObjects.add(convertWithdrawToTransactionObject((WithdrawResponseObject) withdrawal)));
+        Comparator<TransactionObject> byDate = Comparator.comparing(TransactionObject::getDate);
+        transactionObjects.sort(byDate.reversed());
+        return GetResponse.builder()
+                .success(true)
+                .gotObject(transactionObjects)
+                .build();
+    }
+    
+    /**
+     * @param accountId
+     * @param int month
+     * @param int year
+     * @author fred
+     */
+    public GetResponse getTransactionHistoryByMonth(Integer accountId, int month, int year) {
+        GetResponse deposits = depositService.getAllUserDepositsByMonth(accountId, month, year);
+        GetResponse withdrawals = withdrawService.getAllUserWithdrawlsByMonth(accountId, month, year);
         List<TransactionObject> transactionObjects = new ArrayList<>();
         deposits.getGotObject().forEach(deposit -> transactionObjects.add(convertDepositToTransactionObject((DepositResponseObject) deposit)));
         withdrawals.getGotObject().forEach(withdrawal -> transactionObjects.add(convertWithdrawToTransactionObject((WithdrawResponseObject) withdrawal)));

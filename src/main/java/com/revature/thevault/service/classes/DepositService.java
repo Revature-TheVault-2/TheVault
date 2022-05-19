@@ -15,6 +15,7 @@ import com.revature.thevault.service.interfaces.DepositServiceInterface;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -82,6 +83,33 @@ public class DepositService implements DepositServiceInterface {
 			throw new InvalidRequestException(HttpStatus.BAD_REQUEST, "Invalid Request");
 		}
 	}
+	
+	/**
+	 * Get user deposits for a given month and year.
+	 * @param accountId
+	 * @param month
+	 * @param year
+	 * @return GetResponse containing a list of depositResponses
+	 */
+	public GetResponse getAllUserDepositsByMonth(int accountId, int month, int year) {
+		Calendar cal = Calendar.getInstance();
+    	cal.set(year, month-1, 1);
+    	cal.set(Calendar.DAY_OF_MONTH, cal.getActualMaximum(Calendar.DATE));
+    	Date startDate = new Date(cal.getTimeInMillis());
+    	cal.add(Calendar.MONTH, 1);
+    	Date endDate = new Date(cal.getTimeInMillis());
+		try {
+			List<DepositEntity> depositEntities = getUserDepositsByAccountIdAndDateBetween(accountId, startDate, endDate);
+			return GetResponse.builder().success(true).gotObject(convertDepositEntitiesToResponseList(depositEntities))
+					.build();
+		} catch (InvalidAccountIdException e) {
+			throw e;
+		} catch (EntityNotFoundException e) {
+			throw new InvalidRequestException(HttpStatus.BAD_REQUEST, "Deposits not Found for Account: " + accountId + " in range: " + startDate + " to " + endDate);
+		} catch (Exception e) {
+			throw new InvalidRequestException(HttpStatus.BAD_REQUEST, "Invalid Request");
+		}
+	}
 
 	/**
 	 * Gets all of a user's deposits of a specific type.
@@ -137,6 +165,16 @@ public class DepositService implements DepositServiceInterface {
 			throw new InvalidRequestException(HttpStatus.BAD_REQUEST, e.getMessage());
 		}
 	}
+	
+	/**
+	 * Gets all deposits by user's account id
+	 * @param int accountId
+	 * @return List<DeposityEntity> 
+	 */
+	private List<DepositEntity> getUserDepositsByAccountId(int accountId) {
+		return depositRepository.findByAccountentity(
+				new AccountEntity(accountId, new LoginCredentialEntity(), new AccountTypeEntity(), 0, 0));
+	}
 
 	/**
 	 * Gets all deposits by user's account id and account type.
@@ -151,13 +189,18 @@ public class DepositService implements DepositServiceInterface {
 	}
 
 	/**
-	 * Gets all deposits by user's account id.
+	 * Gets all deposits by user's account id and between given dates.
+	 * 
 	 * @param int accountId
+	 * @param startDate
+	 * @param endDate
 	 * @return List<DepositEntity>
+	 * @author Frederick
 	 */
-	private List<DepositEntity> getUserDepositsByAccountId(int accountId) {
-		return depositRepository.findByAccountentity(
-				new AccountEntity(accountId, new LoginCredentialEntity(), new AccountTypeEntity(), 0, 0));
+	public List<DepositEntity> getUserDepositsByAccountIdAndDateBetween(int accountId, Date startDate, Date endDate) {
+		return depositRepository.findByAccountentityAndDateDepositBetween(
+				new AccountEntity(accountId, new LoginCredentialEntity(), new AccountTypeEntity(), 0, 0),
+				startDate, endDate);
 	}
 
 	/**
@@ -168,7 +211,7 @@ public class DepositService implements DepositServiceInterface {
 	private DepositResponseObject convertDepositEntityToResponse(DepositEntity depositEntity) {
 		return new DepositResponseObject(depositEntity.getPk_deposit_id(),
 				depositEntity.getAccountentity().getPk_account_id(), depositEntity.getDeposittypeentity().getName(),
-				depositEntity.getReference(), depositEntity.getDate_deposit().toLocalDate(), depositEntity.getAmount());
+				depositEntity.getReference(), depositEntity.getDateDeposit().toLocalDate(), depositEntity.getAmount());
 	}
 
 	/** 

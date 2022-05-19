@@ -35,7 +35,7 @@ public class DepositEntity {
     String reference;
     
     @Column(name = "date_deposit")
-    Date date_deposit;
+    Date dateDeposit;
     
     @Column(name = "amount")
     float amount;

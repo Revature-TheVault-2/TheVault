@@ -1,24 +1,25 @@
 package com.revature.thevault.service.classes;
 
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+
 import com.revature.thevault.presentation.model.response.builder.GetResponse;
 import com.revature.thevault.service.dto.DepositResponseObject;
 import com.revature.thevault.service.dto.TransactionObject;
 import com.revature.thevault.service.dto.WithdrawResponseObject;
 import com.revature.thevault.service.interfaces.TransactionServiceInterface;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
 
 /**
  * 
  * Transaction Service. This service implementes TransactionServiceInterface
- * It contains getTransactionHistory, convertDepositToTransactionObject, and convertDepositToTransactionObject
+ * It contains getTransactionHistory, convertDepositToTransactionObject, and
+ * convertDepositToTransactionObject
  *
- *	
+ * 
  */
 @Service("transactionService")
 public class TransactionService implements TransactionServiceInterface {
@@ -31,11 +32,13 @@ public class TransactionService implements TransactionServiceInterface {
 
     /**
      * Retrieves a transaction history with the account id as parameter.
-     * To create a transaction history all the account deposits are called through deposit service,
+     * To create a transaction history all the account deposits are called through
+     * deposit service,
      * and all the account withdrawals are called through withdraw service.
      * The list is sorted in descending order by date.
      * 
-     * This account info is converted and returned as a ResponseObject to the requesting controllers
+     * This account info is converted and returned as a ResponseObject to the
+     * requesting controllers
      * 
      * @param account id
      * @return GetResponse object
@@ -46,8 +49,10 @@ public class TransactionService implements TransactionServiceInterface {
         GetResponse deposits = depositService.getAllUserDeposits(accountId);
         GetResponse withdrawals = withdrawService.getAllUserWithdrawals(accountId);
         List<TransactionObject> transactionObjects = new ArrayList<>();
-        deposits.getGotObject().forEach(deposit -> transactionObjects.add(convertDepositToTransactionObject((DepositResponseObject) deposit)));
-        withdrawals.getGotObject().forEach(withdrawal -> transactionObjects.add(convertWithdrawToTransactionObject((WithdrawResponseObject) withdrawal)));
+        deposits.getGotObject().forEach(
+                deposit -> transactionObjects.add(convertDepositToTransactionObject((DepositResponseObject) deposit)));
+        withdrawals.getGotObject().forEach(withdrawal -> transactionObjects
+                .add(convertWithdrawToTransactionObject((WithdrawResponseObject) withdrawal)));
         Comparator<TransactionObject> byDate = Comparator.comparing(TransactionObject::getDate);
         transactionObjects.sort(byDate.reversed());
         return GetResponse.builder()
@@ -70,8 +75,7 @@ public class TransactionService implements TransactionServiceInterface {
                 withdrawals.getRequestType(),
                 withdrawals.getReference(),
                 withdrawals.getDateWithdraw(),
-                withdrawals.getAmount()
-        );
+                withdrawals.getAmount());
     }
 
     /**
@@ -88,7 +92,6 @@ public class TransactionService implements TransactionServiceInterface {
                 deposit.getDepositType(),
                 deposit.getReference(),
                 deposit.getDateDeposit(),
-                deposit.getAmount()
-        );
+                deposit.getAmount());
     }
 }

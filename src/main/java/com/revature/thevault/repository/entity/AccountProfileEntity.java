@@ -17,6 +17,10 @@ import javax.persistence.*;
 public class AccountProfileEntity {
 	
 	
+    public AccountProfileEntity(int i, LoginCredentialEntity findUserByUserId, Object firstName, Object lastName,
+            Object email2, Object phoneNumber, Object address2) {
+    }
+
     @Id
     @Column(name = "pk_profile_id")
     @GeneratedValue(generator = "account_profile_table_pk_profile_id_seq", strategy = GenerationType.SEQUENCE)

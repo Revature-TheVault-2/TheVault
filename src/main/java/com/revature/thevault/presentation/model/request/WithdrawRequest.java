@@ -16,4 +16,16 @@ public class WithdrawRequest {
     //request status is default pending
     String reference;
     float amount;
+    public int getAccountId() {
+        return 0;
+    }
+    public String getRequestType() {
+        return null;
+    }
+    public Object getReference() {
+        return null;
+    }
+    public Object getAmount() {
+        return null;
+    }
 }

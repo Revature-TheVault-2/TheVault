@@ -14,6 +14,9 @@ import lombok.experimental.FieldDefaults;
 public class AccountProfileRequest {
     int profileId;
 
+    public AccountProfileRequest(int id) {
+    }
+
     public Object getProfileId() {
         return null;
     }

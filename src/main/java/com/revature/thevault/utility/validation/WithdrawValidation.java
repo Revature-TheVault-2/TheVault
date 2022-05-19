@@ -30,6 +30,12 @@ public class WithdrawValidation {
         validateAmount(withdrawRequest.getAmount());
     }
 
+    private void validateAmount(Object amount) {
+    }
+
+    private void validateString(Object reference) {
+    }
+
     public void validateAmount(Float amount){
         if(amount <= 0) throw new InvalidAmountException(HttpStatus.BAD_REQUEST, "Invalid amount, less than or equal to 0: " + amount);
     }

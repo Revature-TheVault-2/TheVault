@@ -26,4 +26,16 @@ public class ProfileCreateRequest {
     public Object getFirstName() {
         return null;
     }
+    public Object getLastName() {
+        return null;
+    }
+    public Object getEmail() {
+        return null;
+    }
+    public Object getPhoneNumber() {
+        return null;
+    }
+    public Object getAddress() {
+        return null;
+    }
 }

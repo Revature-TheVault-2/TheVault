@@ -44,4 +44,16 @@ public class WithdrawEntity {
     @Column(name = "amount")
     float amount;
 
+    public WithdrawEntity(int i, AccountEntity accountEntity2, RequestTypeEntity requestTypeByName,
+            RequestStatusEntity requestStatusByName, Object reference2, Date valueOf, Object amount2) {
+    }
+
+    public Object getPk_withdraw_id() {
+        return null;
+    }
+
+    public Object getAccountentity() {
+        return null;
+    }
+
 }

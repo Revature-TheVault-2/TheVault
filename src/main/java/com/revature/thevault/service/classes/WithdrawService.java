@@ -3,9 +3,12 @@ package com.revature.thevault.service.classes;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+
+import javax.persistence.EntityNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,6 +24,8 @@ import com.revature.thevault.repository.entity.AccountTypeEntity;
 import com.revature.thevault.repository.entity.LoginCredentialEntity;
 import com.revature.thevault.repository.entity.WithdrawEntity;
 import com.revature.thevault.service.dto.WithdrawResponseObject;
+import com.revature.thevault.service.exceptions.InvalidAccountIdException;
+import com.revature.thevault.service.exceptions.InvalidRequestException;
 import com.revature.thevault.service.exceptions.InvalidWithdrawIdRequest;
 import com.revature.thevault.service.interfaces.WithdrawServiceInterface;
 
@@ -83,6 +88,35 @@ public class WithdrawService implements WithdrawServiceInterface {
                 .gotObject(convertEntityListToResponses(withdrawEntities))
                 .build();
     }
+    
+    /**
+	 * Get user withdraws for a given month and year.
+	 * @param accountId
+	 * @param month
+	 * @param year
+	 * @return GetResponse containing a list of withdrawResponses
+     */
+    public GetResponse getAllUserWithdrawlsByMonth(int accountId, int month, int year) {
+    	Calendar cal = Calendar.getInstance();
+    	cal.set(year, month-1, 1);
+    	cal.set(Calendar.DAY_OF_MONTH, cal.getActualMaximum(Calendar.DATE));
+    	Date startDate = new Date(cal.getTimeInMillis());
+    	cal.add(Calendar.MONTH, 1);
+    	Date endDate = new Date(cal.getTimeInMillis());
+    	try {
+    	List<WithdrawEntity> withdrawEntities = findByAccountIdAndDateBetween(accountId, startDate, endDate);
+        return GetResponse.builder()
+                .success(true)
+                .gotObject(convertEntityListToResponses(withdrawEntities))
+                .build();
+    } catch (InvalidAccountIdException e) {
+		throw e;
+	} catch (EntityNotFoundException e) {
+		throw new InvalidRequestException(HttpStatus.BAD_REQUEST, "Deposits not Found for Account: " + accountId + " in range: " + startDate + " to " + endDate);
+	} catch (Exception e) {
+		throw new InvalidRequestException(HttpStatus.BAD_REQUEST, "Invalid Request");
+	}
+    }
 
 
     
@@ -101,6 +135,29 @@ public class WithdrawService implements WithdrawServiceInterface {
                         0,
                         0
                 )
+        );
+    }
+    
+    /**
+     * Creates a list of withdraws based on account Id
+     * and between the given dates
+     * 
+     * @param int accountId
+	 * @param startDate
+	 * @param endDate
+	 * @return List<DepositEntity>
+	 * @author Frederick
+     */
+    private List<WithdrawEntity> findByAccountIdAndDateBetween(int accountId, Date startDate, Date endDate) {
+        return withdrawRepository.findByAccountentityAndDateWithdrawBetween(
+                new AccountEntity(
+                        accountId,
+                        new LoginCredentialEntity(),
+                        new AccountTypeEntity(),
+                        0,
+                        0
+                ),
+                startDate, endDate
         );
     }
 
@@ -206,7 +263,7 @@ public class WithdrawService implements WithdrawServiceInterface {
                 withdrawEntity.getRequesttypeentity().getName(),
                 withdrawEntity.getRequeststatusentity().getName(),
                 withdrawEntity.getReference(),
-                withdrawEntity.getDate_withdraw().toLocalDate(),
+                withdrawEntity.getDateWithdraw().toLocalDate(),
                 withdrawEntity.getAmount()
 		);
 	}

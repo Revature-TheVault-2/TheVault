@@ -1,31 +1,47 @@
 version: 0.2
-
 phases:
   install:
     commands:
-      - echo "          ((((((((((     updating existing packages START     ))))))))))        "
-      - sudo yum update -y
-      - echo "          ((((((((((     updating existing packages END     ))))))))))          "
-      - echo "          ((((((((((     install a couple tools that may be helpful for later START     ))))))))))          "
-      - sudo yum install wget -y
-      - sudo yum install unzip -y
-      - sudo yum install lsof -y
-      - echo "          ((((((((((     install a couple tools that may be helpful for later END     ))))))))))          "
+#    - echo "          ((((((((((     updating existing packages START     ))))))))))        "
+#    - sudo yum update -y
+#    - echo "          ((((((((((     updating existing packages END     ))))))))))          "
+#    - echo "          ((((((((((     install a couple tools that may be helpful for later START     ))))))))))          "
+#    - sudo yum install wget -y
+#    - sudo yum install unzip -y
+#    - sudo yum install lsof -y
+#    - echo "          ((((((((((     install a couple tools that may be helpful for later END     ))))))))))          "
+#    - echo "          ((((((((((     installing java 11 START     ))))))))))          "
+#    - sudo yum install -y java-11-openjdk-devel
+#    - sudo update-alternatives --config java
+#    - sudo update-alternatives --config javac
+#    - echo "          ((((((((((     installing java 11 END     ))))))))))          "
+#    - echo "          ((((((((((     installing node START     ))))))))))          "
+#    - curl --silent --location https://rpm.nodesource.com/setup_14.x | sudo bash -
+#    - sudo yum -y install nodejs
+#    - echo "          ((((((((((     installing node END     ))))))))))          "
+#    - echo "          ((((((((((     installing angular START     ))))))))))          "
+#    - sudo npm install -g @angular/cli
+#    - sudo npm install -g http-server
+#    - echo "          ((((((((((     installing angular END     ))))))))))          "
+#    - echo "          ((((((((((     installing maven START     ))))))))))          "
+#    - sudo wget http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo -O /etc/yum.repos.d/epel-apache-maven.repo
+#    - sudo sed -i s/\$releasever/6/g /etc/yum.repos.d/epel-apache-maven.repo
+#    - sudo yum install -y maven
+#    - echo "          ((((((((((     installing maven END     ))))))))))          "
     finally:
-      - echo This always runs even if the update or install command fails 
+    - echo This always runs even if the update or install command fails
   pre_build:
     commands:
-      - echo Entered the pre_build phase...
+    - echo Entered the pre_build phase...
     finally:
-      - echo This always runs even if the login command fails 
+    - echo This always runs even if the login command fails
   build:
     commands:
-      - echo Entered the build phase...
-      - echo Build started on `date`
+    - echo Entered the build phase...
+    - echo Build started on `date`
     finally:
-      - echo This always runs even if the install command fails
+    - echo This always runs even if the install command fails
   post_build:
     commands:
-      - echo Entered the post_build phase...
-      - echo Build completed on `date`
-
+    - echo Entered the post_build phase...
+    - echo Build completed on `date`

@@ -15,6 +15,7 @@ public class EmailService {
 	
 	public static void main(String[] args) {
 		overdraftEmail();
+		transactionAmountEmail(-501.00f);
 		
 	}
 

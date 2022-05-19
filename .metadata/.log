@@ -280,6 +280,7 @@ java.lang.InterruptedException
 !ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2022-02-14 17:53:51.013
 !MESSAGE ClasspathListenerHandler removeClasspathListener sts4.classpath.CjVlKKnn => OK
 <<<<<<< HEAD
+<<<<<<< HEAD
 !SESSION 2022-05-18 11:38:08.540 -----------------------------------------------
 eclipse.buildId=3.9.18.202109140905-RELEASE-e421
 java.version=17.0.2
@@ -304,6 +305,19 @@ Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.springsou
 !MESSAGE Workspace restored, but some problems occurred.
 !SUBENTRY 1 org.eclipse.core.resources 4 567 2022-05-17 14:34:56.104
 >>>>>>> a714d9cab189d9b1930b6174fa9c77e6051184e3
+=======
+!SESSION 2022-05-17 15:09:37.938 -----------------------------------------------
+eclipse.buildId=3.9.18.202109140905-RELEASE-e421
+java.version=14.0.2
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -product org.springsource.sts.ide
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.springsource.sts.ide
+
+!ENTRY org.eclipse.core.resources 4 567 2022-05-17 15:14:35.010
+!MESSAGE Workspace restored, but some problems occurred.
+!SUBENTRY 1 org.eclipse.core.resources 4 567 2022-05-17 15:14:35.010
+>>>>>>> a5d312ec7ee291084eb141db3d87b268cb16e049
 !MESSAGE Could not read metadata for '.org.eclipse.egit.core.cmp'.
 !STACK 1
 org.eclipse.core.internal.resources.ResourceException(/.org.eclipse.egit.core.cmp)[567]: java.lang.Exception: The project description file (.project) for '.org.eclipse.egit.core.cmp' is missing.  This file contains important information about the project.  The project will not function properly until this file is restored.
@@ -315,11 +329,18 @@ org.eclipse.core.internal.resources.ResourceException(/.org.eclipse.egit.core.cm
 	at org.eclipse.core.internal.resources.SaveManager.restore(SaveManager.java:724)
 	at org.eclipse.core.internal.resources.SaveManager.startup(SaveManager.java:1555)
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> a5d312ec7ee291084eb141db3d87b268cb16e049
 	at org.eclipse.core.internal.resources.Workspace.startup(Workspace.java:2480)
 	at org.eclipse.core.internal.resources.Workspace.open(Workspace.java:2231)
 	at org.eclipse.core.resources.ResourcesPlugin.start(ResourcesPlugin.java:475)
 	at org.eclipse.osgi.internal.framework.BundleContextImpl.lambda$2(BundleContextImpl.java:808)
+<<<<<<< HEAD
 	at java.base/java.security.AccessController.doPrivileged(AccessController.java:569)
+=======
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:554)
+>>>>>>> a5d312ec7ee291084eb141db3d87b268cb16e049
 	at org.eclipse.osgi.internal.framework.BundleContextImpl.startActivator(BundleContextImpl.java:802)
 	at org.eclipse.osgi.internal.framework.BundleContextImpl.start(BundleContextImpl.java:759)
 	at org.eclipse.osgi.internal.framework.EquinoxBundle.startWorker0(EquinoxBundle.java:1019)
@@ -334,6 +355,7 @@ org.eclipse.core.internal.resources.ResourceException(/.org.eclipse.egit.core.cm
 	at org.eclipse.osgi.internal.loader.sources.SingleSourcePackage.loadClass(SingleSourcePackage.java:41)
 	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:463)
 	at org.eclipse.osgi.internal.loader.ModuleClassLoader.loadClass(ModuleClassLoader.java:170)
+<<<<<<< HEAD
 	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:520)
 =======
 	at org.eclipse.core.internal.resources.Workspace.startup(Workspace.java:2482)
@@ -359,6 +381,9 @@ org.eclipse.core.internal.resources.ResourceException(/.org.eclipse.egit.core.cm
 	at org.eclipse.osgi.internal.loader.ModuleClassLoader.loadClass(ModuleClassLoader.java:168)
 	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:522)
 >>>>>>> a714d9cab189d9b1930b6174fa9c77e6051184e3
+=======
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:522)
+>>>>>>> a5d312ec7ee291084eb141db3d87b268cb16e049
 	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:153)
 	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:203)
 	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:136)
@@ -366,6 +391,7 @@ org.eclipse.core.internal.resources.ResourceException(/.org.eclipse.egit.core.cm
 	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:401)
 	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:255)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+<<<<<<< HEAD
 <<<<<<< HEAD
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -375,14 +401,20 @@ org.eclipse.core.internal.resources.ResourceException(/.org.eclipse.egit.core.cm
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1467)
 !SUBENTRY 2 org.eclipse.core.resources 4 567 2022-05-18 11:42:18.107
 =======
+=======
+>>>>>>> a5d312ec7ee291084eb141db3d87b268cb16e049
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
 	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:659)
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:596)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1467)
+<<<<<<< HEAD
 !SUBENTRY 2 org.eclipse.core.resources 4 567 2022-05-17 14:34:56.104
 >>>>>>> a714d9cab189d9b1930b6174fa9c77e6051184e3
+=======
+!SUBENTRY 2 org.eclipse.core.resources 4 567 2022-05-17 15:14:35.012
+>>>>>>> a5d312ec7ee291084eb141db3d87b268cb16e049
 !MESSAGE The project description file (.project) for '.org.eclipse.egit.core.cmp' is missing.  This file contains important information about the project.  The project will not function properly until this file is restored.
 !STACK 0
 java.lang.Exception: The project description file (.project) for '.org.eclipse.egit.core.cmp' is missing.  This file contains important information about the project.  The project will not function properly until this file is restored.
@@ -394,11 +426,18 @@ java.lang.Exception: The project description file (.project) for '.org.eclipse.e
 	at org.eclipse.core.internal.resources.SaveManager.restore(SaveManager.java:724)
 	at org.eclipse.core.internal.resources.SaveManager.startup(SaveManager.java:1555)
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> a5d312ec7ee291084eb141db3d87b268cb16e049
 	at org.eclipse.core.internal.resources.Workspace.startup(Workspace.java:2480)
 	at org.eclipse.core.internal.resources.Workspace.open(Workspace.java:2231)
 	at org.eclipse.core.resources.ResourcesPlugin.start(ResourcesPlugin.java:475)
 	at org.eclipse.osgi.internal.framework.BundleContextImpl.lambda$2(BundleContextImpl.java:808)
+<<<<<<< HEAD
 	at java.base/java.security.AccessController.doPrivileged(AccessController.java:569)
+=======
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:554)
+>>>>>>> a5d312ec7ee291084eb141db3d87b268cb16e049
 	at org.eclipse.osgi.internal.framework.BundleContextImpl.startActivator(BundleContextImpl.java:802)
 	at org.eclipse.osgi.internal.framework.BundleContextImpl.start(BundleContextImpl.java:759)
 	at org.eclipse.osgi.internal.framework.EquinoxBundle.startWorker0(EquinoxBundle.java:1019)
@@ -413,6 +452,7 @@ java.lang.Exception: The project description file (.project) for '.org.eclipse.e
 	at org.eclipse.osgi.internal.loader.sources.SingleSourcePackage.loadClass(SingleSourcePackage.java:41)
 	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:463)
 	at org.eclipse.osgi.internal.loader.ModuleClassLoader.loadClass(ModuleClassLoader.java:170)
+<<<<<<< HEAD
 	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:520)
 =======
 	at org.eclipse.core.internal.resources.Workspace.startup(Workspace.java:2482)
@@ -438,6 +478,9 @@ java.lang.Exception: The project description file (.project) for '.org.eclipse.e
 	at org.eclipse.osgi.internal.loader.ModuleClassLoader.loadClass(ModuleClassLoader.java:168)
 	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:522)
 >>>>>>> a714d9cab189d9b1930b6174fa9c77e6051184e3
+=======
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:522)
+>>>>>>> a5d312ec7ee291084eb141db3d87b268cb16e049
 	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:153)
 	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:203)
 	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:136)
@@ -445,6 +488,7 @@ java.lang.Exception: The project description file (.project) for '.org.eclipse.e
 	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:401)
 	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:255)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+<<<<<<< HEAD
 <<<<<<< HEAD
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -454,14 +498,20 @@ java.lang.Exception: The project description file (.project) for '.org.eclipse.e
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1467)
 !SUBENTRY 1 org.eclipse.core.resources 4 567 2022-05-18 11:42:18.107
 =======
+=======
+>>>>>>> a5d312ec7ee291084eb141db3d87b268cb16e049
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
 	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:659)
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:596)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1467)
+<<<<<<< HEAD
 !SUBENTRY 1 org.eclipse.core.resources 4 567 2022-05-17 14:34:56.105
 >>>>>>> a714d9cab189d9b1930b6174fa9c77e6051184e3
+=======
+!SUBENTRY 1 org.eclipse.core.resources 4 567 2022-05-17 15:14:35.026
+>>>>>>> a5d312ec7ee291084eb141db3d87b268cb16e049
 !MESSAGE Could not read metadata for 'TheVault'.
 !STACK 1
 org.eclipse.core.internal.resources.ResourceException(/TheVault)[567]: java.lang.Exception: The project description file (.project) for 'TheVault' is missing.  This file contains important information about the project.  The project will not function properly until this file is restored.
@@ -473,11 +523,18 @@ org.eclipse.core.internal.resources.ResourceException(/TheVault)[567]: java.lang
 	at org.eclipse.core.internal.resources.SaveManager.restore(SaveManager.java:724)
 	at org.eclipse.core.internal.resources.SaveManager.startup(SaveManager.java:1555)
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> a5d312ec7ee291084eb141db3d87b268cb16e049
 	at org.eclipse.core.internal.resources.Workspace.startup(Workspace.java:2480)
 	at org.eclipse.core.internal.resources.Workspace.open(Workspace.java:2231)
 	at org.eclipse.core.resources.ResourcesPlugin.start(ResourcesPlugin.java:475)
 	at org.eclipse.osgi.internal.framework.BundleContextImpl.lambda$2(BundleContextImpl.java:808)
+<<<<<<< HEAD
 	at java.base/java.security.AccessController.doPrivileged(AccessController.java:569)
+=======
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:554)
+>>>>>>> a5d312ec7ee291084eb141db3d87b268cb16e049
 	at org.eclipse.osgi.internal.framework.BundleContextImpl.startActivator(BundleContextImpl.java:802)
 	at org.eclipse.osgi.internal.framework.BundleContextImpl.start(BundleContextImpl.java:759)
 	at org.eclipse.osgi.internal.framework.EquinoxBundle.startWorker0(EquinoxBundle.java:1019)
@@ -492,6 +549,7 @@ org.eclipse.core.internal.resources.ResourceException(/TheVault)[567]: java.lang
 	at org.eclipse.osgi.internal.loader.sources.SingleSourcePackage.loadClass(SingleSourcePackage.java:41)
 	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:463)
 	at org.eclipse.osgi.internal.loader.ModuleClassLoader.loadClass(ModuleClassLoader.java:170)
+<<<<<<< HEAD
 	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:520)
 =======
 	at org.eclipse.core.internal.resources.Workspace.startup(Workspace.java:2482)
@@ -517,6 +575,9 @@ org.eclipse.core.internal.resources.ResourceException(/TheVault)[567]: java.lang
 	at org.eclipse.osgi.internal.loader.ModuleClassLoader.loadClass(ModuleClassLoader.java:168)
 	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:522)
 >>>>>>> a714d9cab189d9b1930b6174fa9c77e6051184e3
+=======
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:522)
+>>>>>>> a5d312ec7ee291084eb141db3d87b268cb16e049
 	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:153)
 	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:203)
 	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:136)
@@ -524,6 +585,7 @@ org.eclipse.core.internal.resources.ResourceException(/TheVault)[567]: java.lang
 	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:401)
 	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:255)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+<<<<<<< HEAD
 <<<<<<< HEAD
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -533,14 +595,20 @@ org.eclipse.core.internal.resources.ResourceException(/TheVault)[567]: java.lang
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1467)
 !SUBENTRY 2 org.eclipse.core.resources 4 567 2022-05-18 11:42:18.107
 =======
+=======
+>>>>>>> a5d312ec7ee291084eb141db3d87b268cb16e049
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
 	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:659)
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:596)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1467)
+<<<<<<< HEAD
 !SUBENTRY 2 org.eclipse.core.resources 4 567 2022-05-17 14:34:56.105
 >>>>>>> a714d9cab189d9b1930b6174fa9c77e6051184e3
+=======
+!SUBENTRY 2 org.eclipse.core.resources 4 567 2022-05-17 15:14:35.027
+>>>>>>> a5d312ec7ee291084eb141db3d87b268cb16e049
 !MESSAGE The project description file (.project) for 'TheVault' is missing.  This file contains important information about the project.  The project will not function properly until this file is restored.
 !STACK 0
 java.lang.Exception: The project description file (.project) for 'TheVault' is missing.  This file contains important information about the project.  The project will not function properly until this file is restored.
@@ -552,11 +620,18 @@ java.lang.Exception: The project description file (.project) for 'TheVault' is m
 	at org.eclipse.core.internal.resources.SaveManager.restore(SaveManager.java:724)
 	at org.eclipse.core.internal.resources.SaveManager.startup(SaveManager.java:1555)
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> a5d312ec7ee291084eb141db3d87b268cb16e049
 	at org.eclipse.core.internal.resources.Workspace.startup(Workspace.java:2480)
 	at org.eclipse.core.internal.resources.Workspace.open(Workspace.java:2231)
 	at org.eclipse.core.resources.ResourcesPlugin.start(ResourcesPlugin.java:475)
 	at org.eclipse.osgi.internal.framework.BundleContextImpl.lambda$2(BundleContextImpl.java:808)
+<<<<<<< HEAD
 	at java.base/java.security.AccessController.doPrivileged(AccessController.java:569)
+=======
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:554)
+>>>>>>> a5d312ec7ee291084eb141db3d87b268cb16e049
 	at org.eclipse.osgi.internal.framework.BundleContextImpl.startActivator(BundleContextImpl.java:802)
 	at org.eclipse.osgi.internal.framework.BundleContextImpl.start(BundleContextImpl.java:759)
 	at org.eclipse.osgi.internal.framework.EquinoxBundle.startWorker0(EquinoxBundle.java:1019)
@@ -571,6 +646,7 @@ java.lang.Exception: The project description file (.project) for 'TheVault' is m
 	at org.eclipse.osgi.internal.loader.sources.SingleSourcePackage.loadClass(SingleSourcePackage.java:41)
 	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:463)
 	at org.eclipse.osgi.internal.loader.ModuleClassLoader.loadClass(ModuleClassLoader.java:170)
+<<<<<<< HEAD
 	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:520)
 =======
 	at org.eclipse.core.internal.resources.Workspace.startup(Workspace.java:2482)
@@ -596,6 +672,9 @@ java.lang.Exception: The project description file (.project) for 'TheVault' is m
 	at org.eclipse.osgi.internal.loader.ModuleClassLoader.loadClass(ModuleClassLoader.java:168)
 	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:522)
 >>>>>>> a714d9cab189d9b1930b6174fa9c77e6051184e3
+=======
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:522)
+>>>>>>> a5d312ec7ee291084eb141db3d87b268cb16e049
 	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:153)
 	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:203)
 	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:136)
@@ -603,6 +682,7 @@ java.lang.Exception: The project description file (.project) for 'TheVault' is m
 	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:401)
 	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:255)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+<<<<<<< HEAD
 <<<<<<< HEAD
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -612,10 +692,16 @@ java.lang.Exception: The project description file (.project) for 'TheVault' is m
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
 >>>>>>> a714d9cab189d9b1930b6174fa9c77e6051184e3
+=======
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+>>>>>>> a5d312ec7ee291084eb141db3d87b268cb16e049
 	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:659)
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:596)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1467)
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 !ENTRY org.eclipse.jface 2 0 2022-05-18 11:42:22.494
 !MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
@@ -638,12 +724,21 @@ Binding(COMMAND+SHIFT+T,
 !ENTRY org.eclipse.jface 2 0 2022-05-17 14:35:01.706
 !MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
 !SUBENTRY 1 org.eclipse.jface 2 0 2022-05-17 14:35:01.706
+=======
+!ENTRY org.eclipse.jface 2 0 2022-05-17 15:14:56.203
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2022-05-17 15:14:56.204
+>>>>>>> a5d312ec7ee291084eb141db3d87b268cb16e049
 !MESSAGE A conflict occurred for CTRL+SHIFT+T:
 Binding(CTRL+SHIFT+T,
 	ParameterizedCommand(Command(org.eclipse.jdt.ui.navigate.open.type,Open Type,
 		Open a type in a Java editor,
 		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+<<<<<<< HEAD
 		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@1d397e87,
+=======
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@7fba30fe,
+>>>>>>> a5d312ec7ee291084eb141db3d87b268cb16e049
 		,,true),null),
 	org.eclipse.ui.defaultAcceleratorConfiguration,
 	org.eclipse.ui.contexts.window,,,system)
@@ -651,6 +746,7 @@ Binding(CTRL+SHIFT+T,
 	ParameterizedCommand(Command(org.eclipse.lsp4e.symbolinworkspace,Go to Symbol in Workspace,
 		,
 		Category(org.eclipse.lsp4e.category,Language Servers,null,true),
+<<<<<<< HEAD
 		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@36def543,
 		,,true),null),
 	org.eclipse.ui.defaultAcceleratorConfiguration,
@@ -671,10 +767,14 @@ Binding(ALT+SHIFT+R,
 		Category(org.eclipse.ui.category.file,File,null,true),
 		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@7859fc7,
 >>>>>>> a714d9cab189d9b1930b6174fa9c77e6051184e3
+=======
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@5cbebfba,
+>>>>>>> a5d312ec7ee291084eb141db3d87b268cb16e049
 		,,true),null),
 	org.eclipse.ui.defaultAcceleratorConfiguration,
 	org.eclipse.ui.contexts.window,,,system)
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 !ENTRY org.eclipse.e4.ui.workbench 2 0 2022-05-18 11:42:33.767
 !MESSAGE Removing PartDescriptorImpl with the "org.eclipse.pde.spy.preferences.parts.PreferenceSpyPart" id and the "Preference Spy" label.It points to the non available "bundleclass://org.eclipse.pde.spy.preferences/org.eclipse.pde.spy.preferences.parts.PreferenceSpyPart" class. Bundle might have been uninstalled
@@ -723,10 +823,40 @@ Binding(ALT+SHIFT+R,
 !ENTRY org.eclipse.egit.ui 2 0 2022-05-17 14:35:11.017
 !MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
 user global configuration and to define the default location to store repositories: 'C:\Users\Revature'. If this is
+=======
+!ENTRY org.eclipse.e4.ui.workbench 2 0 2022-05-17 15:16:33.976
+!MESSAGE Removing PartDescriptorImpl with the "org.eclipse.pde.spy.preferences.parts.PreferenceSpyPart" id and the "Preference Spy" label.It points to the non available "bundleclass://org.eclipse.pde.spy.preferences/org.eclipse.pde.spy.preferences.parts.PreferenceSpyPart" class. Bundle might have been uninstalled
+
+!ENTRY org.eclipse.e4.ui.workbench 2 0 2022-05-17 15:16:34.039
+!MESSAGE Removing PartDescriptorImpl with the "org.eclipse.tips.ide.tipPart" id and the "Tip of the Day" label.It points to the non available "bundleclass://org.eclipse.tips.ide/org.eclipse.tips.ide.internal.TipPart" class. Bundle might have been uninstalled
+
+!ENTRY org.eclipse.e4.ui.workbench 2 0 2022-05-17 15:16:34.058
+!MESSAGE Removing PartDescriptorImpl with the "org.eclipse.debug.ui.launchView" id and the "Launch Configurations" label.It points to the non available "bundleclass://org.eclipse.debug.ui.launchview/org.eclipse.debug.ui.launchview.internal.view.LaunchViewImpl" class. Bundle might have been uninstalled
+
+!ENTRY org.eclipse.e4.ui.workbench 2 0 2022-05-17 15:16:34.691
+!MESSAGE Removing PartDescriptorImpl with the "org.eclipse.linuxtools.docker.ui.dockerContainersView" id and the "Docker Containers" label.It points to the non available "bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView" class. Bundle might have been uninstalled
+
+!ENTRY org.eclipse.e4.ui.workbench 2 0 2022-05-17 15:16:34.694
+!MESSAGE Removing PartDescriptorImpl with the "org.eclipse.linuxtools.docker.ui.dockerImagesView" id and the "Docker Images" label.It points to the non available "bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView" class. Bundle might have been uninstalled
+
+!ENTRY org.eclipse.e4.ui.workbench 2 0 2022-05-17 15:16:34.695
+!MESSAGE Removing PartDescriptorImpl with the "org.eclipse.linuxtools.docker.ui.dockerExplorerView" id and the "Docker Explorer" label.It points to the non available "bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView" class. Bundle might have been uninstalled
+
+!ENTRY org.eclipse.e4.ui.workbench 2 0 2022-05-17 15:16:34.697
+!MESSAGE Removing PartDescriptorImpl with the "org.eclipse.linuxtools.docker.ui.dockerImageHierarchyView" id and the "Docker Image Hierarchy" label.It points to the non available "bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView" class. Bundle might have been uninstalled
+
+!ENTRY org.eclipse.e4.ui.workbench 2 0 2022-05-17 15:16:34.764
+!MESSAGE Removing PartDescriptorImpl with the "org.springframework.tooling.ls.eclipse.gotosymbol.view.SpringSymbolsView" id and the "Spring Symbols" label.It points to the non available "bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView" class. Bundle might have been uninstalled
+
+!ENTRY org.eclipse.egit.ui 2 0 2022-05-17 15:16:35.698
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\darkm'. If this is
+>>>>>>> a5d312ec7ee291084eb141db3d87b268cb16e049
 not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
 EGit might behave differently since they see different configuration options.
 This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
 
+<<<<<<< HEAD
 !ENTRY org.eclipse.lsp4e 4 0 2022-05-17 14:35:11.630
 !MESSAGE Exception occurred while fetching the content type from the buffer
 !STACK 1
@@ -3428,6 +3558,9 @@ java.lang.Exception: Resource '/TheVault/src/main/java/com/revature/thevault/pre
 
 !ENTRY org.eclipse.core.resources 4 567 2022-05-17 14:35:17.773
 >>>>>>> a714d9cab189d9b1930b6174fa9c77e6051184e3
+=======
+!ENTRY org.eclipse.core.resources 4 567 2022-05-17 15:18:21.787
+>>>>>>> a5d312ec7ee291084eb141db3d87b268cb16e049
 !MESSAGE The project description file (.project) for 'TheVault' is missing.  This file contains important information about the project.  The project will not function properly until this file is restored.
 !STACK 0
 java.lang.Exception: The project description file (.project) for 'TheVault' is missing.  This file contains important information about the project.  The project will not function properly until this file is restored.
@@ -3437,14 +3570,19 @@ java.lang.Exception: The project description file (.project) for 'TheVault' is m
 	at org.eclipse.core.internal.resources.SaveManager.restoreMetaInfo(SaveManager.java:888)
 	at org.eclipse.core.internal.resources.SaveManager.restore(SaveManager.java:763)
 <<<<<<< HEAD
+<<<<<<< HEAD
 	at org.eclipse.core.internal.resources.Project.open(Project.java:1060)
 =======
 	at org.eclipse.core.internal.resources.Project.open(Project.java:1061)
 >>>>>>> a714d9cab189d9b1930b6174fa9c77e6051184e3
+=======
+	at org.eclipse.core.internal.resources.Project.open(Project.java:1060)
+>>>>>>> a5d312ec7ee291084eb141db3d87b268cb16e049
 	at org.eclipse.ui.actions.OpenResourceAction$1.doOpenWithReferences(OpenResourceAction.java:233)
 	at org.eclipse.ui.actions.OpenResourceAction$1.runInWorkspace(OpenResourceAction.java:279)
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:42)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 !SESSION 2022-05-17 14:37:17.433 -----------------------------------------------
@@ -3501,3 +3639,5 @@ not correct please set the HOME environment variable and restart Eclipse. Otherw
 EGit might behave differently since they see different configuration options.
 This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
 >>>>>>> a714d9cab189d9b1930b6174fa9c77e6051184e3
+=======
+>>>>>>> a5d312ec7ee291084eb141db3d87b268cb16e049

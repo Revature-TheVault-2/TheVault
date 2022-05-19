@@ -44,18 +44,18 @@ public class WithdrawService implements WithdrawServiceInterface {
      */
     @Override
     public PostResponse createWithdrawal(WithdrawRequest withdrawRequest) {
+    //Outer if(notificationAmount != 0){
+    	//if(withdrawRequest.getAmount() > "current user session".getNoficationAmount()){
+		// emailservice.NotifcationEmail(withdrawRequest.getAmount()) }}
+    	
+    	// if(sessionUser.getAvailable_balance() - withdrawRequest.getAmount() < 0){
+    	// emailservice.overdraftEmail(); }
         return PostResponse.builder()
                 .success(true)
                 .createdObject( Collections.singletonList(
                    convertEntityToResponse(    
-                     withdrawRepository.save(new WithdrawEntity (       
-                    	   0,
-                           new AccountEntity(                        		   
-                        		   withdrawRequest.getAccountId(), 
-                        		   new LoginCredentialEntity(),  
-                        		   new AccountTypeEntity(), 
-                        		   0, 
-                        		   0), 
+                     withdrawRepository.save(new WithdrawEntity (0,
+                        	new AccountEntity(withdrawRequest.getAccountId(),new LoginCredentialEntity(),new AccountTypeEntity(),0, 0),  
                            requestTypeService.getRequestTypeByName(withdrawRequest.getRequestType()),                
                            requestStatusService.getRequestStatusByName("Pending"),                             
                            withdrawRequest.getReference(),                        

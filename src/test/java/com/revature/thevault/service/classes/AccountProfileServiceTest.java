@@ -65,7 +65,8 @@ class AccountProfileServiceTest {
                 "Tom",
                 "some@email.com",
                 "123-876-5555",
-                "1 court"
+                "1 court",
+                500.00f
         );
         goodAccountResponse = new AccountProfileResponse(
                 normalAccountProfileEntity.getPk_profile_id(),
@@ -139,7 +140,8 @@ class AccountProfileServiceTest {
                 "something",
                 "asdf@fjfo.com",
                 "555-555-5555",
-                "1 street"
+                "1 street",
+                0
         );
 
         Mockito.when(loginService.findUserByUserId(normalCreateRequest.getUserId()))
@@ -152,7 +154,8 @@ class AccountProfileServiceTest {
                 normalCreateRequest.getLastName(),
                 normalCreateRequest.getEmail(),
                 normalCreateRequest.getPhoneNumber(),
-                normalCreateRequest.getAddress()
+                normalCreateRequest.getAddress(),
+                normalCreateRequest.getNotificationAmount()
 
         );
         Mockito.when(accountProfileRepository.save(new AccountProfileEntity(
@@ -162,7 +165,8 @@ class AccountProfileServiceTest {
                 normalCreateRequest.getLastName(),
                 normalCreateRequest.getEmail(),
                 normalCreateRequest.getPhoneNumber(),
-                normalCreateRequest.getAddress()
+                normalCreateRequest.getAddress(),
+                normalCreateRequest.getNotificationAmount()
         ))).thenReturn(storedProfileEntity);
 
 

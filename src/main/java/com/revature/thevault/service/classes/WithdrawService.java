@@ -44,12 +44,14 @@ public class WithdrawService implements WithdrawServiceInterface {
      */
     @Override
     public PostResponse createWithdrawal(WithdrawRequest withdrawRequest) {
+    	// float balancePostWithdrawal = sessionUser.getAvaiable_balance() - withdrawRequest.getAmount(); 
+    	
     //Outer if(notificationAmount != 0){
-    	//if(withdrawRequest.getAmount() > "current user session".getNoficationAmount()){
+    	//if(-withdrawRequest.getAmount() > "current user session".getNoficationAmount()){
 		// emailservice.NotifcationEmail(withdrawRequest.getAmount()) }}
     	
-    	// if(sessionUser.getAvailable_balance() - withdrawRequest.getAmount() < 0){
-    	// emailservice.overdraftEmail(); }
+    	// if(balancePostWithdrawal < 0){
+    	// emailservice.overdraftEmail(balancePostWithdrawal); }
         return PostResponse.builder()
                 .success(true)
                 .createdObject( Collections.singletonList(

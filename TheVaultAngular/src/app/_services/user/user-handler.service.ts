@@ -8,7 +8,7 @@ import { GetProfile } from 'src/app/models/users/responses/get-profile';
 import { PostProfile } from 'src/app/models/users/responses/post-profile';
 import { PutProfile } from 'src/app/models/users/responses/put-profile';
 
-const AUTH_API = 'http://ec2-18-234-126-118.compute-1.amazonaws.com:9000/';
+const AUTH_API = 'http://localhost:9000/';
 
 const ENDPOINTS = {
   LOGIN: `${AUTH_API}login`,
@@ -32,24 +32,24 @@ export class UserHandlerService {
     private http: HttpClient
   ) { }
 
-  validateLogin(login:LoginUser){
+  validateLogin(login: LoginUser) {
     return this.http.post<PostLogin>(
-      `${ENDPOINTS.VALIDATE}`, 
+      `${ENDPOINTS.VALIDATE}`,
       JSON.stringify(
-      {
-        username: login.username,
-        password: login.password
-      }
-      ), 
+        {
+          username: login.username,
+          password: login.password
+        }
+      ),
       httpOptions);
   }
 
-  getUserProfile(userId:number){return this.http.get<GetProfile>(`${ENDPOINTS.GET_PROFILE + userId}`)}
+  getUserProfile(userId: number) { return this.http.get<GetProfile>(`${ENDPOINTS.GET_PROFILE + userId}`) }
 
-  createNewLogin(username:string, password:string){
+  createNewLogin(username: string, password: string) {
     console.log(username);
     return this.http.post<PostLogin>(
-      ENDPOINTS.NEW_LOGIN, 
+      ENDPOINTS.NEW_LOGIN,
       JSON.stringify(
         {
           username: username,
@@ -58,23 +58,23 @@ export class UserHandlerService {
       ), httpOptions);
   }
 
-  createProfile(userId:number, newUser:NewUser){
+  createProfile(userId: number, newUser: NewUser) {
     return this.http.post<PostProfile>(
-      ENDPOINTS.CREATE_PROFILE, 
+      ENDPOINTS.CREATE_PROFILE,
       JSON.stringify(
-          {
-            userId: userId,
-            firstName: newUser.firstName,
-            lastName: newUser.lastName,
-            email: newUser.email,
-            phoneNumber: newUser.phoneNumber,
-            address: newUser.address
-          }
-        ), 
-        httpOptions);
+        {
+          userId: userId,
+          firstName: newUser.firstName,
+          lastName: newUser.lastName,
+          email: newUser.email,
+          phoneNumber: newUser.phoneNumber,
+          address: newUser.address
+        }
+      ),
+      httpOptions);
   }
 
-  updateProfile(profile:Profile, profileId: number, userId: number){
+  updateProfile(profile: Profile, profileId: number, userId: number) {
     return this.http.put<PutProfile>(
       ENDPOINTS.UPDATE_PROFILE,
       JSON.stringify(

@@ -7,7 +7,7 @@ import { PostAccount } from 'src/app/models/account/responses/post-account';
 import { PutAccount } from 'src/app/models/account/responses/put-account';
 import { TransferRequest } from 'src/app/models/transaction/request/transfer-request.model';
 
-const AUTH_API = 'http://ec2-18-234-126-118.compute-1.amazonaws.com:9000/';
+const AUTH_API = 'http://localhost:9000/';
 
 
 const ENDPOINTS = {
@@ -31,9 +31,9 @@ export class AccountHandlerService {
     private http: HttpClient
   ) { }
 
-  createAccount(userId:number, accountType:string){
+  createAccount(userId: number, accountType: string) {
     return this.http.post<PostAccount>(
-      ENDPOINTS.CREATE_ACCOUNT, 
+      ENDPOINTS.CREATE_ACCOUNT,
       JSON.stringify(
         {
           userId: userId,
@@ -42,9 +42,9 @@ export class AccountHandlerService {
       ), httpOptions);
   }
 
-  updateAccount(updateAccount:Account){
+  updateAccount(updateAccount: Account) {
     return this.http.put<PutAccount>(
-      ENDPOINTS.UPDATE_ACCOUNT, 
+      ENDPOINTS.UPDATE_ACCOUNT,
       JSON.stringify(
         {
           accountId: updateAccount.accountId,
@@ -52,21 +52,21 @@ export class AccountHandlerService {
           availableBalance: updateAccount.availableBalance,
           pendingBalance: updateAccount.pendingBalance
         }
-      ),httpOptions);
+      ), httpOptions);
   }
 
-  getAccounts(userId:number){
+  getAccounts(userId: number) {
     return this.http.get<GetAccount>(
       `${ENDPOINTS.GET_ACCOUNT + userId}`
     );
   }
 
-  deleteAccount(account:Account){
+  deleteAccount(account: Account) {
     return this.http.delete<DeleteAccount>(
       `${ENDPOINTS.DELETE_ACCOUNT + account.accountId}`, httpOptions);
   }
-  
-  createTransfer(transfer: TransferRequest){
+
+  createTransfer(transfer: TransferRequest) {
     return this.http.put<PutAccount>(ENDPOINTS.TRANSFER, JSON.stringify({
       ownerAccountId: transfer.ownerAccountId,
       receiverAccountId: transfer.receiverAccountId,

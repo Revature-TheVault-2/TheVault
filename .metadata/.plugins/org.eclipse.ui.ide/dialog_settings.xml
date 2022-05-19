@@ -8,6 +8,9 @@
 		<item value="org.eclipse.buildship:3.1.5.v20210113-0929"/>
 		<item value="org.eclipse.draw2d:3.10.100.201606061308"/>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> a5d312ec7ee291084eb141db3d87b268cb16e049
 		<item value="org.eclipse.egit.mylyn:5.13.0.202109080827-r"/>
 		<item value="org.eclipse.egit:5.13.0.202109080827-r"/>
 		<item value="org.eclipse.emf.codegen.ecore.ui:2.27.0.v20210816-1137"/>
@@ -45,6 +48,7 @@
 		<item value="org.eclipse.jst.ws.jaxws.feature:1.2.800.v202104210249"/>
 		<item value="org.eclipse.m2e.feature:1.18.1.20210618-2246"/>
 		<item value="org.eclipse.m2e.logback.feature:1.17.1.20210603-1006"/>
+<<<<<<< HEAD
 =======
 		<item value="org.eclipse.egit.mylyn:4.9.2.201712150930-r"/>
 		<item value="org.eclipse.egit:4.9.2.201712150930-r"/>
@@ -81,6 +85,8 @@
 		<item value="org.eclipse.m2e.feature:1.20.1.20220227-1319"/>
 		<item value="org.eclipse.m2e.logback.feature:1.17.2.20211002-1029"/>
 >>>>>>> a714d9cab189d9b1930b6174fa9c77e6051184e3
+=======
+>>>>>>> a5d312ec7ee291084eb141db3d87b268cb16e049
 		<item value="org.eclipse.m2e.wtp.feature:1.4.4.20201128-1705"/>
 		<item value="org.eclipse.m2e.wtp.jaxrs.feature:1.4.4.20201128-1705"/>
 		<item value="org.eclipse.m2e.wtp.jsf.feature:1.4.4.20201128-1705"/>
@@ -99,6 +105,9 @@
 		<item value="org.eclipse.mylyn.team_feature:3.25.2.v20200828-1617"/>
 		<item value="org.eclipse.mylyn.versions:1.17.0.v20191002-0716"/>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> a5d312ec7ee291084eb141db3d87b268cb16e049
 		<item value="org.eclipse.mylyn.wikitext.editors_feature:3.0.38.202008172112"/>
 		<item value="org.eclipse.mylyn.wikitext_feature:3.0.38.202008172112"/>
 		<item value="org.eclipse.mylyn_feature:3.25.2.v20200814-0512"/>
@@ -109,6 +118,7 @@
 		<item value="org.eclipse.tm.terminal.control.feature:10.4.0.202107100131"/>
 		<item value="org.eclipse.tm.terminal.feature:10.4.0.202106130052"/>
 		<item value="org.eclipse.tm.terminal.view.feature:10.4.0.202108241639"/>
+<<<<<<< HEAD
 		<item value="org.eclipse.userstorage:1.2.0.v20210517-0327"/>
 		<item value="org.eclipse.wst.common.fproj:3.7.3.v202007142017"/>
 		<item value="org.eclipse.wst.jsdt.chromium.debug.feature:0.6.100.v201908270117"/>
@@ -182,6 +192,38 @@
 		<item value="org.springsource.sts.package:3.9.17.202106211332-RELEASE-e419"/>
 		<item value="org.springsource.sts:3.9.17.202106211332-RELEASE"/>
 >>>>>>> a714d9cab189d9b1930b6174fa9c77e6051184e3
+=======
+		<item value="org.eclipse.userstorage:1.2.0.v20210517-0327"/>
+		<item value="org.eclipse.wst.common.fproj:3.7.3.v202007142017"/>
+		<item value="org.eclipse.wst.jsdt.chromium.debug.feature:0.6.100.v201908270117"/>
+		<item value="org.eclipse.wst.jsdt.feature:2.3.600.v202108041610"/>
+		<item value="org.eclipse.wst.json_ui.feature:1.1.10.v202103121626"/>
+		<item value="org.eclipse.wst.web_ui.feature:3.23.0.v202107272335"/>
+		<item value="org.eclipse.wst.xml.xpath2.processor.feature:2.0.302.v201909031400"/>
+		<item value="org.eclipse.wst.xml_ui.feature:3.23.0.v202107101937"/>
+		<item value="org.eclipse.wst.xsl.feature:1.3.900.v202005251734"/>
+		<item value="org.eclipse.zest:1.7.0.201606061308"/>
+		<item value="org.jboss.tools.m2e.wro4j.feature:1.1.0.201406251020"/>
+		<item value="org.sonatype.m2e.buildhelper.feature:0.15.0.201207090124"/>
+		<item value="org.sonatype.m2e.egit.feature:0.15.1.201806191431"/>
+		<item value="org.sonatype.m2e.mavenarchiver.feature:0.17.5.202002191804"/>
+		<item value="org.springframework.ide.eclipse.ajdt.feature:3.9.18.202109140629-RELEASE"/>
+		<item value="org.springframework.ide.eclipse.aop.feature:3.9.18.202109140629-RELEASE"/>
+		<item value="org.springframework.ide.eclipse.autowire.feature:3.9.18.202109140629-RELEASE"/>
+		<item value="org.springframework.ide.eclipse.batch.feature:3.9.18.202109140629-RELEASE"/>
+		<item value="org.springframework.ide.eclipse.boot.dash.feature:4.12.0.202109130635"/>
+		<item value="org.springframework.ide.eclipse.boot.feature:3.9.18.202109140629-RELEASE"/>
+		<item value="org.springframework.ide.eclipse.data.feature:3.9.18.202109140629-RELEASE"/>
+		<item value="org.springframework.ide.eclipse.feature:3.9.18.202109140629-RELEASE"/>
+		<item value="org.springframework.ide.eclipse.integration.feature:3.9.18.202109140629-RELEASE"/>
+		<item value="org.springframework.ide.eclipse.maven.feature:3.9.18.202109140629-RELEASE"/>
+		<item value="org.springframework.ide.eclipse.mylyn.feature:3.9.18.202109140629-RELEASE"/>
+		<item value="org.springframework.ide.eclipse.security.feature:3.9.18.202109140629-RELEASE"/>
+		<item value="org.springframework.ide.eclipse.webflow.feature:3.9.18.202109140629-RELEASE"/>
+		<item value="org.springframework.ide.eclipse.xml.namespaces.feature:4.12.0.202109130635"/>
+		<item value="org.springsource.sts.package:3.9.18.202109140905-RELEASE-e421"/>
+		<item value="org.springsource.sts:3.9.18.202109140905-RELEASE"/>
+>>>>>>> a5d312ec7ee291084eb141db3d87b268cb16e049
 	</list>
 	<section name="SmartImportWizard">
 		<item key="SmartImportRootWizardPage.STORE_HIDE_ALREADY_OPEN" value="false"/>
@@ -189,6 +231,8 @@
 		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
 		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
 		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="C:\Users\darkm\Documents\git_repos\TheVault"/>
+			<item value="C:\Users\darkm\Documents\git_repos\TheVault\TheVault"/>
 			<item value="C:\Users\nigel\OneDrive\Desktop\project\TheVault"/>
 		</list>
 	</section>

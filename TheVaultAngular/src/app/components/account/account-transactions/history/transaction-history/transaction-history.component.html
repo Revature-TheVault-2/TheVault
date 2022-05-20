@@ -1,5 +1,9 @@
 <div class="container mt-3">
     <h2 class="display-4">Transaction History</h2>
+    <div *ngIf="transSuccess" class="alert alert-success alert-dismissible fade show col-sm-7 mx-auto" role="alert">
+      <strong>Your Transaction was a success!</strong>
+      <button type="button" class="btn-close" (click)="setTransSuccess(false)" aria-label="Close"></button>
+  </div>
     <form class="d-flex">
       <input class="form-control me-2" type="search" placeholder="Search" [(ngModel)]="term" [ngModelOptions]="{standalone: true}" aria-label="Search">
     </form>

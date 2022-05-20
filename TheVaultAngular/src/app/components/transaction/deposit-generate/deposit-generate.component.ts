@@ -29,6 +29,7 @@ export class DepositGenerateComponent implements OnInit {
   onClickSubmit(amount:string, type:string, reference:string){
     let deposit: DepositRequest = new DepositRequest(type, this.globalStorage.getActiveAccount().accountId, reference, Number.parseFloat(amount));
     this.transactionHandler.createDeposit(deposit).subscribe(this.createDepositObserver);
+    this.globalStorage.transSuccess = true;
   }
 
   createDepositObserver = {

@@ -30,7 +30,6 @@ phases:
 #    - sudo sed -i s/\$releasever/6/g /etc/yum.repos.d/epel-apache-maven.repo
 #    - sudo yum install -y maven
 #    - echo "          ((((((((((     installing maven END     ))))))))))          "
-       AWS
 #      - java -version
 #      - mvn clean package
     finally:

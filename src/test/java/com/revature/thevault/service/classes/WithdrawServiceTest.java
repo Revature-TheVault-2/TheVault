@@ -103,7 +103,7 @@ class WithdrawServiceTest {
                 storedWithdrawEntity.getRequesttypeentity().getName(),
                 storedWithdrawEntity.getRequeststatusentity().getName(),
                 storedWithdrawEntity.getReference(),
-                storedWithdrawEntity.getDate_withdraw().toLocalDate(),
+                storedWithdrawEntity.getDateWithdraw().toLocalDate(),
                 storedWithdrawEntity.getAmount()
         );
         Mockito.when(requestTypeService.getRequestTypeByName("Retail")).thenReturn(requestType);

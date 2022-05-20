@@ -110,7 +110,7 @@ badDepositId = -1;
                     storedDepositEntity.getAccountentity().getPk_account_id(),
                     storedDepositEntity.getDeposittypeentity().getName(),
                     storedDepositEntity.getReference(),
-                    storedDepositEntity.getDate_deposit().toLocalDate(),
+                    storedDepositEntity.getDateDeposit().toLocalDate(),
                     storedDepositEntity.getAmount()
             );
 
@@ -182,6 +182,8 @@ badDepositId = -1;
 
             assertEquals(getDepositResponse, depositService.getAlLUserDepositsOfType(accountId, depositTypeEntity.getName()));
         }
+        
+        void getAllUserDepositsBetween
 
         @Test
         void deleteAllDeposits() {

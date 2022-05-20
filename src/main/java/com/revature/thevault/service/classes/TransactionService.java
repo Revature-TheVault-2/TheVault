@@ -72,7 +72,7 @@ public class TransactionService implements TransactionServiceInterface {
         deposits.getGotObject().forEach(deposit -> transactionObjects.add(convertDepositToTransactionObject((DepositResponseObject) deposit)));
         withdrawals.getGotObject().forEach(withdrawal -> transactionObjects.add(convertWithdrawToTransactionObject((WithdrawResponseObject) withdrawal)));
         Comparator<TransactionObject> byDate = Comparator.comparing(TransactionObject::getDate);
-        transactionObjects.sort(byDate.reversed());
+        transactionObjects.sort(byDate);
         return GetResponse.builder()
                 .success(true)
                 .gotObject(transactionObjects)

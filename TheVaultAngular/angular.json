@@ -28,11 +28,7 @@
             ],
             "styles": [
                "src/styles.css",
-               {
-                "input": "src/DarkMode.css",
-                "bundleName": "Dark-Mode",
-                "inject": false
-              },
+                "src/DarkMode.css",
               {
                 "input": "src/LightMode.css",
                 "bundleName": "Light-Mode",

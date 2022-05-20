@@ -1,7 +1,9 @@
 version: 0.2
 phases:
   install:
-    commands:
+    runtime-versions:
+      java: corretto11
+#    commands:
 #    - echo "          ((((((((((     updating existing packages START     ))))))))))        "
 #    - sudo yum update -y
 #    - echo "          ((((((((((     updating existing packages END     ))))))))))          "
@@ -28,6 +30,9 @@ phases:
 #    - sudo sed -i s/\$releasever/6/g /etc/yum.repos.d/epel-apache-maven.repo
 #    - sudo yum install -y maven
 #    - echo "          ((((((((((     installing maven END     ))))))))))          "
+       AWS
+#      - java -version
+#      - mvn clean package
     finally:
     - echo This always runs even if the update or install command fails
   pre_build:
@@ -37,6 +42,7 @@ phases:
     - echo This always runs even if the login command fails
   build:
     commands:
+    - mvn clean package
     - echo Entered the build phase...
     - echo Build started on `date`
     finally:
@@ -45,3 +51,10 @@ phases:
     commands:
     - echo Entered the post_build phase...
     - echo Build completed on `date`
+    
+artifacts:
+  files:
+    - target/*.jar
+    - scripts/*.sh
+    - appspec.yml
+discard-paths: yes

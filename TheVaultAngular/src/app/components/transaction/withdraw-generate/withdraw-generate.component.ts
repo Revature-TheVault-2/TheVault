@@ -31,6 +31,7 @@ export class WithdrawGenerateComponent implements OnInit {
       type,
       reference,
       Number.parseFloat(amount)
+      //COde to triggert alert//
     );
 
     //Checks to make sure the withdraw request is not over the available balance

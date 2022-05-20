@@ -35,16 +35,16 @@ export class TransactionHandlerService {
   constructor(
     private http: HttpClient
   ) { }
-  
-  getTransactionDetails(withdrawId:number){
+
+  getTransactionDetails(withdrawId: number) {
     return this.http.get<Withdraw>(
       `${ENDPOINTS.TRANSACTION_DETAILS + withdrawId}`
     )
   }
 
-  createDeposit(deposit:DepositRequest){
+  createDeposit(deposit: DepositRequest) {
     return this.http.post<PostDeposit>(
-      ENDPOINTS.CREATE_DEPOSIT, 
+      ENDPOINTS.CREATE_DEPOSIT,
       JSON.stringify(
         {
           depositType: deposit.depositType,
@@ -55,15 +55,15 @@ export class TransactionHandlerService {
       ), httpOptions);
   }
 
-  deleteAllDeposits(accountId:number){
+  deleteAllDeposits(accountId: number) {
     return this.http.delete<DeleteDeposit>(
       `${ENDPOINTS.DELETE_ALL_DEPOSIT + accountId}`, httpOptions);
   }
 
-  createWithdraw(withdraw:WithdrawRequest){
+  createWithdraw(withdraw: WithdrawRequest) {
     console.log(withdraw)
     return this.http.post<PostWithdraw>(
-      ENDPOINTS.CREATE_WITHDRAW, 
+      ENDPOINTS.CREATE_WITHDRAW,
       JSON.stringify(
         {
           accountId: withdraw.accountId,
@@ -74,11 +74,11 @@ export class TransactionHandlerService {
       ), httpOptions);
   }
 
-  deleteAllWithdraws(accountId:number){
+  deleteAllWithdraws(accountId: number) {
     return this.http.delete<DeleteWithdraw>(`${ENDPOINTS.DELETE_ALL_WITHDRAW + accountId}`, httpOptions)
   }
 
-  getTransactionHistory(accountId:number){
+  getTransactionHistory(accountId: number) {
     return this.http.get<GetTransaction>(`${ENDPOINTS.TRANSACTION_HISTORY + accountId}`)
   }
 

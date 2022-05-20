@@ -33,14 +33,11 @@ export class UserHandlerService {
   ) { }
 
   validateLogin(login: LoginUser) {
+    httpOptions.headers = httpOptions.headers.append('authorization', 'Basic ' + btoa(login.username + ':' + login.password));
+    httpOptions.headers = httpOptions.headers.append('withCredentials', 'true');
     return this.http.post<PostLogin>(
-      `${ENDPOINTS.VALIDATE}`,
-      JSON.stringify(
-        {
-          username: login.username,
-          password: login.password
-        }
-      ),
+      `${ENDPOINTS.LOGIN}`,
+      null,
       httpOptions);
   }
 

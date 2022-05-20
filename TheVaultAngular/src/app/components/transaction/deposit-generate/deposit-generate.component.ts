@@ -29,7 +29,6 @@ export class DepositGenerateComponent implements OnInit {
   onClickSubmit(amount:string, type:string, reference:string){
     let deposit: DepositRequest = new DepositRequest(type, this.globalStorage.getActiveAccount().accountId, reference, Number.parseFloat(amount));
     this.transactionHandler.createDeposit(deposit).subscribe(this.createDepositObserver);
-    this.globalStorage.transSuccess = true;
   }
 
   createDepositObserver = {
@@ -39,8 +38,16 @@ export class DepositGenerateComponent implements OnInit {
       activeAccount.pendingBalance += data.createdObject[0].amount;
       this.accountHandler.updateAccount(activeAccount).subscribe(this.updateAccountObserver);
     },
-    error: (err: Error) => console.error("Create Deposit Observer Error: " + err),
-    complete: () => console.log("Successfully created deposit")
+    error: (err: Error) => {
+      this.globalStorage.transSuccess = false;
+      this.globalStorage.transFail = true;
+      console.error("Create Deposit Observer Error: " + err)
+    },
+    complete: () => {
+      this.globalStorage.transSuccess = true;
+      this.globalStorage.transFail = false;
+      console.log("Successfully created deposit")
+    }
   }
 
   updateAccountObserver = {
@@ -48,7 +55,15 @@ export class DepositGenerateComponent implements OnInit {
       this.globalStorage.setActiveAccount(data.updatedObject[0]);
       this.submitEmitter.emit(false);
     },
-    error: (err: Error) => console.error("Update Account Observer Error: " + err),
-    complete: () => console.log("Successfully updated account")
+    error: (err: Error) => {
+      this.globalStorage.transFail = true;
+      this.globalStorage.transSuccess = false;
+      console.error("Update Account Observer Error: " + err)
+    },
+    complete: () => {
+      this.globalStorage.transFail = false;
+      this.globalStorage.transSuccess = true;
+      console.log("Successfully updated account")
+    }
   }
 }

@@ -24,16 +24,10 @@ export class TransactionHistoryComponent implements OnInit {
 
   /* istanbul ignore next */
   constructor(private globalStorage: GlobalStorageService) { }
-  get transSuccess(){
-    console.log(this.globalStorage.transSuccess);
-    return this.globalStorage.transSuccess;
-  }
-
-  setTransSuccess(value:boolean){
-    this.globalStorage.transSuccess=value;
-  }
 
   /* istanbul ignore next */
   ngOnInit(): void {
+    this.globalStorage.transFail = false;
+    this.globalStorage.transSuccess = false;
   }
 }

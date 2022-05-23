@@ -53,7 +53,6 @@ public class AccountProfileService implements AccountProfileInterface {
         try {
             return GetResponse.builder()
             		.success(true)
-//                    .gotObject(Collections.singletonList(convertEntityToResponse(accountProfileRepository.getById(accountProfileRequest.getProfileId()))))
                     .gotObject(Collections.singletonList(convertEntityToResponse(profile)))
                     .build();
         } catch (Exception e) {

@@ -23,8 +23,6 @@ export class GlobalStorageService {
   getAccount!: GetAccount;
   accounts!: Account[];
 
-  token!:string;
-
   constructor() { }
 
   public setHttpOptions(credentials: LoginUser): void {
@@ -58,13 +56,5 @@ export class GlobalStorageService {
   public setActiveAccount(account:Account){this.activeAccount = account}
 
   public getActiveAccount():Account{return this.activeAccount}
-
-  public setToken(token: string):void{
-    this.token = token;
-  }
-
-  public getToken():string{
-    return this.token;
-  }
 
 }

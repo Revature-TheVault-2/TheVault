@@ -14,15 +14,11 @@ const AUTH_API = 'http://localhost:9000/';
 const ENDPOINTS = {
   LOGIN: `${AUTH_API}login`,
   NEW_LOGIN: `${AUTH_API}create`,
-  VALIDATE: `${AUTH_API}login/validate`,
+  // VALIDATE: `${AUTH_API}login/validate`,
   CREATE_PROFILE: `${AUTH_API}profile/create`,
   GET_PROFILE: `${AUTH_API}profile/get/`,
   UPDATE_PROFILE: `${AUTH_API}profile/update`
 }
-
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-};
 
 @Injectable({
   providedIn: 'root'

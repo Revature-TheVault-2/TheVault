@@ -30,50 +30,37 @@ public class AccountController {
     @ResponseStatus(HttpStatus.OK)
     @GetMapping(path = "/find", produces = MediaType.APPLICATION_JSON_VALUE)
     public GetResponse getAccount(@RequestHeader("Authorization") String token, @RequestParam int accountId){
-        JWTInfo parsedJWT = JWTUtility.verifyUser(token);
-        if(parsedJWT != null) return accountService.getAccount(accountId);
-        else throw new InvalidAuthorizationError(HttpStatus.UNAUTHORIZED, "No valid JWT");
+        return accountService.getAccount(accountId);
     }
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping(path = "/users-accounts", produces = MediaType.APPLICATION_JSON_VALUE)
     public GetResponse getUserAccountList(@RequestParam int userId, HttpSession sess){
-//        JWTInfo parsedJWT = JWTUtility.verifyUser(token);
-    	String parsedJWT = "bypass";
-        if(parsedJWT != null) return accountService.getAccounts(userId);
-        else throw new InvalidAuthorizationError(HttpStatus.UNAUTHORIZED, "No valid JWT");
+    	return accountService.getAccounts(userId);
     }
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(path = "/create", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public PostResponse createAccount(@RequestHeader("Authorization") String token, @RequestBody CreateAccountRequest createAccountRequest){
-        JWTInfo parsedJWT = JWTUtility.verifyUser(token);
-        if(parsedJWT != null) return accountService.createAccount(createAccountRequest);
-        else throw new InvalidAuthorizationError(HttpStatus.UNAUTHORIZED, "No valid JWT");
+    	return accountService.createAccount(createAccountRequest);
     }
 
     @ResponseStatus(HttpStatus.OK)
     @DeleteMapping(path = "/delete", produces = MediaType.APPLICATION_JSON_VALUE)
     public DeleteResponse deleteAccount(@RequestHeader("Authorization") String token, @RequestParam int accountId){
-        JWTInfo parsedJWT = JWTUtility.verifyUser(token);
-        if(parsedJWT != null) return accountService.deleteAccount(accountId);
-        else throw new InvalidAuthorizationError(HttpStatus.UNAUTHORIZED, "No valid JWT");
+        return accountService.deleteAccount(accountId);
     }
 
     @ResponseStatus(HttpStatus.OK)
     @PutMapping(path = "/update", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public PutResponse updateAccount(@RequestHeader("Authorization") String token, @RequestBody UpdateAccountRequest updateAccountRequest){
-        JWTInfo parsedJWT = JWTUtility.verifyUser(token);
-        if(parsedJWT != null) return accountService.updateAccount(updateAccountRequest);
-        else throw new InvalidAuthorizationError(HttpStatus.UNAUTHORIZED, "No valid JWT");
+        return accountService.updateAccount(updateAccountRequest);
     }
 
     @ResponseStatus(HttpStatus.OK)
     @PutMapping(path = "/transfer", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public PutResponse transferToAccount(@RequestHeader("Authorization") String token, @RequestBody TransferRequest transferRequest){
-        JWTInfo parsedJWT = JWTUtility.verifyUser(token);
-        if(parsedJWT != null) return accountService.transferToAnotherAccount(transferRequest);
-        else throw new InvalidAuthorizationError(HttpStatus.UNAUTHORIZED, "No valid JWT");
+        return accountService.transferToAnotherAccount(transferRequest);
     }
 
 }

@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit {
   success: boolean = false;
   errorMessage: string = "Failed to login, please try again.";
   successMessage: string = "Successful login!";
+  credentials!: LoginUser
 
   form: FormGroup = new FormGroup({
     username: new FormControl(''),   
@@ -80,6 +81,7 @@ onSubmit(): void {
   /* istanbul ignore next */
   if(userN != null && passW != null) {
     let loginUser = new LoginUser(userN, passW);
+    this.credentials = loginUser;
     this.getUserInfo(loginUser);
   }
 }
@@ -94,8 +96,9 @@ getUserInfo(loginUser: LoginUser){
 loginObserver = {
   next: (data: PostLogin) => {
     console.log(data);
-    this.globalStorage.setToken(data.createdObject[0].jwt);
-    console.log(this.globalStorage.getToken());
+    this.globalStorage.setCredentials(this.credentials);
+    // this.globalStorage.setToken(data.createdObject[0].jwt);
+    // console.log(this.globalStorage.getToken());
     this.globalStorage.setUserId(data.createdObject[0].userId);
     this.globalStorage.setUsername(data.createdObject[0].username);
     this.userHandler.getUserProfile(this.globalStorage.getUserId()).subscribe(this.profileObserver)
@@ -110,7 +113,7 @@ loginObserver = {
 profileObserver = {
   next: (data: GetUser) => {
     this.globalStorage.setProfile(data.gotObject[0]);
-    this.accountHandler.getAccounts(this.globalStorage.getUserId()).subscribe(this.accountObserver);
+    this.accountHandler.getAccounts(this.globalStorage.getUserId(), this.globalStorage.getCredentials()).subscribe(this.accountObserver);
   },
   error: (err: Error) => {
   /* istanbul ignore next */

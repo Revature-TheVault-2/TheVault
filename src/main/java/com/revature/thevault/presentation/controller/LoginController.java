@@ -13,9 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin("*")
+
 @RestController("loginController")
-@RequestMapping("/login")
+//@RequestMapping("/login")
 public class LoginController {
 
     @Autowired
@@ -55,9 +55,9 @@ public class LoginController {
      */
 
     @ResponseStatus(HttpStatus.OK)
-    @PostMapping("/validate")
+    @PostMapping("/login")
     public PostResponse findLoginCredential(@RequestBody LoginRequest loginRequest){
-        return loginService.getLoginCredentialFromLogin(loginRequest);
+        return loginService.getLoginCredentialFromLogin(loginRequest.getUsername());
     }
 /**
  * Controller that resets the password 

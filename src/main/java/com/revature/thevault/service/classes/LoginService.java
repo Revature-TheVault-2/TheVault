@@ -49,11 +49,11 @@ public class LoginService implements LoginServiceInterface {
 	 * @return PostResponse
 	 */
 	@Override
-	public PostResponse getLoginCredentialFromLogin(LoginRequest loginRequest) {
+	public PostResponse getLoginCredentialFromLogin(String username) {
 		try {
 			return PostResponse.builder().success(true)
 					.createdObject(Collections.singletonList(convertEntityToResponse(loginRepository
-							.findByUsernameAndPassword(loginRequest.getUsername(), loginRequest.getPassword()))))
+							.findByUsername(username))))
 					.build();
 		} catch (Exception e) {
 			throw new InvalidInputException("User was not found");
@@ -146,8 +146,8 @@ public class LoginService implements LoginServiceInterface {
         return new LoginResponseObject(
                 loginCredentialEntity.getPkuserid(),
                 loginCredentialEntity.getUsername(),
-                loginCredentialEntity.getPassword(),
-                JWTUtility.generateJWT(loginCredentialEntity.getPkuserid(), loginCredentialEntity.getUsername())
+                loginCredentialEntity.getPassword()
+//                JWTUtility.generateJWT(loginCredentialEntity.getPkuserid(), loginCredentialEntity.getUsername())
 
         );
     }

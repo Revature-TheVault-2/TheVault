@@ -1,3 +1,4 @@
+import { HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Account } from '../models/account/account.model';
 import { GetAccount } from '../models/account/responses/get-account';
@@ -9,7 +10,9 @@ import { Profile } from '../models/users/profile.model';
 })
 export class GlobalStorageService {
 
-  credentials!: LoginUser;
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  }
 
   userId!: number;
   userProfile!: Profile;
@@ -24,9 +27,15 @@ export class GlobalStorageService {
 
   constructor() { }
 
-  public setCredentials(credentials: LoginUser): void {this.credentials = credentials}
+  public setHttpOptions(credentials: LoginUser): void {
+    this.httpOptions.headers = this.httpOptions.headers.append('authorization', 'Basic ' + btoa(credentials.username + ':' + credentials.password));
+  }
 
-  public getCredentials(): LoginUser {return this.credentials}
+  public resetHttpOptions(): void {
+    this.httpOptions.headers = this.httpOptions.headers.delete('authorization');
+  }
+
+  public getHttpOptions() {return this.httpOptions}
 
   public setProfile(user: Profile): void {this.userProfile = user}
 

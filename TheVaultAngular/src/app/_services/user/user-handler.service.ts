@@ -7,12 +7,13 @@ import { Profile } from 'src/app/models/users/profile.model';
 import { GetProfile } from 'src/app/models/users/responses/get-profile';
 import { PostProfile } from 'src/app/models/users/responses/post-profile';
 import { PutProfile } from 'src/app/models/users/responses/put-profile';
+import { GlobalStorageService } from '../global-storage.service';
 
 const AUTH_API = 'http://localhost:9000/';
 
 const ENDPOINTS = {
   LOGIN: `${AUTH_API}login`,
-  NEW_LOGIN: `${AUTH_API}login/create`,
+  NEW_LOGIN: `${AUTH_API}create`,
   VALIDATE: `${AUTH_API}login/validate`,
   CREATE_PROFILE: `${AUTH_API}profile/create`,
   GET_PROFILE: `${AUTH_API}profile/get/`,
@@ -29,32 +30,28 @@ const httpOptions = {
 export class UserHandlerService {
   
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private globalStorage: GlobalStorageService
   ) { }
 
-  credentials: LoginUser = new LoginUser("", "");
-
   validateLogin(credentials: LoginUser) {
-    this.credentials = credentials;
-    httpOptions.headers = httpOptions.headers.append('authorization', 'Basic ' + btoa(credentials.username + ':' + credentials.password));
     return this.http.post<PostLogin>(
       `${ENDPOINTS.LOGIN}`,
       {
-        username: credentials.username
+        username: credentials.username,
+        password: credentials.password
       },
-      httpOptions);
+      this.globalStorage.getHttpOptions());
   }
 
   getUserProfile(userId: number) {
-    // httpOptions.headers = httpOptions.headers.append('authorization', 'Basic ' + btoa(this.credentials.username + ':' + this.credentials.password));
     return this.http.get<GetProfile>(
     `${ENDPOINTS.GET_PROFILE + userId}`,
-    httpOptions);
+    this.globalStorage.getHttpOptions());
   }
 
   createNewLogin(username: string, password: string) {
     console.log(username);
-    // httpOptions.headers = httpOptions.headers.append('authorization', 'Basic ' + btoa(this.credentials.username + ':' + this.credentials.password));
     return this.http.post<PostLogin>(
       ENDPOINTS.NEW_LOGIN,
       JSON.stringify(
@@ -62,11 +59,10 @@ export class UserHandlerService {
           username: username,
           password: password
         }
-      ), httpOptions);
+      ), this.globalStorage.getHttpOptions());
   }
 
   createProfile(userId: number, newUser: NewUser) {
-    // httpOptions.headers = httpOptions.headers.append('authorization', 'Basic ' + btoa(this.credentials.username + ':' + this.credentials.password));
     return this.http.post<PostProfile>(
       ENDPOINTS.CREATE_PROFILE,
       JSON.stringify(
@@ -79,11 +75,10 @@ export class UserHandlerService {
           address: newUser.address
         }
       ),
-      httpOptions);
+      this.globalStorage.getHttpOptions());
   }
 
   updateProfile(profile: Profile, profileId: number, userId: number) {
-    // httpOptions.headers = httpOptions.headers.append('authorization', 'Basic ' + btoa(this.credentials.username + ':' + this.credentials.password));
     return this.http.put<PutProfile>(
       ENDPOINTS.UPDATE_PROFILE,
       JSON.stringify(
@@ -97,6 +92,6 @@ export class UserHandlerService {
           address: profile.address
         }
       ),
-      httpOptions);
+      this.globalStorage.getHttpOptions());
   }
 }

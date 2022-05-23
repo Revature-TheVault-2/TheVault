@@ -7,8 +7,12 @@ import com.revature.thevault.presentation.model.response.LoginResponse;
 import com.revature.thevault.presentation.model.response.builder.PostResponse;
 
 import com.revature.thevault.presentation.model.response.builder.PutResponse;
+import com.revature.thevault.repository.entity.LoginCredentialEntity;
 import com.revature.thevault.service.classes.AccountProfileService;
 import com.revature.thevault.service.classes.LoginService;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

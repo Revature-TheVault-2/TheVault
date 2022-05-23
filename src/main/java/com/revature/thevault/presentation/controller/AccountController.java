@@ -5,10 +5,14 @@ import com.revature.thevault.presentation.model.response.builder.DeleteResponse;
 import com.revature.thevault.presentation.model.response.builder.GetResponse;
 import com.revature.thevault.presentation.model.response.builder.PostResponse;
 import com.revature.thevault.presentation.model.response.builder.PutResponse;
+import com.revature.thevault.repository.entity.LoginCredentialEntity;
 import com.revature.thevault.service.classes.AccountService;
 import com.revature.thevault.service.exceptions.InvalidAuthorizationError;
 import com.revature.thevault.utility.JWTInfo;
 import com.revature.thevault.utility.JWTUtility;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -33,7 +37,7 @@ public class AccountController {
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping(path = "/users-accounts", produces = MediaType.APPLICATION_JSON_VALUE)
-    public GetResponse getUserAccountList(@RequestParam int userId){
+    public GetResponse getUserAccountList(@RequestParam int userId, HttpSession sess){
 //        JWTInfo parsedJWT = JWTUtility.verifyUser(token);
     	String parsedJWT = "bypass";
         if(parsedJWT != null) return accountService.getAccounts(userId);

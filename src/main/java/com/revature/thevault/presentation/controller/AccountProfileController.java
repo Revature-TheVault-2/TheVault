@@ -49,18 +49,8 @@ public class AccountProfileController {
      */
     @GetMapping("/get/{id}")
     public GetResponse getProfile(@PathVariable int id){
-//        JWTInfo parsedJWT = JWTUtility.verifyUser(token);
-    	String parsedJWT = "bypass";
-        if(parsedJWT != null) {
-        	
-        	
-        	return accountProfileService.getProfile(new AccountProfileRequest(id));
-        	
-        	
-        }
-        else throw new InvalidAuthorizationError(HttpStatus.UNAUTHORIZED, "No valid JWT");
+    	return accountProfileService.getProfile(new AccountProfileRequest(id));
     }
-
     /**
      * remove, this is not necessary to the application
      * Deprecated due to comment left by other team^
@@ -71,9 +61,7 @@ public class AccountProfileController {
     @Deprecated
     @DeleteMapping("/delete")
     public DeleteResponse deleteProfile(@RequestHeader("Authorization") String token, @RequestBody AccountProfileRequest accountProfileRequest){
-        JWTInfo parsedJWT = JWTUtility.verifyUser(token);
-        if(parsedJWT != null) return accountProfileService.deleteProfile(accountProfileRequest);
-        else throw new InvalidAuthorizationError(HttpStatus.UNAUTHORIZED, "No valid JWT");
+        return accountProfileService.deleteProfile(accountProfileRequest);
     }
 
     /**
@@ -85,8 +73,6 @@ public class AccountProfileController {
      */
     @PutMapping("/update")
     public PutResponse updateProfile(@RequestHeader("Authorization") String token, @RequestBody UpdateProfileRequest updateProfileRequest){
-        JWTInfo parsedJWT = JWTUtility.verifyUser(token);
-        if(parsedJWT != null) return accountProfileService.updateProfile(updateProfileRequest);
-        else throw new InvalidAuthorizationError(HttpStatus.UNAUTHORIZED, "No valid JWT");
+        return accountProfileService.updateProfile(updateProfileRequest);
     }
 }

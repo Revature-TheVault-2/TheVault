@@ -34,9 +34,7 @@ public class TransactionController {
 	 */
     @GetMapping("/history/{accountId}")
     public GetResponse getTransactionHistory(@RequestHeader("Authorization") String token, @PathVariable Integer accountId) {
-        JWTInfo parsedJWT = JWTUtility.verifyUser(token);
-        if(parsedJWT != null) return transactionService.getTransactionHistory(accountId);
-        else throw new InvalidAuthorizationError(HttpStatus.UNAUTHORIZED, "No valid JWT");
+        return transactionService.getTransactionHistory(accountId);
     }
 
 }

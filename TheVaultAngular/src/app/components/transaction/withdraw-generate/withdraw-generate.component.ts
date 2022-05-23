@@ -26,6 +26,7 @@ export class WithdrawGenerateComponent implements OnInit {
   }
 
   onClickSubmit(amount:string, type:string, reference:string){
+    
     let withdraw: WithdrawRequest = new WithdrawRequest(
       this.globalStorage.getActiveAccount().accountId,
       type,
@@ -37,7 +38,8 @@ export class WithdrawGenerateComponent implements OnInit {
     //Checks to make sure the withdraw request is not over the available balance
     //If it is then it closes with the submit emitter and returns
     if(Number.parseFloat(amount) > this.globalStorage.getActiveAccount().availableBalance) {
-      window.alert("You do not have enough");
+      this.globalStorage.transSuccess = false;
+      this.globalStorage.transFail = true;
       this.submitEmitter.emit(false);
       return;
     }
@@ -53,8 +55,16 @@ export class WithdrawGenerateComponent implements OnInit {
       activeAccount.pendingBalance -= data.createdObject[0].amount;
       this.accountHandler.updateAccount(activeAccount).subscribe(this.updateAccountObserver);
     },
-    error: (err: Error) => console.error("Create Withdraw Observer Error: " + err),
-    complete: () => console.log("Successful creation of withdraw")
+    error: (err: Error) => {
+      this.globalStorage.transSuccess = false;
+      this.globalStorage.transFail = true;
+      console.error("Create Withdraw Observer Error: " + err)
+    },
+    complete: () => {
+      this.globalStorage.transFail = false;
+      this.globalStorage.transSuccess = true;
+      console.log("Successful creation of withdraw")
+    }
   }
 
   updateAccountObserver = {
@@ -62,8 +72,16 @@ export class WithdrawGenerateComponent implements OnInit {
       this.globalStorage.setActiveAccount(data.updatedObject[0]);
       this.submitEmitter.emit(false);
     },
-    error: (err: Error) => console.error("Update Account Observer Error: " + err),
-    complete: () => console.log("Successfully updated account")
+    error: (err: Error) => {
+      this.globalStorage.transSuccess = false;
+      this.globalStorage.transFail = true;
+      console.error("Update Account Observer Error: " + err)
+    },
+    complete: () => {
+      this.globalStorage.transFail = false;
+      this.globalStorage.transSuccess = true;
+      console.log("Successfully updated account")
+    }
   }
 
 }

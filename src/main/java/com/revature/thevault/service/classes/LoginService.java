@@ -144,10 +144,10 @@ public class LoginService implements LoginServiceInterface {
 
     private LoginResponseObject convertEntityToResponse(LoginCredentialEntity loginCredentialEntity) {
         return new LoginResponseObject(
-                loginCredentialEntity.getPkuserid(),
+                loginCredentialEntity.getPkUserId(),
                 loginCredentialEntity.getUsername(),
                 loginCredentialEntity.getPassword(),
-                JWTUtility.generateJWT(loginCredentialEntity.getPkuserid(), loginCredentialEntity.getUsername())
+                JWTUtility.generateJWT(loginCredentialEntity.getPkUserId(), loginCredentialEntity.getUsername())
 
         );
     }

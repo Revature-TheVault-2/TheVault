@@ -18,7 +18,8 @@ export class GlobalStorageService {
   accounts!: Account[];
 
   token!:string;
-
+  transSuccess : boolean = false;
+  transFail : boolean = false;
   constructor() { }
 
   public setProfile(user: Profile): void {this.userProfile = user}

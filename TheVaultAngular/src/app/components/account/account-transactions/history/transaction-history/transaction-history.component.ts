@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Account } from 'src/app/models/account/account.model';
 import { Transaction } from 'src/app/models/transaction/transaction.model';
+import { GlobalStorageService } from 'src/app/_services/global-storage.service';
 
 @Component({
   selector: 'app-transaction-history',
@@ -8,8 +9,7 @@ import { Transaction } from 'src/app/models/transaction/transaction.model';
   styleUrls: ['./transaction-history.component.css']
 })
 export class TransactionHistoryComponent implements OnInit {
-  
-  /* istanbul ignore next */
+    /* istanbul ignore next */
   term!:string;
   /* istanbul ignore next */
   index?:number
@@ -23,9 +23,11 @@ export class TransactionHistoryComponent implements OnInit {
   transactions: Transaction[] = [];
 
   /* istanbul ignore next */
-  constructor() { }
+  constructor(private globalStorage: GlobalStorageService) { }
 
   /* istanbul ignore next */
   ngOnInit(): void {
+    this.globalStorage.transFail = false;
+    this.globalStorage.transSuccess = false;
   }
 }

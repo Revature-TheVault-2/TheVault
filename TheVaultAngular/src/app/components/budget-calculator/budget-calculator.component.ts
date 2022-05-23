@@ -11,6 +11,36 @@ import { Account } from 'src/app/models/account/account.model';
 })
 export class BudgetCalculatorComponent implements OnInit {
 
+  incomeField = '';
+  expensesField = "";
+  expensesArray = [""];
+
+  get income(){
+    return this.incomeField;
+  }
+  set income(temp: string){
+    this.incomeField = temp;
+  }
+
+  get expenses(){
+    return this.expensesField;
+  }
+  set expenses(temp: string){
+    this.expenses = temp;
+  }
+
+  onClickSubmitIncome(amount: string){
+    this.incomeField = amount;
+      console.log(amount);
+  }
+
+  onClickSubmitExpenses(amount: string){
+    // this.expensesField = amount;
+    this.expensesArray.push(amount);
+      console.log(amount)
+      console.log(this.expensesArray);
+  }
+
   constructor() { }
 
   ngOnInit(): void {

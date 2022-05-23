@@ -27,24 +27,34 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class UserHandlerService {
-
+  
   constructor(
     private http: HttpClient
   ) { }
 
-  validateLogin(login: LoginUser) {
-    httpOptions.headers = httpOptions.headers.append('authorization', 'Basic ' + btoa(login.username + ':' + login.password));
-    httpOptions.headers = httpOptions.headers.append('withCredentials', 'true');
+  credentials: LoginUser = new LoginUser("", "");
+
+  validateLogin(credentials: LoginUser) {
+    this.credentials = credentials;
+    httpOptions.headers = httpOptions.headers.append('authorization', 'Basic ' + btoa(credentials.username + ':' + credentials.password));
     return this.http.post<PostLogin>(
       `${ENDPOINTS.LOGIN}`,
-      null,
+      {
+        username: credentials.username
+      },
       httpOptions);
   }
 
-  getUserProfile(userId: number) { return this.http.get<GetProfile>(`${ENDPOINTS.GET_PROFILE + userId}`) }
+  getUserProfile(userId: number) {
+    // httpOptions.headers = httpOptions.headers.append('authorization', 'Basic ' + btoa(this.credentials.username + ':' + this.credentials.password));
+    return this.http.get<GetProfile>(
+    `${ENDPOINTS.GET_PROFILE + userId}`,
+    httpOptions);
+  }
 
   createNewLogin(username: string, password: string) {
     console.log(username);
+    // httpOptions.headers = httpOptions.headers.append('authorization', 'Basic ' + btoa(this.credentials.username + ':' + this.credentials.password));
     return this.http.post<PostLogin>(
       ENDPOINTS.NEW_LOGIN,
       JSON.stringify(
@@ -56,6 +66,7 @@ export class UserHandlerService {
   }
 
   createProfile(userId: number, newUser: NewUser) {
+    // httpOptions.headers = httpOptions.headers.append('authorization', 'Basic ' + btoa(this.credentials.username + ':' + this.credentials.password));
     return this.http.post<PostProfile>(
       ENDPOINTS.CREATE_PROFILE,
       JSON.stringify(
@@ -72,6 +83,7 @@ export class UserHandlerService {
   }
 
   updateProfile(profile: Profile, profileId: number, userId: number) {
+    // httpOptions.headers = httpOptions.headers.append('authorization', 'Basic ' + btoa(this.credentials.username + ':' + this.credentials.password));
     return this.http.put<PutProfile>(
       ENDPOINTS.UPDATE_PROFILE,
       JSON.stringify(

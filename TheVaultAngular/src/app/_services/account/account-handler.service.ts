@@ -6,6 +6,7 @@ import { GetAccount } from 'src/app/models/account/responses/get-account';
 import { PostAccount } from 'src/app/models/account/responses/post-account';
 import { PutAccount } from 'src/app/models/account/responses/put-account';
 import { TransferRequest } from 'src/app/models/transaction/request/transfer-request.model';
+import { LoginUser } from 'src/app/models/users/login-user.model';
 
 const AUTH_API = 'http://localhost:9000/';
 
@@ -55,9 +56,11 @@ export class AccountHandlerService {
       ), httpOptions);
   }
 
-  getAccounts(userId: number) {
+  getAccounts(userId: number, credentials: LoginUser) {
+    httpOptions.headers = httpOptions.headers.append('authorization', 'Basic ' + btoa(credentials.username + ':' + credentials.password));
     return this.http.get<GetAccount>(
-      `${ENDPOINTS.GET_ACCOUNT + userId}`
+      `${ENDPOINTS.GET_ACCOUNT + userId}`,
+      httpOptions
     );
   }
 

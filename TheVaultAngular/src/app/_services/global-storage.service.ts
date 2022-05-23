@@ -1,12 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Account } from '../models/account/account.model';
 import { GetAccount } from '../models/account/responses/get-account';
+import { LoginUser } from '../models/users/login-user.model';
 import { Profile } from '../models/users/profile.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GlobalStorageService {
+
+  credentials!: LoginUser;
 
   userId!: number;
   userProfile!: Profile;
@@ -20,6 +23,10 @@ export class GlobalStorageService {
   token!:string;
 
   constructor() { }
+
+  public setCredentials(credentials: LoginUser): void {this.credentials = credentials}
+
+  public getCredentials(): LoginUser {return this.credentials}
 
   public setProfile(user: Profile): void {this.userProfile = user}
 

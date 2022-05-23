@@ -17,7 +17,7 @@ import com.revature.thevault.service.exceptions.InvalidAuthorizationError;
 import com.revature.thevault.utility.JWTInfo;
 import com.revature.thevault.utility.JWTUtility;
 
-@CrossOrigin("*")
+@CrossOrigin("*") // This needs to be eventually changed.
 @RestController("exportPDFController")
 @RequestMapping("/pdf")
 public class ExportPDFController {
@@ -40,7 +40,7 @@ public class ExportPDFController {
 	 * @throws MalformedURLException 
 	 * @throws FileNotFoundException 
 	 */
-	@GetMapping("/create/{monthRange}")
+	@GetMapping("/create/{monthRange}") // So full URI is /pdf/create/{month} if not mistaken...
 	public Document createPDF(GetResponse transactionHistory) throws FileNotFoundException, MalformedURLException {
 		// Maybe there doesn't need to be a reason for two authentications. Just have the first one from the TransactionService layer and we are good to go.
 		return PDFService.createPDF(transactionHistory);

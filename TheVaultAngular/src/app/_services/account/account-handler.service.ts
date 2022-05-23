@@ -20,10 +20,6 @@ const ENDPOINTS = {
   TRANSFER: `${AUTH_API}account/transfer`
 }
 
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
-};
-
 @Injectable({
   providedIn: 'root'
 })
@@ -42,7 +38,7 @@ export class AccountHandlerService {
           userId: userId,
           accountType: accountType
         }
-      ), httpOptions);
+      ), this.globalStorage.getHttpOptions());
   }
 
   updateAccount(updateAccount: Account) {
@@ -55,7 +51,7 @@ export class AccountHandlerService {
           availableBalance: updateAccount.availableBalance,
           pendingBalance: updateAccount.pendingBalance
         }
-      ), httpOptions);
+      ), this.globalStorage.getHttpOptions());
   }
 
   getAccounts(userId: number) {
@@ -67,7 +63,7 @@ export class AccountHandlerService {
 
   deleteAccount(account: Account) {
     return this.http.delete<DeleteAccount>(
-      `${ENDPOINTS.DELETE_ACCOUNT + account.accountId}`, httpOptions);
+      `${ENDPOINTS.DELETE_ACCOUNT + account.accountId}`, this.globalStorage.getHttpOptions());
   }
 
   createTransfer(transfer: TransferRequest) {
@@ -75,7 +71,7 @@ export class AccountHandlerService {
       ownerAccountId: transfer.ownerAccountId,
       receiverAccountId: transfer.receiverAccountId,
       amount: transfer.amount
-    }), httpOptions);
+    }), this.globalStorage.getHttpOptions());
   }
 
 }

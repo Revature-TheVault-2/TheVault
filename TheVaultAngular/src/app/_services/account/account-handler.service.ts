@@ -7,6 +7,7 @@ import { PostAccount } from 'src/app/models/account/responses/post-account';
 import { PutAccount } from 'src/app/models/account/responses/put-account';
 import { TransferRequest } from 'src/app/models/transaction/request/transfer-request.model';
 import { LoginUser } from 'src/app/models/users/login-user.model';
+import { GlobalStorageService } from '../global-storage.service';
 
 const AUTH_API = 'http://localhost:9000/';
 
@@ -29,7 +30,8 @@ const httpOptions = {
 export class AccountHandlerService {
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private globalStorage: GlobalStorageService
   ) { }
 
   createAccount(userId: number, accountType: string) {
@@ -56,11 +58,10 @@ export class AccountHandlerService {
       ), httpOptions);
   }
 
-  getAccounts(userId: number, credentials: LoginUser) {
-    httpOptions.headers = httpOptions.headers.append('authorization', 'Basic ' + btoa(credentials.username + ':' + credentials.password));
+  getAccounts(userId: number) {
     return this.http.get<GetAccount>(
       `${ENDPOINTS.GET_ACCOUNT + userId}`,
-      httpOptions
+      this.globalStorage.getHttpOptions()
     );
   }
 

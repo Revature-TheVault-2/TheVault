@@ -37,7 +37,7 @@ export class SelectComponent implements OnInit {
   }
 
   setupAccounts(){
-    this.accountHandler.getAccounts(this.globalStorage.getUserId(), new LoginUser("", "")).subscribe(this.accountObserver);
+    this.accountHandler.getAccounts(this.globalStorage.getUserId()).subscribe(this.accountObserver);
   }
 
   // Deleting account must be done in this order due to deposits being linked to a the deposit account

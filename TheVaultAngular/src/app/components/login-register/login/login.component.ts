@@ -96,7 +96,7 @@ getUserInfo(loginUser: LoginUser){
 loginObserver = {
   next: (data: PostLogin) => {
     console.log(data);
-    this.globalStorage.setCredentials(this.credentials);
+    this.globalStorage.setHttpOptions(this.credentials);
     // this.globalStorage.setToken(data.createdObject[0].jwt);
     // console.log(this.globalStorage.getToken());
     this.globalStorage.setUserId(data.createdObject[0].userId);
@@ -113,7 +113,7 @@ loginObserver = {
 profileObserver = {
   next: (data: GetUser) => {
     this.globalStorage.setProfile(data.gotObject[0]);
-    this.accountHandler.getAccounts(this.globalStorage.getUserId(), this.globalStorage.getCredentials()).subscribe(this.accountObserver);
+    this.accountHandler.getAccounts(this.globalStorage.getUserId()).subscribe(this.accountObserver);
   },
   error: (err: Error) => {
   /* istanbul ignore next */

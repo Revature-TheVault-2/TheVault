@@ -49,7 +49,6 @@ public class AccountProfileController {
      */
     @GetMapping("/get/{id}")
     public GetResponse getProfile(@PathVariable int id){
-    	System.out.println("HELLO!");
 //        JWTInfo parsedJWT = JWTUtility.verifyUser(token);
     	String parsedJWT = "bypass";
         if(parsedJWT != null) {
@@ -59,7 +58,7 @@ public class AccountProfileController {
         	
         	
         }
-        else throw new InvalidAuthorizationError(HttpStatus.I_AM_A_TEAPOT, "No valid JWT");
+        else throw new InvalidAuthorizationError(HttpStatus.UNAUTHORIZED, "No valid JWT");
     }
 
     /**

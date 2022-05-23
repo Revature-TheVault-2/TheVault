@@ -102,6 +102,7 @@ public class WithdrawService implements WithdrawServiceInterface {
     	cal.set(Calendar.DAY_OF_MONTH, cal.getActualMaximum(Calendar.DATE));
     	Date startDate = new Date(cal.getTimeInMillis());
     	cal.add(Calendar.MONTH, 1);
+    	cal.set(Calendar.DAY_OF_MONTH, cal.getActualMaximum(Calendar.DATE));
     	Date endDate = new Date(cal.getTimeInMillis());
     	try {
     	List<WithdrawEntity> withdrawEntities = findByAccountIdAndDateBetween(accountId, startDate, endDate);
@@ -149,16 +150,7 @@ public class WithdrawService implements WithdrawServiceInterface {
 	 * @author Frederick
      */
     private List<WithdrawEntity> findByAccountIdAndDateBetween(int accountId, Date startDate, Date endDate) {
-        return withdrawRepository.findByAccountentityAndDateWithdrawBetween(
-                new AccountEntity(
-                        accountId,
-                        new LoginCredentialEntity(),
-                        new AccountTypeEntity(),
-                        0,
-                        0
-                ),
-                startDate, endDate
-        );
+        return withdrawRepository.findByAccountIdAndDatesBetween(accountId, startDate, endDate);
     }
 
     /**

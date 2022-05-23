@@ -2,10 +2,14 @@ package com.revature.thevault.service.classes;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyInt;
 
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -35,6 +39,7 @@ import com.revature.thevault.repository.entity.AccountTypeEntity;
 import com.revature.thevault.repository.entity.DepositEntity;
 import com.revature.thevault.repository.entity.DepositTypeEntity;
 import com.revature.thevault.repository.entity.LoginCredentialEntity;
+import com.revature.thevault.repository.entity.WithdrawEntity;
 import com.revature.thevault.service.dto.DepositResponseObject;
 import com.revature.thevault.service.exceptions.InvalidAccountIdException;
 import com.revature.thevault.service.exceptions.InvalidAmountException;
@@ -60,12 +65,12 @@ private float amount;
 private String reference;
 
 private List<String> depositType;
-    private DepositEntity storedDepositEntity;
+    private DepositEntity storedDepositEntity, storedDepositEntity2, storedDepositEntity3;
     private Optional<DepositEntity> optionalDeposit;
     private AccountEntity accountEntity;
-    private DepositResponseObject depositResponseObject;
+    private DepositResponseObject depositResponseObject, depositResponseObject2, depositResponseObject3;
 
-    private Date dateStored;
+    private Date dateStored, dateStored2, dateStored3;
 
     private LoginCredentialEntity loginCredentialEntity;
     private DepositTypeEntity depositTypeEntity;
@@ -88,6 +93,8 @@ badDepositId = -1;
         @BeforeEach
         void setupBeforeEach(){
             dateStored = Date.valueOf(LocalDate.now());
+            dateStored2 = Date.valueOf("2022-04-30");
+            dateStored3 = Date.valueOf("2022-05-31");
             accountEntity = new AccountEntity(
                     accountId,
                     loginCredentialEntity,
@@ -104,14 +111,46 @@ badDepositId = -1;
                     dateStored,
                     amount
             );
+            storedDepositEntity2 = new DepositEntity(
+                    2,
+                    accountEntity,
+                    depositTypeEntity,
+                    reference,
+                    dateStored2,
+                    amount
+            );
+            storedDepositEntity3 = new DepositEntity(
+                    3,
+                    accountEntity,
+                    depositTypeEntity,
+                    reference,
+                    dateStored3,
+                    amount
+            );
             optionalDeposit = Optional.of(storedDepositEntity);
             depositResponseObject = new DepositResponseObject(
-            storedDepositEntity.getPk_deposit_id(),
+            		storedDepositEntity.getPk_deposit_id(),
                     storedDepositEntity.getAccountentity().getPk_account_id(),
                     storedDepositEntity.getDeposittypeentity().getName(),
                     storedDepositEntity.getReference(),
                     storedDepositEntity.getDateDeposit().toLocalDate(),
                     storedDepositEntity.getAmount()
+            );
+            depositResponseObject2 = new DepositResponseObject(
+                    storedDepositEntity2.getPk_deposit_id(),
+                    storedDepositEntity2.getAccountentity().getPk_account_id(),
+                    storedDepositEntity2.getDeposittypeentity().getName(),
+                	storedDepositEntity2.getReference(),
+                	storedDepositEntity2.getDateDeposit().toLocalDate(),
+                 	storedDepositEntity2.getAmount()
+            );
+            depositResponseObject3 = new DepositResponseObject(
+                    storedDepositEntity3.getPk_deposit_id(),
+                    storedDepositEntity3.getAccountentity().getPk_account_id(),
+                    storedDepositEntity3.getDeposittypeentity().getName(),
+                    storedDepositEntity3.getReference(),
+                    storedDepositEntity3.getDateDeposit().toLocalDate(),
+                    storedDepositEntity3.getAmount()
             );
 
             Mockito.when(depositTypeService.findDepositTypeEntityByName("cash")).thenReturn(depositTypeEntity);
@@ -183,7 +222,16 @@ badDepositId = -1;
             assertEquals(getDepositResponse, depositService.getAlLUserDepositsOfType(accountId, depositTypeEntity.getName()));
         }
         
-        void getAllUserDepositsBetween
+        @Test
+        void getAllUserDepositsByMonth() {
+        	GetResponse getDepositsResponse = GetResponse.builder()
+                    .success(true)
+                            .gotObject(Arrays.asList(depositResponseObject2, depositResponseObject3))
+                                    .build();
+    				Mockito.when(depositRepository.findByAccountIdAndDatesBetween(anyInt(), any(Date.class), any(Date.class)))
+    				.thenReturn(Arrays.asList(storedDepositEntity2, storedDepositEntity3));
+    				assertEquals(getDepositsResponse, depositService.getAllUserDepositsByMonth(accountId, 4, 2022));
+        }
 
         @Test
         void deleteAllDeposits() {

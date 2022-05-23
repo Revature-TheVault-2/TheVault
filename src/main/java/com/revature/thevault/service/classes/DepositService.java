@@ -97,6 +97,7 @@ public class DepositService implements DepositServiceInterface {
     	cal.set(Calendar.DAY_OF_MONTH, cal.getActualMaximum(Calendar.DATE));
     	Date startDate = new Date(cal.getTimeInMillis());
     	cal.add(Calendar.MONTH, 1);
+    	cal.set(Calendar.DAY_OF_MONTH, cal.getActualMaximum(Calendar.DATE));
     	Date endDate = new Date(cal.getTimeInMillis());
 		try {
 			List<DepositEntity> depositEntities = getUserDepositsByAccountIdAndDateBetween(accountId, startDate, endDate);
@@ -198,9 +199,7 @@ public class DepositService implements DepositServiceInterface {
 	 * @author Frederick
 	 */
 	public List<DepositEntity> getUserDepositsByAccountIdAndDateBetween(int accountId, Date startDate, Date endDate) {
-		return depositRepository.findByAccountentityAndDateDepositBetween(
-				new AccountEntity(accountId, new LoginCredentialEntity(), new AccountTypeEntity(), 0, 0),
-				startDate, endDate);
+		return depositRepository.findByAccountIdAndDatesBetween(accountId, startDate, endDate);
 	}
 
 	/**

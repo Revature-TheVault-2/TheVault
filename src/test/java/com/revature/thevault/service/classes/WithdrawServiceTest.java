@@ -1,5 +1,6 @@
 package com.revature.thevault.service.classes;
 
+import com.itextpdf.layout.element.List;
 import com.revature.thevault.presentation.model.request.WithdrawRequest;
 import com.revature.thevault.presentation.model.response.builder.DeleteResponse;
 import com.revature.thevault.presentation.model.response.builder.GetResponse;
@@ -27,10 +28,13 @@ import org.springframework.test.annotation.DirtiesContext;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyInt;
 
 @SpringBootTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -54,13 +58,13 @@ class WithdrawServiceTest {
     private String reference;
     private float amount;
 
-    private WithdrawEntity storedWithdrawEntity;
+    private WithdrawEntity storedWithdrawEntity, storedWithdrawEntity2, storedWithdrawEntity3;
     private AccountEntity accountEntity;
-    private WithdrawResponseObject withdrawResponseObject;
+    private WithdrawResponseObject withdrawResponseObject, withdrawResponseObject2, withdrawResponseObject3;
 
     private RequestTypeEntity requestType;
     private RequestStatusEntity requestStatusEntity;
-    private Date dateStored;
+    private Date dateStored, dateStored2, dateStored3;
 
     private LoginCredentialEntity loginCredentialEntity;
     private AccountTypeEntity accountTypeEntity;
@@ -81,6 +85,8 @@ class WithdrawServiceTest {
     @BeforeEach
     void setupBeforeEach(){
         dateStored = Date.valueOf(LocalDate.now());
+        dateStored2 = Date.valueOf("2022-04-30");
+        dateStored3 = Date.valueOf("2022-05-31");
         accountEntity = new AccountEntity(
                 accountId,
                 loginCredentialEntity,
@@ -97,6 +103,24 @@ class WithdrawServiceTest {
                 dateStored,
                 amount
         );
+        storedWithdrawEntity2 = new WithdrawEntity(
+                2,
+                accountEntity,
+                requestType,
+                requestStatusEntity,
+                reference,
+                dateStored2,
+                amount
+        );
+        storedWithdrawEntity3 = new WithdrawEntity(
+                3,
+                accountEntity,
+                requestType,
+                requestStatusEntity,
+                reference,
+                dateStored3,
+                amount
+        );
         withdrawResponseObject = new WithdrawResponseObject(
                 storedWithdrawEntity.getPk_withdraw_id(),
                 storedWithdrawEntity.getAccountentity().getPk_account_id(),
@@ -105,6 +129,24 @@ class WithdrawServiceTest {
                 storedWithdrawEntity.getReference(),
                 storedWithdrawEntity.getDateWithdraw().toLocalDate(),
                 storedWithdrawEntity.getAmount()
+        );
+        withdrawResponseObject2 = new WithdrawResponseObject(
+                storedWithdrawEntity2.getPk_withdraw_id(),
+                storedWithdrawEntity2.getAccountentity().getPk_account_id(),
+                storedWithdrawEntity2.getRequesttypeentity().getName(),
+                storedWithdrawEntity2.getRequeststatusentity().getName(),
+                storedWithdrawEntity2.getReference(),
+                storedWithdrawEntity2.getDateWithdraw().toLocalDate(),
+                storedWithdrawEntity2.getAmount()
+        );
+        withdrawResponseObject3 = new WithdrawResponseObject(
+                storedWithdrawEntity3.getPk_withdraw_id(),
+                storedWithdrawEntity3.getAccountentity().getPk_account_id(),
+                storedWithdrawEntity3.getRequesttypeentity().getName(),
+                storedWithdrawEntity3.getRequeststatusentity().getName(),
+                storedWithdrawEntity3.getReference(),
+                storedWithdrawEntity3.getDateWithdraw().toLocalDate(),
+                storedWithdrawEntity3.getAmount()
         );
         Mockito.when(requestTypeService.getRequestTypeByName("Retail")).thenReturn(requestType);
         Mockito.when(requestStatusService.getRequestStatusByName("Pending")).thenReturn(requestStatusEntity);
@@ -195,6 +237,17 @@ class WithdrawServiceTest {
                         0,
                         0))).thenReturn(Collections.singletonList(storedWithdrawEntity));
         assertEquals(getWithdrawsResponse, withdrawService.getAllUserWithdrawals(accountId));
+    }
+    
+    @Test
+    void getAllUserWithdrawlsByMonth() {
+    	GetResponse getWithdrawsResponse = GetResponse.builder()
+                .success(true)
+                        .gotObject(Arrays.asList(withdrawResponseObject2, withdrawResponseObject3))
+                                .build();
+				Mockito.when(withdrawRepository.findByAccountIdAndDatesBetween(anyInt(), any(Date.class), any(Date.class)))
+				.thenReturn(Arrays.asList(storedWithdrawEntity2, storedWithdrawEntity3));
+				assertEquals(getWithdrawsResponse, withdrawService.getAllUserWithdrawlsByMonth(accountId, 4, 2022));
     }
 
     @Test

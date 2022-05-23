@@ -13,7 +13,7 @@ phases:
     - echo This always runs even if the login command fails
   build:
     commands:
-    - mvn clean install
+    - mvn clean package
     - echo Entered the build phase...
     - echo Build started on `date`
     finally:

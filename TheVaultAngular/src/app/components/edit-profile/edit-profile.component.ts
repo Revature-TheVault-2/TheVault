@@ -19,6 +19,7 @@ export class EditProfileComponent implements OnInit {
   email:string = '';
   phoneNumber:string = '';
   address:string = '';
+  notificationAmount:number = 0;
 
   constructor(
     private globalStorage: GlobalStorageService,
@@ -38,6 +39,7 @@ export class EditProfileComponent implements OnInit {
       this.email = this.profile.email;
       this.phoneNumber = this.profile.phoneNumber;
       this.address = this.profile.address;
+      this.notificationAmount = this.profile.notificationAmount;
     }catch(err){
       console.error(err);
     }
@@ -54,6 +56,7 @@ export class EditProfileComponent implements OnInit {
       this.profile.email = this.email;
       this.profile.phoneNumber = this.phoneNumber;
       this.profile.address = this.address;
+      this.profile.notificationAmount = this.notificationAmount;
       this.userHandler.updateProfile(this.profile, this.profile.profileId, this.globalStorage.getUserId()).subscribe(this.updateProfileObserver);
     }else return;
   }

@@ -49,6 +49,10 @@ public class DepositService implements DepositServiceInterface {
 	@Override
 	public PostResponse createDeposit(DepositRequest depositRequest) {
 		try {
+			//outer if (notificationAmount() != 0){
+			//if(depositRequest.getAmount() > "current user session".getNoficationAmount()){
+				// emailservice.NotifcationEmail(deposistRequest.getAmount())}}
+			
 			return PostResponse.builder().success(true)
 					.createdObject(Collections
 							.singletonList(convertDepositEntityToResponse(depositRepository.save(new DepositEntity(0,

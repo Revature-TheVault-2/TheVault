@@ -9,13 +9,13 @@ cd /home/ec2-user
 echo "(((((     Getting  CodeDeploy 4/7   )))))"
 wget https://aws-codedeploy-us-east-1.s3.us-east-1.amazonaws.com/latest/install
 chmod +x ./install
-sudo ./install auto -y
+sudo ./install auto
 echo "(((((     Installing Python Pip 5/7   )))))"
 dnf install -y python3-pip
 echo "(((((     Installing AWSCLI 6/7   )))))"
 pip3 install awscli --upgrade --user
 echo "(((((     Installing Java 11 7/7   )))))"
-sudo yum install java-11-openjdk-devel
+sudo yum install java-11-openjdk-devel -y
 
 #verify installation
 sudo service codedeploy-agent status

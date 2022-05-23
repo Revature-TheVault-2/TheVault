@@ -126,6 +126,7 @@ export class RegisterComponent implements OnInit {
   /* istanbul ignore next */
   get f(): { [key: string]: AbstractControl } {
     return this.form.controls;
+
   }
 
   /* istanbul ignore next */
@@ -145,9 +146,9 @@ export class RegisterComponent implements OnInit {
     let addr = this.form.get('address')?.value;
     let phoneN = this.form.get('phoneNumber')?.value;
     let passW = this.form.get('password')?.value;
+    
     if (userN != null && firstN != null && lastN != null && email != null && addr != null 
-       && phoneN != null && passW != null) {
-         
+       && phoneN != null && passW != null) {         
       this.newUser = new NewUser(userN, firstN, lastN, email, addr, phoneN, passW);
       this.registerUser();
     }

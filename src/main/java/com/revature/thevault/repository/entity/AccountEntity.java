@@ -10,7 +10,6 @@ import javax.persistence.*;
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
 @Table(name = "account_table")
@@ -22,8 +21,8 @@ public class AccountEntity {
 
     @Id
 	@Column(name = "pk_account_id")
-	@GeneratedValue(generator = "account_table_pk_account_id_seq", strategy = GenerationType.SEQUENCE)
-	@SequenceGenerator(allocationSize = 1, name = "account_table_pk_account_id_seq", sequenceName = "account_table_pk_account_id_seq")
+	@GeneratedValue(generator = "account_table_pk_account_id_seq", strategy = GenerationType.IDENTITY)
+	//@SequenceGenerator(allocationSize = 1, name = "account_table_pk_account_id_seq", sequenceName = "account_table_pk_account_id_seq")
 	int pk_account_id;
 	
 	@ManyToOne(fetch = FetchType.EAGER)

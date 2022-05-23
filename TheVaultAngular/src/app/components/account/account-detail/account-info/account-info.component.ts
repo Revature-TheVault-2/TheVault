@@ -9,8 +9,8 @@ import { Account } from 'src/app/models/account/account.model';
 export class AccountInfoComponent implements OnInit {
 
   @Input()
-  account!:Account;
-  
+  account!: Account;
+
   constructor() { }
 
   ngOnInit(): void {

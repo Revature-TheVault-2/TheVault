@@ -18,7 +18,7 @@ public interface LoginRepository extends JpaRepository<LoginCredentialEntity, In
 
    <S extends LoginCredentialEntity> S save(S entity);
 
-    Optional<LoginCredentialEntity> findByPkUserId(int integer);
+    Optional<LoginCredentialEntity> findByPkUserId(int pkUserId);
 
 
     @Query("select l from LoginCredentialEntity l where l.username= ?1 and l.password = ?2")

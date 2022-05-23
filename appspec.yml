@@ -1,10 +1,9 @@
 version: 0.0
-
 os: linux
 
 files: 
   - source: /
-    desitnation: /home/ec2-user/server
+    destination: /home/ec2-user/server
     
 permissions:
   - object: /

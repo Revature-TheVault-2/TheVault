@@ -21,29 +21,27 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 @EnableWebSecurity
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter{
 	
+	// Holds the credentials for the backend database used for authentication.
 	@Autowired
 	DataSource dataSource;
 	
 	@Autowired
 	NoOpPasswordEncoder encoder;
 	
-	@Autowired
-	LoginSuccessHandler successHandler;
-	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		
 		http
-		.cors()
+		.cors() // Enables CORS filter.
 			.and()
-		.csrf().disable()
+		.csrf().disable() // Disables CSRF protection.
 		.authorizeRequests()
-			.antMatchers("/login", "/create", "/profile/create").permitAll()
+			.antMatchers("/login", "/create", "/profile/create").permitAll() // Whitelist of URLs that can be accessed without credentials.
 			.anyRequest().authenticated()
 			.and()
-		.httpBasic()
+		.httpBasic() // Enable HTTP Basic Authentication.
 			.and()
-		.logout()
+		.logout() // Whitelist logout and enable default logout functionality.
 			.permitAll();
 			
 				
@@ -52,12 +50,21 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		
+		/*
+		 * Configures Spring Security to connect to our preexisting database for validating credentials.
+		 * Defines the queries used to retrieve credentials from the database and defines the password encoder to hash passwords with.
+		 */
 		auth.jdbcAuthentication().dataSource(dataSource)
 			.usersByUsernameQuery("select username, password, 'true' from login_credential_table where username = ?")
 			.authoritiesByUsernameQuery("select username,'USER' from login_credential_table where username = ?")
 			.passwordEncoder(encoder);
 	}
 	
+	/**
+	 * Configures the CORS filter to be used on all incoming HTTP requests.
+	 * 
+	 * @return
+	 */
 	@Bean
 	CorsConfigurationSource corsConfigurationSource() {
 		CorsConfiguration configuration = new CorsConfiguration();

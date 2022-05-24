@@ -39,10 +39,7 @@ public class TransactionController {
     
     @GetMapping("/history/{accountId}/{year}/{month}")
     public GetResponse getTransactionHistoryByMonth(@RequestHeader("Authorization") String token, @PathVariable Integer accountId, @PathVariable Integer year, @PathVariable Integer month) {
-    	JWTInfo parsedJWT = JWTUtility.verifyUser(token);
-        if(parsedJWT != null) 
-        	return transactionService.getTransactionHistoryByMonth(accountId, month, year);
-        else throw new InvalidAuthorizationError(HttpStatus.UNAUTHORIZED, "No valid JWT");
+    	return transactionService.getTransactionHistoryByMonth(accountId, month, year);
     }
 
 }

@@ -17,8 +17,6 @@ import com.revature.thevault.service.classes.AccountService;
 import com.revature.thevault.service.exceptions.InvalidAuthorizationError;
 import com.revature.thevault.utility.JWTInfo;
 import com.revature.thevault.utility.JWTUtility;
-<<<<<<< HEAD
-=======
 
 import javax.servlet.http.HttpSession;
 
@@ -26,7 +24,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
->>>>>>> 18a2fc7348d7861e5aff19c9339d1f8991814224
 
 @RestController("accountController")
 @RequestMapping("/account")

@@ -20,7 +20,7 @@
 
 .vault-title{
     width: 280px;
-    position: absolute;
+    position: sticky;
     top: -55%;
     left: 50%;
     transform: translate(-50%,-50%);

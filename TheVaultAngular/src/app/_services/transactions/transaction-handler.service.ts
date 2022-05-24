@@ -82,4 +82,8 @@ export class TransactionHandlerService {
     return this.http.get<GetTransaction>(`${ENDPOINTS.TRANSACTION_HISTORY + accountId}`)
   }
 
+  getTransactionHistoryByMonth(accountId:number,year:number,month:number){
+    return this.http.get<GetTransaction>(`${ENDPOINTS.TRANSACTION_HISTORY + accountId + '/' + year + '/' + month}`)
+  }
+
 }

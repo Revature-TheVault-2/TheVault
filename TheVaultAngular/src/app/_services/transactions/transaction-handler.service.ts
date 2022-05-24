@@ -10,6 +10,7 @@ import { GetTransaction } from 'src/app/models/transaction/responses/get-transac
 import { PostDeposit } from 'src/app/models/transaction/responses/post-deposit';
 import { PostWithdraw } from 'src/app/models/transaction/responses/post-withdraw';
 import { Withdraw } from 'src/app/models/transaction/withdraw.model';
+import { GlobalStorageService } from '../global-storage.service';
 
 
 const AUTH_API = 'http://localhost:9000/';
@@ -23,28 +24,26 @@ const ENDPOINTS = {
   TRANSACTION_HISTORY: `${AUTH_API}transaction/history/`
 }
 
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-};
-
 @Injectable({
   providedIn: 'root'
 })
 export class TransactionHandlerService {
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private globalStorage: GlobalStorageService
   ) { }
-  
-  getTransactionDetails(withdrawId:number){
+
+  getTransactionDetails(withdrawId: number) {
     return this.http.get<Withdraw>(
-      `${ENDPOINTS.TRANSACTION_DETAILS + withdrawId}`
+      `${ENDPOINTS.TRANSACTION_DETAILS + withdrawId}`,
+      this.globalStorage.getHttpOptions()
     )
   }
 
-  createDeposit(deposit:DepositRequest){
+  createDeposit(deposit: DepositRequest) {
     return this.http.post<PostDeposit>(
-      ENDPOINTS.CREATE_DEPOSIT, 
+      ENDPOINTS.CREATE_DEPOSIT,
       JSON.stringify(
         {
           depositType: deposit.depositType,
@@ -52,18 +51,18 @@ export class TransactionHandlerService {
           reference: deposit.reference,
           amount: deposit.amount
         }
-      ), httpOptions);
+      ), this.globalStorage.getHttpOptions());
   }
 
-  deleteAllDeposits(accountId:number){
+  deleteAllDeposits(accountId: number) {
     return this.http.delete<DeleteDeposit>(
-      `${ENDPOINTS.DELETE_ALL_DEPOSIT + accountId}`, httpOptions);
+      `${ENDPOINTS.DELETE_ALL_DEPOSIT + accountId}`, this.globalStorage.getHttpOptions());
   }
 
-  createWithdraw(withdraw:WithdrawRequest){
+  createWithdraw(withdraw: WithdrawRequest) {
     console.log(withdraw)
     return this.http.post<PostWithdraw>(
-      ENDPOINTS.CREATE_WITHDRAW, 
+      ENDPOINTS.CREATE_WITHDRAW,
       JSON.stringify(
         {
           accountId: withdraw.accountId,
@@ -71,15 +70,15 @@ export class TransactionHandlerService {
           reference: withdraw.reference,
           amount: withdraw.amount
         }
-      ), httpOptions);
+      ), this.globalStorage.getHttpOptions());
   }
 
-  deleteAllWithdraws(accountId:number){
-    return this.http.delete<DeleteWithdraw>(`${ENDPOINTS.DELETE_ALL_WITHDRAW + accountId}`, httpOptions)
+  deleteAllWithdraws(accountId: number) {
+    return this.http.delete<DeleteWithdraw>(`${ENDPOINTS.DELETE_ALL_WITHDRAW + accountId}`, this.globalStorage.getHttpOptions())
   }
 
-  getTransactionHistory(accountId:number){
-    return this.http.get<GetTransaction>(`${ENDPOINTS.TRANSACTION_HISTORY + accountId}`)
+  getTransactionHistory(accountId: number) {
+    return this.http.get<GetTransaction>(`${ENDPOINTS.TRANSACTION_HISTORY + accountId}`, this.globalStorage.getHttpOptions())
   }
 
 }

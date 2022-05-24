@@ -43,7 +43,7 @@ export class AccountViewComponent implements OnInit {
   logout(){
     this.globalStorage.setAccounts([]);
     this.globalStorage.setUserId(0);
-    this.globalStorage.setToken("");
+    this.globalStorage.resetHttpOptions();
     this.globalStorage.setUsername("");
     this.router.login();
   }

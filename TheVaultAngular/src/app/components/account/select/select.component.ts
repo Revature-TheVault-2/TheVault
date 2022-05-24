@@ -67,7 +67,7 @@ export class SelectComponent implements OnInit {
 
   deleteAccountObserver = {
     next: (data: DeleteAccount) => {
-      window.alert(`${this.deletingAccount} GOODBYE`);
+      // window.alert(`${this.deletingAccount} GOODBYE`);
       this.accounts.slice(this.deleteAccountIndex, 1);
       this.setupAccounts();
     },

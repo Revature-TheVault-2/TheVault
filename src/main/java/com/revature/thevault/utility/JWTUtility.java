@@ -9,6 +9,7 @@ import io.jsonwebtoken.security.Keys;
 
 import java.util.Base64;
 
+@Deprecated
 public class JWTUtility {
 
     private static final byte[] secret = Base64.getDecoder().decode("V1FrSlZd1CDC7XBh2f+sJaG6OW5gxC0LlTQestx8/wk");

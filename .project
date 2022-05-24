@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
+	<name>TheVault</name>
 	<name>demo</name>
 	<comment></comment>
 	<projects>
@@ -7,6 +8,11 @@
 	<buildSpec>
 		<buildCommand>
 			<name>org.eclipse.jdt.core.javabuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+		<buildCommand>
+			<name>org.eclipse.m2e.core.maven2Builder</name>
 			<arguments>
 			</arguments>
 		</buildCommand>

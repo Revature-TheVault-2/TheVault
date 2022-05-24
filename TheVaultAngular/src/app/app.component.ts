@@ -12,9 +12,21 @@ export class AppComponent {
 
   toggleTheme(): void{
     document.body.classList.toggle('light-theme');
-    let cardBody= document.getElementById('accountCard');
-    console.log(cardBody);
-    cardBody?.classList.toggle('light-theme');
+
+    // let cardBody= document.getElementById('accountCard'); // Some issues with this one right now
+    // cardBody?.classList.toggle('light-theme');
+
+    let tableBody = document.getElementById('transactionTable');
+    tableBody?.classList.toggle('light-theme');
+
+    let accountHeader = document.getElementById('accountHeader');
+    accountHeader?.classList.toggle('light-theme');
+    let accountBackground = document.getElementById('accountBackground');
+    accountBackground?.classList.toggle('light-theme');
+
+    let navbar = document.getElementById('navbar')
+    navbar?.classList.toggle('light-theme')
+
   }
 
  

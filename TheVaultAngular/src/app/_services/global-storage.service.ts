@@ -22,6 +22,8 @@ export class GlobalStorageService {
   activeAccount!: Account;
   getAccount!: GetAccount;
   accounts!: Account[];
+  transSuccess!: boolean;
+  transFail!: boolean;
 
   constructor() { }
 

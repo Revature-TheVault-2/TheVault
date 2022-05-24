@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Account } from 'src/app/models/account/account.model';
 import { Transaction } from 'src/app/models/transaction/transaction.model';
-import { TransactionByMonthService } from 'src/app/_services/transactions/transaction-by-month.service';
 import { GlobalStorageService } from 'src/app/_services/global-storage.service';
 import { TransactionHandlerService } from 'src/app/_services/transactions/transaction-handler.service';
 import { GetTransaction } from 'src/app/models/transaction/responses/get-transaction';
@@ -31,7 +30,6 @@ export class TransactionHistoryComponent implements OnInit {
 
   /* istanbul ignore next */
   constructor(
-    private transactionByMonth: TransactionByMonthService,
     private handler: TransactionHandlerService,
     private globalStorage: GlobalStorageService
   ) { }
@@ -50,7 +48,11 @@ export class TransactionHistoryComponent implements OnInit {
   // Create observer object
   myObserver = {
     next: (x: GetTransaction) => this.transactions = x.gotObject,
-    error: (err: Error) => console.error('ERROR: ' + err),
+    error: (err: Error) => {
+      this.globalStorage.transSuccess = false;
+      this.globalStorage.transFail = true;
+      console.error("No transactions found: " + err)
+    },
     complete: () => console.log('Transactions retrieved successfully!'),
   };
 
@@ -61,6 +63,6 @@ export class TransactionHistoryComponent implements OnInit {
     console.log("And this is that date string as an object! " + selectedDate.getFullYear() + "-" + selectedDate.getMonth());
     let selectedYear = selectedDate.getFullYear();
     let selectedMonth = selectedDate.getMonth(); // Remember that this is zero based
-    this.handler.getTransactionHistoryByMonth(this.globalStorage.userId, selectedYear, selectedMonth).subscribe(this.myObserver);
+    this.handler.getTransactionHistoryByMonth(this.globalStorage.getActiveAccount().accountId, selectedYear, selectedMonth).subscribe(this.myObserver);
   }
 }

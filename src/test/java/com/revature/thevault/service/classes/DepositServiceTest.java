@@ -4,12 +4,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.ArgumentMatchers.anyString;
 
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -27,9 +27,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
-
 import com.revature.thevault.presentation.model.request.DepositRequest;
-import com.revature.thevault.presentation.model.request.WithdrawRequest;
 import com.revature.thevault.presentation.model.response.builder.DeleteResponse;
 import com.revature.thevault.presentation.model.response.builder.GetResponse;
 import com.revature.thevault.presentation.model.response.builder.PostResponse;
@@ -39,11 +37,8 @@ import com.revature.thevault.repository.entity.AccountTypeEntity;
 import com.revature.thevault.repository.entity.DepositEntity;
 import com.revature.thevault.repository.entity.DepositTypeEntity;
 import com.revature.thevault.repository.entity.LoginCredentialEntity;
-import com.revature.thevault.repository.entity.WithdrawEntity;
 import com.revature.thevault.service.dto.DepositResponseObject;
-import com.revature.thevault.service.exceptions.InvalidAccountIdException;
 import com.revature.thevault.service.exceptions.InvalidAmountException;
-import com.revature.thevault.service.exceptions.InvalidDepositIdException;
 import com.revature.thevault.service.exceptions.InvalidRequestException;
 
 @SpringBootTest
@@ -228,7 +223,7 @@ badDepositId = -1;
                     .success(true)
                             .gotObject(Arrays.asList(depositResponseObject2, depositResponseObject3))
                                     .build();
-    				Mockito.when(depositRepository.findByAccountIdAndDatesBetween(anyInt(), any(Date.class), any(Date.class)))
+    				Mockito.when(depositRepository.findByAccountIdAndDatesBetween(anyInt(), anyString(), anyString()))
     				.thenReturn(Arrays.asList(storedDepositEntity2, storedDepositEntity3));
     				assertEquals(getDepositsResponse, depositService.getAllUserDepositsByMonth(accountId, 4, 2022));
         }

@@ -148,7 +148,8 @@ public class WithdrawService implements WithdrawServiceInterface {
 	 * @author Frederick
      */
     private List<WithdrawEntity> findByAccountIdAndDateBetween(int accountId, Date startDate, Date endDate) {
-        return withdrawRepository.findByAccountIdAndDatesBetween(accountId, startDate, endDate);
+    	System.out.println("WITHDRAWLS BETWEEN: " + startDate.toString() + " to " + endDate.toString());
+        return withdrawRepository.findByAccountIdAndDatesBetween(accountId, startDate.toString(), endDate.toString());
     }
 
     /**

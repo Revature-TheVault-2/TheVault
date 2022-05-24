@@ -5,6 +5,9 @@ import { Transaction } from 'src/app/models/transaction/transaction.model';
 import { GlobalStorageService } from 'src/app/_services/global-storage.service';
 import { TransactionByMonthService } from 'src/app/_services/transactions/transaction-by-month.service';
 import { TransactionHandlerService } from 'src/app/_services/transactions/transaction-handler.service';
+/** UNUSED: WORKED INTO TRANSACTION HISTORY DIRECTLY */
+/** UNUSED: WORKED INTO TRANSACTION HISTORY DIRECTLY */
+/** UNUSED: WORKED INTO TRANSACTION HISTORY DIRECTLY */
 
 @Component({
   selector: 'app-account-transaction-by-month',

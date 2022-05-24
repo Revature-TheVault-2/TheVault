@@ -39,6 +39,7 @@ public class TransactionController {
     
     @GetMapping("/history/{accountId}/{year}/{month}")
     public GetResponse getTransactionHistoryByMonth(@RequestHeader("Authorization") String token, @PathVariable Integer accountId, @PathVariable Integer year, @PathVariable Integer month) {
+    	System.out.println("Reached GetTransactionHistoryByMonth!");
     	return transactionService.getTransactionHistoryByMonth(accountId, month, year);
     }
 

@@ -7,11 +7,8 @@ import { Transaction } from 'src/app/models/transaction/transaction.model';
   providedIn: 'root'
 })
 export class TransactionHistoryService {
-    transactionUrl = `http://localhost:9000/transaction/history`;
-    getUrl?: any
-  httpOptions = {
-    headers: new HttpHeaders ({'Content-Type': 'application/json'})
-  }
+  transactionUrl = `http://localhost:9000/transaction/history`;
+  getUrl?: any
 
   private transHistory = 'api/transactions'
   constructor(private http: HttpClient) { }

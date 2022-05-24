@@ -1,17 +1,32 @@
-HELP.md
+# Package Files #
+*.jar
+*.war
+*.ear
+
+### NPM ###
+node_modules/
+
+### Gradle ###
+.gradle
+
+
+### Maven ###
 target/
-!.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
+log/
+
+# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
+!gradle-wrapper.jar
 
 ### STS ###
 .apt_generated
-.classpath
+#.classpath #intending to let people import projects a bit easier
 .factorypath
-.project
+#.project #intending to let people import projects a bit easier
 .settings
 .springBeans
-.sts4-cache
+Servers/
+.recommenders/
+.metadata/
 
 ### IntelliJ IDEA ###
 .idea
@@ -20,14 +35,27 @@ target/
 *.ipr
 
 ### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
+nbproject/private/
 build/
-!**/src/main/**/build/
-!**/src/test/**/build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# e2e
+/e2e/*.js
+/e2e/*.map
+
+# System Files
+.DS_Store
+Thumbs.db
 
 ### VS Code ###
 .vscode/

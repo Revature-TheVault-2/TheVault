@@ -28,7 +28,11 @@ import { CreateAccountComponent } from './components/account/create-account/crea
 import { TransferGenerateComponent } from './components/transaction/transfer-generate/transfer-generate.component';
 
 import { AuthInterceptorService } from './utils/auth-interceptor.service';
+<<<<<<< HEAD
 import { AlertComponent } from './components/alert/alert.component';
+=======
+import { BudgetCalculatorComponent } from './components/budget-calculator/budget-calculator.component';
+>>>>>>> fdad5e0049ae473fd88191ca390ad9e6ea85068f
 
 @NgModule({
   declarations: [
@@ -53,7 +57,11 @@ import { AlertComponent } from './components/alert/alert.component';
     CreateAccountComponent,
     WithdrawDetailComponent,
     TransferGenerateComponent,
+<<<<<<< HEAD
     AlertComponent
+=======
+    BudgetCalculatorComponent
+>>>>>>> fdad5e0049ae473fd88191ca390ad9e6ea85068f
   ],
   imports: [
     BrowserModule,

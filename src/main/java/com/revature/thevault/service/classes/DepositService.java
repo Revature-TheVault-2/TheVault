@@ -109,10 +109,6 @@ public class DepositService implements DepositServiceInterface {
 					.build();
 		} catch (InvalidAccountIdException e) {
 			throw e;
-		} catch (EntityNotFoundException e) {
-			throw new InvalidRequestException(HttpStatus.BAD_REQUEST, "Deposits not Found for Account: " + accountId + " in range: " + startDate + " to " + endDate);
-		} catch (Exception e) {
-			throw new InvalidRequestException(HttpStatus.BAD_REQUEST, "Invalid Request");
 		}
 	}
 

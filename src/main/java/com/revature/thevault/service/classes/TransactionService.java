@@ -78,7 +78,11 @@ public class TransactionService implements TransactionServiceInterface {
         withdrawals.getGotObject().forEach(withdrawal -> transactionObjects.add(convertWithdrawToTransactionObject((WithdrawResponseObject) withdrawal)));
         Comparator<TransactionObject> byDate = Comparator.comparing(TransactionObject::getDate);
         transactionObjects.sort(byDate);
-        ExportPDFController.createPDF(transactionObjects); // PDF File Created Here
+
+        if(!transactionObjects.isEmpty()) {
+        	ExportPDFController.createPDF(transactionObjects); // PDF File Created Here
+        }
+
         return GetResponse.builder()
                 .success(true)
                 .gotObject(transactionObjects)

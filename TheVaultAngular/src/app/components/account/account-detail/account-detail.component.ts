@@ -18,8 +18,8 @@ export class AccountDetailComponent implements OnInit {
   transactions: Transaction[] = [];
   createDeposit: boolean = false;
   createWithdraw: boolean = false;
-
   createTransfer: boolean = false;
+  createCalculator: boolean = false;
 
   constructor(
     private globalStorage: GlobalStorageService,
@@ -88,6 +88,10 @@ export class AccountDetailComponent implements OnInit {
 
   goBack(){
     this.location.back();
+  }
+
+  toggleBudgetCalculator(){
+    this.createCalculator = !this.createCalculator;
   }
 
   getTransactionObserver = {

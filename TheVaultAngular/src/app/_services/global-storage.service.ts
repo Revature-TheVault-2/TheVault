@@ -23,12 +23,9 @@ export class GlobalStorageService {
   getAccount!: GetAccount;
   accounts!: Account[];
 
-<<<<<<< HEAD
   token!:string;
   transSuccess : boolean = false;
   transFail : boolean = false;
-=======
->>>>>>> 384355c41b043888f4bc7d8b78858e89b0d359ce
   constructor() { }
 
   public setHttpOptions(credentials: LoginUser): void {

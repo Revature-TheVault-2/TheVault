@@ -15,7 +15,6 @@ export class AppComponent {
     this.globalStorage.setProfile(new Profile(0,0,'','','','',''));
     this.globalStorage.setAccounts([]);
     this.globalStorage.setUserId(0);
-    this.globalStorage.setToken("");
     this.globalStorage.setUsername("");
     console.log("logout");
   }

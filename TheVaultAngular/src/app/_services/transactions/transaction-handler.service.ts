@@ -74,19 +74,11 @@ export class TransactionHandlerService {
   }
 
   deleteAllWithdraws(accountId: number) {
-<<<<<<< HEAD
-    return this.http.delete<DeleteWithdraw>(`${ENDPOINTS.DELETE_ALL_WITHDRAW + accountId}`, httpOptions)
-  }
-
-  getTransactionHistory(accountId: number) {
-    return this.http.get<GetTransaction>(`${ENDPOINTS.TRANSACTION_HISTORY + accountId}`)
-=======
     return this.http.delete<DeleteWithdraw>(`${ENDPOINTS.DELETE_ALL_WITHDRAW + accountId}`, this.globalStorage.getHttpOptions())
   }
 
   getTransactionHistory(accountId: number) {
     return this.http.get<GetTransaction>(`${ENDPOINTS.TRANSACTION_HISTORY + accountId}`, this.globalStorage.getHttpOptions())
->>>>>>> 384355c41b043888f4bc7d8b78858e89b0d359ce
   }
 
 }

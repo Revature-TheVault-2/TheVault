@@ -1,7 +1,7 @@
-<div class="">
+<div>
     <div class="shadow">
         <div class="card">
-            <div [ngClass]="'account-card-body'">
+            <div style="color: White; background-color: #474C55;">
                 <div class="d-flex flex-column">
                     <div class="d-flex justify-content-center">
                         <div >
@@ -10,24 +10,24 @@
                         </div>
                     </div>
                     <div class="d-flex justify-content-center">
-                        <div class=>
+                        <div >
                             <!-- <span class="badge badge-primary">Id: {{account.accountId}}</span>    -->
-                            <span class=>Id: {{account.accountId}}</span>       
+                            <span >Id: {{account.accountId}}</span>       
                         </div>
                     </div>
                 </div>
                 <br>
                 <div class="d-flex flex-column">   
-                    <div class=>
+                    <div >
                         Available Balance: {{account.availableBalance | currency}}
                     </div>
-                    <div class=>
+                    <div >
                         Pending Balance: {{account.pendingBalance | currency}}
                     </div>
                 </div>
                 <br>
                 <div class="d-flex justify-content-center">
-                    <button type="button" class="btn btn-outline-primary" (click)="goToDetail(account)">View Details</button>
+                    <button type="button" class="btn btn-primary" (click)="goToDetail(account)">View Details</button>
                 </div>
             </div>
         </div>

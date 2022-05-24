@@ -4,6 +4,7 @@ import { DeleteAccount } from 'src/app/models/account/responses/delete-account';
 import { GetAccount } from 'src/app/models/account/responses/get-account';
 import { DeleteDeposit } from 'src/app/models/transaction/responses/delete-deposit';
 import { DeleteWithdraw } from 'src/app/models/transaction/responses/delete-withdraw';
+import { LoginUser } from 'src/app/models/users/login-user.model';
 import { AccountHandlerService } from 'src/app/_services/account/account-handler.service';
 import { GlobalStorageService } from 'src/app/_services/global-storage.service';
 import { TransactionHandlerService } from 'src/app/_services/transactions/transaction-handler.service';

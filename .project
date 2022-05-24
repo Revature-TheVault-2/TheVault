@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
+<<<<<<< HEAD
 	<name>TheVault</name>
+=======
+	<name>demo</name>
+>>>>>>> 384355c41b043888f4bc7d8b78858e89b0d359ce
 	<comment></comment>
 	<projects>
 	</projects>
@@ -11,12 +15,20 @@
 			</arguments>
 		</buildCommand>
 		<buildCommand>
+<<<<<<< HEAD
 			<name>org.springframework.ide.eclipse.boot.validation.springbootbuilder</name>
+=======
+			<name>org.springframework.ide.eclipse.core.springbuilder</name>
+>>>>>>> 384355c41b043888f4bc7d8b78858e89b0d359ce
 			<arguments>
 			</arguments>
 		</buildCommand>
 		<buildCommand>
+<<<<<<< HEAD
 			<name>org.springframework.ide.eclipse.core.springbuilder</name>
+=======
+			<name>org.springframework.ide.eclipse.boot.validation.springbootbuilder</name>
+>>>>>>> 384355c41b043888f4bc7d8b78858e89b0d359ce
 			<arguments>
 			</arguments>
 		</buildCommand>
@@ -31,6 +43,7 @@
 		<nature>org.eclipse.jdt.core.javanature</nature>
 		<nature>org.eclipse.m2e.core.maven2Nature</nature>
 	</natures>
+<<<<<<< HEAD
 	<filteredResources>
 		<filter>
 			<id>1652976549487</id>
@@ -42,4 +55,6 @@
 			</matcher>
 		</filter>
 	</filteredResources>
+=======
+>>>>>>> 384355c41b043888f4bc7d8b78858e89b0d359ce
 </projectDescription>

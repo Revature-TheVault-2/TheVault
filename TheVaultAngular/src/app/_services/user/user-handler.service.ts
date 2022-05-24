@@ -7,74 +7,74 @@ import { Profile } from 'src/app/models/users/profile.model';
 import { GetProfile } from 'src/app/models/users/responses/get-profile';
 import { PostProfile } from 'src/app/models/users/responses/post-profile';
 import { PutProfile } from 'src/app/models/users/responses/put-profile';
+import { GlobalStorageService } from '../global-storage.service';
 
 const AUTH_API = 'http://localhost:9000/';
 
 const ENDPOINTS = {
   LOGIN: `${AUTH_API}login`,
-  NEW_LOGIN: `${AUTH_API}login/create`,
-  VALIDATE: `${AUTH_API}login/validate`,
+  NEW_LOGIN: `${AUTH_API}create`,
+  // VALIDATE: `${AUTH_API}login/validate`,
   CREATE_PROFILE: `${AUTH_API}profile/create`,
   GET_PROFILE: `${AUTH_API}profile/get/`,
   UPDATE_PROFILE: `${AUTH_API}profile/update`
 }
 
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-};
-
 @Injectable({
   providedIn: 'root'
 })
 export class UserHandlerService {
-
+  
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private globalStorage: GlobalStorageService
   ) { }
 
-  validateLogin(login:LoginUser){
+  validateLogin(credentials: LoginUser) {
     return this.http.post<PostLogin>(
-      `${ENDPOINTS.VALIDATE}`, 
-      JSON.stringify(
+      `${ENDPOINTS.LOGIN}`,
       {
-        username: login.username,
-        password: login.password
-      }
-      ), 
-      httpOptions);
+        username: credentials.username,
+        password: credentials.password
+      },
+      this.globalStorage.getHttpOptions());
   }
 
-  getUserProfile(userId:number){return this.http.get<GetProfile>(`${ENDPOINTS.GET_PROFILE + userId}`)}
+  getUserProfile(userId: number) {
+    return this.http.get<GetProfile>(
+    `${ENDPOINTS.GET_PROFILE + userId}`,
+    this.globalStorage.getHttpOptions());
+  }
 
-  createNewLogin(username:string, password:string){
+  createNewLogin(username: string, password: string) {
     console.log(username);
     return this.http.post<PostLogin>(
-      ENDPOINTS.NEW_LOGIN, 
+      ENDPOINTS.NEW_LOGIN,
       JSON.stringify(
         {
           username: username,
           password: password
         }
-      ), httpOptions);
+      ), this.globalStorage.getHttpOptions());
   }
 
-  createProfile(userId:number, newUser:NewUser){
+  createProfile(userId: number, newUser: NewUser) {
     return this.http.post<PostProfile>(
-      ENDPOINTS.CREATE_PROFILE, 
+      ENDPOINTS.CREATE_PROFILE,
       JSON.stringify(
-          {
-            userId: userId,
-            firstName: newUser.firstName,
-            lastName: newUser.lastName,
-            email: newUser.email,
-            phoneNumber: newUser.phoneNumber,
-            address: newUser.address
-          }
-        ), 
-        httpOptions);
+        {
+          userId: userId,
+          firstName: newUser.firstName,
+          lastName: newUser.lastName,
+          email: newUser.email,
+          phoneNumber: newUser.phoneNumber,
+          address: newUser.address
+        }
+      ),
+      this.globalStorage.getHttpOptions());
   }
 
-  updateProfile(profile:Profile, profileId: number, userId: number){
+  updateProfile(profile: Profile, profileId: number, userId: number) {
     return this.http.put<PutProfile>(
       ENDPOINTS.UPDATE_PROFILE,
       JSON.stringify(
@@ -88,6 +88,6 @@ export class UserHandlerService {
           address: profile.address
         }
       ),
-      httpOptions);
+      this.globalStorage.getHttpOptions());
   }
 }

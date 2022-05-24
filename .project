@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
 <<<<<<< HEAD
+<<<<<<< HEAD
 	<name>TheVault</name>
 =======
 	<name>demo</name>
 >>>>>>> 384355c41b043888f4bc7d8b78858e89b0d359ce
+=======
+	<name>TheVault</name>
+>>>>>>> 38f11cde1cbe751113059a7ef0020f8835f59afb
 	<comment></comment>
 	<projects>
 	</projects>
@@ -29,11 +33,6 @@
 =======
 			<name>org.springframework.ide.eclipse.boot.validation.springbootbuilder</name>
 >>>>>>> 384355c41b043888f4bc7d8b78858e89b0d359ce
-			<arguments>
-			</arguments>
-		</buildCommand>
-		<buildCommand>
-			<name>org.eclipse.m2e.core.maven2Builder</name>
 			<arguments>
 			</arguments>
 		</buildCommand>

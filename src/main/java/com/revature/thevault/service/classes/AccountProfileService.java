@@ -80,7 +80,8 @@ public class AccountProfileService implements AccountProfileInterface {
                 profileCreateRequest.getFirstName(),
                 profileCreateRequest.getEmail(),
                 profileCreateRequest.getPhoneNumber(),
-                profileCreateRequest.getAddress()
+                profileCreateRequest.getAddress(),
+                0
         );
 
         AccountProfileResponse convertedCreatedEntity = convertEntityToResponse(accountProfileRepository.save(createdProfileEntity));
@@ -117,7 +118,8 @@ public class AccountProfileService implements AccountProfileInterface {
                             updateProfileRequest.getFirstName(),
                             updateProfileRequest.getEmail(),
                             updateProfileRequest.getPhoneNumber(),
-                            updateProfileRequest.getAddress()
+                            updateProfileRequest.getAddress(),
+                            0
                     )))))
                     .build();
         } catch (Exception e) {

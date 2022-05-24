@@ -1,6 +1,0 @@
-eclipse.preferences.version=1
-<<<<<<< HEAD
-org.eclipse.jdt.launching.PREF_VM_XML=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\n<vmSettings defaultVM\="52,org.eclipse.jdt.internal.launching.macosx.MacOSXType18,net.temurin.17.jdk" defaultVMConnector\="">\n    <vmType id\="org.eclipse.jdt.internal.launching.macosx.MacOSXType">\n        <vm id\="net.temurin.17.jdk" name\="Eclipse Temurin 17 [17.0.2]" path\="/Library/Java/JavaVirtualMachines/temurin-17.jdk/Contents/Home"/>\n        <vm id\="net.adoptopenjdk.14.jdk" name\="AdoptOpenJDK 14 [14.0.2]" path\="/Library/Java/JavaVirtualMachines/adoptopenjdk-14.jdk/Contents/Home"/>\n    </vmType>\n</vmSettings>\n
-=======
-org.eclipse.jdt.launching.PREF_VM_XML=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\r\n<vmSettings defaultVM\="57,org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType13,1652812509893" defaultVMConnector\="">\r\n    <vmType id\="org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType">\r\n        <vm id\="1652812509893" name\="jdk-14.0.2" path\="C\:\\Program Files\\Java\\jdk-14.0.2"/>\r\n    </vmType>\r\n</vmSettings>\r\n
->>>>>>> a714d9cab189d9b1930b6174fa9c77e6051184e3

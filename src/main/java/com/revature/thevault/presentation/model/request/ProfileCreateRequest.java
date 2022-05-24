@@ -20,6 +20,7 @@ public class ProfileCreateRequest {
     String email;
     String phoneNumber;
     String address;
+<<<<<<< HEAD
     public int getUserId() {
         return 0;
     }
@@ -38,4 +39,7 @@ public class ProfileCreateRequest {
     public Object getAddress() {
         return null;
     }
+=======
+    float notificationAmount; // only added because tests were yelling at us
+>>>>>>> 38f11cde1cbe751113059a7ef0020f8835f59afb
 }

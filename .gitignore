@@ -80,4 +80,68 @@ Thumbs.db
 .vscode/
 !/theVaultDebug.log
 /.metadata/
+<<<<<<< HEAD
 >>>>>>> 384355c41b043888f4bc7d8b78858e89b0d359ce
+=======
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+### NPM ###
+node_modules/
+
+### Gradle ###
+.gradle
+
+##Spring Boot##
+.yml
+
+### Maven ###
+target/
+log/
+
+# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
+!gradle-wrapper.jar
+
+### STS ###
+.apt_generated
+#.classpath #intending to let people import projects a bit easier
+.factorypath
+#.project #intending to let people import projects a bit easier
+.settings
+.springBeans
+Servers/
+.recommenders/
+.metadata/
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# e2e
+/e2e/*.js
+/e2e/*.map
+
+# System Files
+.DS_Store
+Thumbs.db
+>>>>>>> 38f11cde1cbe751113059a7ef0020f8835f59afb

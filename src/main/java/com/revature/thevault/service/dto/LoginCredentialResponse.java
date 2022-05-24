@@ -1,15 +1,14 @@
 package com.revature.thevault.service.dto;
 
 
-import com.revature.thevault.presentation.model.GenericLoginRequest;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class LoginCredentialResponse extends GenericLoginRequest {
+public class LoginCredentialResponse {
     int userId;
 }

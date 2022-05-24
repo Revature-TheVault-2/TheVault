@@ -49,18 +49,20 @@ public class WithdrawService implements WithdrawServiceInterface {
      */
     @Override
     public PostResponse createWithdrawal(WithdrawRequest withdrawRequest) {
+    	// float balancePostWithdrawal = sessionUser.getAvaiable_balance() - withdrawRequest.getAmount(); 
+    	
+    //Outer if(notificationAmount != 0){
+    	//if(-withdrawRequest.getAmount() > "current user session".getNoficationAmount()){
+		// emailservice.NotifcationEmail(withdrawRequest.getAmount()) }}
+    	
+    	// if(balancePostWithdrawal < 0){
+    	// emailservice.overdraftEmail(balancePostWithdrawal); }
         return PostResponse.builder()
                 .success(true)
                 .createdObject( Collections.singletonList(
                    convertEntityToResponse(    
-                     withdrawRepository.save(new WithdrawEntity (       
-                    	   0,
-                           new AccountEntity(                        		   
-                        		   withdrawRequest.getAccountId(), 
-                        		   new LoginCredentialEntity(),  
-                        		   new AccountTypeEntity(), 
-                        		   0, 
-                        		   0), 
+                     withdrawRepository.save(new WithdrawEntity (0,
+                        	new AccountEntity(withdrawRequest.getAccountId(),new LoginCredentialEntity(),new AccountTypeEntity(),0, 0),  
                            requestTypeService.getRequestTypeByName(withdrawRequest.getRequestType()),                
                            requestStatusService.getRequestStatusByName("Pending"),                             
                            withdrawRequest.getReference(),                        
@@ -102,6 +104,7 @@ public class WithdrawService implements WithdrawServiceInterface {
     	cal.set(Calendar.DAY_OF_MONTH, cal.getActualMaximum(Calendar.DATE));
     	Date startDate = new Date(cal.getTimeInMillis());
     	cal.add(Calendar.MONTH, 1);
+    	cal.set(Calendar.DAY_OF_MONTH, cal.getActualMaximum(Calendar.DATE));
     	Date endDate = new Date(cal.getTimeInMillis());
     	try {
     	List<WithdrawEntity> withdrawEntities = findByAccountIdAndDateBetween(accountId, startDate, endDate);
@@ -149,16 +152,7 @@ public class WithdrawService implements WithdrawServiceInterface {
 	 * @author Frederick
      */
     private List<WithdrawEntity> findByAccountIdAndDateBetween(int accountId, Date startDate, Date endDate) {
-        return withdrawRepository.findByAccountentityAndDateWithdrawBetween(
-                new AccountEntity(
-                        accountId,
-                        new LoginCredentialEntity(),
-                        new AccountTypeEntity(),
-                        0,
-                        0
-                ),
-                startDate, endDate
-        );
+        return withdrawRepository.findByAccountIdAndDatesBetween(accountId, startDate, endDate);
     }
 
     /**

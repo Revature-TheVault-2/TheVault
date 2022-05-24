@@ -7,7 +7,7 @@ import { Transaction } from 'src/app/models/transaction/transaction.model';
   providedIn: 'root'
 })
 export class TransactionHistoryService {
-    transactionUrl = `http://ec2-18-234-126-118.compute-1.amazonaws.com:9000/transaction/history`;
+    transactionUrl = `http://localhost:9000/transaction/history`;
     getUrl?: any
   httpOptions = {
     headers: new HttpHeaders ({'Content-Type': 'application/json'})
@@ -15,9 +15,9 @@ export class TransactionHistoryService {
 
   private transHistory = 'api/transactions'
   constructor(private http: HttpClient) { }
-  getHistory(accountId:number) {
+  getHistory(accountId: number) {
     this.getUrl = `${this.transactionUrl}/${accountId}`
     return this.http.get<GetTransaction>(this.getUrl)
   }
- 
+
 }

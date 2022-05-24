@@ -10,6 +10,7 @@ import java.util.List;
 
 import com.revature.thevault.repository.entity.DepositTypeEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
@@ -17,7 +18,11 @@ import javax.transaction.Transactional;
 @Repository("depositRepository")
 public interface DepositRepository extends JpaRepository<DepositEntity, Integer> {
     List<DepositEntity> findByAccountentity(AccountEntity accountEntity);
-    List<DepositEntity> findByAccountentityAndDateDepositBetween(AccountEntity accountEntity, Date dateStart, Date dateEnd);
+    @Query("select d from DepositEntity d where "
+    		+ "d.accountentity = :id "
+    		+ "AND d.dateDeposit <= :dateEnd "
+    		+ "AND d.dateDeposit >= :dateStart")
+    List<DepositEntity> findByAccountIdAndDatesBetween(int id, Date dateStart, Date dateEnd);
     List<DepositEntity> findByAccountentityAndDeposittypeentity(AccountEntity accountEntity, DepositTypeEntity depositTypeEntity);
 
     @Transactional

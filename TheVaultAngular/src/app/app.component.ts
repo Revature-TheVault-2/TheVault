@@ -1,5 +1,4 @@
 import { Component, Inject, ViewEncapsulation } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -9,22 +8,14 @@ import { DOCUMENT } from '@angular/common';
 })
 export class AppComponent {
   title = 'TheVault';
+ buttonText: String = "Light Mode";
 
-
-  constructor(@Inject(DOCUMENT) private document: Document) {}
-
-  toggleStyle() {
-
-
-
-    // let  = this.document.getElementById('dark-theme') as HTMLLinkElement;
-      
-    // if (!themeLink) {
-    //   themeLink.href = 'DarkMode.css';
-    // } else {
-    //   themeLink.href = 'LightMode.css';
-
-    // }
+  toggleTheme(): void{
+    document.body.classList.toggle('light-theme');
+    let cardBody= document.getElementById('accountCard');
+    console.log(cardBody);
+    cardBody?.classList.toggle('light-theme');
   }
 
+ 
 }

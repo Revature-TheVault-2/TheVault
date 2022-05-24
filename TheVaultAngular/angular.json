@@ -27,13 +27,7 @@
               "src/assets"
             ],
             "styles": [
-               "src/styles.css",
-                "src/DarkMode.css",
-              {
-                "input": "src/LightMode.css",
-                "bundleName": "Light-Mode",
-                "inject": false
-              }
+              "src/styles.css"
             ],
             "scripts": []
           },

@@ -107,8 +107,9 @@ public class EmailService {
 	 * @param A range of dates, not implemented yet.
 	 * @param pathToAttachment
 	 * @author Brody and Gibbons
+	 * @throws MessagingException 
 	 */
-	public static void sendReportPdfEmail(String pathToAttachment /*, Date rangeOfDates */) {
+	public static void sendReportPdfEmail(String pathToAttachment /*, Date rangeOfDates */) throws MessagingException {
 		
 		String name = "John"; // pull name from the session
 		String dates = "dates range of report";
@@ -118,6 +119,8 @@ public class EmailService {
 		String body = "Hello " + name +",\n\n"
 				+ "Attached are your reports that you requested from " + dates + "." 
 				+ "If you did not request this report, please contact your local bank at your earliest convenience.";
+		
+		sendEmailWithAttachment(userEmail, subject, body, pathToAttachment);
 		
 	}
 	

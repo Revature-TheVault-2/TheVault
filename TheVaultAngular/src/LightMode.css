@@ -2,7 +2,7 @@ body{
     width: 100%;
     height: 100vh;
     color: rgb(0, 0, 0);
-    background-image: linear-gradient(.45deg,#f26925,#cfd5e0);
+    background-image: linear-gradient(.45deg,#f26925,#B9B9BA);
     background-size: 400%,400%;
     position: relative;
    

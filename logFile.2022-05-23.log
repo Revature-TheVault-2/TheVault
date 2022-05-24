@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 2022-05-23 15:53:02,890 DEBUG dLog [http-nio-9000-exec-2] Class: class com.revature.thevault.presentation.controller.LoginController
 Method: findLoginCredential
 Arguments: [LoginRequest(username=username1, password=password1)]
@@ -753,6 +754,8 @@ RETURNING: GetResponse(gotObject=[AccountResponseObject(accountId=1, userId=1, a
 Method: getUserAccountList
 RETURNING: GetResponse(gotObject=[AccountResponseObject(accountId=1, userId=1, accountType=Checking, availableBalance=0.0, pendingBalance=0.0), AccountResponseObject(accountId=2, userId=1, accountType=Savings, availableBalance=0.0, pendingBalance=0.0)])
 =======
+=======
+>>>>>>> 384355c41b043888f4bc7d8b78858e89b0d359ce
 =======
 >>>>>>> 384355c41b043888f4bc7d8b78858e89b0d359ce
 2022-05-23 09:33:48,827 DEBUG dLog [http-nio-9000-exec-2] Class: class com.revature.thevault.presentation.controller.LoginController
@@ -2066,6 +2069,9 @@ RETURNING: GetResponse(gotObject=[TransactionObject(transactionId=1, transaction
 Method: getTransactionHistory
 RETURNING: GetResponse(gotObject=[TransactionObject(transactionId=1, transactionType=Deposit, transactionDetail=Cash, transactionReference=Testing Funds, date=2022-05-23, amount=30000.0), TransactionObject(transactionId=2, transactionType=Deposit, transactionDetail=Cheque, transactionReference=Test, date=2022-05-23, amount=200.0)])
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> 384355c41b043888f4bc7d8b78858e89b0d359ce
+=======
 >>>>>>> 384355c41b043888f4bc7d8b78858e89b0d359ce
 =======
 >>>>>>> 384355c41b043888f4bc7d8b78858e89b0d359ce

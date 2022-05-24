@@ -11,20 +11,23 @@ export class AppComponent {
   title = 'TheVault';
 
 
-  constructor(@Inject(DOCUMENT) private document: Document) {}
-
-  toggleStyle() {
+  constructor(@Inject(DOCUMENT) private document: Document) { }
 
 
+  changeTheme() {
+    let theme = this.document.getElementById('theme') as HTMLLinkElement;
 
-    // let  = this.document.getElementById('dark-theme') as HTMLLinkElement;
-      
-    // if (!themeLink) {
-    //   themeLink.href = 'DarkMode.css';
-    // } else {
-    //   themeLink.href = 'LightMode.css';
+    console.log(theme.getAttribute('href'))
 
-    // }
+    
+    //to add another theme add another if statment
+    if (theme.getAttribute('href') == '/src/DarkMode.css') {
+      theme.href = '/src/LightMode.css';
+    }else {
+      theme.href = '/src/DarkMode.css';
+
+    }
+
   }
 
 }

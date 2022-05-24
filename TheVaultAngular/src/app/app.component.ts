@@ -1,5 +1,4 @@
 import { Component, Inject, ViewEncapsulation } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -9,25 +8,26 @@ import { DOCUMENT } from '@angular/common';
 })
 export class AppComponent {
   title = 'TheVault';
+ buttonText: String = "Light Mode";
 
+  toggleTheme(): void{
+    document.body.classList.toggle('light-theme');
 
-  constructor(@Inject(DOCUMENT) private document: Document) { }
+    // let cardBody= document.getElementById('accountCard'); // Some issues with this one right now
+    // cardBody?.classList.toggle('light-theme');
 
+    let tableBody = document.getElementById('transactionTable');
+    tableBody?.classList.toggle('light-theme');
 
-  changeTheme() {
-    let theme = this.document.getElementById('theme') as HTMLLinkElement;
+    let accountHeader = document.getElementById('accountHeader');
+    accountHeader?.classList.toggle('light-theme');
+    let accountBackground = document.getElementById('accountBackground');
+    accountBackground?.classList.toggle('light-theme');
 
-    console.log(theme.getAttribute('href'))
-
-    
-    //to add another theme add another if statment
-    if (theme.getAttribute('href') == '/src/DarkMode.css') {
-      theme.href = '/src/LightMode.css';
-    }else {
-      theme.href = '/src/DarkMode.css';
-
-    }
+    let navbar = document.getElementById('navbar')
+    navbar?.classList.toggle('light-theme')
 
   }
 
+ 
 }

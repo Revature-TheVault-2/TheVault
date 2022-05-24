@@ -199,7 +199,8 @@ public class DepositService implements DepositServiceInterface {
 	 * @author Frederick
 	 */
 	public List<DepositEntity> getUserDepositsByAccountIdAndDateBetween(int accountId, Date startDate, Date endDate) {
-		return depositRepository.findByAccountIdAndDatesBetween(accountId, startDate, endDate);
+    	System.out.println("DEPOSITS BETWEEN: " + startDate.toString() + " to " + endDate.toString());
+		return depositRepository.findByAccountIdAndDatesBetween(accountId, startDate.toString(), endDate.toString());
 	}
 
 	/**

@@ -35,6 +35,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.ArgumentMatchers.anyString;
 
 @SpringBootTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -245,7 +246,7 @@ class WithdrawServiceTest {
                 .success(true)
                         .gotObject(Arrays.asList(withdrawResponseObject2, withdrawResponseObject3))
                                 .build();
-				Mockito.when(withdrawRepository.findByAccountIdAndDatesBetween(anyInt(), any(Date.class), any(Date.class)))
+				Mockito.when(withdrawRepository.findByAccountIdAndDatesBetween(anyInt(), anyString(), anyString()))
 				.thenReturn(Arrays.asList(storedWithdrawEntity2, storedWithdrawEntity3));
 				assertEquals(getWithdrawsResponse, withdrawService.getAllUserWithdrawlsByMonth(accountId, 4, 2022));
     }

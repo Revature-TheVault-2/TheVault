@@ -1,5 +1,6 @@
 package com.revature.thevault.service.classes;
 
+import com.revature.thevault.presentation.controller.ExportPDFController;
 import com.revature.thevault.presentation.model.response.builder.GetResponse;
 import com.revature.thevault.service.dto.DepositResponseObject;
 import com.revature.thevault.service.dto.TransactionObject;
@@ -13,6 +14,8 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.io.FileNotFoundException;
+import java.net.MalformedURLException;
 import java.sql.Date;
 import java.time.LocalDate;
 
@@ -64,8 +67,10 @@ public class TransactionService implements TransactionServiceInterface {
      * @param int month
      * @param int year
      * @author fred
+     * @throws MalformedURLException 
+     * @throws FileNotFoundException 
      */
-    public GetResponse getTransactionHistoryByMonth(Integer accountId, int month, int year) {
+    public GetResponse getTransactionHistoryByMonth(Integer accountId, int month, int year) throws FileNotFoundException, MalformedURLException {
         GetResponse deposits = depositService.getAllUserDepositsByMonth(accountId, month, year);
         GetResponse withdrawals = withdrawService.getAllUserWithdrawlsByMonth(accountId, month, year);
         List<TransactionObject> transactionObjects = new ArrayList<>();
@@ -73,6 +78,7 @@ public class TransactionService implements TransactionServiceInterface {
         withdrawals.getGotObject().forEach(withdrawal -> transactionObjects.add(convertWithdrawToTransactionObject((WithdrawResponseObject) withdrawal)));
         Comparator<TransactionObject> byDate = Comparator.comparing(TransactionObject::getDate);
         transactionObjects.sort(byDate);
+        ExportPDFController.createPDF(transactionObjects); // PDF File Created Here
         return GetResponse.builder()
                 .success(true)
                 .gotObject(transactionObjects)

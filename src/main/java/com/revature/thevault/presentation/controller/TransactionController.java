@@ -35,15 +35,12 @@ public class TransactionController {
     @GetMapping("/history/{accountId}")
     public GetResponse getTransactionHistory(@RequestHeader("Authorization") String token, @PathVariable Integer accountId) {
         return transactionService.getTransactionHistory(accountId);
-<<<<<<< HEAD
     }
     
     @GetMapping("/history/{accountId}/{year}/{month}")
     public GetResponse getTransactionHistoryByMonth(@RequestHeader("Authorization") String token, @PathVariable Integer accountId, @PathVariable Integer year, @PathVariable Integer month) {
     	System.out.println("Reached GetTransactionHistoryByMonth!");
     	return transactionService.getTransactionHistoryByMonth(accountId, month, year);
-=======
->>>>>>> 384355c41b043888f4bc7d8b78858e89b0d359ce
     }
 
 }

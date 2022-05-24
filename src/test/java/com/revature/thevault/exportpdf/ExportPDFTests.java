@@ -167,14 +167,18 @@ public class ExportPDFTests {
 			Color orange = new DeviceRgb(242, 105, 38);
 			Color blue = new DeviceRgb(115, 165, 194);
 			Color yellow = new DeviceRgb(253, 181, 21);
+			Color lightGray = new DeviceRgb(185, 185, 186);
+			
 			Style tableStyle = new Style();
+			
 //			tableStyle.setBorder(new SolidBorder(ColorConstants.WHITE, 1F));
 //			tableStyle.setBorder(Border.NO_BORDER);
-			tableStyle.setBackgroundColor(orange);
+			tableStyle.setBackgroundColor(blue);
+			
 			
 			Style tableCellStyle = new Style();
-			tableCellStyle.setBackgroundColor(blue);
-			tableCellStyle.setBorder(new SolidBorder(yellow, 1F));
+			tableCellStyle.setBackgroundColor(lightGray);
+			tableCellStyle.setBorder(new SolidBorder(lightGray, 1F));
 			
 			//Table Creation			
 			Table table = new Table(new float[]{1F, 0.5F, 1F, 1F, 2F}, false); // In this float example, the float numbers represent table size. A

@@ -1,0 +1,19 @@
+List<Person> persons = Arrays.asList(
+   new  Person("Max", 18");
+   new Person("tony",22);
+
+List<Person> filtered = 
+   persons
+      .stream()
+      .filter(p -> p.name.startsWith("M"))
+      .collect(Collectors.toList());
+System.out.println(filtered);
+
+/*
+join vs set
+join vs view
+stream api
+collection api
+functional interface
+lambda expressions
+*/

@@ -45,10 +45,15 @@ export class BudgetCalculatorComponent implements OnInit {
   }
 
   onClickSubmitExpenses(name: string, amount: string){
-    let expense = new Expense(name, Number.parseFloat(amount));
-    this.expensesArray.push(expense);
-    this.budget = this.incomeField - this.sumExpenses();
-    console.log(this.expensesArray);
+    console.log(typeof name, typeof amount)
+    if(name === null || amount == undefined){
+      return;
+    }else{
+      let expense = new Expense(name, Number.parseFloat(amount));
+      this.expensesArray.push(expense);
+      this.budget = this.incomeField - this.sumExpenses();
+      console.log(this.expensesArray);
+    }
   }
 
   ngOnInit(): void {

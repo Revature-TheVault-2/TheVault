@@ -21,10 +21,10 @@
 
         <div class="col-md-3">
             <label for="Wbox" class="form-label">Enter the name of your expense:</label>
-            <input type="text" class="form-control" min="0" id="expenseName" #Wbox placeholder="Monthly Expenses"
+            <input required="required" type="text" class="form-control" min="0" id="expenseName" #Wbox placeholder="Monthly Expenses"
                 name="withdrawbox" #expName required ngModel>
-            <!-- <div class="valid-feedback">Valid.</div>
-            <div class="invalid-feedback">Enter number greater than 1</div> -->
+            <div class="valid-feedback">Valid.</div>
+            <div class="invalid-feedback">Enter number greater than 1</div>
         </div>
 
         <div class="col-md-3">

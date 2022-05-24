@@ -1,12 +1,18 @@
+import { HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Account } from '../models/account/account.model';
 import { GetAccount } from '../models/account/responses/get-account';
+import { LoginUser } from '../models/users/login-user.model';
 import { Profile } from '../models/users/profile.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GlobalStorageService {
+
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  }
 
   userId!: number;
   userProfile!: Profile;
@@ -21,6 +27,16 @@ export class GlobalStorageService {
   transSuccess : boolean = false;
   transFail : boolean = false;
   constructor() { }
+
+  public setHttpOptions(credentials: LoginUser): void {
+    this.httpOptions.headers = this.httpOptions.headers.append('authorization', 'Basic ' + btoa(credentials.username + ':' + credentials.password));
+  }
+
+  public resetHttpOptions(): void {
+    this.httpOptions.headers = this.httpOptions.headers.delete('authorization');
+  }
+
+  public getHttpOptions() {return this.httpOptions}
 
   public setProfile(user: Profile): void {this.userProfile = user}
 
@@ -43,13 +59,5 @@ export class GlobalStorageService {
   public setActiveAccount(account:Account){this.activeAccount = account}
 
   public getActiveAccount():Account{return this.activeAccount}
-
-  public setToken(token: string):void{
-    this.token = token;
-  }
-
-  public getToken():string{
-    return this.token;
-  }
 
 }

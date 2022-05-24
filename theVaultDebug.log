@@ -1,0 +1,54 @@
+2022-05-24 13:24:33,990 DEBUG dLog [http-nio-9000-exec-2] Class: class com.revature.thevault.presentation.controller.LoginController
+Method: findLoginCredential
+Arguments: [LoginRequest(username=cjcastro, password=1234)]
+2022-05-24 13:24:33,994 DEBUG dLog [http-nio-9000-exec-2] CLASS: class com.revature.thevault.service.classes.LoginService
+METHOD: getLoginCredentialFromLogin
+ARGUMENTS: [cjcastro]
+2022-05-24 13:24:34,124 INFO dLog [http-nio-9000-exec-2] METHOD: getLoginCredentialFromLogin
+RETURNING: PostResponse(createdObject=[LoginResponseObject(userId=1, username=cjcastro, password=1234)])
+2022-05-24 13:24:34,124 INFO dLog [http-nio-9000-exec-2] Class: class com.revature.thevault.presentation.controller.LoginController
+Method: findLoginCredential
+RETURNING: PostResponse(createdObject=[LoginResponseObject(userId=1, username=cjcastro, password=1234)])
+2022-05-24 13:24:34,651 DEBUG dLog [http-nio-9000-exec-4] Class: class com.revature.thevault.presentation.controller.AccountProfileController
+Method: getProfile
+Arguments: [1]
+2022-05-24 13:24:34,660 DEBUG dLog [http-nio-9000-exec-4] CLASS: class com.revature.thevault.service.classes.AccountProfileService
+METHOD: getProfile
+ARGUMENTS: [AccountProfileRequest(profileId=1)]
+2022-05-24 13:24:34,744 INFO dLog [http-nio-9000-exec-4] METHOD: getProfile
+RETURNING: GetResponse(gotObject=[AccountProfileResponse(profileId=1, userId=1, firstName=chris, lastName=castro, email=email@email.com, phoneNumber=909909, address=1234 street)])
+2022-05-24 13:24:34,744 INFO dLog [http-nio-9000-exec-4] Class: class com.revature.thevault.presentation.controller.AccountProfileController
+Method: getProfile
+RETURNING: GetResponse(gotObject=[AccountProfileResponse(profileId=1, userId=1, firstName=chris, lastName=castro, email=email@email.com, phoneNumber=909909, address=1234 street)])
+2022-05-24 13:24:34,803 DEBUG dLog [http-nio-9000-exec-6] Class: class com.revature.thevault.presentation.controller.AccountController
+Method: getUserAccountList
+Arguments: [1, org.apache.catalina.session.StandardSessionFacade@4fffc4dd]
+2022-05-24 13:24:34,810 DEBUG dLog [http-nio-9000-exec-6] CLASS: class com.revature.thevault.service.classes.AccountService
+METHOD: getAccounts
+ARGUMENTS: [1]
+2022-05-24 13:24:34,890 INFO dLog [http-nio-9000-exec-6] METHOD: getAccounts
+RETURNING: GetResponse(gotObject=[AccountResponseObject(accountId=2, userId=1, accountType=Checking, availableBalance=0.0, pendingBalance=0.0)])
+2022-05-24 13:24:34,890 INFO dLog [http-nio-9000-exec-6] Class: class com.revature.thevault.presentation.controller.AccountController
+Method: getUserAccountList
+RETURNING: GetResponse(gotObject=[AccountResponseObject(accountId=2, userId=1, accountType=Checking, availableBalance=0.0, pendingBalance=0.0)])
+2022-05-24 13:24:36,927 DEBUG dLog [http-nio-9000-exec-8] Class: class com.revature.thevault.presentation.controller.TransactionController
+Method: getTransactionHistory
+Arguments: [Basic Y2pjYXN0cm86MTIzNA==, 2]
+2022-05-24 13:24:36,930 DEBUG dLog [http-nio-9000-exec-8] CLASS: class com.revature.thevault.service.classes.TransactionService
+METHOD: getTransactionHistory
+ARGUMENTS: [2]
+2022-05-24 13:24:36,933 DEBUG dLog [http-nio-9000-exec-8] CLASS: class com.revature.thevault.service.classes.DepositService
+METHOD: getAllUserDeposits
+ARGUMENTS: [2]
+2022-05-24 13:24:36,958 INFO dLog [http-nio-9000-exec-8] METHOD: getAllUserDeposits
+RETURNING: GetResponse(gotObject=[])
+2022-05-24 13:24:36,958 DEBUG dLog [http-nio-9000-exec-8] CLASS: class com.revature.thevault.service.classes.WithdrawService
+METHOD: getAllUserWithdrawals
+ARGUMENTS: [2]
+2022-05-24 13:24:36,989 INFO dLog [http-nio-9000-exec-8] METHOD: getAllUserWithdrawals
+RETURNING: GetResponse(gotObject=[])
+2022-05-24 13:24:36,990 INFO dLog [http-nio-9000-exec-8] METHOD: getTransactionHistory
+RETURNING: GetResponse(gotObject=[])
+2022-05-24 13:24:36,990 INFO dLog [http-nio-9000-exec-8] Class: class com.revature.thevault.presentation.controller.TransactionController
+Method: getTransactionHistory
+RETURNING: GetResponse(gotObject=[])

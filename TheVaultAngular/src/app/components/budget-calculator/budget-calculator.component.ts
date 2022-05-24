@@ -3,6 +3,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { RoutingAllocatorService } from 'src/app/_services/app_control/routing-allocator.service';
 import { AccountHandlerService } from 'src/app/_services/account/account-handler.service';
 import { Account } from 'src/app/models/account/account.model';
+import { Expense } from 'src/app/models/budget-calculator-input/expenses.model';
 
 @Component({
   selector: 'app-budget-calculator',
@@ -10,40 +11,51 @@ import { Account } from 'src/app/models/account/account.model';
   styleUrls: ['./budget-calculator.component.css']
 })
 export class BudgetCalculatorComponent implements OnInit {
+  
+  incomeField: number = 0;
+  // expensesField = "";
+  expensesArray: Expense[] = [];
+  budget: number = 0;
+  
+  constructor() { }
 
-  incomeField = '';
-  expensesField = "";
-  expensesArray = [""];
-
-  get income(){
-    return this.incomeField;
-  }
-  set income(temp: string){
-    this.incomeField = temp;
+  clearTable(){
+    this.clearExpenses();
+    this.incomeField = 0;
+    this.onClickSubmitIncome("0");
   }
 
-  get expenses(){
-    return this.expensesField;
+  clearExpenses(){
+    this.expensesArray = [];
+    let strNum = JSON.stringify(this.incomeField);
+    this.onClickSubmitIncome(strNum);
   }
-  set expenses(temp: string){
-    this.expenses = temp;
+
+  sumExpenses(){
+    let sum = 0;
+    for(let i=0; i < this.expensesArray.length; i++){
+      sum += this.expensesArray[i].amount;
+    }
+    return sum;
   }
 
   onClickSubmitIncome(amount: string){
-    this.incomeField = amount;
-      console.log(amount);
+    this.incomeField = Number.parseFloat(amount);
+    this.budget = this.incomeField - this.sumExpenses();
   }
 
-  onClickSubmitExpenses(amount: string){
-    // this.expensesField = amount;
-    this.expensesArray.push(amount);
-      console.log(amount)
+  onClickSubmitExpenses(name: string, amount: string){
+    console.log(typeof name, typeof amount)
+    if(name === null || amount == undefined){
+      return;
+    }else{
+      let expense = new Expense(name, Number.parseFloat(amount));
+      this.expensesArray.push(expense);
+      this.budget = this.incomeField - this.sumExpenses();
       console.log(this.expensesArray);
+    }
   }
-
-  constructor() { }
 
   ngOnInit(): void {
   }
-
 }

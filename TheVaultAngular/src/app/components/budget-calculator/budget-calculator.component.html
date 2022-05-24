@@ -17,57 +17,69 @@
     </form>
 
     <br>
+    <form (ngSubmit)="onClickSubmitExpenses(expName.value, expenses.value)">
+
+        <div class="col-md-3">
+            <label for="Wbox" class="form-label">Enter the name of your expense:</label>
+            <input required="required" type="text" class="form-control" min="0" id="expenseName" #Wbox placeholder="Monthly Expenses"
+                name="withdrawbox" #expName required ngModel>
+            <div class="valid-feedback">Valid.</div>
+            <div class="invalid-feedback">Enter number greater than 1</div>
+        </div>
+
+        <div class="col-md-3">
+            <label for="Wbox" class="form-label">Enter expense amount:</label>
+            <input type="number" class="form-control" min="0" id="expenses" #Wbox placeholder="Monthly Expenses"
+                name="withdrawbox" #expenses required ngModel>
+            <div class="valid-feedback">Valid.</div>
+            <div class="invalid-feedback">Enter number greater than 1</div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    
     <div>
-        <!-- Once monthly income is entered, generate a table.
-        Then display everything using a table as you enter in expenses.
-        <p>Income: $2900</p>
-        <br>
-        <p>Expenses:</p>
-        <p>----------</p>
-        <p>Car Bill: $300</p>
-        <p>Phone Bill: $75</p> -->
         <div class="table-responsive">
             <table class="table">
                 <thead>
                     <tr>
-                        <th>Income</th>
+                        <th>Budget Calculator</th>
+                        <th>US Dollar</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>
-                                {{incomeField}}
+                            Monthly Income
+                        </td>
+                        <td>
+                            {{ incomeField | currency }}
+                        </td>
+                    </tr>
+
+                    <tr *ngFor = 'let expense of expensesArray'>
+                        <td>
+                            {{ expense.name }}
+                        </td>
+                        <td>
+                            {{ expense.amount | currency }}
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <b>Monthly Budget</b>
+                        </td>
+                        <td>
+                           <b>{{ budget | currency }}</b> 
                         </td>
                     </tr>
                 </tbody>
             </table>
-
-            <form (ngSubmit)="onClickSubmitExpenses(expenses.value)">
-                <div class="col-md-3">
-                    <label for="Wbox" class="form-label">Enter your monthly expenses:</label>
-                    <input type="number" class="form-control" min="0" id="expenses" #Wbox placeholder="Monthly Expenses"
-                        name="withdrawbox" #expenses required ngModel>
-                    <div class="valid-feedback">Valid.</div>
-                    <div class="invalid-feedback">Enter number greater than 1</div>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
+            <button type="submit" class="btn btn-primary" (click)="clearExpenses()">Clear Expenses</button>
+            <p></p>
+            <button type="submit" class="btn btn-primary" (click)="clearTable()">Clear Table</button>
         </div>
         
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Expenses</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor = 'let temp of expensesArray'>
-                    <td>
-                            {{ expensesArray }}
-
-                    </td>
-                </tr>
-            </tbody>
-        </table>
     </div>
 </div>

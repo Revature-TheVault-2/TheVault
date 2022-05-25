@@ -9,7 +9,7 @@ import { TransferRequest } from 'src/app/models/transaction/request/transfer-req
 import { LoginUser } from 'src/app/models/users/login-user.model';
 import { GlobalStorageService } from '../global-storage.service';
 
-const AUTH_API = 'http://http://54.175.17.192:9000/';
+const AUTH_API = 'http://54.175.17.192:9000/';
 
 
 const ENDPOINTS = {

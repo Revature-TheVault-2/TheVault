@@ -10,6 +10,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,6 +32,8 @@ import com.itextpdf.layout.element.Image;
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.properties.UnitValue;
+import com.revature.thevault.repository.dao.AccountProfileRepository;
+import com.revature.thevault.repository.entity.AccountProfileEntity;
 import com.revature.thevault.service.dto.TransactionObject;
 
 @Service("exportPDFService")
@@ -43,9 +46,9 @@ public class ExportPDFService {
 	private EmailService emailServ;
 	
 	@Autowired
-	AccountService accountServ;
+	private AccountProfileRepository profileRepos;
 	
-	public Document createPDF(List<TransactionObject> transactionObjects, int month, int year) throws FileNotFoundException, MalformedURLException {
+	public void createPDF(List<TransactionObject> transactionObjects, int month, int year, int profileId) throws FileNotFoundException, MalformedURLException {
 		Calendar cal = Calendar.getInstance();
     	cal.set(year, month-1, 1);
     	cal.set(Calendar.DAY_OF_MONTH, cal.getActualMaximum(Calendar.DATE));
@@ -57,7 +60,7 @@ public class ExportPDFService {
 		
 		//Document Creation
 		String randPath = strServ.getSaltString();
-		String dest = "src/main/resources/pdf/" + randPath + "/myMonthStatement.pdf";
+		String dest = "src/main/resources/pdf/" + randPath + "myMonthStatement.pdf";
 		PdfWriter writer = new PdfWriter(dest); // Writer can create PDF files
 		PdfDocument pdfFile = new PdfDocument(writer); //Point of entry to work with a PDF file.
 		Document document = new Document(pdfFile); // Desired output is a Document Object. The actual PDF file
@@ -174,36 +177,45 @@ public class ExportPDFService {
 					table.addStyle(tableCellStyle);
 				}
 			
-			//Style Appending
-			logo.addStyle(myLogo);
-			revatureInfo.addStyle(myRevatureStyle);
-			accInfo.addStyle(myAccountInfoStyle);
-			emptyTransactions.addStyle(myRevatureStyle);
-	
-			//Appending to Document
-			document.add(logo); // All Images Read from Root folder.
-			document.add(revatureInfo);
-			document.add(accInfo);
-			document.add(table);
-			if (isEmptyList)
-				document.add(emptyTransactions);
+				//Style Appending
+				logo.addStyle(myLogo);
+				revatureInfo.addStyle(myRevatureStyle);
+				accInfo.addStyle(myAccountInfoStyle);
+				emptyTransactions.addStyle(myRevatureStyle);
+		
+				//Appending to Document
+				document.add(logo); // All Images Read from Root folder.
+				document.add(revatureInfo);
+				document.add(accInfo);
+				document.add(table);
+				if (isEmptyList)
+					document.add(emptyTransactions);
+				
+				document.close();
+				System.out.println("A PDF File has been created at location " + dest);
+				
+				//Auto-Opening the file
+//				File file = new File(dest); // Auto Opens for now....
+//				Desktop desktop = Desktop.getDesktop();
+//				desktop.open(file); // Since the value is hard-coded in, we don't need to check whether or not the file exists because it WILL ALWAYS create it.
+
+				Optional<AccountProfileEntity> profileInfo = profileRepos.findById(profileId);
 			
-			document.close();
-			System.out.println("A PDF File has been created at location " + dest);
-			
-			//Auto-Opening the file
-			File file = new File(dest); // Auto Opens for now....
-			Desktop desktop = Desktop.getDesktop();  
-			desktop.open(file); // Since the value is hard-coded in, we don't need to check whether or not the file exists because it WILL ALWAYS create it.
-			  
-			// Email the file (by fred)
-			emailServ.sendReportPdfEmail(dest, dateRange);
+				if(!profileInfo.isEmpty()) {
+					AccountProfileEntity profileInfoObj = profileInfo.get();
+					String userEmail = profileInfoObj.getEmail();
+					String name = profileInfoObj.getFirst_name();
+					
+					// Email the file (by fred)
+					emailServ.sendReportPdfEmail(dest, dateRange, userEmail, name);
+				} else {
+					System.out.println("ERROR: No profile found!");
+				}
 			
 			}
 			catch(Exception e) {
 				e.printStackTrace();
 				System.out.println("The program has failed. An exception has occured.");
-			}	
-		return document;
+			}
 		}
 }

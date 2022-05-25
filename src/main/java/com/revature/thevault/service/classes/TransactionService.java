@@ -73,7 +73,7 @@ public class TransactionService implements TransactionServiceInterface {
      * @throws MalformedURLException 
      * @throws FileNotFoundException 
      */
-    public GetResponse getTransactionHistoryByMonth(Integer accountId, int month, int year) throws FileNotFoundException, MalformedURLException {
+    public GetResponse getTransactionHistoryByMonth(Integer accountId, int month, int year, int profileId) throws FileNotFoundException, MalformedURLException {
         GetResponse deposits = depositService.getAllUserDepositsByMonth(accountId, month, year);
         GetResponse withdrawals = withdrawService.getAllUserWithdrawlsByMonth(accountId, month, year);
         List<TransactionObject> transactionObjects = new ArrayList<>();
@@ -83,7 +83,7 @@ public class TransactionService implements TransactionServiceInterface {
         transactionObjects.sort(byDate);
 
         if(!transactionObjects.isEmpty()) {
-        	exportService.createPDF(transactionObjects, month, year); // PDF File Created Here
+        	exportService.createPDF(transactionObjects, month, year, profileId); // PDF File Created Here
         }
 
         return GetResponse.builder()

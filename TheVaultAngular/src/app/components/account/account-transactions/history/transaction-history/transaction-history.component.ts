@@ -72,7 +72,7 @@ export class TransactionHistoryComponent implements OnInit {
     let selectedYear = selectedDate.getFullYear();
     let selectedMonth = selectedDate.getMonth(); // Remember that this is zero based
     if(selectedYear && selectedMonth) {
-      this.handler.getTransactionHistoryByMonth(this.globalStorage.getActiveAccount().accountId, selectedYear, selectedMonth).subscribe(this.myObserver);
+      this.handler.getTransactionHistoryByMonth(this.globalStorage.getActiveAccount().accountId, selectedYear, selectedMonth, this.globalStorage.getProfile().profileId).subscribe(this.myObserver);
     } else {
       console.error("ERROR: Please enter a valid date.");
     }

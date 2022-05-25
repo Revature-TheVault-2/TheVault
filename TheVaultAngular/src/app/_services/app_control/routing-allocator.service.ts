@@ -7,7 +7,10 @@ const ROUTES = {
   select: ['account-view'],
   detail: ['account-detail'],
   profile: ['profile'],
-  editProfile: ['edit-profile']
+  editProfile: ['edit-profile'],
+
+  // reset password functionality
+  resetpassword : ['resetpassword']
 }
 
 @Injectable({
@@ -29,4 +32,7 @@ export class RoutingAllocatorService {
   accountView():void{this.router.navigate(ROUTES.select)};
 
   editProfile():void{this.router.navigate(ROUTES.editProfile)};
+
+  // reset password functionality
+  resetpassword() : void {this.router.navigate(ROUTES.resetpassword)};
 }

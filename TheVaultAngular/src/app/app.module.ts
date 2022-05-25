@@ -28,6 +28,8 @@ import { CreateAccountComponent } from './components/account/create-account/crea
 import { TransferGenerateComponent } from './components/transaction/transfer-generate/transfer-generate.component';
 
 import { AuthInterceptorService } from './utils/auth-interceptor.service';
+import { ResetpasswordComponent } from './components/login-register/resetpassword/resetpassword.component';
+import { ResetpasswordModalComponent } from './components/login-register/login/resetpassword-modal/resetpassword-modal.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +53,9 @@ import { AuthInterceptorService } from './utils/auth-interceptor.service';
     TransactionSearchComponent,
     CreateAccountComponent,
     WithdrawDetailComponent,
-    TransferGenerateComponent
+    TransferGenerateComponent,
+    ResetpasswordComponent,
+    ResetpasswordModalComponent
   ],
   imports: [
     BrowserModule,

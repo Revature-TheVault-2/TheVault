@@ -8,6 +8,7 @@ import { AccountViewComponent } from './components/account/account-view/account-
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { LoginComponent } from './components/login-register/login/login.component';
 import { RegisterComponent } from './components/login-register/register/register.component';
+import { ResetpasswordComponent } from './components/login-register/resetpassword/resetpassword.component';
 import { DepositGenerateComponent } from './components/transaction/deposit-generate/deposit-generate.component';
 import { TransferGenerateComponent } from './components/transaction/transfer-generate/transfer-generate.component';
 import { WithdrawGenerateComponent } from './components/transaction/withdraw-generate/withdraw-generate.component';
@@ -60,6 +61,10 @@ const routes: Routes = [
   {
     component: TransferGenerateComponent,
     path: 'account-transfer'
+  },
+  {
+    component: ResetpasswordComponent,
+    path: 'resetpassword'
   }
 ];
 

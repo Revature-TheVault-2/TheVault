@@ -144,4 +144,26 @@ nbdist/
 # System Files
 .DS_Store
 Thumbs.db
+<<<<<<< HEAD
 >>>>>>> 38f11cde1cbe751113059a7ef0020f8835f59afb
+=======
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# e2e
+/e2e/*.js
+/e2e/*.map
+
+# System Files
+.DS_Store
+Thumbs.db
+### VS Code ###
+.vscode/
+!/theVaultDebug.log
+/.metadata/
+>>>>>>> 99a2b037c797ba58b7092e3892f811861d006cce

@@ -2,8 +2,12 @@
 <projectDescription>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 	<name>TheVault</name>
 =======
+=======
+	<name>TheVault</name>
+>>>>>>> 99a2b037c797ba58b7092e3892f811861d006cce
 	<name>demo</name>
 >>>>>>> 384355c41b043888f4bc7d8b78858e89b0d359ce
 =======
@@ -20,6 +24,19 @@
 		</buildCommand>
 		<buildCommand>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+			<name>org.eclipse.m2e.core.maven2Builder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+		<buildCommand>
+			<name>org.springframework.ide.eclipse.core.springbuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+		<buildCommand>
+>>>>>>> 99a2b037c797ba58b7092e3892f811861d006cce
 			<name>org.springframework.ide.eclipse.boot.validation.springbootbuilder</name>
 =======
 			<name>org.springframework.ide.eclipse.core.springbuilder</name>

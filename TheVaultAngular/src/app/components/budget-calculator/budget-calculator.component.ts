@@ -40,7 +40,7 @@ export class BudgetCalculatorComponent implements OnInit {
   }
 
   onClickSubmitIncome(amount: string){
-    this.incomeField = Number.parseFloat(amount);
+    this.incomeField = amount ? Number.parseFloat(amount) : this.incomeField;
     this.budget = this.incomeField - this.sumExpenses();
   }
 

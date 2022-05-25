@@ -45,8 +45,7 @@ export class BudgetCalculatorComponent implements OnInit {
   }
 
   onClickSubmitExpenses(name: string, amount: string){
-    console.log(typeof name, typeof amount)
-    if(name === null || amount == undefined){
+    if( !name || !amount ){
       return;
     }else{
       let expense = new Expense(name, Number.parseFloat(amount));

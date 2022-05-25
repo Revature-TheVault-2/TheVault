@@ -6,9 +6,12 @@ import java.text.DecimalFormat;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.stereotype.Service;
 
 /**
  * Stretch goals ToDo: See about sending a logo, test multiple attachments.
@@ -17,8 +20,9 @@ import org.springframework.mail.javamail.MimeMessageHelper;
  * @author Brody and Gibbons
  *
  */
+@Service
 public class EmailService {
-	
+	@Autowired
 	private static JavaMailSender emailSender;
 	// Session
 	
@@ -31,6 +35,7 @@ public class EmailService {
 //		transactionAmountEmail(-501.00f);
 //		
 //	}
+//	public EmailService() {}
 
 	public EmailService(JavaMailSender emailSender) {
 		super();
@@ -135,17 +140,18 @@ public class EmailService {
 	 */
 	public static void sendEmail(String toEmail, String subject, String body) {
 		
+		System.out.println("In sendEmail");
 		String signOff = "\n\n\n\tThe Vault Team" + "\n\t(800) 555-0000";
 		body = body + signOff;
 
-//		SimpleMailMessage message = new SimpleMailMessage();
+		SimpleMailMessage message = new SimpleMailMessage();
 
-//		message.setFrom("socialmedianow63@gmail.com");
-//		message.setTo(toEmail);
-//		message.setText(body);
-//		message.setSubject(subject);
-//
-//		emailSender.send(message);
+		message.setFrom("thevaultbankteam@gmail.com");
+		message.setTo(toEmail);
+		message.setText(body);
+		message.setSubject(subject);
+
+		emailSender.send(message);
 		System.out.println(subject);
 		System.out.println(body);
 
@@ -179,8 +185,18 @@ public class EmailService {
 		
 		FileSystemResource file = new FileSystemResource(new File(pathToFileAttachment));
 			helper.addAttachment("Report", file); // Calling it a report right now.
-			
+//			
 		emailSender.send(message);	
+	}
+	
+	public static void sendPasswordResetLink(String token, String toEmail) {
+		System.out.println("Inside the sendPasswordResetLink method");
+		String subject = "The Vault: Password Reset Requested";
+		String resetLink = "http://localhost:9000/change?token=" + token;
+		String body = "Follow this link to reset your password: " + resetLink;
+		System.out.println(toEmail);
+		
+		sendEmail(toEmail,subject, body);
 	}
 
 

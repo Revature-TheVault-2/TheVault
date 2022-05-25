@@ -25,6 +25,7 @@ public class AccountProfileEntity {
     
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "fk_user_id")
+//    int userId;
     LoginCredentialEntity logincredential;
     
     @Column(name = "first_name")

@@ -2,6 +2,7 @@ package com.revature.thevault.repository.entity;
 
 import java.sql.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -23,14 +24,26 @@ public class PasswordReset {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	@Column(name="token_id")
+	private int id;
 	
+	@Column(name="token_value", unique = true, nullable = false)
 	private String token;
 	
-	@OneToOne(targetEntity = LoginCredentialEntity.class, fetch = FetchType.EAGER)
-	@JoinColumn(nullable = false, name = "pk_user_id")
-	private LoginCredentialEntity loginCredentialIdentity;
+	
+//	@OneToOne(targetEntity = LoginCredentialEntity.class, fetch = FetchType.EAGER)
+//	@JoinColumn(nullable = false, name = "fk_user_id")
+//	private LoginCredentialEntity loginCredentialEntity;
+	private Integer fkUserId;
 	
 	private Date expirationDate;
+	
+	public PasswordReset() {}
+	
+	public PasswordReset(String token, int fkUserId) {
+		super();
+		this.token = token;
+		this.fkUserId = fkUserId;
+	}
 
 }

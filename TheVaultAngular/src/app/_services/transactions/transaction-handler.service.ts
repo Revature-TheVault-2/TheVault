@@ -81,8 +81,8 @@ export class TransactionHandlerService {
     return this.http.get<GetTransaction>(`${ENDPOINTS.TRANSACTION_HISTORY + accountId}`, this.globalStorage.getHttpOptions())
   }
 
-  getTransactionHistoryByMonth(accountId:number,year:number,month:number){
-    return this.http.get<GetTransaction>(`${ENDPOINTS.TRANSACTION_HISTORY + accountId + '/' + year + '/' + month}`, this.globalStorage.getHttpOptions())
+  getTransactionHistoryByMonth(accountId:number,year:number,month:number,profileId:number){
+    return this.http.get<GetTransaction>(`${ENDPOINTS.TRANSACTION_HISTORY + accountId + '/' + year + '/' + month + '/' + profileId}`, this.globalStorage.getHttpOptions())
   }
 
 }

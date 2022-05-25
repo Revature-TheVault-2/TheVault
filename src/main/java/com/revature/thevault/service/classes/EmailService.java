@@ -113,10 +113,7 @@ public class EmailService {
 	 * @author Brody and Gibbons
 	 * @throws MessagingException 
 	 */
-	public void sendReportPdfEmail(String pathToAttachment, String dateRange) throws MessagingException {
-		String name = "John"; // pull name from the session
-		String userEmail = "session email";
-		
+	public void sendReportPdfEmail(String pathToAttachment, String dateRange, String userEmail, String name) throws MessagingException {
 		String subject = "Copy of Banking Reports from " + dateRange;
 		String body = "Hello " + name +",\n\n"
 				+ "Attached are your reports that you requested from " + dateRange + "." 

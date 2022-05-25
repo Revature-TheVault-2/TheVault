@@ -23,7 +23,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class EmailService {
 	@Autowired
-	private static JavaMailSender emailSender;
+	private JavaMailSender emailSender;
 	// Session
 	
 	
@@ -55,7 +55,7 @@ public class EmailService {
 	 * @param float balancePostWithdrawal the balance in the negative after a withdrawal is finished.
 	 * @author Brody and Gibbons
 	 */
-	public static void overdraftEmail(float balancePostWithdrawal) {
+	public void overdraftEmail(float balancePostWithdrawal) {
 		
 		String name = "John"; // Get from session
 		String userEmail = "session value of email"; // Get from session
@@ -80,7 +80,7 @@ public class EmailService {
 	 * @param transactionAmount
 	 * @author Brody and Gibbons
 	 */
-	public static void transactionAmountEmail(float transactionAmount) {
+	public void transactionAmountEmail(float transactionAmount) {
 		String transactionType;
 		if(transactionAmount>0) {
 			 transactionType = "Deposit";
@@ -138,9 +138,8 @@ public class EmailService {
 	 * @param body
 	 * @author Brody and Gibbons
 	 */
-	public static void sendEmail(String toEmail, String subject, String body) {
+	public void sendEmail(String toEmail, String subject, String body) {
 		
-		System.out.println("In sendEmail");
 		String signOff = "\n\n\n\tThe Vault Team" + "\n\t(800) 555-0000";
 		body = body + signOff;
 
@@ -169,7 +168,7 @@ public class EmailService {
 	 * @throws If pathToFileAttachment is null, will throw a null pointer exception
 	 * @author Brody and Gibbons
 	 */
-	public static void sendEmailWithAttachment(String toEmail, String subject, String body, String pathToFileAttachment) throws MessagingException {
+	public void sendEmailWithAttachment(String toEmail, String subject, String body, String pathToFileAttachment) throws MessagingException {
 		
 		String signOff = "\n\n\n\tThe Vault Team" + "\n\t(800) 555-0000";
 		body = body + signOff;
@@ -189,12 +188,12 @@ public class EmailService {
 		emailSender.send(message);	
 	}
 	
-	public static void sendPasswordResetLink(String token, String toEmail) {
-		System.out.println("Inside the sendPasswordResetLink method");
+	public void sendPasswordResetLink(String token, String toEmail) {
+//		System.out.println("Inside the sendPasswordResetLink method");
 		String subject = "The Vault: Password Reset Requested";
 		String resetLink = "http://localhost:9000/change?token=" + token;
 		String body = "Follow this link to reset your password: " + resetLink;
-		System.out.println(toEmail);
+//		System.out.println(toEmail);
 		
 		sendEmail(toEmail,subject, body);
 	}

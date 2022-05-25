@@ -62,7 +62,7 @@ public class ResetPasswordController {
 			String email = accountProfileRepository.findByLogincredential(findLogin).getEmail();
 			System.out.println(email + "  this is the email it found");
 			System.out.println("After email string created---------------");			
-			EmailService.sendPasswordResetLink(token,email);
+			emailService.sendPasswordResetLink(token, email);
 		} catch(NullPointerException nullException) {
 			System.out.println("Invalid email reset requested.");
 			System.out.println(nullException);

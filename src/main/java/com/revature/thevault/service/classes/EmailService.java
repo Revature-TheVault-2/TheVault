@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 /**
  * Stretch goals ToDo: See about sending a logo, test multiple attachments.
@@ -19,9 +19,10 @@ import org.springframework.stereotype.Service;
  * @author Brody and Gibbons
  *
  */
-@Service("emailService")
+@Component
 public class EmailService {
 	
+	@Autowired
 	private JavaMailSender emailSender;
 	// Session
 	
@@ -34,14 +35,17 @@ public class EmailService {
 //		transactionAmountEmail(-501.00f);
 //		
 //	}
-
+	
+//	public EmailService() {
+//		
+//	}
+//	
 	@Autowired
 	public EmailService(JavaMailSender emailSender) {
 		super();
 		this.emailSender = emailSender;
 		// Add whatever for session/random stuff
 	}
-	
 	
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //		Template Methods	
@@ -113,12 +117,22 @@ public class EmailService {
 	 * @author Brody and Gibbons
 	 * @throws MessagingException 
 	 */
-	public void sendReportPdfEmail(String pathToAttachment, String dateRange, String userEmail, String name) throws MessagingException {
+	public void sendReportPdfEmail(String pathToAttachment, String dateRange, String userEmail, String name) {
 		String subject = "Copy of Banking Reports from " + dateRange;
 		String body = "Hello " + name +",\n\n"
 				+ "Attached are your reports that you requested from " + dateRange + "." 
 				+ "If you did not request this report, please contact your local bank at your earliest convenience.";
-		sendEmailWithAttachment(userEmail, subject, body, pathToAttachment);
+		try {
+			sendEmailWithAttachment(userEmail, subject, body, pathToAttachment);
+		} catch (Exception e) {
+			// catch exception and delete temp file
+			File file = new File(pathToAttachment);
+			file.delete();
+			e.printStackTrace();
+		}
+		// Delete the file after sending it
+		File file = new File(pathToAttachment);
+		file.delete();
 	}
 	
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -172,15 +186,15 @@ public class EmailService {
 		
 		MimeMessageHelper helper = new MimeMessageHelper(message, true);
 		
-		helper.setFrom("Someemail@email.com");
+		helper.setFrom("thevaultbankteam@gmail.com");
 		helper.setTo(toEmail);
 		helper.setText(body);
 		helper.setSubject(subject);
 		
 		FileSystemResource file = new FileSystemResource(new File(pathToFileAttachment));
-			helper.addAttachment("Report", file); // Calling it a report right now.
+			helper.addAttachment("Report.pdf", file); // Calling it a report right now.
 			
-		emailSender.send(message);	
+		emailSender.send(message);
 	}
 
 

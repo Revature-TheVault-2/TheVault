@@ -48,7 +48,7 @@ public class ExportPDFService {
 	@Autowired
 	private AccountProfileRepository profileRepos;
 	
-	public Document createPDF(List<TransactionObject> transactionObjects, int month, int year, int profileId) throws FileNotFoundException, MalformedURLException {
+	public void createPDF(List<TransactionObject> transactionObjects, int month, int year, int profileId) throws FileNotFoundException, MalformedURLException {
 		Calendar cal = Calendar.getInstance();
     	cal.set(year, month-1, 1);
     	cal.set(Calendar.DAY_OF_MONTH, cal.getActualMaximum(Calendar.DATE));
@@ -60,7 +60,7 @@ public class ExportPDFService {
 		
 		//Document Creation
 		String randPath = strServ.getSaltString();
-		String dest = "src/main/resources/pdf/" + randPath + "/myMonthStatement.pdf";
+		String dest = "src/main/resources/pdf/" + randPath + "myMonthStatement.pdf";
 		PdfWriter writer = new PdfWriter(dest); // Writer can create PDF files
 		PdfDocument pdfFile = new PdfDocument(writer); //Point of entry to work with a PDF file.
 		Document document = new Document(pdfFile); // Desired output is a Document Object. The actual PDF file
@@ -195,10 +195,10 @@ public class ExportPDFService {
 				System.out.println("A PDF File has been created at location " + dest);
 				
 				//Auto-Opening the file
-				File file = new File(dest); // Auto Opens for now....
-				Desktop desktop = Desktop.getDesktop();  
-				desktop.open(file); // Since the value is hard-coded in, we don't need to check whether or not the file exists because it WILL ALWAYS create it.
-				  
+//				File file = new File(dest); // Auto Opens for now....
+//				Desktop desktop = Desktop.getDesktop();
+//				desktop.open(file); // Since the value is hard-coded in, we don't need to check whether or not the file exists because it WILL ALWAYS create it.
+
 				Optional<AccountProfileEntity> profileInfo = profileRepos.findById(profileId);
 			
 				if(!profileInfo.isEmpty()) {
@@ -216,7 +216,6 @@ public class ExportPDFService {
 			catch(Exception e) {
 				e.printStackTrace();
 				System.out.println("The program has failed. An exception has occured.");
-			}	
-		return document;
+			}
 		}
 }

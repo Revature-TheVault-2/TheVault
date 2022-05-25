@@ -8,5 +8,5 @@ nohup http-server -a 0.0.0.0 TheVault/TheVaultAngular/dist/the-vault -p 9001 \
 
 cd
 cd /home/ec2-user/server/target
-nohup java -jar demo-0.0.1-SNAPSHOT.jar \
+sudo java -jar -Dserver.port=9000 \
     *.jar > /dev/null 2> /dev/null < /dev/null &

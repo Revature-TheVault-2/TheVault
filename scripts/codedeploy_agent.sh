@@ -27,7 +27,8 @@ echo "          ((((((((((     installing angular END     ))))))))))          "
 echo "          ((((((((((     installing maven START     ))))))))))          "
 sudo wget http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo -O /etc/yum.repos.d/epel-apache-maven.repo
 sudo sed -i s/\$releasever/6/g /etc/yum.repos.d/epel-apache-maven.repo
-sudo yum install -y maven
+#remove apache- if not amazon linux
+sudo yum install -y apache-maven
 echo "          ((((((((((     installing maven END     ))))))))))          "
 
 
@@ -41,7 +42,8 @@ wget https://aws-codedeploy-us-east-1.s3.us-east-1.amazonaws.com/latest/install
 chmod +x ./install
 sudo ./install auto
 echo "(((((     Installing Python Pip 5/7   )))))"
-dnf install -y python3-pip
+curl -O https://bootstrap.pypa.io/get-pip.py
+python3 get-pip.py --user
 echo "(((((     Installing AWSCLI 6/7   )))))"
 pip3 install awscli --upgrade --user
 

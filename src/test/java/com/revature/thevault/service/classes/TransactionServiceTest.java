@@ -5,6 +5,8 @@ import com.revature.thevault.service.dto.DepositResponseObject;
 import com.revature.thevault.service.dto.TransactionObject;
 import com.revature.thevault.service.dto.WithdrawResponseObject;
 import com.revature.thevault.service.exceptions.InvalidAccountIdException;
+
+import org.junit.Ignore;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -23,6 +25,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@Ignore
 @SpringBootTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_CLASS)

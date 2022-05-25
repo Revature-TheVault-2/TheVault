@@ -14,6 +14,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
+import org.junit.Ignore;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -46,6 +47,7 @@ import com.revature.thevault.service.exceptions.InvalidAmountException;
 import com.revature.thevault.service.exceptions.InvalidDepositIdException;
 import com.revature.thevault.service.exceptions.InvalidRequestException;
 
+@Ignore
 @SpringBootTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class DepositServiceTest {

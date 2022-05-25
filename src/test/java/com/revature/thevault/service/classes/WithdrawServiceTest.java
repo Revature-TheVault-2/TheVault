@@ -11,6 +11,8 @@ import com.revature.thevault.service.dto.WithdrawResponseObject;
 import com.revature.thevault.service.exceptions.InvalidAmountException;
 import com.revature.thevault.service.exceptions.InvalidRequestException;
 import com.revature.thevault.service.exceptions.InvalidWithdrawIdRequest;
+
+import org.junit.Ignore;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -36,6 +38,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
 
+@Ignore
 @SpringBootTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_CLASS)

@@ -14,7 +14,7 @@ export class TransferGenerateService {
   ) { }
 
   createTransfer(transfer: TransferRequest) {
-    let putTransferUrl = `http://localhost:9000/account/transfer`;
+    let putTransferUrl = `http://54.175.17.192:9000/account/transfer`;
     console.log(transfer);
     return this.http.put<TransferRequest>(putTransferUrl, JSON.stringify({
       ownerAccountId: transfer.ownerAccountId,

@@ -47,22 +47,34 @@ export class TransactionHistoryComponent implements OnInit {
 
   // Create observer object
   myObserver = {
-    next: (x: GetTransaction) => this.transactions = x.gotObject,
+    next: (retrieved: GetTransaction) => this.onRetrievedTransactions(retrieved),
     error: (err: Error) => {
       this.globalStorage.transSuccess = false;
       this.globalStorage.transFail = true;
       console.error("No transactions found: " + err)
-    },
-    complete: () => console.log('Transactions retrieved successfully!'),
+    }
   };
+
+  onRetrievedTransactions(retrieved: GetTransaction) {
+    this.transactions = retrieved.gotObject;
+    if(this.transactions.length) {
+      console.log("We found transactions for this month!");
+    } else {
+      console.log("Successfully executed, but no transactions found!");
+    }
+  }
 
   // When we submit, retrieve the transaction history by month
   onSubmit(): void {
-    console.log("Submit was hit! This is what the date value is set to: " + this.selected);
+    // console.log("Submit was hit! This is what the date value is set to: " + this.selected);
     let selectedDate = new Date(this.selected + '-01T00:00:00');
-    console.log("And this is that date string as an object! " + selectedDate.getFullYear() + "-" + selectedDate.getMonth());
+    // console.log("And this is that date string as an object! " + selectedDate.getFullYear() + "-" + selectedDate.getMonth());
     let selectedYear = selectedDate.getFullYear();
     let selectedMonth = selectedDate.getMonth(); // Remember that this is zero based
-    this.handler.getTransactionHistoryByMonth(this.globalStorage.getActiveAccount().accountId, selectedYear, selectedMonth).subscribe(this.myObserver);
+    if(selectedYear && selectedMonth) {
+      this.handler.getTransactionHistoryByMonth(this.globalStorage.getActiveAccount().accountId, selectedYear, selectedMonth).subscribe(this.myObserver);
+    } else {
+      console.error("ERROR: Please enter a valid date.");
+    }
   }
 }

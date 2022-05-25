@@ -4,10 +4,14 @@ import java.awt.Desktop;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.net.MalformedURLException;
+import java.sql.Date;
 import java.time.LocalDate;
-import java.util.ArrayList;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
+import java.util.Calendar;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.itextpdf.io.font.FontProgram;
@@ -22,17 +26,38 @@ import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.Style;
 import com.itextpdf.layout.borders.SolidBorder;
-import com.itextpdf.layout.element.*;
+import com.itextpdf.layout.element.Cell;
+import com.itextpdf.layout.element.Image;
+import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.properties.UnitValue;
 import com.revature.thevault.service.dto.TransactionObject;
 
 @Service("exportPDFService")
-
 public class ExportPDFService {
-	public static Document createPDF(List<TransactionObject> transactionObjects) throws FileNotFoundException, MalformedURLException {
+	
+	@Autowired
+	private RandomStringService strServ;
+	
+	@Autowired
+	private EmailService emailServ;
+	
+	@Autowired
+	AccountService accountServ;
+	
+	public Document createPDF(List<TransactionObject> transactionObjects, int month, int year) throws FileNotFoundException, MalformedURLException {
+		Calendar cal = Calendar.getInstance();
+    	cal.set(year, month-1, 1);
+    	cal.set(Calendar.DAY_OF_MONTH, cal.getActualMaximum(Calendar.DATE));
+    	Date startDate = new Date(cal.getTimeInMillis());
+    	cal.add(Calendar.MONTH, 1);
+    	cal.set(Calendar.DAY_OF_MONTH, cal.getActualMaximum(Calendar.DATE));
+    	Date endDate = new Date(cal.getTimeInMillis());
+    	String dateRange = startDate.toString() + " to " + endDate.toString();
 		
 		//Document Creation
-		String dest = "src/main/resources/pdf/myMonthStatement.pdf";
+		String randPath = strServ.getSaltString();
+		String dest = "src/main/resources/pdf/" + randPath + "/myMonthStatement.pdf";
 		PdfWriter writer = new PdfWriter(dest); // Writer can create PDF files
 		PdfDocument pdfFile = new PdfDocument(writer); //Point of entry to work with a PDF file.
 		Document document = new Document(pdfFile); // Desired output is a Document Object. The actual PDF file
@@ -167,10 +192,13 @@ public class ExportPDFService {
 			System.out.println("A PDF File has been created at location " + dest);
 			
 			//Auto-Opening the file
-			File file = new File("src/main/resources/pdf/myMonthStatement.pdf"); // Auto Opens for now....
+			File file = new File(dest); // Auto Opens for now....
 			Desktop desktop = Desktop.getDesktop();  
 			desktop.open(file); // Since the value is hard-coded in, we don't need to check whether or not the file exists because it WILL ALWAYS create it.
 			  
+			// Email the file (by fred)
+			emailServ.sendReportPdfEmail(dest, dateRange);
+			
 			}
 			catch(Exception e) {
 				e.printStackTrace();

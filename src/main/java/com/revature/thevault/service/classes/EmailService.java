@@ -6,9 +6,11 @@ import java.text.DecimalFormat;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.stereotype.Service;
 
 /**
  * Stretch goals ToDo: See about sending a logo, test multiple attachments.
@@ -17,21 +19,23 @@ import org.springframework.mail.javamail.MimeMessageHelper;
  * @author Brody and Gibbons
  *
  */
+@Service("emailService")
 public class EmailService {
 	
-	private static JavaMailSender emailSender;
+	private JavaMailSender emailSender;
 	// Session
 	
 	
 //	String token = UUID.randomUUID().toString();
 	// My random generator for random passwords maybe
 	
-//	public static void main(String[] args) {
+//	public  void main(String[] args) {
 //		overdraftEmail();
 //		transactionAmountEmail(-501.00f);
 //		
 //	}
 
+	@Autowired
 	public EmailService(JavaMailSender emailSender) {
 		super();
 		this.emailSender = emailSender;
@@ -50,7 +54,7 @@ public class EmailService {
 	 * @param float balancePostWithdrawal the balance in the negative after a withdrawal is finished.
 	 * @author Brody and Gibbons
 	 */
-	public static void overdraftEmail(float balancePostWithdrawal) {
+	public void overdraftEmail(float balancePostWithdrawal) {
 		
 		String name = "John"; // Get from session
 		String userEmail = "session value of email"; // Get from session
@@ -75,7 +79,7 @@ public class EmailService {
 	 * @param transactionAmount
 	 * @author Brody and Gibbons
 	 */
-	public static void transactionAmountEmail(float transactionAmount) {
+	public void transactionAmountEmail(float transactionAmount) {
 		String transactionType;
 		if(transactionAmount>0) {
 			 transactionType = "Deposit";
@@ -104,21 +108,20 @@ public class EmailService {
 	/**
 	 * Template method to send emails with an attached pdf of the user's banking reports.
 	 * 
-	 * @param A range of dates, not implemented yet.
+	 * @param A range of dates, in string form.
 	 * @param pathToAttachment
 	 * @author Brody and Gibbons
+	 * @throws MessagingException 
 	 */
-	public static void sendReportPdfEmail(String pathToAttachment /*, Date rangeOfDates */) {
-		
+	public void sendReportPdfEmail(String pathToAttachment, String dateRange) throws MessagingException {
 		String name = "John"; // pull name from the session
-		String dates = "dates range of report";
-		
 		String userEmail = "session email";
-		String subject = "Copy of Banking Reports from " + dates;
-		String body = "Hello " + name +",\n\n"
-				+ "Attached are your reports that you requested from " + dates + "." 
-				+ "If you did not request this report, please contact your local bank at your earliest convenience.";
 		
+		String subject = "Copy of Banking Reports from " + dateRange;
+		String body = "Hello " + name +",\n\n"
+				+ "Attached are your reports that you requested from " + dateRange + "." 
+				+ "If you did not request this report, please contact your local bank at your earliest convenience.";
+		sendEmailWithAttachment(userEmail, subject, body, pathToAttachment);
 	}
 	
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -133,7 +136,7 @@ public class EmailService {
 	 * @param body
 	 * @author Brody and Gibbons
 	 */
-	public static void sendEmail(String toEmail, String subject, String body) {
+	public void sendEmail(String toEmail, String subject, String body) {
 		
 		String signOff = "\n\n\n\tThe Vault Team" + "\n\t(800) 555-0000";
 		body = body + signOff;
@@ -163,7 +166,7 @@ public class EmailService {
 	 * @throws If pathToFileAttachment is null, will throw a null pointer exception
 	 * @author Brody and Gibbons
 	 */
-	public static void sendEmailWithAttachment(String toEmail, String subject, String body, String pathToFileAttachment) throws MessagingException {
+	public void sendEmailWithAttachment(String toEmail, String subject, String body, String pathToFileAttachment) throws MessagingException {
 		
 		String signOff = "\n\n\n\tThe Vault Team" + "\n\t(800) 555-0000";
 		body = body + signOff;

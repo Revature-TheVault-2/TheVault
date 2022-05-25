@@ -34,6 +34,9 @@ public class TransactionService implements TransactionServiceInterface {
 
     @Autowired
     private WithdrawService withdrawService;
+    
+    @Autowired
+    private ExportPDFService exportService;
 
     /**
      * Retrieves a transaction history with the account id as parameter.
@@ -80,7 +83,7 @@ public class TransactionService implements TransactionServiceInterface {
         transactionObjects.sort(byDate);
 
         if(!transactionObjects.isEmpty()) {
-        	ExportPDFController.createPDF(transactionObjects); // PDF File Created Here
+        	exportService.createPDF(transactionObjects, month, year); // PDF File Created Here
         }
 
         return GetResponse.builder()

@@ -43,11 +43,11 @@ public class ExportPDFController {
 	 * @throws MalformedURLException 
 	 * @throws FileNotFoundException 
 	 */
-	public static Document createPDF(List<TransactionObject> transactionObjects) throws FileNotFoundException, MalformedURLException {
-		// Maybe there doesn't need to be a reason for two authentications. Just have the first one from the TransactionService layer and we are good to go.
-		
-		return ExportPDFService.createPDF(transactionObjects);
-	}
+//	public static Document createPDF(List<TransactionObject> transactionObjects) throws FileNotFoundException, MalformedURLException {
+//		// Maybe there doesn't need to be a reason for two authentications. Just have the first one from the TransactionService layer and we are good to go.
+//		
+//		return ExportPDFService.createPDF(transactionObjects);
+//	}
 	
 	/* void exportPDF(){
 	/*	

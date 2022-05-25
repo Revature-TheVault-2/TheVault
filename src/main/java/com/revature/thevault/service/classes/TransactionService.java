@@ -170,8 +170,7 @@ public class TransactionService implements TransactionServiceInterface {
                 "Withdraw",
                 withdrawal.getRequesttypeentity().getName(),
                 withdrawal.getReference(),
-                withdrawal.getDateWithdraw().toInstant().atZone(ZoneId.systemDefault())
-                	      	.toLocalDate(),
+                withdrawal.getDateWithdraw().toLocalDate(),
                 withdrawal.getAmount()
         );
     }
@@ -190,8 +189,7 @@ public class TransactionService implements TransactionServiceInterface {
                 "Deposit",
                 deposit.getDeposittypeentity().getName(),
                 deposit.getReference(),
-                deposit.getDateDeposit().toInstant().atZone(ZoneId.systemDefault())
-      	      			.toLocalDate(),
+                deposit.getDateDeposit().toLocalDate(),
                 deposit.getAmount()
         );
     }
@@ -206,6 +204,8 @@ public class TransactionService implements TransactionServiceInterface {
 	 */
 	private float calculateMonthBalance(int accountId, int month, int year) {
 		Calendar cal = Calendar.getInstance();
+		cal.set(year, month, 1);
+    	cal.set(Calendar.DAY_OF_MONTH, cal.getActualMaximum(Calendar.DATE));
     	Date endDate = new Date(cal.getTimeInMillis());
     	cal.set(year, month-1, 1);
     	cal.set(Calendar.DAY_OF_MONTH, cal.getActualMaximum(Calendar.DATE));

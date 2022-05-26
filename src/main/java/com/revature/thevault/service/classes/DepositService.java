@@ -26,6 +26,7 @@ import com.revature.thevault.repository.entity.AccountTypeEntity;
 import com.revature.thevault.repository.entity.DepositEntity;
 import com.revature.thevault.repository.entity.DepositTypeEntity;
 import com.revature.thevault.repository.entity.LoginCredentialEntity;
+import com.revature.thevault.service.classes.Email.EmailService;
 import com.revature.thevault.service.dto.DepositResponseObject;
 import com.revature.thevault.service.exceptions.InvalidAccountIdException;
 import com.revature.thevault.service.exceptions.InvalidDepositIdException;

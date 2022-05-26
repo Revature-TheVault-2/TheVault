@@ -23,6 +23,7 @@ import com.revature.thevault.repository.entity.AccountProfileEntity;
 import com.revature.thevault.repository.entity.AccountTypeEntity;
 import com.revature.thevault.repository.entity.LoginCredentialEntity;
 import com.revature.thevault.repository.entity.WithdrawEntity;
+import com.revature.thevault.service.classes.Email.EmailService;
 import com.revature.thevault.service.dto.WithdrawResponseObject;
 import com.revature.thevault.service.exceptions.InvalidWithdrawIdRequest;
 import com.revature.thevault.service.interfaces.WithdrawServiceInterface;

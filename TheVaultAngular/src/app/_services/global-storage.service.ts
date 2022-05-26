@@ -23,9 +23,13 @@ export class GlobalStorageService {
   getAccount!: GetAccount;
   accounts!: Account[];
 
+  token!:string;
+  transSuccess : boolean = false;
+  transFail : boolean = false;
   constructor() { }
 
   public setHttpOptions(credentials: LoginUser): void {
+    this.resetHttpOptions();
     this.httpOptions.headers = this.httpOptions.headers.append('authorization', 'Basic ' + btoa(credentials.username + ':' + credentials.password));
   }
 

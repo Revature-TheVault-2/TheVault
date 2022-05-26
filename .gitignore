@@ -44,6 +44,23 @@ nbdist/
 
 # IDE - VSCode
 .vscode/*
+/.metadata/
+!/theVaultDebug.log
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# e2e
+/e2e/*.js
+/e2e/*.map
+
+# System Files
+.DS_Store
+Thumbs.db
+
+# IDE - VSCode
+.vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
@@ -136,8 +153,5 @@ nbdist/
 # System Files
 .DS_Store
 Thumbs.db
-<<<<<<< HEAD
-=======
 /.metadata/
-
->>>>>>> c25cb62c5ed3063fadf3594cc99b3e60cbc3d745
+*.log

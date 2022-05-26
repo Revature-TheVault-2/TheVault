@@ -33,7 +33,7 @@ export class SelectComponent implements OnInit {
 
 
   ngOnInit(): void {
-    // this.setupAccounts();
+    this.setupAccounts();
   }
 
   setupAccounts(){
@@ -79,6 +79,7 @@ export class SelectComponent implements OnInit {
   accountObserver = {
     next: (data: GetAccount) => {
       this.accounts = data.gotObject;
+      this.globalStorage.accounts = data.gotObject;
     },
     error: (err: Error) => console.log("account observer error: " + err),
     complete: () => console.log("Completed getting user accounts")

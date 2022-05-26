@@ -43,6 +43,8 @@ public class WithdrawEntity {
     
     @Column(name = "amount")
     float amount;
+    
+    String email;
 
     public WithdrawEntity(int i, AccountEntity accountEntity2, RequestTypeEntity requestTypeByName,
             RequestStatusEntity requestStatusByName, Object reference2, Date valueOf, Object amount2) {

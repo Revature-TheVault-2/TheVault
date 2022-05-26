@@ -16,6 +16,7 @@ public class WithdrawRequest {
     //request status is default pending
     String reference;
     float amount;
+<<<<<<< HEAD
     public int getAccountId() {
         return 0;
     }
@@ -28,4 +29,8 @@ public class WithdrawRequest {
     public Object getAmount() {
         return null;
     }
+=======
+    String email; //used for later development 
+
+>>>>>>> 64f8b9ae0f6865205fdcbd0304034fcf6c382dd2
 }

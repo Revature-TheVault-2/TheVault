@@ -201,7 +201,8 @@ class AccountProfileServiceTest {
                normalAccountProfileEntity.getLast_name(),
                normalAccountProfileEntity.getEmail(),
                normalAccountProfileEntity.getPhone_number(),
-               normalAccountProfileEntity.getAddress()
+               normalAccountProfileEntity.getAddress(),
+               normalAccountProfileEntity.getNotificationAmount()
        );
 
        Mockito.when(accountProfileRepository.save(normalAccountProfileEntity))

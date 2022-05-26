@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 2022-05-23 10:13:07,216 DEBUG dLog [http-nio-9000-exec-2] Class: class com.revature.thevault.presentation.controller.LoginController
 Method: findLoginCredential
 Arguments: [LoginRequest(username=username1, password=password1)]
@@ -3509,3 +3510,5 @@ RETURNING: GetResponse(gotObject=[TransactionObject(transactionId=1, transaction
 Method: getTransactionHistory
 RETURNING: GetResponse(gotObject=[TransactionObject(transactionId=1, transactionType=Deposit, transactionDetail=Direct Deposit, transactionReference=FR3234, date=2022-05-24, amount=5.0)])
 >>>>>>> 38f11cde1cbe751113059a7ef0020f8835f59afb
+=======
+>>>>>>> 64f8b9ae0f6865205fdcbd0304034fcf6c382dd2

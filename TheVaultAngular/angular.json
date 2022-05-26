@@ -27,6 +27,7 @@
               "src/assets"
             ],
             "styles": [
+<<<<<<< HEAD
                "src/styles.css",
                {
                 "input": "src/DarkMode.css",
@@ -38,6 +39,9 @@
                 "bundleName": "Light-Mode",
                 "inject": false
               }
+=======
+              "src/styles.css"
+>>>>>>> 64f8b9ae0f6865205fdcbd0304034fcf6c382dd2
             ],
             "scripts": []
           },

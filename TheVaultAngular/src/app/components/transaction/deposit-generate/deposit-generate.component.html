@@ -1,11 +1,18 @@
 <h1>Make a Deposit</h1>
 <form #depositForm class="was-validated" (ngSubmit)="onClickSubmit(Wbox.value, depositType.value, reference.value)">
     <div class="col-md-1">
+<<<<<<< HEAD
         <label for="Wbox" class="form-label">Deposit:</label>
         <input type="number" class="form-control" min="1" id="Wbox" #Wbox placeholder="Desired Amount"
             name="withdrawbox" required ngModel>
         <div class="valid-feedback">Valid.</div>
         <div class="invalid-feedback">Enter number greater than 1</div>
+=======
+      <label for="Wbox" class="form-label">Deposit:</label>
+      <input type="number" class="form-control" min="1" id="Wbox" #Wbox placeholder="Desired Amount" name="withdrawbox" required ngModel>
+      <div class="valid-feedback feedback-text">Valid.</div>
+      <div class="invalid-feedback feedback-text">Enter number greater than 1</div>
+>>>>>>> 64f8b9ae0f6865205fdcbd0304034fcf6c382dd2
     </div>
 
     <div class="col-md-2">

@@ -10,11 +10,37 @@ import { GlobalStorageService } from './_services/global-storage.service';
 })
 export class AppComponent {
   title = 'TheVault';
+ buttonText: String = "Light Mode";
+
+  toggleTheme(): void{
+    document.body.classList.toggle('light-theme');
+
+    // let cardBody= document.getElementById('accountCard'); // Some issues with this one right now
+    // cardBody?.classList.toggle('light-theme');
+
+    let tableBody = document.getElementById('transactionTable');
+    tableBody?.classList.toggle('light-theme');
+
+    let accountHeader = document.getElementById('accountHeader');
+    accountHeader?.classList.toggle('light-theme');
+    let accountBackground = document.getElementById('accountBackground');
+    accountBackground?.classList.toggle('light-theme');
+
+    let navbar = document.getElementById('navbar')
+    navbar?.classList.toggle('light-theme')
+
+  }
+
+
 
   logout(){
-    this.globalStorage.setProfile(new Profile(0,0,'','','','',''));
+    this.globalStorage.setProfile(new Profile(0,0,'','','','','',0));
     this.globalStorage.setAccounts([]);
     this.globalStorage.setUserId(0);
+<<<<<<< HEAD
+=======
+    this.globalStorage.token = "";
+>>>>>>> 64f8b9ae0f6865205fdcbd0304034fcf6c382dd2
     this.globalStorage.setUsername("");
     console.log("logout");
   }

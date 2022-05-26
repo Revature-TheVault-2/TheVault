@@ -1,5 +1,11 @@
 <div id="editP-form">
+<<<<<<< HEAD
   <img class="vault-title" src="../../../assets/vault_logo.png" alt="templogo">
+=======
+  <div class="center">
+    <img class="edit-profile-vault-title" src="../../../assets/vault_logo.png" alt="templogo">
+  </div>
+>>>>>>> 64f8b9ae0f6865205fdcbd0304034fcf6c382dd2
   <br>
   <form class="row g-3 needs-validation">
     <div class="col-md-4">
@@ -40,6 +46,7 @@
         required>
       <div class="invalid-feedback">
         Write a valid address
+<<<<<<< HEAD
       </div>
       <div class="col-md-6">
         <label for="validationCustom06" class="form-label">Notifcation Settings</label><br>
@@ -58,7 +65,27 @@
       </div>
     </div>
     <!-- <div>
+=======
+      </div>
+      <div class="col-md-6">
+        <label for="validationCustom06" class="form-label">Notifcation Settings</label><br>
+        <p>Entering an amount in the field below will set up email notifications for transactions that exceed that
+          amount</p>
+        <label for="validationCustom06" class="form-label">Transaction Amount</label>
+        <input type="number" class="form-control" id="validationCustom05" name="validationCustom05"
+          [(ngModel)]="notificationAmount" required>
+        <div class="invalid-feedback">
+          Write a valid amount
+        </div>
+      </div>
+      <div class="col-12">
+        <button class="btn btn-primary" type="button" (click)="submit()">Submit</button>
+        <button class="btn btn-secondary" type="button" (click)="goBack()">Back</button>
+      </div>
+      <!-- <div>
+>>>>>>> 64f8b9ae0f6865205fdcbd0304034fcf6c382dd2
         <button class="btn btn-secondary" type="button" (click)="goBack()">Back</button>
     </div> -->
+    </div>
   </form>
 </div>

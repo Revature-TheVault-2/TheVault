@@ -47,6 +47,24 @@ nbdist/
 .vscode/*
 /.metadata/
 !/theVaultDebug.log
+<<<<<<< HEAD
+=======
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# e2e
+/e2e/*.js
+/e2e/*.map
+
+# System Files
+.DS_Store
+Thumbs.db
+
+# IDE - VSCode
+.vscode/*
+>>>>>>> 64f8b9ae0f6865205fdcbd0304034fcf6c382dd2
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
@@ -166,4 +184,70 @@ Thumbs.db
 .vscode/
 !/theVaultDebug.log
 /.metadata/
+<<<<<<< HEAD
 >>>>>>> 99a2b037c797ba58b7092e3892f811861d006cce
+=======
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+### NPM ###
+node_modules/
+
+### Gradle ###
+.gradle
+
+##Spring Boot##
+.yml
+
+### Maven ###
+target/
+log/
+
+# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
+!gradle-wrapper.jar
+
+### STS ###
+.apt_generated
+#.classpath #intending to let people import projects a bit easier
+.factorypath
+#.project #intending to let people import projects a bit easier
+.settings
+.springBeans
+Servers/
+.recommenders/
+.metadata/
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# e2e
+/e2e/*.js
+/e2e/*.map
+
+# System Files
+.DS_Store
+Thumbs.db
+/.metadata/
+*.log
+>>>>>>> 64f8b9ae0f6865205fdcbd0304034fcf6c382dd2

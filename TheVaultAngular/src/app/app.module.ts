@@ -30,9 +30,13 @@ import { TransferGenerateComponent } from './components/transaction/transfer-gen
 import { AuthInterceptorService } from './utils/auth-interceptor.service';
 <<<<<<< HEAD
 import { AlertComponent } from './components/alert/alert.component';
+<<<<<<< HEAD
 =======
 import { AccountTransactionByMonthComponent } from './components/account/account-transaction-by-month/account-transaction-by-month.component';
 >>>>>>> 38f11cde1cbe751113059a7ef0020f8835f59afb
+=======
+import { BudgetCalculatorComponent } from './components/budget-calculator/budget-calculator.component';
+>>>>>>> 64f8b9ae0f6865205fdcbd0304034fcf6c382dd2
 
 @NgModule({
   declarations: [
@@ -58,10 +62,15 @@ import { AccountTransactionByMonthComponent } from './components/account/account
     WithdrawDetailComponent,
     TransferGenerateComponent,
 <<<<<<< HEAD
+<<<<<<< HEAD
     AlertComponent
 =======
     AccountTransactionByMonthComponent
 >>>>>>> 38f11cde1cbe751113059a7ef0020f8835f59afb
+=======
+    AlertComponent,
+    BudgetCalculatorComponent
+>>>>>>> 64f8b9ae0f6865205fdcbd0304034fcf6c382dd2
   ],
   imports: [
     BrowserModule,

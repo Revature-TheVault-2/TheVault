@@ -25,14 +25,20 @@ export class WithdrawGenerateComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  // generates the object to be send to the back end.
   onClickSubmit(amount:string, type:string, reference:string){
     
     let withdraw: WithdrawRequest = new WithdrawRequest(
       this.globalStorage.getActiveAccount().accountId,
       type,
       reference,
+<<<<<<< HEAD
       Number.parseFloat(amount)
       //COde to triggert alert//
+=======
+      Number.parseFloat(amount),
+      this.globalStorage.getActiveAccount().email
+>>>>>>> 64f8b9ae0f6865205fdcbd0304034fcf6c382dd2
     );
 
     //Checks to make sure the withdraw request is not over the available balance

@@ -22,7 +22,8 @@ export class MockGlobalStorage extends GlobalStorageService{
         "name",
         "email@email.com",
         "1231231234",
-        "123 Address"
+        "123 Address",
+        0
       );
   }
 }
@@ -59,7 +60,8 @@ describe('EditProfileComponent', () => {
         "name",
         "email@email.com",
         "1231231234",
-        "123 Address"
+        "123 Address",
+        0
     );
     fixture.detectChanges();
   });
@@ -79,7 +81,8 @@ describe('EditProfileComponent', () => {
       "lastName",
       "email@email.com",
       "1231231234",
-      "123 address"
+      "123 address",
+      0
     );
 
     let globalStorage = fixture.debugElement.injector.get(GlobalStorageService);
@@ -106,10 +109,11 @@ describe('EditProfileComponent', () => {
       "lastName",
       "email@email.com",
       "1231231234",
-      "123 address"
+      "123 address",
+      0
     );
 
-    let newProfile: Profile = new Profile(1, 1, "newFirst", "newLast", "email@email.com", "1231231234", "123 address");
+    let newProfile: Profile = new Profile(1, 1, "newFirst", "newLast", "email@email.com", "1231231234", "123 address", 0);
 
     let putProfile: PutProfile = {
       success: true,

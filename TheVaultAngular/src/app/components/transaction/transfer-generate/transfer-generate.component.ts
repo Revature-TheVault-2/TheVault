@@ -69,7 +69,8 @@ export class TransferGenerateComponent implements OnInit {
     let withdraw: WithdrawRequest = new WithdrawRequest(
       this.activeAccountId, 
       'Transfer', `Transfer to Account: ${this.receiverAccount.accountId}`,
-      Number.parseFloat(amount)
+      Number.parseFloat(amount),
+      this.globalStorage.getActiveAccount().email
     );
     
     this.transactionHandler.createWithdraw(withdraw).subscribe(this.createWithdrawObserver);
@@ -87,7 +88,8 @@ export class TransferGenerateComponent implements OnInit {
         'Transfer', 
         this.receiverAccount.accountId,
         `Transer from Account: ${this.activeAccountId}`,
-        this.amount
+        this.amount,
+        this.globalStorage.getActiveAccount().email
       )
       this.transactionHandler.createDeposit(deposit).subscribe(this.createDepositObserver);
     },

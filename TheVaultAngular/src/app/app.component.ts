@@ -1,3 +1,4 @@
+import { Component, Inject, ViewEncapsulation } from '@angular/core';
 import { Component, ViewEncapsulation } from '@angular/core';
 import { Profile } from './models/users/profile.model';
 import { GlobalStorageService } from './_services/global-storage.service';
@@ -10,6 +11,28 @@ import { GlobalStorageService } from './_services/global-storage.service';
 })
 export class AppComponent {
   title = 'TheVault';
+ buttonText: String = "Light Mode";
+
+  toggleTheme(): void{
+    document.body.classList.toggle('light-theme');
+
+    // let cardBody= document.getElementById('accountCard'); // Some issues with this one right now
+    // cardBody?.classList.toggle('light-theme');
+
+    let tableBody = document.getElementById('transactionTable');
+    tableBody?.classList.toggle('light-theme');
+
+    let accountHeader = document.getElementById('accountHeader');
+    accountHeader?.classList.toggle('light-theme');
+    let accountBackground = document.getElementById('accountBackground');
+    accountBackground?.classList.toggle('light-theme');
+
+    let navbar = document.getElementById('navbar')
+    navbar?.classList.toggle('light-theme')
+
+  }
+
+
 
   logout(){
     this.globalStorage.setProfile(new Profile(0,0,'','','','',''));

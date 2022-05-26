@@ -42,5 +42,11 @@ public class AccountProfileEntity {
     @Column(name = "address")
     String address;
     
+    @Column(name = "notification_amount", nullable=true)
+    float notificationAmount;
+
+    
+    
+    
     
 }

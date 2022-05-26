@@ -5,15 +5,23 @@ export class Account {
         private _userId: number,
         private _accountType: string,
         private _availableBalance: number,
-        private _pendingBalance: number
+        private _pendingBalance: number,
+        private _email: string
     ){
         this._accountId = _accountId;
         this._userId = _userId;
         this._accountType = _accountType;
         this._availableBalance = _availableBalance;
         this._pendingBalance = _pendingBalance;
+        this._email = _email;
     }
 
+    public get email(): string {
+        return this._email;
+    }
+    public set email(value: string) {
+        this._email = value;
+    }
     public get pendingBalance(): number {
         return this._pendingBalance;
     }

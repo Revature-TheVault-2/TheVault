@@ -1,11 +1,11 @@
-<div class=>
+<div class='account-header-style' style="border: black;">
     <div class="shadow">
         <div class="card">
-            <div class="card-body">
+            <div class="card-body account-header-style" id="accountHeader" style="border: black;">
                 <div class="d-flex flex-column">
                     <div class="d-flex justify-content-center">
                         <div class="p-2">
-                            <span class="display-4">{{account.accountType}} Account {{account.accountId}}</span>        
+                            <span class="display-4">{{account.accountType}} Account {{account.accountId}}</span>
                         </div>
                     </div>
                 </div>
@@ -14,7 +14,7 @@
                     <div class="p-2">
                         Available Balance: {{account.availableBalance | currency}}
                     </div>
-                    <div class="p-2">
+                    <div>
                         Pending Balance: {{account.pendingBalance | currency}}
                     </div>
                 </div>

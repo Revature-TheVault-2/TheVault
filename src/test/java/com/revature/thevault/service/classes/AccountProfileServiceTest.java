@@ -70,7 +70,7 @@ class AccountProfileServiceTest {
         );
         goodAccountResponse = new AccountProfileResponse(
                 normalAccountProfileEntity.getPk_profile_id(),
-                normalAccountProfileEntity.getLogincredential().getPkuserid(),
+                normalAccountProfileEntity.getLogincredential().getPkUserId(),
                 normalAccountProfileEntity.getFirst_name(),
                 normalAccountProfileEntity.getLast_name(),
                 normalAccountProfileEntity.getEmail(),
@@ -87,7 +87,7 @@ class AccountProfileServiceTest {
     private AccountProfileResponse convertToProfileResponseEntity(AccountProfileEntity entity){
         return new AccountProfileResponse(
                 entity.getPk_profile_id(),
-                entity.getLogincredential().getPkuserid(),
+                entity.getLogincredential().getPkUserId(),
                 entity.getFirst_name(),
                 entity.getLast_name(),
                 entity.getEmail(),
@@ -174,7 +174,7 @@ class AccountProfileServiceTest {
                 .success(true)
                 .createdObject(Collections.singletonList(new AccountProfileResponse(
                         storedProfileEntity.getPk_profile_id(),
-                        storedProfileEntity.getLogincredential().getPkuserid(),
+                        storedProfileEntity.getLogincredential().getPkUserId(),
                         storedProfileEntity.getFirst_name(),
                         storedProfileEntity.getLast_name(),
                         storedProfileEntity.getEmail(),
@@ -188,12 +188,12 @@ class AccountProfileServiceTest {
 
     @Test
     void updateProfile(){
-        Mockito.when(loginService.findUserByUserId(normalAccountProfileEntity.getLogincredential().getPkuserid()))
+        Mockito.when(loginService.findUserByUserId(normalAccountProfileEntity.getLogincredential().getPkUserId()))
                 .thenReturn(normalLoginCredentialEntity);
 
        UpdateProfileRequest pcr = new UpdateProfileRequest(
                normalAccountProfileEntity.getPk_profile_id(),
-               loginService.findUserByUserId(normalAccountProfileEntity.getLogincredential().getPkuserid()).getPkuserid(),
+               loginService.findUserByUserId(normalAccountProfileEntity.getLogincredential().getPkUserId()).getPkUserId(),
                normalAccountProfileEntity.getFirst_name(),
                normalAccountProfileEntity.getLast_name(),
                normalAccountProfileEntity.getEmail(),
@@ -220,7 +220,7 @@ class AccountProfileServiceTest {
     @Test
     void deleteProfile(){
         AccountProfileRequest goodRequest = new AccountProfileRequest(
-                normalAccountProfileEntity.getLogincredential().getPkuserid()
+                normalAccountProfileEntity.getLogincredential().getPkUserId()
         );
 
         Optional<AccountProfileEntity> optionalProfile = Optional.ofNullable(normalAccountProfileEntity);
@@ -230,7 +230,7 @@ class AccountProfileServiceTest {
 
         AccountProfileResponse goodAccountResponse = new AccountProfileResponse(
                 normalAccountProfileEntity.getPk_profile_id(),
-                normalAccountProfileEntity.getLogincredential().getPkuserid(),
+                normalAccountProfileEntity.getLogincredential().getPkUserId(),
                 normalAccountProfileEntity.getFirst_name(),
                 normalAccountProfileEntity.getLast_name(),
                 normalAccountProfileEntity.getEmail(),

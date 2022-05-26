@@ -97,6 +97,11 @@ public class ExportPDFTests {
 	public static void createTestTwo() {
 		try{ // I should work on eventually reducing total number of lines.
 			
+			//Document Creation
+			String dest = "src/test/java/com/revature/thevault/exportpdf/myTestTwo.pdf";
+			PdfWriter writer = new PdfWriter(dest); // Writer can create PDF files
+			PdfDocument pdfFile = new PdfDocument(writer); //Point of entry to work with a PDF file.
+			Document document = new Document(pdfFile); // Desired output is a Document Object. The actual PDF file
 
 			//Objects
 			// Okay so... just like the transaction model is doing. You need to parse the info coming and transform that into a TransactionObject list.
@@ -124,8 +129,6 @@ public class ExportPDFTests {
 			arrList.add(fakeTransaction2);
 			arrList.add(fakeTransaction3);
 			arrList.add(fakeTransaction3);
-			
-			
 			
 			//Font Reference Creation
 			FontProgram medFontProgram = FontProgramFactory.createFont(FUTURA);
@@ -240,11 +243,7 @@ public class ExportPDFTests {
 			accInfo.addStyle(myAccountInfoStyle);
 			emptyTransactions.addStyle(myRevatureStyle);
 
-			//Document Creation
-			String dest = "src/test/java/com/revature/thevault/exportpdf/myTestTwo.pdf";
-			PdfWriter writer = new PdfWriter(dest); // Writer can create PDF files
-			PdfDocument pdfFile = new PdfDocument(writer); //Point of entry to work with a PDF file.
-			Document document = new Document(pdfFile); // Desired output is a Document Object. The actual PDF file
+
 
 			//Appending to Document
 			document.add(logo); // All Images Read from Root folder.

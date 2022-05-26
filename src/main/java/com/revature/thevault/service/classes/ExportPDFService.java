@@ -121,8 +121,30 @@ public class ExportPDFService {
 			tableCellStyle.setBackgroundColor(lightGray);
 			tableCellStyle.setBorder(new SolidBorder(lightGray, 1F));
 			
-			//Table Creation			
-			Table table = new Table(new float[]{1F, 0.5F, 1F, 1F, 2F}, false); // In this float example, the float numbers represent table size. A
+			// Table Creation			
+			// Table accountTable
+			Table accountTable = new Table(new float[]{2F, 3F});
+			accountTable.setWidth(UnitValue.createPercentValue(100));
+			accountTable.addStyle(tableCellStyle);
+			
+			Cell statementPeriodHeader = new Cell();
+			statementPeriodHeader.add(new Paragraph("Statement Period"));
+			statementPeriodHeader.addStyle(tableStyle);
+			
+			Cell accountNumber = new Cell();
+			accountNumber.add(new Paragraph("Account Number"));
+			accountNumber.addStyle(tableStyle);
+			
+			Cell statementPeriod = new Cell();
+			statementPeriod.add(new Paragraph(dateRange));
+			statementPeriod.addStyle(tableStyle); 
+			
+			Cell accountNumberHeader = new Cell();
+			accountNumber.add(new Paragraph("Account Number"));
+			accountNumber.addStyle(tableStyle);
+			
+			// Table table
+			Table table = new Table(new float[]{1F, 0.5F, 1F, 1F, 2F}, false); // In this float example, the float numbers represent table size. However, it's really isn't updating automatically since it isn't a largeTable.
 			table.setWidth(UnitValue.createPercentValue(100));
 			table.addStyle(tableCellStyle);
 			
@@ -162,7 +184,7 @@ public class ExportPDFService {
 					
 					table.addCell(t.getDate().toString());
 					table.addCell(t.getTransactionReference());
-					if (t.getTransactionType().equals("Withdrawal")) { 
+					if (t.getTransactionType().equals("Withdraw")) { 
 						table.addCell(String.valueOf(t.getAmount()));
 						table.addCell("");
 					}

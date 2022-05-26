@@ -25,7 +25,6 @@ import com.revature.thevault.presentation.model.response.builder.PostResponse;
 import com.revature.thevault.presentation.model.response.builder.PutResponse;
 import com.revature.thevault.service.classes.AccountService;
 
-
 @RestController("accountController")
 @RequestMapping("/account")
 public class AccountController {

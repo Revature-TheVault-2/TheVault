@@ -1,4 +1,4 @@
-<img class="vault-title" src="../../../../assets/vault_logo.png" alt="templogo">
+<img class="account-vault-title" src="../../../../assets/vault_logo.png" alt="templogo">
 <a class="btn btn-primary" (click)="logout()">Logout</a>
 <br>
 <br>
@@ -14,10 +14,10 @@
 
 <br>
 <div class="d-flex justify-content-md-around">
-    <div class="p-2">
+    <div class=" ">
         <app-account-profile [profile]="profile"></app-account-profile>
     </div>
-    <div class="p-2">
+    <div class=" ">
         <app-create-account (createAccountEmitter)="createAccountEvent($event)"></app-create-account>
     </div>
 </div>

@@ -17,4 +17,6 @@ public class DepositRequest {
     int accountId;
     String reference;
     float amount;
+    String email; //used for later development 
+
 }

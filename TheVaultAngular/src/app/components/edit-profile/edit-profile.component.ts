@@ -57,6 +57,8 @@ export class EditProfileComponent implements OnInit {
       this.profile.phoneNumber = this.phoneNumber;
       this.profile.address = this.address;
       this.profile.notificationAmount = this.notificationAmount;
+      console.log(this.notificationAmount);
+      console.log(this.firstName);
       this.userHandler.updateProfile(this.profile, this.profile.profileId, this.globalStorage.getUserId()).subscribe(this.updateProfileObserver);
     }else return;
   }

@@ -53,7 +53,6 @@ public class AccountProfileService implements AccountProfileInterface {
         try {
             return GetResponse.builder()
             		.success(true)
-//                    .gotObject(Collections.singletonList(convertEntityToResponse(accountProfileRepository.getById(accountProfileRequest.getProfileId()))))
                     .gotObject(Collections.singletonList(convertEntityToResponse(profile)))
                     .build();
         } catch (Exception e) {
@@ -110,6 +109,8 @@ public class AccountProfileService implements AccountProfileInterface {
     @Override
     public PutResponse updateProfile(UpdateProfileRequest updateProfileRequest) {
         try {
+        	System.out.println("here ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+        	System.out.println(updateProfileRequest);
             return PutResponse.builder()
                     .success(true)
                     .updatedObject(Collections.singletonList(convertEntityToResponse(accountProfileRepository.save(new AccountProfileEntity(
@@ -120,7 +121,7 @@ public class AccountProfileService implements AccountProfileInterface {
                             updateProfileRequest.getEmail(),
                             updateProfileRequest.getPhoneNumber(),
                             updateProfileRequest.getAddress(),
-                            0
+                            updateProfileRequest.getNotificationAmount()
                     )))))
                     .build();
         } catch (Exception e) {

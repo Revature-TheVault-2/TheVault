@@ -19,7 +19,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin("*")
+
 @RestController("accountProfileController")
 @RequestMapping("/profile")
 public class AccountProfileController {
@@ -48,18 +48,9 @@ public class AccountProfileController {
      * @return GetResponse - which carries the request object and a success boolean
      */
     @GetMapping("/get/{id}")
-    public GetResponse getProfile(@RequestHeader("Authorization") String token, @PathVariable int id){
-        JWTInfo parsedJWT = JWTUtility.verifyUser(token);
-        if(parsedJWT != null) {
-        	
-        	
-        	return accountProfileService.getProfile(new AccountProfileRequest(id));
-        	
-        	
-        }
-        else throw new InvalidAuthorizationError(HttpStatus.UNAUTHORIZED, "No valid JWT");
+    public GetResponse getProfile(@PathVariable int id){
+    	return accountProfileService.getProfile(new AccountProfileRequest(id));
     }
-
     /**
      * remove, this is not necessary to the application
      * Deprecated due to comment left by other team^
@@ -70,9 +61,7 @@ public class AccountProfileController {
     @Deprecated
     @DeleteMapping("/delete")
     public DeleteResponse deleteProfile(@RequestHeader("Authorization") String token, @RequestBody AccountProfileRequest accountProfileRequest){
-        JWTInfo parsedJWT = JWTUtility.verifyUser(token);
-        if(parsedJWT != null) return accountProfileService.deleteProfile(accountProfileRequest);
-        else throw new InvalidAuthorizationError(HttpStatus.UNAUTHORIZED, "No valid JWT");
+        return accountProfileService.deleteProfile(accountProfileRequest);
     }
 
     /**
@@ -84,8 +73,6 @@ public class AccountProfileController {
      */
     @PutMapping("/update")
     public PutResponse updateProfile(@RequestHeader("Authorization") String token, @RequestBody UpdateProfileRequest updateProfileRequest){
-        JWTInfo parsedJWT = JWTUtility.verifyUser(token);
-        if(parsedJWT != null) return accountProfileService.updateProfile(updateProfileRequest);
-        else throw new InvalidAuthorizationError(HttpStatus.UNAUTHORIZED, "No valid JWT");
+        return accountProfileService.updateProfile(updateProfileRequest);
     }
 }

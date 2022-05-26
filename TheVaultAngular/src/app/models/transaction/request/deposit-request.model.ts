@@ -23,15 +23,23 @@ export class DepositRequest {
     public set depositType(value: string) {
         this._depositType = value;
     }
+    public get email(): string {
+        return this._email;
+    }
+    public set eamil(value: string) {
+        this._email = value;
+    }
     constructor(
         private _depositType: string,
         private _accountId: number,
         private _reference: string,
-        private _amount: number
+        private _amount: number,
+        private _email: string
     ){
         this._depositType = _depositType;
         this._accountId = _accountId;
         this._reference = _reference;
         this._amount = _amount;
+        this,_email = _email;
     }
 }

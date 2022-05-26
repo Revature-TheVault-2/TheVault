@@ -32,14 +32,8 @@ public class WithdrawController {
 	@GetMapping("/all/{accountId}")
 	public GetResponse getUsersWithdraws(@RequestHeader("Authorization") String token, @PathVariable Integer accountId) {
 
-		JWTInfo parsedJWT = JWTUtility.verifyUser(token);
-
-		if (parsedJWT != null) {
 			return withdrawService.getAllUserWithdrawals(accountId);
-		} else {
-			throw new InvalidAuthorizationError(HttpStatus.UNAUTHORIZED, "No valid JWT");
 		}
-	}
 
 	
 	/**
@@ -54,15 +48,9 @@ public class WithdrawController {
 	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping("/generate")
 	public PostResponse createWithdrawal(@RequestHeader("Authorization") String token, @RequestBody WithdrawRequest withdrawRequest) {
-		
-		JWTInfo parsedJWT = JWTUtility.verifyUser(token);
-		
-		if (parsedJWT != null) {
+
 			return withdrawService.createWithdrawal(withdrawRequest);
-		}else {
-			throw new InvalidAuthorizationError(HttpStatus.UNAUTHORIZED, "No valid JWT");
 		}
-	}
 
 	/**
 	 * First verifies if the user is logged in with JWT then finds the details of a specified withdraw based on ID
@@ -74,15 +62,9 @@ public class WithdrawController {
 	 */
 	@GetMapping("/detail")
 	public GetResponse findByWithdrawId(@RequestHeader("Authorization") String token, @RequestParam int withdrawId) {
-		
-		JWTInfo parsedJWT = JWTUtility.verifyUser(token);
-		
-		if (parsedJWT != null) {
+
 			return withdrawService.findByWithdrawId(withdrawId);
-		}else {
-			throw new InvalidAuthorizationError(HttpStatus.UNAUTHORIZED, "No valid JWT");
 		}
-	}
 
 	/**
 	 * First verifies if the user is logged in with JWT then Filters the withdraws by type and id
@@ -96,15 +78,9 @@ public class WithdrawController {
 	 */
 	@GetMapping("/type/{requestType}")
 	public GetResponse getWithdrawalByType(@RequestHeader("Authorization") String token, @PathVariable String requestType, @RequestParam int accountId) {
-		
-		JWTInfo parsedJWT = JWTUtility.verifyUser(token);
-		
-		if (parsedJWT != null) {
+
 			return withdrawService.getAlLUserWithdrawalsOfType(accountId, requestType);
-		}else {
-			throw new InvalidAuthorizationError(HttpStatus.UNAUTHORIZED, "No valid JWT");
 		}
-	}
 
 	
 	/**
@@ -117,13 +93,7 @@ public class WithdrawController {
 	 */
 	@DeleteMapping("/clear/{accountId}")
 	public DeleteResponse deleteAllWithdraws(@RequestHeader("Authorization") String token, @PathVariable Integer accountId) {
-		
-		JWTInfo parsedJWT = JWTUtility.verifyUser(token);
-		
-		if (parsedJWT != null) {
+
 			return withdrawService.deleteAllWithdraws(accountId);
-		}else {
-			throw new InvalidAuthorizationError(HttpStatus.UNAUTHORIZED, "No valid JWT");
 		}
-	}
 }

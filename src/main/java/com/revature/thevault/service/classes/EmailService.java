@@ -6,9 +6,14 @@ import java.text.DecimalFormat;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.stereotype.Service;
+
+import com.revature.thevault.repository.entity.AccountProfileEntity;
 
 /**
  * Stretch goals ToDo: See about sending a logo, test multiple attachments.
@@ -17,9 +22,10 @@ import org.springframework.mail.javamail.MimeMessageHelper;
  * @author Brody and Gibbons
  *
  */
+@Service
 public class EmailService {
 	
-	private static JavaMailSender emailSender;
+	private JavaMailSender emailSender;
 	// Session
 	
 	
@@ -31,7 +37,8 @@ public class EmailService {
 //		transactionAmountEmail(-501.00f);
 //		
 //	}
-
+	
+	@Autowired
 	public EmailService(JavaMailSender emailSender) {
 		super();
 		this.emailSender = emailSender;
@@ -50,10 +57,10 @@ public class EmailService {
 	 * @param float balancePostWithdrawal the balance in the negative after a withdrawal is finished.
 	 * @author Brody and Gibbons
 	 */
-	public static void overdraftEmail(float balancePostWithdrawal) {
+	public void overdraftEmail(float balancePostWithdrawal, AccountProfileEntity currentUserProfile) {
 		
-		String name = "John"; // Get from session
-		String userEmail = "session value of email"; // Get from session
+		String name = currentUserProfile.getFirst_name();
+		String userEmail = currentUserProfile.getEmail(); 
 		
 		 DecimalFormat df = new DecimalFormat();
 		 df.setMinimumFractionDigits(2);
@@ -64,7 +71,7 @@ public class EmailService {
 				+ "Your account have been overdrawn, your current balance is: " + amount +".\n\n"
 				+ "If you did not submit this transaction, please contact your local bank at your earliest convenience.\n\n"
 				+ "If not corrected within two business days, your account will be charged an overdraft fee of $35.00.";
-		
+		System.out.println(subject + "\n\n" + body);
 		sendEmail(userEmail, subject, body);
 	}
 	
@@ -75,22 +82,22 @@ public class EmailService {
 	 * @param transactionAmount
 	 * @author Brody and Gibbons
 	 */
-	public static void transactionAmountEmail(float transactionAmount) {
+	public void transactionAmountEmail(float transactionAmount, AccountProfileEntity currentUserProfile) {
 		String transactionType;
 		if(transactionAmount>0) {
 			 transactionType = "Deposit";
 		}else {
 			 transactionType = "Withdrawl";
 		}
-		 String name = "John"; // Will get name from the session
+		 String name = currentUserProfile.getFirst_name();
 		 
-		 float notificationAmount = 500.00f; // Will get the amount from the session
+		 float notificationAmount = currentUserProfile.getNotificationAmount();
 		 DecimalFormat df = new DecimalFormat();
 		 df.setMinimumFractionDigits(2);
 		 String amount = df.format(notificationAmount);
 
 		 
-		 String userEmail = "session value of email"; // Will get from session
+		 String userEmail = currentUserProfile.getEmail();
 		
 		String subject = "Your Recent " + transactionType + " Notification";
 		String body = "Hello " + name +",\n\n"
@@ -98,6 +105,8 @@ public class EmailService {
 				+ "If you did not submit this "+ transactionType.toLowerCase() + ", please contact your local bank at your earliest convenience.\n\n"
 				+ "If you would like to change your notification settings, you can do so from your profile on the website.";
 		
+		
+		System.out.println(subject + "\n\n" + body);
 		sendEmail(userEmail, subject, body);
 		
 	}
@@ -107,17 +116,19 @@ public class EmailService {
 	 * @param A range of dates, not implemented yet.
 	 * @param pathToAttachment
 	 * @author Brody and Gibbons
+	 * @throws MessagingException 
 	 */
-	public static void sendReportPdfEmail(String pathToAttachment /*, Date rangeOfDates */) {
+	public void sendReportPdfEmail(String pathToAttachment, AccountProfileEntity currentUserProfile) throws MessagingException {
 		
-		String name = "John"; // pull name from the session
-		String dates = "dates range of report";
+		String name = currentUserProfile.getFirst_name();
 		
-		String userEmail = "session email";
-		String subject = "Copy of Banking Reports from " + dates;
+		String userEmail = currentUserProfile.getEmail();
+		String subject = "Copy of Banking Reports";
 		String body = "Hello " + name +",\n\n"
-				+ "Attached are your reports that you requested from " + dates + "." 
+				+ "Attached are your reports that you requested." 
 				+ "If you did not request this report, please contact your local bank at your earliest convenience.";
+		
+		sendEmailWithAttachment(userEmail, subject, body, pathToAttachment);
 		
 	}
 	
@@ -133,21 +144,21 @@ public class EmailService {
 	 * @param body
 	 * @author Brody and Gibbons
 	 */
-	public static void sendEmail(String toEmail, String subject, String body) {
+	public void sendEmail(String toEmail, String subject, String body) {
 		
 		String signOff = "\n\n\n\tThe Vault Team" + "\n\t(800) 555-0000";
 		body = body + signOff;
 
-//		SimpleMailMessage message = new SimpleMailMessage();
+		SimpleMailMessage message = new SimpleMailMessage();
 
-//		message.setFrom("socialmedianow63@gmail.com");
-//		message.setTo(toEmail);
-//		message.setText(body);
-//		message.setSubject(subject);
-//
-//		emailSender.send(message);
-		System.out.println(subject);
-		System.out.println(body);
+		message.setFrom("socialmedianow63@gmail.com");
+		message.setTo(toEmail);
+		message.setText(body);
+		message.setSubject(subject);
+
+		emailSender.send(message);
+//		System.out.println(subject);
+//		System.out.println(body);
 
 	}
 	
@@ -163,7 +174,7 @@ public class EmailService {
 	 * @throws If pathToFileAttachment is null, will throw a null pointer exception
 	 * @author Brody and Gibbons
 	 */
-	public static void sendEmailWithAttachment(String toEmail, String subject, String body, String pathToFileAttachment) throws MessagingException {
+	public void sendEmailWithAttachment(String toEmail, String subject, String body, String pathToFileAttachment) throws MessagingException {
 		
 		String signOff = "\n\n\n\tThe Vault Team" + "\n\t(800) 555-0000";
 		body = body + signOff;

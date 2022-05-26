@@ -89,7 +89,7 @@ class AccountServiceTest {
 
         storedAccountResponseObject = new AccountResponseObject(
                 storedAccount.getPk_account_id(),
-                storedAccount.getLogincredentials().getPkuserid(),
+                storedAccount.getLogincredentials().getPkUserId(),
                 storedAccount.getAccountTypeEntity().getName(),
                 storedAccount.getAvailable_balance(),
                 storedAccount.getPending_balance()
@@ -97,7 +97,7 @@ class AccountServiceTest {
 
         storedAccountTransferringResponseObject = new AccountResponseObject(
                 storedAccountTransferring.getPk_account_id(),
-                storedAccountTransferring.getLogincredentials().getPkuserid(),
+                storedAccountTransferring.getLogincredentials().getPkUserId(),
                 storedAccountTransferring.getAccountTypeEntity().getName(),
                 storedAccountTransferring.getAvailable_balance(),
                 storedAccountTransferring.getPending_balance()
@@ -119,7 +119,7 @@ class AccountServiceTest {
         CreateAccountRequest goodAccountCreateRequest = new CreateAccountRequest(userId, accountType.get(0));
         AccountEntity creatingAccount = new AccountEntity(
             0,
-            new LoginCredentialEntity(storedAccount.getLogincredentials().getPkuserid(), "",""),
+            new LoginCredentialEntity(storedAccount.getLogincredentials().getPkUserId(), "",""),
             storedAccount.getAccountTypeEntity(),
             0,
                 0
@@ -206,7 +206,7 @@ class AccountServiceTest {
                 .updatedObject(Collections.singletonList(
                         new AccountResponseObject(
                                 updatedAccount.getPk_account_id(),
-                                updatedAccount.getLogincredentials().getPkuserid(),
+                                updatedAccount.getLogincredentials().getPkUserId(),
                                 updatedAccount.getAccountTypeEntity().getName(),
                                 updatedAccount.getAvailable_balance(),
                                 updatedAccount.getPending_balance()
@@ -248,14 +248,14 @@ class AccountServiceTest {
 
         AccountResponseObject updatedOwnerAccountResponse = new AccountResponseObject(
                 updatedOwnerAccount.getPk_account_id(),
-                updatedOwnerAccount.getLogincredentials().getPkuserid(),
+                updatedOwnerAccount.getLogincredentials().getPkUserId(),
                 updatedOwnerAccount.getAccountTypeEntity().getName(),
                 updatedOwnerAccount.getAvailable_balance(),
                 updatedOwnerAccount.getPending_balance()
         );
         AccountResponseObject updatedReceiverAccountResponse = new AccountResponseObject(
                 updatedReceiverAccount.getPk_account_id(),
-                updatedReceiverAccount.getLogincredentials().getPkuserid(),
+                updatedReceiverAccount.getLogincredentials().getPkUserId(),
                 updatedReceiverAccount.getAccountTypeEntity().getName(),
                 updatedReceiverAccount.getAvailable_balance(),
                 updatedReceiverAccount.getPending_balance()

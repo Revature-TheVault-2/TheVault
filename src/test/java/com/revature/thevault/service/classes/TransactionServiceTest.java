@@ -16,6 +16,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.annotation.DirtiesContext;
 
+import java.io.FileNotFoundException;
+import java.net.MalformedURLException;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Collections;
@@ -180,7 +182,7 @@ class TransactionServiceTest {
     }
     
     @Test
-    void getTransactionHistoryByMonth() {
+    void getTransactionHistoryByMonth() throws FileNotFoundException, MalformedURLException {
     	GetResponse sortedGetResponse = GetResponse.builder()
                 .success(true)
                 .gotObject(Arrays.asList(transactionObject5, transactionObject7, transactionObject8, transactionObject6))

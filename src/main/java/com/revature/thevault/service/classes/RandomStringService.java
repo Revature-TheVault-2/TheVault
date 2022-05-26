@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 @Service("randomStringService")
 public class RandomStringService {
 	private ConcurrentHashMap<Integer, String> saltStrings = new ConcurrentHashMap<>();
-
+	
 	public String getSaltString() {
         String SALTCHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
         StringBuilder salt = new StringBuilder();

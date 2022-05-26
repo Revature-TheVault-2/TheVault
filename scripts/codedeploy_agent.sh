@@ -20,19 +20,24 @@ sudo yum -y install nodejs
 echo "          ((((((((((     installing node END     ))))))))))          "
 
 echo "          ((((((((((     installing angular START     ))))))))))          "
+cd
+cd TheVault/TheVaultAngular/
 sudo npm install -g @angular/cli
 sudo npm install -g http-server
 echo "          ((((((((((     installing angular END     ))))))))))          "
 
 echo "          ((((((((((     installing maven START     ))))))))))          "
+cd
+cd TheVault/
 sudo wget http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo -O /etc/yum.repos.d/epel-apache-maven.repo
 sudo sed -i s/\$releasever/6/g /etc/yum.repos.d/epel-apache-maven.repo
 #remove apache- if not amazon linux
-sudo yum install -y apache-maven
+sudo yum install -y maven
 echo "          ((((((((((     installing maven END     ))))))))))          "
 
 
 echo "(((((     installing ruby 2/7 )))))"
+cd
 sudo yum install ruby -y
 
 

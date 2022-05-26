@@ -4,6 +4,7 @@ import com.revature.thevault.repository.dao.RequestStatusRepository;
 import com.revature.thevault.repository.entity.RequestStatusEntity;
 import com.revature.thevault.service.exceptions.InvalidRequestException;
 import org.aspectj.lang.annotation.Before;
+import org.junit.Ignore;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,6 +23,7 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_CLASS)
+@Ignore
 @SpringBootTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class RequestStatusServiceTest {

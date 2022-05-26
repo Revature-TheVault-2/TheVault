@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+// Is referenced by service.classes.accountservice.java && utility.validation.accountvalidation.java
 public class CreateAccountRequest {
     int userId;
     String accountType;

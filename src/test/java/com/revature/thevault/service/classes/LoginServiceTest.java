@@ -42,7 +42,6 @@ public class LoginServiceTest {
 
 
 
-
     @BeforeEach
     void setUp(){
         MockitoAnnotations.openMocks(this);
@@ -65,7 +64,7 @@ public class LoginServiceTest {
 
     private LoginResponseObject convertEntityToResponse(LoginCredentialEntity loginCredentialEntity){
         return new LoginResponseObject(
-                loginCredentialEntity.getPk_user_id(),
+                loginCredentialEntity.getPkUserId(),
                 loginCredentialEntity.getUsername(),
                 loginCredentialEntity.getPassword(),
                 "lol"
@@ -110,7 +109,7 @@ public class LoginServiceTest {
     }
 
     @Test
-    void findUserByUserIdTest(){assertEquals(loginService.findUserByUserId(loginCredentialEntity.getPk_user_id()), loginCredentialEntity);}
+    void findUserByUserIdTest(){assertEquals(loginService.findUserByUserId(loginCredentialEntity.getPkUserId()), loginCredentialEntity);}
 
 
 }

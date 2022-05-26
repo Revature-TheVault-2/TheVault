@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <libraryInfos>
+<<<<<<< HEAD
+    <libraryInfo home="/Library/Java/JavaVirtualMachines/temurin-17.jdk/Contents/Home" version="17.0.2"/>
+=======
+    <libraryInfo home="C:\Program Files\Java\jdk-14.0.2" version="14.0.2"/>
+>>>>>>> a714d9cab189d9b1930b6174fa9c77e6051184e3
     <libraryInfo home="C:\Users\nigel\scoop\apps\sts\current\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_17.0.0.v20211012-1059\jre" version="17"/>
     <libraryInfo home="C:\Users\nigel\scoop\apps\sts\current\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_17.0.0.v20211012-1059" version="17"/>
+    <libraryInfo home="/Library/Java/JavaVirtualMachines/adoptopenjdk-14.jdk/Contents/Home" version="14.0.2"/>
 </libraryInfos>

@@ -9,14 +9,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * 
+ * Transaction Controller has only one method, getTransactionHistory, 
+ * which returns the transaction history of an account id if the authorization token is valid
+ *
+ */
 @CrossOrigin("*")
 @RestController("transactionController")
 @RequestMapping("/transaction")
 public class TransactionController {
 
+	/**
+	 * Creates a transaction  service 
+	 */
     @Autowired
     private TransactionService transactionService;
 
+    /**
+	 * Gets the transaction history through the transaction service 
+	 * @throws InvalidAuthorizationError
+	 * @return Transaction history
+	 * 
+	 */
     @GetMapping("/history/{accountId}")
     public GetResponse getTransactionHistory(@RequestHeader("Authorization") String token, @PathVariable Integer accountId) {
         JWTInfo parsedJWT = JWTUtility.verifyUser(token);

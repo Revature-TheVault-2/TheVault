@@ -18,11 +18,13 @@ import java.util.Set;
 @Entity
 @Table(name = "account_type_table")
 public class AccountTypeEntity {
+	
 	@Id
 	@Column(name = "pk_account_type_id")
 	@GeneratedValue(generator = "account_type_table_pk_account_type_id_seq", strategy = GenerationType.SEQUENCE)
 	@SequenceGenerator(allocationSize = 1, name = "account_type_table_pk_account_type_id_seq", sequenceName = "account_type_table_pk_account_type_id_seq")
 	int pk_account_type_id;
+	
 	@Column(name = "name")
 	String name;
 }

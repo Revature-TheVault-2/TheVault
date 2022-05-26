@@ -25,6 +25,7 @@ public class AccountProfileEntity {
     
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "fk_user_id")
+//    int userId;
     LoginCredentialEntity logincredential;
     
     @Column(name = "first_name")
@@ -41,6 +42,12 @@ public class AccountProfileEntity {
     
     @Column(name = "address")
     String address;
+    
+    @Column(name = "notification_amount", nullable=true)
+    float notificationAmount;
+
+    
+    
     
     
 }

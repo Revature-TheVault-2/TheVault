@@ -57,15 +57,15 @@
         </div>
       </div>
 
-      <br>      
       <!-- Our reset button goes here -->
       <p style="cursor: pointer" id="resetPasswordLink"  routerLink="/resetpassword" >Reset Password</p>
+        
       
-
       <div class="login-form-group">
         <button type="submit" class="btn btn-primary">Login</button>
         <button type="submit" class="btn btn-primary"a id='newProfileLink' routerLink="/register">Register</button>
-
+        <br><br>
+        
       </div>
 
       <div class="alert alert-warning" *ngIf="submitted && isLoginFailed">

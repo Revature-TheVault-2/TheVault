@@ -18,7 +18,14 @@ public interface LoginRepository extends JpaRepository<LoginCredentialEntity, In
 
    <S extends LoginCredentialEntity> S save(S entity);
 
-   LoginCredentialEntity findByPkuserid(int integer);
+
+
+   //left this just in case, not sure what the Optional was about
+//    Optional<LoginCredentialEntity> findByPkuserid(int integer);
+    
+    LoginCredentialEntity findByPkuserid(int integer);
+
+
 
 
     @Query("select l from LoginCredentialEntity l where l.username= ?1 and l.password = ?2")

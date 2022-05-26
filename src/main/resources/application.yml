@@ -8,9 +8,11 @@ spring:
       - org.springframework.cloud.aws.autoconfigure.context.ContextStackAutoConfiguration
       - org.springframework.cloud.aws.autoconfigure.context.ContextRegionProviderAutoConfiguration 
   datasource:
+
     url: jdbc:postgresql://revaturetrainingdb.cpg5dtac4hor.us-east-1.rds.amazonaws.com:5432/P3DB
     username: eric
     password: helloWorld1
+
     driver-class-name: org.postgresql.Driver
   jpa: 
     database-platform: org.hibernate.dialect.PostgreSQLDialect
@@ -21,7 +23,9 @@ spring:
 
 spring.mail.host: smtp.gmail.com
 spring.mail.port: 587
+
 spring.mail.username: vault.at.revature@gmail.com
 spring.mail.password: cvyppeqgxhekrroi
 spring.mail.properties.mail.smtp.auth: true #needs to be here for email to work, ignore the warning
 spring.mail.properties.mail.smtp.starttls.enable: true #needs to be here for email to work, ignore the warni
+

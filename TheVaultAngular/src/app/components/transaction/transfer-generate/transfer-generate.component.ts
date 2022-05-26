@@ -59,7 +59,9 @@ export class TransferGenerateComponent implements OnInit {
     this.amount = Number.parseFloat(amount);
 
     if(Number.parseFloat(amount) > this.globalStorage.getActiveAccount().availableBalance) {
-      window.alert("TOO MUCH MONEY BUDDY");
+      this.globalStorage.transSuccess = false;
+      this.globalStorage.transFail = true;
+      //window.alert("TOO MUCH MONEY BUDDY");
       this.submitEmitter.emit(false);
       return;
     }
@@ -71,6 +73,8 @@ export class TransferGenerateComponent implements OnInit {
     );
     
     this.transactionHandler.createWithdraw(withdraw).subscribe(this.createWithdrawObserver);
+    this.globalStorage.transSuccess = true;
+    this.globalStorage.transFail = false;
   }
 
 

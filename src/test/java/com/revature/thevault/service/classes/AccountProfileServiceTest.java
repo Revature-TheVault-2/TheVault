@@ -1,5 +1,22 @@
 package com.revature.thevault.service.classes;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import java.util.Collections;
+import java.util.Optional;
+
+import org.junit.Ignore;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.annotation.DirtiesContext;
+
 import com.revature.thevault.presentation.model.request.AccountProfileRequest;
 import com.revature.thevault.presentation.model.request.ProfileCreateRequest;
 import com.revature.thevault.presentation.model.request.UpdateProfileRequest;
@@ -13,22 +30,8 @@ import com.revature.thevault.repository.entity.AccountProfileEntity;
 import com.revature.thevault.repository.entity.LoginCredentialEntity;
 import com.revature.thevault.service.exceptions.InvalidProfileIdException;
 import com.revature.thevault.service.exceptions.InvalidRequestException;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
-import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.annotation.DirtiesContext;
 
-import java.util.Collections;
-import java.util.Optional;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
+@Ignore
 @SpringBootTest
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_CLASS)
 

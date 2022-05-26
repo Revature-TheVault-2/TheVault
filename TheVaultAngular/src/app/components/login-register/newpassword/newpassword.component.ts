@@ -9,13 +9,12 @@ import { PostProfile } from 'src/app/models/users/responses/post-profile';
 import Validation from 'src/app/utils/validation';
 import { UserHandlerService } from 'src/app/_services/user/user-handler.service';
 
-
 @Component({
-  selector: 'app-resetpassword',
-  templateUrl: './resetpassword.component.html',
-  styleUrls: ['./resetpassword.component.css']
+  selector: 'app-newpassword',
+  templateUrl: './newpassword.component.html',
+  styleUrls: ['./newpassword.component.css']
 })
-export class ResetpasswordComponent implements OnInit {
+export class NewpasswordComponent implements OnInit {
 
   constructor(
     private routingAllocator: RoutingAllocatorService,

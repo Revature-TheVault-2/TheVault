@@ -29,6 +29,7 @@ import { TransferGenerateComponent } from './components/transaction/transfer-gen
 
 import { AuthInterceptorService } from './utils/auth-interceptor.service';
 import { ResetpasswordComponent } from './components/login-register/resetpassword/resetpassword.component';
+import { NewpasswordComponent } from './components/login-register/newpassword/newpassword.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { ResetpasswordComponent } from './components/login-register/resetpasswor
     CreateAccountComponent,
     WithdrawDetailComponent,
     TransferGenerateComponent,
-    ResetpasswordComponent
+    ResetpasswordComponent,
+    NewpasswordComponent,
   ],
   imports: [
     BrowserModule,

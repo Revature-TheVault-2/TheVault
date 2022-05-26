@@ -23,7 +23,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
-
 import com.revature.thevault.presentation.model.request.DepositRequest;
 import com.revature.thevault.presentation.model.request.WithdrawRequest;
 import com.revature.thevault.presentation.model.response.builder.DeleteResponse;
@@ -44,222 +43,169 @@ import com.revature.thevault.service.exceptions.InvalidRequestException;
 @SpringBootTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class DepositServiceTest {
-@Autowired
-private DepositService depositService;
+	@Autowired
+	private DepositService depositService;
 
-@MockBean
-private DepositRepository depositRepository;
+	@MockBean
+	private DepositRepository depositRepository;
 
-@MockBean
-private DepositTypeService depositTypeService;
-private int userId;
-private int depositId;
-private int badDepositId;
-private int accountId;
-private float amount;
-private String reference;
-private String email;
+	@MockBean
+	private DepositTypeService depositTypeService;
+	private int userId;
+	private int depositId;
+	private int badDepositId;
+	private int accountId;
+	private float amount;
+	private String reference;
+	private String email;
 
-private List<String> depositType;
-    private DepositEntity storedDepositEntity;
-    private Optional<DepositEntity> optionalDeposit;
-    private AccountEntity accountEntity;
-    private DepositResponseObject depositResponseObject;
+	private List<String> depositType;
+	private DepositEntity storedDepositEntity;
+	private Optional<DepositEntity> optionalDeposit;
+	private AccountEntity accountEntity;
+	private DepositResponseObject depositResponseObject;
 
-    private Date dateStored;
+	private Date dateStored;
 
-    private LoginCredentialEntity loginCredentialEntity;
-    private DepositTypeEntity depositTypeEntity;
-    private AccountTypeEntity accountTypeEntity;
-    @BeforeAll
-    void setup(){
-        MockitoAnnotations.openMocks(this);
-        accountId = 1;
-        reference = "reference";
-        amount = 12.22F;
-        loginCredentialEntity = new LoginCredentialEntity(1, "username", "password");
-        accountTypeEntity = new AccountTypeEntity(1, "Checking");
-        depositTypeEntity = new DepositTypeEntity(1, "Cash");
-        depositType = new ArrayList<>();
-depositType.add("Cash");
-depositType.add("Cheque");
-depositType.add("Direct Deposit");
-badDepositId = -1;
-    }
-        @BeforeEach
-        void setupBeforeEach(){
-            dateStored = Date.valueOf(LocalDate.now());
-            accountEntity = new AccountEntity(
-                    accountId,
-                    loginCredentialEntity,
-                    accountTypeEntity,
-                    100F,
-                    100F
-            );
-           
-            storedDepositEntity = new DepositEntity(
-                    1,
-                    accountEntity,
-                    depositTypeEntity,
-                    reference,
-                    dateStored,
-                    amount,
-                    email
-            );
-            optionalDeposit = Optional.of(storedDepositEntity);
-            depositResponseObject = new DepositResponseObject(
-            storedDepositEntity.getPk_deposit_id(),
-                    storedDepositEntity.getAccountentity().getPk_account_id(),
-                    storedDepositEntity.getDeposittypeentity().getName(),
-                    storedDepositEntity.getReference(),
-                    storedDepositEntity.getDate_deposit().toLocalDate(),
-                    storedDepositEntity.getAmount()
-            );
+	private LoginCredentialEntity loginCredentialEntity;
+	private DepositTypeEntity depositTypeEntity;
+	private AccountTypeEntity accountTypeEntity;
 
-            Mockito.when(depositTypeService.findDepositTypeEntityByName("cash")).thenReturn(depositTypeEntity);
-            Mockito.when(depositRepository.findById(depositId)).thenReturn(optionalDeposit);
-           
-        }
+	@BeforeAll
+	void setup() {
+		MockitoAnnotations.openMocks(this);
+		accountId = 1;
+		reference = "reference";
+		amount = 12.22F;
+		loginCredentialEntity = new LoginCredentialEntity(1, "username", "password");
+		accountTypeEntity = new AccountTypeEntity(1, "Checking");
+		depositTypeEntity = new DepositTypeEntity(1, "Cash");
+		depositType = new ArrayList<>();
+		depositType.add("Cash");
+		depositType.add("Cheque");
+		depositType.add("Direct Deposit");
+		badDepositId = -1;
+	}
 
-        @Test
-        void createDeposit() {
-           DepositRequest createDepositRequest = new DepositRequest(
-                   storedDepositEntity.getDeposittypeentity().getName(),
-                   storedDepositEntity.getAccountentity().getPk_account_id(),
-                   storedDepositEntity.getReference(),
-                   storedDepositEntity.getAmount(),
-                   storedDepositEntity.getEmail()
-            );
+	@BeforeEach
+	void setupBeforeEach() {
+		dateStored = Date.valueOf(LocalDate.now());
+		accountEntity = new AccountEntity(accountId, loginCredentialEntity, accountTypeEntity, 100F, 100F);
 
-            PostResponse createDepositResponse = PostResponse.builder()
-                    .success(true)
-                    .createdObject(Collections.singletonList(depositResponseObject))
-                    .build();
+		storedDepositEntity = new DepositEntity(1, accountEntity, depositTypeEntity, reference, dateStored, amount,
+				email);
+		optionalDeposit = Optional.of(storedDepositEntity);
+		depositResponseObject = new DepositResponseObject(storedDepositEntity.getPk_deposit_id(),
+				storedDepositEntity.getAccountentity().getPk_account_id(),
+				storedDepositEntity.getDeposittypeentity().getName(), storedDepositEntity.getReference(),
+				storedDepositEntity.getDate_deposit().toLocalDate(), storedDepositEntity.getAmount());
 
-            DepositEntity saveDeposit = new DepositEntity(
-                    0,
-                    new AccountEntity(createDepositRequest.getAccountId(), new LoginCredentialEntity(), new AccountTypeEntity(), 0, 0),
-                    depositTypeEntity,
-                    createDepositRequest.getReference(),
-                    Date.valueOf(LocalDate.now()),
-                    createDepositRequest.getAmount(),
-                    createDepositRequest.getEmail()
-            );
-            Mockito.when(depositRepository.save(saveDeposit)).thenReturn(storedDepositEntity);
-            Mockito.when(depositTypeService.findDepositTypeEntityByName(storedDepositEntity.getDeposittypeentity().getName())).thenReturn(storedDepositEntity.getDeposittypeentity());
+		Mockito.when(depositTypeService.findDepositTypeEntityByName("cash")).thenReturn(depositTypeEntity);
+		Mockito.when(depositRepository.findById(depositId)).thenReturn(optionalDeposit);
 
-            assertEquals(createDepositResponse, depositService.createDeposit(createDepositRequest));
-        }
+	}
 
-        @Test
-        void getAllUserDeposits() {
-            GetResponse getDepositsResponse = GetResponse.builder()
-                            .success(true)
-                                    .gotObject(Collections.singletonList(depositResponseObject))
-                                            .build();
-            Mockito.when(depositRepository.findByAccountentity(
-                    new AccountEntity(
-                            accountId,
-                            new LoginCredentialEntity(),
-                            new AccountTypeEntity(),
-                            0,
-                            0))).thenReturn(Collections.singletonList(storedDepositEntity));
-            assertEquals(getDepositsResponse, depositService.getAllUserDeposits(accountId));
-        }
+	@Test
+	void createDeposit() {
+		DepositRequest createDepositRequest = new DepositRequest(storedDepositEntity.getDeposittypeentity().getName(),
+				storedDepositEntity.getAccountentity().getPk_account_id(), storedDepositEntity.getReference(),
+				storedDepositEntity.getAmount(), storedDepositEntity.getEmail());
 
-        @Test
-        void getAlLUserDepositsOfType() {
-            GetResponse getDepositResponse = GetResponse.builder()
-                    .success(true)
-                    .gotObject(Collections.singletonList(depositResponseObject))
-                    .build();
+		PostResponse createDepositResponse = PostResponse.builder().success(true)
+				.createdObject(Collections.singletonList(depositResponseObject)).build();
 
-            Mockito.when(depositRepository.findByAccountentityAndDeposittypeentity(
-                    new AccountEntity(accountId,
-                    new LoginCredentialEntity(),
-                    new AccountTypeEntity(),
-                0,
-                0),
-                    depositTypeEntity)).thenReturn(Collections.singletonList(storedDepositEntity));
+		DepositEntity saveDeposit = new DepositEntity(0,
+				new AccountEntity(createDepositRequest.getAccountId(), new LoginCredentialEntity(),
+						new AccountTypeEntity(), 0, 0),
+				depositTypeEntity, createDepositRequest.getReference(), Date.valueOf(LocalDate.now()),
+				createDepositRequest.getAmount(), createDepositRequest.getEmail());
+		Mockito.when(depositRepository.save(saveDeposit)).thenReturn(storedDepositEntity);
+		Mockito.when(
+				depositTypeService.findDepositTypeEntityByName(storedDepositEntity.getDeposittypeentity().getName()))
+				.thenReturn(storedDepositEntity.getDeposittypeentity());
 
-            Mockito.when(depositTypeService.findDepositTypeEntityByName(depositTypeEntity.getName())).thenReturn(depositTypeEntity);
+		assertEquals(createDepositResponse, depositService.createDeposit(createDepositRequest));
+	}
 
-            assertEquals(getDepositResponse, depositService.getAlLUserDepositsOfType(accountId, depositTypeEntity.getName()));
-        }
+	@Test
+	void getAllUserDeposits() {
+		GetResponse getDepositsResponse = GetResponse.builder().success(true)
+				.gotObject(Collections.singletonList(depositResponseObject)).build();
+		Mockito.when(depositRepository.findByAccountentity(
+				new AccountEntity(accountId, new LoginCredentialEntity(), new AccountTypeEntity(), 0, 0)))
+				.thenReturn(Collections.singletonList(storedDepositEntity));
+		assertEquals(getDepositsResponse, depositService.getAllUserDeposits(accountId));
+	}
 
-        @Test
-        void deleteAllDeposits() {
-            DeleteResponse deleteAllDepositResponse = DeleteResponse.builder()
-                            .success(true)
-                                    .deletedObject(Collections.EMPTY_LIST)
-                                            .build();
-            Mockito.doNothing().when(depositRepository).deleteByAccountentity(
-                    new AccountEntity(
-                        accountId,
-                        new LoginCredentialEntity(),
-                        new AccountTypeEntity(),
-                        0,
-                        0
-                    ));
-            assertEquals(deleteAllDepositResponse, depositService.deleteAllDeposits(accountId));
- 
-       }
-       
-        @Test
-        void findByDepositId() {
-            GetResponse getDepositResponse = GetResponse.builder()
-                    .success(true)
-                    .gotObject(Collections.singletonList(depositResponseObject))
-                    .build();
-            Mockito.when(depositRepository.findById(storedDepositEntity.getPk_deposit_id())).thenReturn(Optional.of(storedDepositEntity));
-            assertEquals(getDepositResponse, depositService.findByDepositId(storedDepositEntity.getPk_deposit_id()));
-        }
-        @Test
-        void findByDepositIdInvalidDepositId(){
-            assertThrows(InvalidRequestException.class, () -> depositService.findByDepositId(badDepositId));
-           
-        }
-        @ParameterizedTest
-        @ValueSource(floats = {0F, -1F, -2123F})
-        void createDepositInvalidAmountException(float number){
-            DepositRequest invalidRequest = new DepositRequest(
-                   
-             storedDepositEntity.getDeposittypeentity().getName(),
-                      //accountId,
-                      storedDepositEntity.getAccountentity().getPk_account_id(),
-                      reference,
-                      number,
-                      email
-            );
-            assertThrows(InvalidAmountException.class, () -> depositService.createDeposit(invalidRequest));
-        }
-       
-        @ParameterizedTest
-        @NullAndEmptySource
-        @ValueSource(strings = {"asdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasf", "a"})
-        void createInvalidDepositType(String string){
-           DepositRequest invalidRequest = new DepositRequest(
-          string,
-          storedDepositEntity.getAccountentity().getPk_account_id(),
-          reference,
-          1F,
-          email
-            );
-           assertThrows(InvalidRequestException.class, () -> depositService.createDeposit(invalidRequest));
-        }
+	@Test
+	void getAlLUserDepositsOfType() {
+		GetResponse getDepositResponse = GetResponse.builder().success(true)
+				.gotObject(Collections.singletonList(depositResponseObject)).build();
 
-        @ParameterizedTest
-        @NullAndEmptySource
-        @ValueSource(strings = {"asdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasf", "a"})
-        void createDepositInvalidReference(String string){
-            DepositRequest invalidRequest = new DepositRequest(
-           
-            depositTypeEntity.getName(),
-                     storedDepositEntity.getAccountentity().getPk_account_id(),
-                     string,
-                     amount,
-                     email
-            );
-            assertThrows(InvalidRequestException.class, () -> depositService.createDeposit(invalidRequest));
-        }
+		Mockito.when(depositRepository.findByAccountentityAndDeposittypeentity(
+				new AccountEntity(accountId, new LoginCredentialEntity(), new AccountTypeEntity(), 0, 0),
+				depositTypeEntity)).thenReturn(Collections.singletonList(storedDepositEntity));
+
+		Mockito.when(depositTypeService.findDepositTypeEntityByName(depositTypeEntity.getName()))
+				.thenReturn(depositTypeEntity);
+
+		assertEquals(getDepositResponse,
+				depositService.getAlLUserDepositsOfType(accountId, depositTypeEntity.getName()));
+	}
+
+	@Test
+	void deleteAllDeposits() {
+		DeleteResponse deleteAllDepositResponse = DeleteResponse.builder().success(true)
+				.deletedObject(Collections.EMPTY_LIST).build();
+		Mockito.doNothing().when(depositRepository).deleteByAccountentity(
+				new AccountEntity(accountId, new LoginCredentialEntity(), new AccountTypeEntity(), 0, 0));
+		assertEquals(deleteAllDepositResponse, depositService.deleteAllDeposits(accountId));
+
+	}
+
+	@Test
+	void findByDepositId() {
+		GetResponse getDepositResponse = GetResponse.builder().success(true)
+				.gotObject(Collections.singletonList(depositResponseObject)).build();
+		Mockito.when(depositRepository.findById(storedDepositEntity.getPk_deposit_id()))
+				.thenReturn(Optional.of(storedDepositEntity));
+		assertEquals(getDepositResponse, depositService.findByDepositId(storedDepositEntity.getPk_deposit_id()));
+	}
+
+	@Test
+	void findByDepositIdInvalidDepositId() {
+		assertThrows(InvalidRequestException.class, () -> depositService.findByDepositId(badDepositId));
+
+	}
+
+	@ParameterizedTest
+	@ValueSource(floats = { 0F, -1F, -2123F })
+	void createDepositInvalidAmountException(float number) {
+		DepositRequest invalidRequest = new DepositRequest(
+
+				storedDepositEntity.getDeposittypeentity().getName(),
+				// accountId,
+				storedDepositEntity.getAccountentity().getPk_account_id(), reference, number, email);
+		assertThrows(InvalidAmountException.class, () -> depositService.createDeposit(invalidRequest));
+	}
+
+	@ParameterizedTest
+	@NullAndEmptySource
+	@ValueSource(strings = { "asdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasf", "a" })
+	void createInvalidDepositType(String string) {
+		DepositRequest invalidRequest = new DepositRequest(string,
+				storedDepositEntity.getAccountentity().getPk_account_id(), reference, 1F, email);
+		assertThrows(InvalidRequestException.class, () -> depositService.createDeposit(invalidRequest));
+	}
+
+	@ParameterizedTest
+	@NullAndEmptySource
+	@ValueSource(strings = { "asdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasf", "a" })
+	void createDepositInvalidReference(String string) {
+		DepositRequest invalidRequest = new DepositRequest(
+
+				depositTypeEntity.getName(), storedDepositEntity.getAccountentity().getPk_account_id(), string, amount,
+				email);
+		assertThrows(InvalidRequestException.class, () -> depositService.createDeposit(invalidRequest));
+	}
 }

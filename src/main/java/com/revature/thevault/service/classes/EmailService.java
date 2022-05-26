@@ -26,23 +26,12 @@ import com.revature.thevault.repository.entity.AccountProfileEntity;
 public class EmailService {
 	
 	private JavaMailSender emailSender;
-	// Session
-	
-	
-//	String token = UUID.randomUUID().toString();
-	// My random generator for random passwords maybe
-	
-//	public static void main(String[] args) {
-//		overdraftEmail();
-//		transactionAmountEmail(-501.00f);
-//		
-//	}
+
 	
 	@Autowired
 	public EmailService(JavaMailSender emailSender) {
 		super();
 		this.emailSender = emailSender;
-		// Add whatever for session/random stuff
 	}
 	
 	

@@ -87,5 +87,11 @@ public class AccountController {
     public PutResponse transferToAccount(@RequestHeader("Authorization") String token, @RequestBody TransferRequest transferRequest){
         return accountService.transferToAnotherAccount(transferRequest);
     }
+    
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping(path = "/test")
+    public String testController(){
+        return "You have pinged the Vault 2 Server";
+    }
 
 }

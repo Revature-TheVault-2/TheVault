@@ -1,57 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 	<name>TheVault</name>
-=======
-=======
 	<name>TheVault</name>
->>>>>>> 99a2b037c797ba58b7092e3892f811861d006cce
+
 	<name>demo</name>
->>>>>>> 384355c41b043888f4bc7d8b78858e89b0d359ce
-=======
 	<name>TheVault</name>
->>>>>>> 38f11cde1cbe751113059a7ef0020f8835f59afb
+
 	<comment></comment>
-	<projects>
-	</projects>
+	<projects></projects>
 	<buildSpec>
 		<buildCommand>
 			<name>org.eclipse.jdt.core.javabuilder</name>
-			<arguments>
-			</arguments>
+			<arguments></arguments>
 		</buildCommand>
 		<buildCommand>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 			<name>org.eclipse.m2e.core.maven2Builder</name>
-			<arguments>
-			</arguments>
+			<arguments></arguments>
 		</buildCommand>
 		<buildCommand>
 			<name>org.springframework.ide.eclipse.core.springbuilder</name>
-			<arguments>
-			</arguments>
+			<arguments></arguments>
 		</buildCommand>
 		<buildCommand>
->>>>>>> 99a2b037c797ba58b7092e3892f811861d006cce
+
 			<name>org.springframework.ide.eclipse.boot.validation.springbootbuilder</name>
-=======
+
 			<name>org.springframework.ide.eclipse.core.springbuilder</name>
->>>>>>> 384355c41b043888f4bc7d8b78858e89b0d359ce
-			<arguments>
-			</arguments>
+
+			<arguments></arguments>
 		</buildCommand>
 		<buildCommand>
-<<<<<<< HEAD
-			<name>org.springframework.ide.eclipse.core.springbuilder</name>
-=======
 			<name>org.springframework.ide.eclipse.boot.validation.springbootbuilder</name>
->>>>>>> 384355c41b043888f4bc7d8b78858e89b0d359ce
-			<arguments>
-			</arguments>
+			<arguments></arguments>
 		</buildCommand>
 	</buildSpec>
 	<natures>
@@ -59,10 +39,17 @@
 		<nature>org.eclipse.jdt.core.javanature</nature>
 		<nature>org.eclipse.m2e.core.maven2Nature</nature>
 	</natures>
-<<<<<<< HEAD
 	<filteredResources>
 		<filter>
 			<id>1652976549487</id>
+		</filter>
+	</filteredResources>
+
+
+	<filteredResources>
+		<filter>
+			<id>1653576833254</id>
+
 			<name></name>
 			<type>30</type>
 			<matcher>
@@ -71,6 +58,4 @@
 			</matcher>
 		</filter>
 	</filteredResources>
-=======
->>>>>>> 384355c41b043888f4bc7d8b78858e89b0d359ce
 </projectDescription>

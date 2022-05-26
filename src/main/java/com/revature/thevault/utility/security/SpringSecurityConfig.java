@@ -68,7 +68,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter{
 	@Bean
 	CorsConfigurationSource corsConfigurationSource() {
 		CorsConfiguration configuration = new CorsConfiguration();
-		configuration.setAllowedOrigins(Arrays.asList("http://54.196.171.190:9001"));
+		configuration.setAllowedOrigins(Arrays.asList("http://50.17.120.160:9001"));
 		configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT"));
 		configuration.setAllowedHeaders(Arrays.asList("authorization", "content-type"));
 		configuration.setAllowCredentials(true);

@@ -40,4 +40,5 @@ public class DepositEntity {
     @Column(name = "amount")
     float amount;
     
+    String email;
 }

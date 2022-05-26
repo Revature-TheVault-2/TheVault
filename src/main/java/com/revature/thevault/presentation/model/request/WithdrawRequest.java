@@ -17,4 +17,6 @@ public class WithdrawRequest {
     //request status is default pending
     String reference;
     float amount;
+    String email; //used for later development 
+
 }

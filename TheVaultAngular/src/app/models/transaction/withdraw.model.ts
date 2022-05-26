@@ -54,6 +54,14 @@ export class Withdraw {
   public set withdrawId(value: number) {
     this._withdrawId = value;
   }
+  /* istanbul ignore next */
+  public get email(): string {
+    return this._email;
+  }
+  /* istanbul ignore next */
+  public set email(value: string) {
+    this._email = value;
+  }
 
 
   constructor(
@@ -64,6 +72,7 @@ export class Withdraw {
     private _reference: string,
     private _dateWithdraw: string,
     private _amount: number,
+    private _email: string
   ) {
     this._withdrawId = _withdrawId;
     this._accountId = _accountId;
@@ -72,5 +81,6 @@ export class Withdraw {
     this._reference = _reference;
     this._dateWithdraw = _dateWithdraw;
     this._amount = _amount;
+    this._email = _email;
   }
 }

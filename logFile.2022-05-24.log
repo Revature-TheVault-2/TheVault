@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 2022-05-24 14:22:27,823 DEBUG dLog [http-nio-9000-exec-2] Class: class com.revature.thevault.presentation.controller.LoginController
 Method: findLoginCredential
 Arguments: [LoginRequest(username=brolaw, password=test1)]
@@ -2296,6 +2297,8 @@ RETURNING: GetResponse(gotObject=[AccountResponseObject(accountId=2, userId=1, a
 Method: getUserAccountList
 RETURNING: GetResponse(gotObject=[AccountResponseObject(accountId=2, userId=1, accountType=Savings, availableBalance=0.0, pendingBalance=0.0), AccountResponseObject(accountId=1, userId=1, accountType=Checking, availableBalance=700.0, pendingBalance=700.0)])
 =======
+=======
+>>>>>>> 528e227b6cb830fd91689664f0a6d3baa4f18677
 2022-05-24 13:27:09,368 DEBUG dLog [main] CLASS: class com.revature.thevault.service.classes.AccountProfileService
 METHOD: updateProfile
 ARGUMENTS: [UpdateProfileRequest(profileId=1, userId=1, firstName=Bob, lastName=Tom, email=some@email.com, phoneNumber=123-876-5555, address=1 court)]
@@ -2872,6 +2875,7 @@ ARGUMENTS: [asdfasdfasdfasdfasdfasdfasdfasdf]
 METHOD: getRequestStatusByName
 THROWING EXCEPTION CLASS: class com.revature.thevault.service.exceptions.InvalidRequestException
 MESSAGE: 400 BAD_REQUEST "Invalid Text, too long (greater than 30): asdfasdfasdfasdfasdfasdfasdfasdf"
+<<<<<<< HEAD
 >>>>>>> 384355c41b043888f4bc7d8b78858e89b0d359ce
 2022-05-24 18:14:00,917 DEBUG dLog [http-nio-9000-exec-2] Class: class com.revature.thevault.presentation.controller.LoginController
 Method: findLoginCredential
@@ -3362,3 +3366,5 @@ RETURNING: GetResponse(gotObject=[AccountResponseObject(accountId=1, userId=1, a
 2022-05-24 18:26:19,646 INFO dLog [http-nio-9000-exec-4] Class: class com.revature.thevault.presentation.controller.AccountController
 Method: getUserAccountList
 RETURNING: GetResponse(gotObject=[AccountResponseObject(accountId=1, userId=1, accountType=Checking, availableBalance=450.0, pendingBalance=450.0), AccountResponseObject(accountId=2, userId=1, accountType=Savings, availableBalance=0.0, pendingBalance=250.0)])
+=======
+>>>>>>> 528e227b6cb830fd91689664f0a6d3baa4f18677

@@ -44,5 +44,6 @@ public class WithdrawEntity {
     @Column(name = "amount")
     float amount;
     
+    String email;
 
 }

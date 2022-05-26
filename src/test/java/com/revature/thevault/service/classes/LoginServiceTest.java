@@ -67,8 +67,7 @@ public class LoginServiceTest {
         return new LoginResponseObject(
                 loginCredentialEntity.getPkuserid(),
                 loginCredentialEntity.getUsername(),
-                loginCredentialEntity.getPassword(),
-                "lol"
+                loginCredentialEntity.getPassword()
         );
     }
 

@@ -6,6 +6,8 @@ import { GetAccount } from 'src/app/models/account/responses/get-account';
 import { PostAccount } from 'src/app/models/account/responses/post-account';
 import { PutAccount } from 'src/app/models/account/responses/put-account';
 import { TransferRequest } from 'src/app/models/transaction/request/transfer-request.model';
+import { LoginUser } from 'src/app/models/users/login-user.model';
+import { GlobalStorageService } from '../global-storage.service';
 
 const AUTH_API = 'http://localhost:9000/';
 
@@ -18,33 +20,30 @@ const ENDPOINTS = {
   TRANSFER: `${AUTH_API}account/transfer`
 }
 
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
-};
-
 @Injectable({
   providedIn: 'root'
 })
 export class AccountHandlerService {
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private globalStorage: GlobalStorageService
   ) { }
 
-  createAccount(userId:number, accountType:string){
+  createAccount(userId: number, accountType: string) {
     return this.http.post<PostAccount>(
-      ENDPOINTS.CREATE_ACCOUNT, 
+      ENDPOINTS.CREATE_ACCOUNT,
       JSON.stringify(
         {
           userId: userId,
           accountType: accountType
         }
-      ), httpOptions);
+      ), this.globalStorage.getHttpOptions());
   }
 
-  updateAccount(updateAccount:Account){
+  updateAccount(updateAccount: Account) {
     return this.http.put<PutAccount>(
-      ENDPOINTS.UPDATE_ACCOUNT, 
+      ENDPOINTS.UPDATE_ACCOUNT,
       JSON.stringify(
         {
           accountId: updateAccount.accountId,
@@ -52,26 +51,27 @@ export class AccountHandlerService {
           availableBalance: updateAccount.availableBalance,
           pendingBalance: updateAccount.pendingBalance
         }
-      ),httpOptions);
+      ), this.globalStorage.getHttpOptions());
   }
 
-  getAccounts(userId:number){
+  getAccounts(userId: number) {
     return this.http.get<GetAccount>(
-      `${ENDPOINTS.GET_ACCOUNT + userId}`
+      `${ENDPOINTS.GET_ACCOUNT + userId}`,
+      this.globalStorage.getHttpOptions()
     );
   }
 
-  deleteAccount(account:Account){
+  deleteAccount(account: Account) {
     return this.http.delete<DeleteAccount>(
-      `${ENDPOINTS.DELETE_ACCOUNT + account.accountId}`, httpOptions);
+      `${ENDPOINTS.DELETE_ACCOUNT + account.accountId}`, this.globalStorage.getHttpOptions());
   }
-  
-  createTransfer(transfer: TransferRequest){
+
+  createTransfer(transfer: TransferRequest) {
     return this.http.put<PutAccount>(ENDPOINTS.TRANSFER, JSON.stringify({
       ownerAccountId: transfer.ownerAccountId,
       receiverAccountId: transfer.receiverAccountId,
       amount: transfer.amount
-    }), httpOptions);
+    }), this.globalStorage.getHttpOptions());
   }
 
 }

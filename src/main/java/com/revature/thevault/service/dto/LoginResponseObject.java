@@ -14,5 +14,4 @@ public class LoginResponseObject {
     int userId;
     String username;
     String password;
-    String JWT;
 }

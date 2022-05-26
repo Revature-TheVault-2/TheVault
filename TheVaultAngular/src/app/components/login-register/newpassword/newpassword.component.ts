@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { RoutingAllocatorService } from 'src/app/_services/app_control/routing-allocator.service';
 
 
@@ -18,6 +18,8 @@ export class NewpasswordComponent implements OnInit {
 
   constructor(
     private routingAllocator: RoutingAllocatorService,
+    private userHandler: UserHandlerService,
+    private formBuilder: FormBuilder
   ) { }
 
   error:boolean = false;
@@ -27,12 +29,7 @@ export class NewpasswordComponent implements OnInit {
   successMessage: string = "Success!";
 
   form: FormGroup = new FormGroup({
-    username: new FormControl(''),
-    firstname: new FormControl(''),
-    lastname: new FormControl(''),
-    email: new FormControl(''),
-    address: new FormControl(''),
-    phoneNumber: new FormControl(''),
+    
     password: new FormControl(''),
     confirmPassword: new FormControl('')
   });
@@ -40,9 +37,34 @@ export class NewpasswordComponent implements OnInit {
   posts: any;
 
   ngOnInit(): void {
+    this.initializeForm();
   }
 
-
+  initializeForm():void{
+    this.form = this.formBuilder.group(
+      {        
+        password: [
+          '',
+          [
+            Validators.required,
+            Validators.minLength(4),
+            Validators.maxLength(25)
+          ]
+        ],
+        confirmPassword: [
+          '',
+          [
+            Validators.required,
+            Validators.minLength(4),
+            Validators.maxLength(25)
+          ]
+        ],
+      },
+      {
+        validators: [Validation.match('password', 'confirmPassword')]
+      }
+    );
+  }
 
   goToLogin(): void {
     this.routingAllocator.login();
@@ -58,23 +80,17 @@ export class NewpasswordComponent implements OnInit {
   }
 
   onSubmit(): void {
-    // this.error = false;
-    // this.errorMessage = "Error";
+    this.error = false;
+    this.errorMessage = "Error";
     this.submitted = true;
 
   /* istanbul ignore next */
     if (this.form.invalid) {
       return;
     }
-    let userN = this.form.get('username')?.value;
-    let firstN = this.form.get('firstName')?.value;
-    let lastN = this.form.get('lastName')?.value;
-    let email = this.form.get('email')?.value;
-    let addr = this.form.get('address')?.value;
-    let phoneN = this.form.get('phoneNumber')?.value;
+    
     let passW = this.form.get('password')?.value;
-    if (userN != null && firstN != null && lastN != null && email != null && addr != null 
-       && phoneN != null && passW != null) {
+    if (passW != null) {
 
       // this.newUser = new NewUser(userN, firstN, lastN, email, addr, phoneN, passW);
       // this.registerUser();

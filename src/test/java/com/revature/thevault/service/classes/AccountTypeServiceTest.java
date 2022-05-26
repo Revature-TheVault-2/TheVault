@@ -5,6 +5,7 @@ import com.revature.thevault.repository.entity.AccountTypeEntity;
 import com.revature.thevault.service.exceptions.InvalidAccountTypeException;
 import com.revature.thevault.service.exceptions.InvalidRequestException;
 import org.checkerframework.checker.units.qual.A;
+import org.junit.Ignore;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,6 +22,7 @@ import org.springframework.test.annotation.DirtiesContext;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@Ignore
 @SpringBootTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_CLASS)

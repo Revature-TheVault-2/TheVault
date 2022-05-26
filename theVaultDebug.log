@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 2022-05-25 09:41:41,158 DEBUG dLog [http-nio-9000-exec-6] Class: class com.revature.thevault.presentation.controller.TransactionController
 Method: getTransactionHistoryByMonth
 Arguments: [Basic ZnJlZDEyOmZyZWQyMQ==, 2, 2022, 4]
@@ -2058,3 +2059,5 @@ RETURNING: GetResponse(gotObject=[TransactionObject(transactionId=2, transaction
 2022-05-25 19:37:52,078 INFO dLog [http-nio-9000-exec-10] Class: class com.revature.thevault.presentation.controller.TransactionController
 Method: getTransactionHistoryByMonth
 RETURNING: GetResponse(gotObject=[TransactionObject(transactionId=2, transactionType=Deposit, transactionDetail=Direct Deposit, transactionReference=Paycheck, date=2022-05-24, amount=2.0), TransactionObject(transactionId=1, transactionType=Withdraw, transactionDetail=Payment, transactionReference=fr07, date=2022-05-24, amount=1.0), TransactionObject(transactionId=3, transactionType=Deposit, transactionDetail=Cash, transactionReference=bigger paycheck 1, date=2022-05-25, amount=240.0)])
+=======
+>>>>>>> 64f8b9ae0f6865205fdcbd0304034fcf6c382dd2

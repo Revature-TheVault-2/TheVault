@@ -109,6 +109,8 @@ public class AccountProfileService implements AccountProfileInterface {
     @Override
     public PutResponse updateProfile(UpdateProfileRequest updateProfileRequest) {
         try {
+        	System.out.println("here ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+        	System.out.println(updateProfileRequest);
             return PutResponse.builder()
                     .success(true)
                     .updatedObject(Collections.singletonList(convertEntityToResponse(accountProfileRepository.save(new AccountProfileEntity(
@@ -119,7 +121,11 @@ public class AccountProfileService implements AccountProfileInterface {
                             updateProfileRequest.getEmail(),
                             updateProfileRequest.getPhoneNumber(),
                             updateProfileRequest.getAddress(),
+<<<<<<< HEAD
                             0
+=======
+                            updateProfileRequest.getNotificationAmount()
+>>>>>>> 64f8b9ae0f6865205fdcbd0304034fcf6c382dd2
                     )))))
                     .build();
         } catch (Exception e) {

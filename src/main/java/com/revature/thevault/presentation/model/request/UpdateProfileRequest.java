@@ -18,4 +18,5 @@ public class UpdateProfileRequest {
     String email;
     String phoneNumber;
     String address;
+    float notificationAmount;
 }

@@ -15,6 +15,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+<<<<<<< HEAD
+=======
+
+import com.revature.thevault.presentation.model.request.CreateAccountRequest;
+import com.revature.thevault.presentation.model.request.TransferRequest;
+import com.revature.thevault.presentation.model.request.UpdateAccountRequest;
+import com.revature.thevault.presentation.model.response.builder.DeleteResponse;
+import com.revature.thevault.presentation.model.response.builder.GetResponse;
+import com.revature.thevault.presentation.model.response.builder.PostResponse;
+import com.revature.thevault.presentation.model.response.builder.PutResponse;
+import com.revature.thevault.service.classes.AccountService;
+>>>>>>> 64f8b9ae0f6865205fdcbd0304034fcf6c382dd2
 
 import com.revature.thevault.presentation.model.request.CreateAccountRequest;
 import com.revature.thevault.presentation.model.request.TransferRequest;
@@ -66,6 +78,12 @@ public class AccountController {
     @PutMapping(path = "/transfer", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public PutResponse transferToAccount(@RequestHeader("Authorization") String token, @RequestBody TransferRequest transferRequest){
         return accountService.transferToAnotherAccount(transferRequest);
+    }
+    
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping(path = "/test")
+    public String testController(){
+        return "You have pinged the Vault 2 Server";
     }
 
 }

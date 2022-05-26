@@ -1,17 +1,22 @@
 <div class="container mt-3">
     <h2 class="display-4">Transaction History</h2>
+<<<<<<< HEAD
     <form class="d-flex" (ngSubmit)="onSubmit()">
         <input class="form-control me-2" type="month" id="start" name="start"
             [min]="pastString" [max]="todayString" [(ngModel)]="selected">
         <!-- <input class="form-control me-2" type="search" placeholder="Search" [(ngModel)]="term"
             [ngModelOptions]="{standalone: true}" aria-label="Search"> -->
         <input type="submit" class="form-control me-2 btn btn-info" value="Get Statement For Month">
+=======
+    <app-alert></app-alert>
+    <form class="d-flex">
+>>>>>>> 64f8b9ae0f6865205fdcbd0304034fcf6c382dd2
       <input class="form-control me-2" type="search" placeholder="Search" [(ngModel)]="term" [ngModelOptions]="{standalone: true}" aria-label="Search">
     </form>
     <br>
-    <table class="table">
-      <thead>
-        <tr class ="table-info">
+    <table class="table"  >
+      <thead >
+        <tr class ="table-info" >
           <th scope="col">Transaction Id</th>
           <th scope="col"> Reference </th>
           <th scope="col">Type</th>
@@ -22,7 +27,7 @@
       </thead>
         <tbody>
 
-          <tr class="table-secondary" *ngFor="let tran of transactions |filter:term; index as i">
+          <tr class="table-secondary " *ngFor="let tran of transactions |filter:term; index as i">
             <!-- <th scope="row"><button (click)="showDetails(tran)" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" id="transactionInfo">{{i + 1}} </button></th> -->
             <th scope="row">{{i + 1}}</th>
             <td>{{tran.transactionReference}}</td>

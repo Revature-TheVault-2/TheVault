@@ -9,7 +9,7 @@ import { PostProfile } from 'src/app/models/users/responses/post-profile';
 import { PutProfile } from 'src/app/models/users/responses/put-profile';
 import { GlobalStorageService } from '../global-storage.service';
 
-const AUTH_API = 'http://localhost:9000/';
+const AUTH_API = 'http://ec2-50-17-120-160.compute-1.amazonaws.com:9000/';
 
 const ENDPOINTS = {
   LOGIN: `${AUTH_API}login`,
@@ -85,7 +85,8 @@ export class UserHandlerService {
           lastName: profile.lastName,
           email: profile.email,
           phoneNumber: profile.phoneNumber,
-          address: profile.address
+          address: profile.address,
+          notificationAmount: profile.notificationAmount
         }
       ),
       this.globalStorage.getHttpOptions());

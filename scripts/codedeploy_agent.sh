@@ -32,7 +32,7 @@ cd TheVault/
 sudo wget http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo -O /etc/yum.repos.d/epel-apache-maven.repo
 sudo sed -i s/\$releasever/6/g /etc/yum.repos.d/epel-apache-maven.repo
 #remove apache- if not amazon linux
-sudo yum install -y apache-maven
+sudo yum install -y maven
 echo "          ((((((((((     installing maven END     ))))))))))          "
 
 

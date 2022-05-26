@@ -65,13 +65,14 @@ public class ExportPDFService {
 		PdfWriter writer = new PdfWriter(dest); // Writer can create PDF files
 		PdfDocument pdfFile = new PdfDocument(writer); // Point of entry to work with a PDF file.
 		Document document = new Document(pdfFile); // Desired output is a Document Object. The actual PDF file
+		document.setMargins(10, 10, 10, 10);
 
 		try {
 
 			// Variables
-			final String FUTURA = "src/test/java/com/revature/thevault/exportpdf/Futura-Std-Medium.otf";
-			final String FUTURABOLD = "src/test/java/com/revature/thevault/exportpdf/Futura-Std-Book.otf";
-			final String FUTURABOOK = "src/test/java/com/revature/thevault/exportpdf/Futura-Std-Bold.otf";
+			final String FUTURA = "src/main/resources/otf/Futura-Std-Medium.otf";
+			final String FUTURABOLD = "src/main/resources/otf/Futura-Std-Book.otf";
+			final String FUTURABOOK = "src/main/resources/otf/Futura-Std-Bold.otf";
 			
 			Optional<AccountProfileEntity> profileInfo = profileRepos.findById(profileId);
 
@@ -103,18 +104,15 @@ public class ExportPDFService {
 			PdfFont futuraBook = PdfFontFactory.createFont(bookFontProgram);
 
 			// Paragraph Initialization
-			Paragraph accInfo = new Paragraph(firstName + " " + lastName + "\n" + address); // This is assuming all
-																							// three of these are
-																							// mandatory. Double
-																							// check... // This needs to
-																							// be changed.
-			Paragraph revatureInfo = new Paragraph(
+			Paragraph accInfo = new Paragraph(firstName + " " + lastName + "\n" + address);
+			
+			Paragraph theVaultInfo = new Paragraph(
 					"1111 Constitution Avenue Northwest\nWashington, District of Columbia, DC");
 			Paragraph emptyTransactions = new Paragraph("Transaction list is empty. No records to show.");
 
 			// Image Initialization
 			Image logo = new Image(
-					ImageDataFactory.create("src/test/java/com/revature/thevault/exportpdf/rev-logo.png"));
+					ImageDataFactory.create("src/main/resources/img/vault_logo.png"));
 
 			// Colors
 			Color orange = new DeviceRgb(242, 105, 38);
@@ -125,7 +123,7 @@ public class ExportPDFService {
 			// Style Initialization
 			Style myLogo = new Style();
 			myLogo.setWidth(165F);
-			myLogo.setHeight(55F);
+			myLogo.setHeight(168F);
 			myLogo.setMarginLeft(2F);
 
 			Style myRevatureStyle = new Style();
@@ -136,6 +134,7 @@ public class ExportPDFService {
 			myAccountInfoStyle.setFont(futuraBook);
 			myAccountInfoStyle.setFontSize(9F);
 			myAccountInfoStyle.setMarginLeft(25F);
+			myAccountInfoStyle.setMarginBottom(1F);
 
 			Style tableStyle = new Style();
 			tableStyle.setBackgroundColor(blue);
@@ -143,10 +142,37 @@ public class ExportPDFService {
 			Style tableCellStyle = new Style();
 			tableCellStyle.setBackgroundColor(lightGray);
 			tableCellStyle.setBorder(new SolidBorder(lightGray, 1F));
+			
+			Style accountCellStyle = new Style();
+			accountCellStyle.setBackgroundColor(lightGray);
+			accountCellStyle.setBorder(new SolidBorder(lightGray, 1F));
+			accountCellStyle.setFixedPosition(320F, 780F, 0F);
+			
+			// Table Creation			
+			// Table accountTable
+			Table accountTable = new Table(new float[]{2F, 3F});
+			accountTable.setWidth(UnitValue.createPercentValue(100));
+			accountTable.addStyle(accountCellStyle);
+			
+			Cell statementPeriodHeader = new Cell();
+			statementPeriodHeader.add(new Paragraph("Statement Period"));
+			statementPeriodHeader.addStyle(tableStyle);
+			
+			Cell accountNumber = new Cell();
+			accountNumber.add(new Paragraph("Account Number"));
+			accountNumber.addStyle(tableStyle);
+			
+			Cell statementPeriod = new Cell();
+			statementPeriod.add(new Paragraph(dateRange));
+			statementPeriod.addStyle(tableStyle); 
+			
+			Cell accountNumberHeader = new Cell();
+			accountNumberHeader.add(new Paragraph(String.valueOf(profileId)));
+			accountNumberHeader.addStyle(tableStyle);
+			
+			// Table table
+			Table table = new Table(new float[]{1F, 0.5F, 1F, 1F, 2F}, false); // In this float example, the float numbers represent table size. However, it's really isn't updating automatically since it isn't a largeTable.
 
-			// Table Creation
-			Table table = new Table(new float[] { 1F, 0.5F, 1F, 1F, 2F }, false); // In this float example, the float
-																					// numbers represent table size. A
 			table.setWidth(UnitValue.createPercentValue(100));
 			table.addStyle(tableCellStyle);
 
@@ -181,12 +207,11 @@ public class ExportPDFService {
 				isEmptyList = true;
 			} else {
 
-				for (TransactionObject t : transactionObjects) { // Dynamically creates the table based on the size of
-																	// arrList
-
+				for (TransactionObject t : transactionObjects) { // Dynamically creates the table based on the size of arrList
 					table.addCell(t.getDate().toString());
 					table.addCell(t.getTransactionReference());
-					if (t.getTransactionType().equals("Withdraw")) {
+					if (t.getTransactionType().equals("Withdraw")) { 
+
 						table.addCell(String.valueOf(t.getAmount()));
 						table.addCell("");
 						ourCurrentBalance = ourCurrentBalance - t.getAmount();
@@ -201,13 +226,13 @@ public class ExportPDFService {
 
 				// Style Appending
 				logo.addStyle(myLogo);
-				revatureInfo.addStyle(myRevatureStyle);
+				theVaultInfo.addStyle(myRevatureStyle);
 				accInfo.addStyle(myAccountInfoStyle);
 				emptyTransactions.addStyle(myRevatureStyle);
 
 				// Appending to Document
 				document.add(logo); // All Images Read from Root folder.
-				document.add(revatureInfo);
+				document.add(theVaultInfo);
 				document.add(accInfo);
 				document.add(table);
 				if (isEmptyList)

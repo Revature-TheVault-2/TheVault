@@ -86,6 +86,7 @@ export class UserHandlerService {
           email: profile.email,
           phoneNumber: profile.phoneNumber,
           address: profile.address
+          
         }
       ),
       this.globalStorage.getHttpOptions());

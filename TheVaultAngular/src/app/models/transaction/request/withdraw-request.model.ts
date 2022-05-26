@@ -27,8 +27,8 @@ export class WithdrawRequest {
         private _accountId: number,
         private _requestType: string,
         private _reference: string,
-        private _amount: number
-    ){
+        private _amount: number,
+    ) {
         this._requestType = _requestType;
         this._accountId = _accountId;
         this._reference = _reference;

@@ -19,7 +19,7 @@ export class EditProfileComponent implements OnInit {
   email:string = '';
   phoneNumber:string = '';
   address:string = '';
-  notificationAmount:number = 0;
+  notificationAmount:number =0;
 
   constructor(
     private globalStorage: GlobalStorageService,

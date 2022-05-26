@@ -11,6 +11,7 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class WithdrawRequest {
+	
     int accountId;
     String requestType;
     //request status is default pending

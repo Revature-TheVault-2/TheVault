@@ -15,8 +15,11 @@ import com.revature.thevault.presentation.model.request.WithdrawRequest;
 import com.revature.thevault.presentation.model.response.builder.DeleteResponse;
 import com.revature.thevault.presentation.model.response.builder.GetResponse;
 import com.revature.thevault.presentation.model.response.builder.PostResponse;
+import com.revature.thevault.repository.dao.AccountProfileRepository;
+import com.revature.thevault.repository.dao.AccountRepository;
 import com.revature.thevault.repository.dao.WithdrawRepository;
 import com.revature.thevault.repository.entity.AccountEntity;
+import com.revature.thevault.repository.entity.AccountProfileEntity;
 import com.revature.thevault.repository.entity.AccountTypeEntity;
 import com.revature.thevault.repository.entity.LoginCredentialEntity;
 import com.revature.thevault.repository.entity.WithdrawEntity;
@@ -35,9 +38,14 @@ public class WithdrawService implements WithdrawServiceInterface {
 
     @Autowired
     private RequestStatusService requestStatusService;
+    
+    private AccountRepository accountRepository;
+    private AccountProfileRepository accountProfileRepository;
+    private AccountEntity account;
+    private AccountProfileEntity accountProfile;
 
     /**
-     * Takes an inputted withdraw object and saves it to the database, then returns it as a post request
+     * Takes an inputed withdraw object and saves it to the database, then returns it as a post request
      * 
      * @param withdrawRequest Object
      * @return a POST request that contains a singleton list of the created withdraw
@@ -45,6 +53,8 @@ public class WithdrawService implements WithdrawServiceInterface {
     @Override
     public PostResponse createWithdrawal(WithdrawRequest withdrawRequest) {
     	// float balancePostWithdrawal = sessionUser.getAvaiable_balance() - withdrawRequest.getAmount(); 
+    	
+    	
     	
     //Outer if(notificationAmount != 0){
     	//if(-withdrawRequest.getAmount() > "current user session".getNoficationAmount()){
@@ -62,7 +72,7 @@ public class WithdrawService implements WithdrawServiceInterface {
                            requestStatusService.getRequestStatusByName("Pending"),                             
                            withdrawRequest.getReference(),                        
                            Date.valueOf(LocalDate.now()),                           
-                           withdrawRequest.getAmount())                                                                
+                           withdrawRequest.getAmount())
                                                 
                                         )
                                 )

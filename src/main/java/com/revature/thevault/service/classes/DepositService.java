@@ -60,7 +60,8 @@ public class DepositService implements DepositServiceInterface {
 											new AccountTypeEntity(), 0, 0),
 									depositTypeService.findDepositTypeEntityByName(depositRequest.getDepositType()),
 									depositRequest.getReference(), Date.valueOf(LocalDate.now()),
-									depositRequest.getAmount())))))
+									depositRequest.getAmount()
+									)))))
 					.build();
 		} catch (Exception e) {
 			throw new InvalidRequestException(HttpStatus.BAD_REQUEST, "Bad request");

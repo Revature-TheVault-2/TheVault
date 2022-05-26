@@ -141,7 +141,8 @@ INSERT INTO request_type_table
 VALUES
     (1, 'Payment'),
     (2, 'Personal'),
-    (3, 'Transfer');
+    (3, 'Transfer'),
+   	(4, 'Tech');
 
 INSERT INTO account_type_table
 VALUES

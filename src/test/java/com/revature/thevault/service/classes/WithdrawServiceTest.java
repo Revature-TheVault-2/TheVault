@@ -49,6 +49,9 @@ class WithdrawServiceTest {
 
     @MockBean
     private RequestStatusService requestStatusService;
+    
+//    @MockBean
+//    private EmailService emailService;
 
     private int accountId;
     private String reference;

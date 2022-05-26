@@ -72,10 +72,23 @@ public class ExportPDFService {
 			final String FUTURA = "src/test/java/com/revature/thevault/exportpdf/Futura-Std-Medium.otf";
 			final String FUTURABOLD = "src/test/java/com/revature/thevault/exportpdf/Futura-Std-Book.otf";
 			final String FUTURABOOK = "src/test/java/com/revature/thevault/exportpdf/Futura-Std-Bold.otf";
+			
+			Optional<AccountProfileEntity> profileInfo = profileRepos.findById(profileId);
 
-			String firstName = "Ernest"; // This needs to be changed.
-			String lastName = "Hemingway"; // This needs to be changed.
-			String address = "339 N Oak Park Ave, Oak Park, IL 60302"; // This needs to be changed.
+			// Get the profile information
+			String userEmail = "";
+			String firstName = "";
+			String lastName = "";
+			String address = "";
+			if (!profileInfo.isEmpty()) {
+				AccountProfileEntity profileInfoObj = profileInfo.get();
+				userEmail = profileInfoObj.getEmail();
+				firstName = profileInfoObj.getFirst_name();
+				lastName = profileInfoObj.getLast_name();
+				address = profileInfoObj.getAddress();
+			} else {
+				System.out.println("ERROR: No profile found!");
+			}
 
 			boolean isEmptyList = false;
 
@@ -232,18 +245,11 @@ public class ExportPDFService {
 //				Desktop desktop = Desktop.getDesktop();
 //				desktop.open(file); // Since the value is hard-coded in, we don't need to check whether or not the file exists because it WILL ALWAYS create it.
 
-				Optional<AccountProfileEntity> profileInfo = profileRepos.findById(profileId);
-
 				if (!profileInfo.isEmpty()) {
-					AccountProfileEntity profileInfoObj = profileInfo.get();
-					String userEmail = profileInfoObj.getEmail();
-					String name = profileInfoObj.getFirst_name();
-
 					// Email the file (by fred)
-					emailServ.sendReportPdfEmail(dest, dateRange, userEmail, name);
-				} else {
-					System.out.println("ERROR: No profile found!");
+					emailServ.sendReportPdfEmail(dest, dateRange, userEmail, firstName);
 				}
+				
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

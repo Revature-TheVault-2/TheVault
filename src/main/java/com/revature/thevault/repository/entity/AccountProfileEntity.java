@@ -19,8 +19,8 @@ public class AccountProfileEntity {
 	
     @Id
     @Column(name = "pk_profile_id")
-    @GeneratedValue(generator = "account_profile_table_pk_profile_id_seq", strategy = GenerationType.SEQUENCE)
-    @SequenceGenerator(allocationSize = 1, name = "account_profile_table_pk_profile_id_seq", sequenceName = "account_profile_table_pk_profile_id_seq")
+    @GeneratedValue(generator = "account_profile_table_pk_profile_id_seq", strategy = GenerationType.IDENTITY)
+    //@SequenceGenerator(allocationSize = 1, name = "account_profile_table_pk_profile_id_seq", sequenceName = "account_profile_table_pk_profile_id_seq")
     int pk_profile_id;
     
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -41,6 +41,12 @@ public class AccountProfileEntity {
     
     @Column(name = "address")
     String address;
+    
+    @Column(name = "notification_amount", nullable=true)
+    float notificationAmount;
+
+    
+    
     
     
 }

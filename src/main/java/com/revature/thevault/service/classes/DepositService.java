@@ -1,17 +1,5 @@
 package com.revature.thevault.service.classes;
 
-import com.revature.thevault.presentation.model.request.DepositRequest;
-import com.revature.thevault.presentation.model.response.builder.DeleteResponse;
-import com.revature.thevault.presentation.model.response.builder.GetResponse;
-import com.revature.thevault.presentation.model.response.builder.PostResponse;
-import com.revature.thevault.repository.dao.DepositRepository;
-import com.revature.thevault.repository.entity.*;
-import com.revature.thevault.service.dto.DepositResponseObject;
-import com.revature.thevault.service.exceptions.InvalidAccountIdException;
-import com.revature.thevault.service.exceptions.InvalidDepositIdException;
-import com.revature.thevault.service.exceptions.InvalidRequestException;
-import com.revature.thevault.service.interfaces.DepositServiceInterface;
-
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -24,6 +12,26 @@ import javax.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+
+import com.revature.thevault.presentation.model.request.DepositRequest;
+import com.revature.thevault.presentation.model.response.builder.DeleteResponse;
+import com.revature.thevault.presentation.model.response.builder.GetResponse;
+import com.revature.thevault.presentation.model.response.builder.PostResponse;
+import com.revature.thevault.repository.dao.AccountProfileRepository;
+import com.revature.thevault.repository.dao.AccountRepository;
+import com.revature.thevault.repository.dao.DepositRepository;
+import com.revature.thevault.repository.entity.AccountEntity;
+import com.revature.thevault.repository.entity.AccountProfileEntity;
+import com.revature.thevault.repository.entity.AccountTypeEntity;
+import com.revature.thevault.repository.entity.DepositEntity;
+import com.revature.thevault.repository.entity.DepositTypeEntity;
+import com.revature.thevault.repository.entity.LoginCredentialEntity;
+import com.revature.thevault.service.classes.Email.EmailService;
+import com.revature.thevault.service.dto.DepositResponseObject;
+import com.revature.thevault.service.exceptions.InvalidAccountIdException;
+import com.revature.thevault.service.exceptions.InvalidDepositIdException;
+import com.revature.thevault.service.exceptions.InvalidRequestException;
+import com.revature.thevault.service.interfaces.DepositServiceInterface;
 
 /**
  * @author chris & fred & david
@@ -38,6 +46,15 @@ public class DepositService implements DepositServiceInterface {
 
 	@Autowired
 	private DepositTypeService depositTypeService;
+	
+	@Autowired
+	private AccountRepository accountRepository;
+
+	@Autowired
+	private AccountProfileRepository accountProfileRepository;
+	
+	@Autowired
+	private EmailService emailService;
 
 	/**
 	 * Saves new deposit entity into the deposit repository and then converts to a PostResponse return.
@@ -48,7 +65,25 @@ public class DepositService implements DepositServiceInterface {
 	 */
 	@Override
 	public PostResponse createDeposit(DepositRequest depositRequest) {
+
 		try {
+	    	Optional<AccountEntity>  currentAccount = accountRepository.findById(depositRequest.getAccountId());
+	    	AccountProfileEntity currentUserProfile = accountProfileRepository.findByLogincredential(currentAccount.get().getLogincredentials());
+	
+	    	float balancePostWithdrawal = currentAccount.get().getAvailable_balance() - depositRequest.getAmount(); 
+	
+	//    	depositRequest.findById(depositRequest.getAccountId());
+		    if(currentUserProfile.getNotificationAmount() != 0.0f){
+		    	if(depositRequest.getAmount() > currentUserProfile.getNotificationAmount()){
+		    		emailService.transactionAmountEmail(-(depositRequest.getAmount()), currentUserProfile); 
+		    	}
+		   	}
+		    
+			 if(balancePostWithdrawal < 0){
+				 emailService.overdraftEmail(balancePostWithdrawal, currentUserProfile); 
+			 }
+			 
+		 
 			return PostResponse.builder().success(true)
 					.createdObject(Collections
 							.singletonList(convertDepositEntityToResponse(depositRepository.save(new DepositEntity(0,
@@ -56,7 +91,8 @@ public class DepositService implements DepositServiceInterface {
 											new AccountTypeEntity(), 0, 0),
 									depositTypeService.findDepositTypeEntityByName(depositRequest.getDepositType()),
 									depositRequest.getReference(), Date.valueOf(LocalDate.now()),
-									depositRequest.getAmount())))))
+									depositRequest.getAmount(),
+									depositRequest.getEmail())))))
 					.build();
 		} catch (Exception e) {
 			throw new InvalidRequestException(HttpStatus.BAD_REQUEST, "Bad request");

@@ -1,0 +1,85 @@
+<div class="container">
+    <h1>Use our Budget Calculator to Manage Your Expenses</h1>
+    <form (ngSubmit)="onClickSubmitIncome(income.value)"
+    >
+        <div class="col-md-3">
+            <label for="Wbox" class="form-label">Enter your monthly income:</label>
+            <input type="text" class="form-control" min="0" id="income" #Wbox placeholder="Monthly Income"
+                name="withdrawbox" #income required ngModel> 
+            <div class="valid-feedback">Valid.</div>
+            <div class="invalid-feedback">Enter number greater than 1</div>
+        </div>
+        <!-- <div class="col-md-2">
+            <label for="refBox" class="form-lable">Reference</label>
+            <input type="text" class="form-control" id="refBox" name="referenceBox" required #reference ngModel>
+        </div> -->
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+    <br>
+    <form (ngSubmit)="onClickSubmitExpenses(expName.value, expenses.value)">
+
+        <div class="col-md-3">
+            <label for="Wbox" class="form-label">Enter the name of your expense:</label>
+            <input required="required" type="text" class="form-control" min="0" id="expenseName" #Wbox placeholder="Monthly Expenses"
+                name="withdrawbox" #expName required ngModel>
+            <div class="valid-feedback">Valid.</div>
+            <div class="invalid-feedback">Enter number greater than 1</div>
+        </div>
+
+        <div class="col-md-3">
+            <label for="Wbox" class="form-label">Enter expense amount:</label>
+            <input type="number" class="form-control" min="0" id="expenses" #Wbox placeholder="Monthly Expenses"
+                name="withdrawbox" #expenses required ngModel>
+            <div class="valid-feedback">Valid.</div>
+            <div class="invalid-feedback">Enter number greater than 1</div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    
+    <div>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Budget Calculator</th>
+                        <th>US Dollar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            Monthly Income
+                        </td>
+                        <td>
+                            {{ incomeField | currency }}
+                        </td>
+                    </tr>
+
+                    <tr *ngFor = 'let expense of expensesArray'>
+                        <td>
+                            {{ expense.name }}
+                        </td>
+                        <td>
+                            {{ expense.amount | currency }}
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <b>Monthly Budget</b>
+                        </td>
+                        <td>
+                           <b>{{ budget | currency }}</b> 
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <button type="submit" class="btn btn-primary" (click)="clearExpenses()">Clear Expenses</button>
+            <p></p>
+            <button type="submit" class="btn btn-primary" (click)="clearTable()">Clear Table</button>
+        </div>
+        
+    </div>
+</div>

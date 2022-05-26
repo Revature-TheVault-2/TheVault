@@ -80,7 +80,8 @@ public class AccountProfileService implements AccountProfileInterface {
                 profileCreateRequest.getLastName(),
                 profileCreateRequest.getEmail(),
                 profileCreateRequest.getPhoneNumber(),
-                profileCreateRequest.getAddress()
+                profileCreateRequest.getAddress(),
+                0
         );
 
         AccountProfileResponse convertedCreatedEntity = convertEntityToResponse(accountProfileRepository.save(createdProfileEntity));
@@ -108,6 +109,8 @@ public class AccountProfileService implements AccountProfileInterface {
     @Override
     public PutResponse updateProfile(UpdateProfileRequest updateProfileRequest) {
         try {
+        	System.out.println("here ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+        	System.out.println(updateProfileRequest);
             return PutResponse.builder()
                     .success(true)
                     .updatedObject(Collections.singletonList(convertEntityToResponse(accountProfileRepository.save(new AccountProfileEntity(
@@ -117,7 +120,8 @@ public class AccountProfileService implements AccountProfileInterface {
                             updateProfileRequest.getLastName(),
                             updateProfileRequest.getEmail(),
                             updateProfileRequest.getPhoneNumber(),
-                            updateProfileRequest.getAddress()
+                            updateProfileRequest.getAddress(),
+                            updateProfileRequest.getNotificationAmount()
                     )))))
                     .build();
         } catch (Exception e) {
@@ -157,7 +161,7 @@ public class AccountProfileService implements AccountProfileInterface {
     private AccountProfileResponse convertEntityToResponse(AccountProfileEntity accountProfileEntity) {
         return new AccountProfileResponse(
                 accountProfileEntity.getPk_profile_id(),
-                accountProfileEntity.getLogincredential().getPkuserid(),
+                accountProfileEntity.getLogincredential().getPkUserId(),
                 accountProfileEntity.getFirst_name(),
                 accountProfileEntity.getLast_name(),
                 accountProfileEntity.getEmail(),

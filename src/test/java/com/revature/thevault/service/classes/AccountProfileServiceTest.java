@@ -68,11 +68,12 @@ class AccountProfileServiceTest {
                 "Tom",
                 "some@email.com",
                 "123-876-5555",
-                "1 court"
+                "1 court",
+                500.00f
         );
         goodAccountResponse = new AccountProfileResponse(
                 normalAccountProfileEntity.getPk_profile_id(),
-                normalAccountProfileEntity.getLogincredential().getPkuserid(),
+                normalAccountProfileEntity.getLogincredential().getPkUserId(),
                 normalAccountProfileEntity.getFirst_name(),
                 normalAccountProfileEntity.getLast_name(),
                 normalAccountProfileEntity.getEmail(),
@@ -89,7 +90,7 @@ class AccountProfileServiceTest {
     private AccountProfileResponse convertToProfileResponseEntity(AccountProfileEntity entity){
         return new AccountProfileResponse(
                 entity.getPk_profile_id(),
-                entity.getLogincredential().getPkuserid(),
+                entity.getLogincredential().getPkUserId(),
                 entity.getFirst_name(),
                 entity.getLast_name(),
                 entity.getEmail(),
@@ -142,7 +143,8 @@ class AccountProfileServiceTest {
                 "something",
                 "asdf@fjfo.com",
                 "555-555-5555",
-                "1 street"
+                "1 street",
+                0
         );
 
         Mockito.when(loginService.findUserByUserId(normalCreateRequest.getUserId()))
@@ -155,7 +157,8 @@ class AccountProfileServiceTest {
                 normalCreateRequest.getLastName(),
                 normalCreateRequest.getEmail(),
                 normalCreateRequest.getPhoneNumber(),
-                normalCreateRequest.getAddress()
+                normalCreateRequest.getAddress(),
+                normalCreateRequest.getNotificationAmount()
 
         );
         Mockito.when(accountProfileRepository.save(new AccountProfileEntity(
@@ -165,7 +168,8 @@ class AccountProfileServiceTest {
                 normalCreateRequest.getLastName(),
                 normalCreateRequest.getEmail(),
                 normalCreateRequest.getPhoneNumber(),
-                normalCreateRequest.getAddress()
+                normalCreateRequest.getAddress(),
+                normalCreateRequest.getNotificationAmount()
         ))).thenReturn(storedProfileEntity);
 
 
@@ -173,7 +177,7 @@ class AccountProfileServiceTest {
                 .success(true)
                 .createdObject(Collections.singletonList(new AccountProfileResponse(
                         storedProfileEntity.getPk_profile_id(),
-                        storedProfileEntity.getLogincredential().getPkuserid(),
+                        storedProfileEntity.getLogincredential().getPkUserId(),
                         storedProfileEntity.getFirst_name(),
                         storedProfileEntity.getLast_name(),
                         storedProfileEntity.getEmail(),
@@ -187,17 +191,18 @@ class AccountProfileServiceTest {
 
     @Test
     void updateProfile(){
-        Mockito.when(loginService.findUserByUserId(normalAccountProfileEntity.getLogincredential().getPkuserid()))
+        Mockito.when(loginService.findUserByUserId(normalAccountProfileEntity.getLogincredential().getPkUserId()))
                 .thenReturn(normalLoginCredentialEntity);
 
        UpdateProfileRequest pcr = new UpdateProfileRequest(
                normalAccountProfileEntity.getPk_profile_id(),
-               loginService.findUserByUserId(normalAccountProfileEntity.getLogincredential().getPkuserid()).getPkuserid(),
+               loginService.findUserByUserId(normalAccountProfileEntity.getLogincredential().getPkUserId()).getPkUserId(),
                normalAccountProfileEntity.getFirst_name(),
                normalAccountProfileEntity.getLast_name(),
                normalAccountProfileEntity.getEmail(),
                normalAccountProfileEntity.getPhone_number(),
-               normalAccountProfileEntity.getAddress()
+               normalAccountProfileEntity.getAddress(),
+               normalAccountProfileEntity.getNotificationAmount()
        );
 
        Mockito.when(accountProfileRepository.save(normalAccountProfileEntity))
@@ -219,7 +224,7 @@ class AccountProfileServiceTest {
     @Test
     void deleteProfile(){
         AccountProfileRequest goodRequest = new AccountProfileRequest(
-                normalAccountProfileEntity.getLogincredential().getPkuserid()
+                normalAccountProfileEntity.getLogincredential().getPkUserId()
         );
 
         Optional<AccountProfileEntity> optionalProfile = Optional.ofNullable(normalAccountProfileEntity);
@@ -229,7 +234,7 @@ class AccountProfileServiceTest {
 
         AccountProfileResponse goodAccountResponse = new AccountProfileResponse(
                 normalAccountProfileEntity.getPk_profile_id(),
-                normalAccountProfileEntity.getLogincredential().getPkuserid(),
+                normalAccountProfileEntity.getLogincredential().getPkUserId(),
                 normalAccountProfileEntity.getFirst_name(),
                 normalAccountProfileEntity.getLast_name(),
                 normalAccountProfileEntity.getEmail(),

@@ -1,1 +1,32 @@
 <router-outlet></router-outlet>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a *ngIf="isLoggedIn()" class="navbar-brand" routerLink="/account-view">The Vault</a>
+      <a *ngIf="!isLoggedIn()" class="navbar-brand" routerLink="/">The Vault</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a *ngIf="isLoggedIn()" routerLink="/account-view" class="nav-link">Home</a>
+          </li>
+          <li class="nav-item">
+            <a *ngIf="!isLoggedIn()" routerLink="/" class="nav-link active">Home</a>
+          </li>
+          <li class="nav-item">
+            <a *ngIf="isLoggedIn()" routerLink="/budget-calculator" class="nav-link">Budget</a>
+          </li>
+          <li class="nav-item">
+            <a *ngIf="isLoggedIn()" (click)="logout()" routerLink="/" class="nav-link">Logout</a>
+          </li>
+          <li class="nav-item">
+            <button class="btn btn-light" (click)="toggleTheme()" id="theme-button" style="position: absolute top right;">{{buttonText}}</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+</nav>
+<div class="container-fluid">
+    <router-outlet></router-outlet>
+</div>

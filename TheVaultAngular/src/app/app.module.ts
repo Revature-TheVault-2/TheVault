@@ -28,6 +28,8 @@ import { CreateAccountComponent } from './components/account/create-account/crea
 import { TransferGenerateComponent } from './components/transaction/transfer-generate/transfer-generate.component';
 
 import { AuthInterceptorService } from './utils/auth-interceptor.service';
+import { AlertComponent } from './components/alert/alert.component';
+import { BudgetCalculatorComponent } from './components/budget-calculator/budget-calculator.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +53,9 @@ import { AuthInterceptorService } from './utils/auth-interceptor.service';
     TransactionSearchComponent,
     CreateAccountComponent,
     WithdrawDetailComponent,
-    TransferGenerateComponent
+    TransferGenerateComponent,
+    AlertComponent,
+    BudgetCalculatorComponent
   ],
   imports: [
     BrowserModule,

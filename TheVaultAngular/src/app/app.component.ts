@@ -1,4 +1,3 @@
-import { Component, Inject, ViewEncapsulation } from '@angular/core';
 import { Component, ViewEncapsulation } from '@angular/core';
 import { Profile } from './models/users/profile.model';
 import { GlobalStorageService } from './_services/global-storage.service';
@@ -35,7 +34,7 @@ export class AppComponent {
 
 
   logout(){
-    this.globalStorage.setProfile(new Profile(0,0,'','','','',''));
+    this.globalStorage.setProfile(new Profile(0,0,'','','','','',0));
     this.globalStorage.setAccounts([]);
     this.globalStorage.setUserId(0);
     this.globalStorage.token = "";

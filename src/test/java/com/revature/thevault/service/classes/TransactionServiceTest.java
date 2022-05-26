@@ -1,10 +1,18 @@
 package com.revature.thevault.service.classes;
 
-import com.revature.thevault.presentation.model.response.builder.GetResponse;
-import com.revature.thevault.service.dto.DepositResponseObject;
-import com.revature.thevault.service.dto.TransactionObject;
-import com.revature.thevault.service.dto.WithdrawResponseObject;
-import com.revature.thevault.service.exceptions.InvalidAccountIdException;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+
+import java.io.FileNotFoundException;
+import java.net.MalformedURLException;
+import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -16,12 +24,15 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.annotation.DirtiesContext;
 
-import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
+import com.revature.thevault.presentation.model.response.builder.GetResponse;
+import com.revature.thevault.repository.entity.AccountEntity;
+import com.revature.thevault.repository.entity.AccountTypeEntity;
+import com.revature.thevault.repository.entity.LoginCredentialEntity;
+import com.revature.thevault.service.dto.AccountResponseObject;
+import com.revature.thevault.service.dto.DepositResponseObject;
+import com.revature.thevault.service.dto.TransactionObject;
+import com.revature.thevault.service.dto.WithdrawResponseObject;
+import com.revature.thevault.service.exceptions.InvalidAccountIdException;
 
 @SpringBootTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -37,6 +48,12 @@ class TransactionServiceTest {
 
     @MockBean
     private WithdrawService withdrawService;
+    
+    @MockBean
+    private AccountService accServ;
+    
+    @MockBean
+    private ExportPDFService exportService;
 
     private DepositResponseObject depositResponseObject1, depositResponseObject2, depositResponseObject3, depositResponseObject4;
     private WithdrawResponseObject withdrawResponseObject1, withdrawResponseObject2, withdrawResponseObject3, withdrawResponseObject4;
@@ -44,6 +61,15 @@ class TransactionServiceTest {
     private TransactionObject transactionObject1, transactionObject2, transactionObject3, transactionObject4, transactionObject5, transactionObject6, transactionObject7, transactionObject8;
 
     private int accountId = 1;
+    private int profileId = 1;
+    private float pastBalance = 280F;
+    
+    AccountEntity testAccount = new AccountEntity(
+    		1,
+    		new LoginCredentialEntity(1, "user", "pass"),
+    		new AccountTypeEntity(1, "Checking"),
+    		280F,
+    		280F);
     
 
     @BeforeAll
@@ -166,6 +192,20 @@ class TransactionServiceTest {
                     			.gotObject(Arrays.asList(withdrawResponseObject3, withdrawResponseObject4))
                     			.build()
         		);
+        
+        Mockito.when(accServ.getAccount(accountId))
+        	.thenReturn(GetResponse.builder()
+                    .success(true)
+                    .gotObject(Collections.singletonList(
+                		new AccountResponseObject(
+                                testAccount.getPk_account_id(),
+                                testAccount.getLogincredentials().getPkUserId(),
+                                testAccount.getAccountTypeEntity().getName(),
+                                testAccount.getAvailable_balance(),
+                                testAccount.getPending_balance())))
+                    .build());
+        
+        
     }
 
     @Test
@@ -180,15 +220,16 @@ class TransactionServiceTest {
     }
     
     @Test
-    void getTransactionHistoryByMonth() {
+    void getTransactionHistoryByMonth() throws FileNotFoundException, MalformedURLException {
     	GetResponse sortedGetResponse = GetResponse.builder()
                 .success(true)
                 .gotObject(Arrays.asList(transactionObject5, transactionObject7, transactionObject8, transactionObject6))
                 .build();
-    	GetResponse actualResponse = transactionService.getTransactionHistoryByMonth(accountId, 10, 1999);
+    	GetResponse actualResponse = transactionService.getTransactionHistoryByMonth(accountId, 10, 1999, profileId);
     	assertEquals(sortedGetResponse, actualResponse);
     	List<TransactionObject> transactionObjectList = (List<TransactionObject>) actualResponse.getGotObject();
         assertTrue(transactionObjectList.get(0).getDate().compareTo(transactionObjectList.get(1).getDate()) < 0,"The dates are in order of oldest to latest");
+        verify(exportService, times(1)).createPDF((List<TransactionObject>) sortedGetResponse.getGotObject(), 10, 1999, profileId, pastBalance);
     }
 
     @Test

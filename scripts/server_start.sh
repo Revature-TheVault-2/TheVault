@@ -9,6 +9,7 @@ http-server TheVault/TheVaultAngular/dist/the-vault -p 9001 \
 
 cd
 cd TheVault/
+export JAVA_HOME='/usr/lib/jvm/java-11-openjdk'
 mvn clean install -DskipTests
 cd
 cd /home/ec2-user/TheVault/target

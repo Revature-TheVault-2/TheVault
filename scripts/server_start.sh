@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 cd TheVault/TheVaultAngular
 npm install
-npm audit fix
+npm audit fix --force
 ng build
 cd
 http-server TheVault/TheVaultAngular/dist/the-vault -p 9001 \

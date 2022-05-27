@@ -5,6 +5,8 @@ import com.revature.thevault.presentation.model.request.WithdrawRequest;
 import com.revature.thevault.presentation.model.response.builder.DeleteResponse;
 import com.revature.thevault.presentation.model.response.builder.GetResponse;
 import com.revature.thevault.presentation.model.response.builder.PostResponse;
+import com.revature.thevault.repository.dao.AccountProfileRepository;
+import com.revature.thevault.repository.dao.AccountRepository;
 import com.revature.thevault.repository.dao.WithdrawRepository;
 import com.revature.thevault.repository.entity.*;
 import com.revature.thevault.service.dto.WithdrawResponseObject;
@@ -58,6 +60,12 @@ class WithdrawServiceTest {
     @MockBean
     private RequestStatusService requestStatusService;
     
+    @MockBean
+	private AccountRepository accountRepository;
+    
+    @MockBean
+    private AccountProfileRepository accountProfileRepository;
+    
 //    @MockBean
 //    private EmailService emailService;
 
@@ -76,6 +84,7 @@ class WithdrawServiceTest {
 
     private LoginCredentialEntity loginCredentialEntity;
     private AccountTypeEntity accountTypeEntity;
+    private AccountProfileEntity accountProfileEntity;
 
     @BeforeAll
     void setup(){
@@ -88,6 +97,10 @@ class WithdrawServiceTest {
 
         requestType = new RequestTypeEntity(1, "Retail");
         requestStatusEntity = new RequestStatusEntity(1, "Pending");
+        
+        accountProfileEntity = new AccountProfileEntity(
+        		accountId, loginCredentialEntity, "firstName", "lastName", 
+        		"someEmail@email.com", "12312341234", "Personal Drive", amount);
     }
 
     @BeforeEach
@@ -159,6 +172,8 @@ class WithdrawServiceTest {
         );
         Mockito.when(requestTypeService.getRequestTypeByName("Retail")).thenReturn(requestType);
         Mockito.when(requestStatusService.getRequestStatusByName("Pending")).thenReturn(requestStatusEntity);
+        Mockito.when(accountProfileRepository.findByLogincredential(loginCredentialEntity)).thenReturn(accountProfileEntity);
+        Mockito.when(accountRepository.findById(anyInt())).thenReturn(Optional.of(accountEntity));
     }
 
     @Test

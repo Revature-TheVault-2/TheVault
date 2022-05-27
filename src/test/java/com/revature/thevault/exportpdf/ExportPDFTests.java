@@ -64,17 +64,17 @@ public class ExportPDFTests {
 	@BeforeAll()
 		void BeforeSetUp() {
 			MockitoAnnotations.openMocks(this);
-			optionalProfile = Optional.of(testProfileEntity);
-			testRandString = "FR07";
-			
-			month = 12;
-			year = 1999;
-			
 			testProfileID = 12345;
 			accountBalance = 100F;
 			
 			testLoginCredential = new LoginCredentialEntity();
 			testProfileEntity = new AccountProfileEntity(testProfileID, testLoginCredential, "Hugh", "Mann", "fakeemail@iloveunicorns.com", "800-664-1234", "123 Shakedown Street, Detroit, Michigan, 90210", accountBalance);
+			
+			optionalProfile = Optional.of(testProfileEntity);
+			testRandString = "FR07";
+			
+			month = 12;
+			year = 1999;
 			
 			fakeTransaction = new TransactionObject(1, "Deposit", "Cash", "A1B", LocalDate.parse("1999-12-03"), 200F); // Why is amount a Float though? Why???
 			fakeTransaction2 = new TransactionObject(2, "Withdrawal", "Payment", "Something", LocalDate.parse("1999-12-31"), 100F); // Why is amount a Float though? Why???
@@ -95,7 +95,7 @@ public class ExportPDFTests {
 		// Assert
 		assertDoesNotThrow(() -> pdfService.createPDF(arrList, month, year, testProfileID, accountBalance), "An exception has occured.");
 		// Verify
-		verify(emailServ, times(1)).sendReportPdfEmail("src/main/resources/pdf/" + testRandString + "myMonthStatement.pdf", "1999-11-31 to 1999-12-31", "fakeemail@iloveunicorns.com", "Hugh");
+		verify(emailServ, times(1)).sendReportPdfEmail("src/main/resources/pdf/" + testRandString + "myMonthStatement.pdf", "1999-12-31 to 2000-01-31", "fakeemail@iloveunicorns.com", "Hugh");
 		
 		File file = new File("src/main/resources/pdf/" + testRandString + "myMonthStatement.pdf");
 		file.delete();

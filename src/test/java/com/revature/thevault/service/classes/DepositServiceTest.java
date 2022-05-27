@@ -29,11 +29,15 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
 import com.revature.thevault.presentation.model.request.DepositRequest;
+import com.revature.thevault.presentation.model.request.WithdrawRequest;
 import com.revature.thevault.presentation.model.response.builder.DeleteResponse;
 import com.revature.thevault.presentation.model.response.builder.GetResponse;
 import com.revature.thevault.presentation.model.response.builder.PostResponse;
+import com.revature.thevault.repository.dao.AccountProfileRepository;
+import com.revature.thevault.repository.dao.AccountRepository;
 import com.revature.thevault.repository.dao.DepositRepository;
 import com.revature.thevault.repository.entity.AccountEntity;
+import com.revature.thevault.repository.entity.AccountProfileEntity;
 import com.revature.thevault.repository.entity.AccountTypeEntity;
 import com.revature.thevault.repository.entity.DepositEntity;
 import com.revature.thevault.repository.entity.DepositTypeEntity;
@@ -54,6 +58,13 @@ private DepositRepository depositRepository;
 
 @MockBean
 private DepositTypeService depositTypeService;
+
+@MockBean
+private AccountRepository accountRepository;
+
+@MockBean
+private AccountProfileRepository accountProfileRepository;
+
 private int userId;
 private int depositId;
 private int badDepositId;
@@ -73,6 +84,7 @@ private List<String> depositType;
     private LoginCredentialEntity loginCredentialEntity;
     private DepositTypeEntity depositTypeEntity;
     private AccountTypeEntity accountTypeEntity;
+    private AccountProfileEntity accountProfileEntity;
     @BeforeAll
     void setup(){
         MockitoAnnotations.openMocks(this);
@@ -87,6 +99,10 @@ depositType.add("Cash");
 depositType.add("Cheque");
 depositType.add("Direct Deposit");
 badDepositId = -1;
+
+accountProfileEntity = new AccountProfileEntity(
+		accountId, loginCredentialEntity, "firstName", "lastName", 
+		"someEmail@email.com", "12312341234", "Personal Drive", amount);
     }
         @BeforeEach
         void setupBeforeEach(){
@@ -154,7 +170,8 @@ badDepositId = -1;
 
             Mockito.when(depositTypeService.findDepositTypeEntityByName("cash")).thenReturn(depositTypeEntity);
             Mockito.when(depositRepository.findById(depositId)).thenReturn(optionalDeposit);
-           
+            Mockito.when(accountProfileRepository.findByLogincredential(loginCredentialEntity)).thenReturn(accountProfileEntity);
+           Mockito.when(accountRepository.findById(anyInt())).thenReturn(Optional.of(accountEntity));
         }
 
         @Test

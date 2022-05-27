@@ -23,6 +23,9 @@ export class GlobalStorageService {
   getAccount!: GetAccount;
   accounts!: Account[];
 
+  token!:string;
+  transSuccess : boolean = false;
+  transFail : boolean = false;
   constructor() { }
 
   public setHttpOptions(credentials: LoginUser): void {
@@ -34,9 +37,7 @@ export class GlobalStorageService {
     this.httpOptions.headers = this.httpOptions.headers.delete('authorization');
   }
 
-  public getHttpOptions() {
-    
-    return this.httpOptions}
+  public getHttpOptions() {return this.httpOptions}
 
   public setProfile(user: Profile): void {this.userProfile = user}
 

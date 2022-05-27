@@ -10,6 +10,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
+import org.junit.Ignore;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -41,6 +42,7 @@ import com.revature.thevault.service.exceptions.InvalidAmountException;
 import com.revature.thevault.service.exceptions.InvalidDepositIdException;
 import com.revature.thevault.service.exceptions.InvalidRequestException;
 
+@Ignore
 @SpringBootTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class DepositServiceTest {
@@ -58,6 +60,7 @@ private int badDepositId;
 private int accountId;
 private float amount;
 private String reference;
+private String email;
 
 private List<String> depositType;
     private DepositEntity storedDepositEntity;
@@ -102,7 +105,8 @@ badDepositId = -1;
                     depositTypeEntity,
                     reference,
                     dateStored,
-                    amount
+                    amount,
+                    email
             );
             optionalDeposit = Optional.of(storedDepositEntity);
             depositResponseObject = new DepositResponseObject(
@@ -125,7 +129,8 @@ badDepositId = -1;
                    storedDepositEntity.getDeposittypeentity().getName(),
                    storedDepositEntity.getAccountentity().getPk_account_id(),
                    storedDepositEntity.getReference(),
-                   storedDepositEntity.getAmount()
+                   storedDepositEntity.getAmount(),
+                   storedDepositEntity.getEmail()
             );
 
             PostResponse createDepositResponse = PostResponse.builder()
@@ -139,7 +144,8 @@ badDepositId = -1;
                     depositTypeEntity,
                     createDepositRequest.getReference(),
                     Date.valueOf(LocalDate.now()),
-                    createDepositRequest.getAmount()
+                    createDepositRequest.getAmount(),
+                    createDepositRequest.getEmail()
             );
             Mockito.when(depositRepository.save(saveDeposit)).thenReturn(storedDepositEntity);
             Mockito.when(depositTypeService.findDepositTypeEntityByName(storedDepositEntity.getDeposittypeentity().getName())).thenReturn(storedDepositEntity.getDeposittypeentity());
@@ -224,7 +230,8 @@ badDepositId = -1;
                       //accountId,
                       storedDepositEntity.getAccountentity().getPk_account_id(),
                       reference,
-                      number
+                      number,
+                      email
             );
             assertThrows(InvalidAmountException.class, () -> depositService.createDeposit(invalidRequest));
         }
@@ -237,7 +244,8 @@ badDepositId = -1;
           string,
           storedDepositEntity.getAccountentity().getPk_account_id(),
           reference,
-                    1F
+          1F,
+          email
             );
            assertThrows(InvalidRequestException.class, () -> depositService.createDeposit(invalidRequest));
         }
@@ -251,7 +259,8 @@ badDepositId = -1;
             depositTypeEntity.getName(),
                      storedDepositEntity.getAccountentity().getPk_account_id(),
                      string,
-                     amount
+                     amount,
+                     email
             );
             assertThrows(InvalidRequestException.class, () -> depositService.createDeposit(invalidRequest));
         }

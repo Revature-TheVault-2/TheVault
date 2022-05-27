@@ -20,7 +20,7 @@ import com.revature.thevault.repository.entity.PasswordResetRequest;
 import com.revature.thevault.service.classes.EmailService;
 import com.revature.thevault.service.classes.PwResetTokenService;
 
-
+@CrossOrigin("*")
 @RestController
 public class ResetPasswordController {
 	

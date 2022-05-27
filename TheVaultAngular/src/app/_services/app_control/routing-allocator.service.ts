@@ -8,9 +8,8 @@ const ROUTES = {
   detail: ['account-detail'],
   profile: ['profile'],
   editProfile: ['edit-profile'],
-
-  // reset password functionality
-  resetpassword : ['resetpassword']
+  resetpassword : ['resetpassword'],
+  budgetCalculator: ['budget-calculator']
 }
 
 @Injectable({
@@ -33,6 +32,8 @@ export class RoutingAllocatorService {
 
   editProfile():void{this.router.navigate(ROUTES.editProfile)};
 
-  // reset password functionality
   resetpassword() : void {this.router.navigate(ROUTES.resetpassword)};
+
+  budgetCalculator():void{this.router.navigate(ROUTES.budgetCalculator)};
+
 }

@@ -30,6 +30,8 @@ import { TransferGenerateComponent } from './components/transaction/transfer-gen
 import { AuthInterceptorService } from './utils/auth-interceptor.service';
 import { ResetpasswordComponent } from './components/login-register/resetpassword/resetpassword.component';
 import { NewpasswordComponent } from './components/login-register/newpassword/newpassword.component';
+import { AlertComponent } from './components/alert/alert.component';
+import { BudgetCalculatorComponent } from './components/budget-calculator/budget-calculator.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +58,8 @@ import { NewpasswordComponent } from './components/login-register/newpassword/ne
     TransferGenerateComponent,
     ResetpasswordComponent,
     NewpasswordComponent,
+    AlertComponent,
+    BudgetCalculatorComponent
   ],
   imports: [
     BrowserModule,

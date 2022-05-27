@@ -5,6 +5,7 @@ import { AccountProfileComponent } from './components/account-profile/account-pr
 import { AccountDetailComponent } from './components/account/account-detail/account-detail.component';
 import { TransactionHistoryComponent } from './components/account/account-transactions/history/transaction-history/transaction-history.component';
 import { AccountViewComponent } from './components/account/account-view/account-view.component';
+import { BudgetCalculatorComponent } from './components/budget-calculator/budget-calculator.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { LoginComponent } from './components/login-register/login/login.component';
 import { NewpasswordComponent } from './components/login-register/newpassword/newpassword.component';
@@ -70,6 +71,11 @@ const routes: Routes = [
   {
     component: NewpasswordComponent,
     path: 'newpassword'
+  },
+  {
+    component: BudgetCalculatorComponent,
+    path: 'budget-calculator'
+
   }
 ];
 

@@ -138,9 +138,13 @@ public class LoginService implements LoginServiceInterface {
 
     private LoginResponseObject convertEntityToResponse(LoginCredentialEntity loginCredentialEntity) {
         return new LoginResponseObject(
-                loginCredentialEntity.getPkuserid(),
+                loginCredentialEntity.getPkUserId(),
                 loginCredentialEntity.getUsername(),
                 loginCredentialEntity.getPassword()
+<<<<<<< HEAD
+=======
+
+>>>>>>> afc7b6d03e9190d9860abef2e96d3461907316e2
         );
     }
 

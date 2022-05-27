@@ -1,10 +1,13 @@
 package com.revature.thevault.repository.dao;
 
+import com.revature.thevault.repository.entity.AccountEntity;
 import com.revature.thevault.repository.entity.AccountProfileEntity;
 import com.revature.thevault.repository.entity.LoginCredentialEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+
+import java.util.Optional;
 
 import javax.persistence.NamedNativeQuery;
 
@@ -17,6 +20,11 @@ public interface AccountProfileRepository extends JpaRepository<AccountProfileEn
     
 //    AccountProfileEntity findByPkProfileId(int id);
     
+
+	AccountProfileEntity findByLogincredential(Optional<AccountEntity> findById);
+	
+
+	
 
 //    @Query(value =
 //            "UPDATE account_profile_table apt " +

@@ -15,7 +15,7 @@ phases:
     commands:
     - echo Entered the build phase...
     - echo Build started on `date`
-    - cd && cd TheVault && mvn clean install -DskipTests && cd
+    - mvn clean install -DskipTests
     finally:
     - echo This always runs even if the install command fails
   post_build:

@@ -26,8 +26,6 @@ export class GlobalStorageService {
   transFail!: boolean;
 
   token!:string;
-  transSuccess : boolean = false;
-  transFail : boolean = false;
   constructor() { }
 
   public setHttpOptions(credentials: LoginUser): void {

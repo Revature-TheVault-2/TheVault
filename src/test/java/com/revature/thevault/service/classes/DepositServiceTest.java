@@ -116,7 +116,7 @@ badDepositId = -1;
                     depositTypeEntity,
                     reference,
                     dateStored2,
-                    amount
+                    amount, email
             );
             storedDepositEntity3 = new DepositEntity(
                     3,
@@ -124,7 +124,7 @@ badDepositId = -1;
                     depositTypeEntity,
                     reference,
                     dateStored3,
-                    amount
+                    amount, email
             );
             optionalDeposit = Optional.of(storedDepositEntity);
             depositResponseObject = new DepositResponseObject(

@@ -2,11 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Account } from 'src/app/models/account/account.model';
 import { Transaction } from 'src/app/models/transaction/transaction.model';
 import { GlobalStorageService } from 'src/app/_services/global-storage.service';
-<<<<<<< HEAD
 import { TransactionHandlerService } from 'src/app/_services/transactions/transaction-handler.service';
 import { GetTransaction } from 'src/app/models/transaction/responses/get-transaction';
-=======
->>>>>>> 64f8b9ae0f6865205fdcbd0304034fcf6c382dd2
 
 @Component({
   selector: 'app-transaction-history',
@@ -31,17 +28,12 @@ export class TransactionHistoryComponent implements OnInit {
   transactions: Transaction[] = [];
 
   /* istanbul ignore next */
-<<<<<<< HEAD
   constructor(
     private handler: TransactionHandlerService,
     private globalStorage: GlobalStorageService
   ) { }
-=======
-  constructor(private globalStorage: GlobalStorageService) { }
->>>>>>> 64f8b9ae0f6865205fdcbd0304034fcf6c382dd2
 
   ngOnInit(): void {
-<<<<<<< HEAD
     let today = new Date();
     // let dd = String(today.getDate()).padStart(2, '0');
     let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
@@ -83,9 +75,5 @@ export class TransactionHistoryComponent implements OnInit {
     } else {
       console.error("ERROR: Please enter a valid date.");
     }
-=======
-    this.globalStorage.transFail = false;
-    this.globalStorage.transSuccess = false;
->>>>>>> 64f8b9ae0f6865205fdcbd0304034fcf6c382dd2
   }
 }

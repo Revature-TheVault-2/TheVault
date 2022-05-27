@@ -1,13 +1,8 @@
 package com.revature.thevault.service.classes;
 
-import java.awt.Desktop;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.net.MalformedURLException;
 import java.sql.Date;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
@@ -34,6 +29,7 @@ import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.properties.UnitValue;
 import com.revature.thevault.repository.dao.AccountProfileRepository;
 import com.revature.thevault.repository.entity.AccountProfileEntity;
+import com.revature.thevault.service.classes.Email.EmailService;
 import com.revature.thevault.service.dto.TransactionObject;
 
 @Service("exportPDFService")
@@ -48,8 +44,8 @@ public class ExportPDFService {
 	@Autowired
 	private AccountProfileRepository profileRepos;
 
-	public void createPDF(List<TransactionObject> transactionObjects, int month, int year, int profileId, float ourCurrentBalance)
-			throws FileNotFoundException, MalformedURLException {
+	public void createPDF(List<TransactionObject> transactionObjects, int month, int year, int profileId,
+			float ourCurrentBalance) throws FileNotFoundException, MalformedURLException {
 		Calendar cal = Calendar.getInstance();
 		cal.set(year, month - 1, 1);
 		cal.set(Calendar.DAY_OF_MONTH, cal.getActualMaximum(Calendar.DATE));
@@ -73,7 +69,7 @@ public class ExportPDFService {
 			final String FUTURA = "src/main/resources/otf/Futura-Std-Medium.otf";
 			final String FUTURABOLD = "src/main/resources/otf/Futura-Std-Book.otf";
 			final String FUTURABOOK = "src/main/resources/otf/Futura-Std-Bold.otf";
-			
+
 			Optional<AccountProfileEntity> profileInfo = profileRepos.findById(profileId);
 
 			// Get the profile information
@@ -105,14 +101,13 @@ public class ExportPDFService {
 
 			// Paragraph Initialization
 			Paragraph accInfo = new Paragraph(firstName + " " + lastName + "\n" + address);
-			
+
 			Paragraph theVaultInfo = new Paragraph(
 					"1111 Constitution Avenue Northwest\nWashington, District of Columbia, DC");
 			Paragraph emptyTransactions = new Paragraph("Transaction list is empty. No records to show.");
 
 			// Image Initialization
-			Image logo = new Image(
-					ImageDataFactory.create("src/main/resources/img/vault_logo.png"));
+			Image logo = new Image(ImageDataFactory.create("src/main/resources/img/vault_logo.png"));
 
 			// Colors
 			Color orange = new DeviceRgb(242, 105, 38);
@@ -142,36 +137,40 @@ public class ExportPDFService {
 			Style tableCellStyle = new Style();
 			tableCellStyle.setBackgroundColor(lightGray);
 			tableCellStyle.setBorder(new SolidBorder(lightGray, 1F));
-			
+
 			Style accountCellStyle = new Style();
 			accountCellStyle.setBackgroundColor(lightGray);
 			accountCellStyle.setBorder(new SolidBorder(lightGray, 1F));
 			accountCellStyle.setFixedPosition(320F, 780F, 0F);
-			
-			// Table Creation			
+
+			// Table Creation
 			// Table accountTable
-			Table accountTable = new Table(new float[]{2F, 3F});
+			Table accountTable = new Table(new float[] { 2F, 3F });
 			accountTable.setWidth(UnitValue.createPercentValue(100));
 			accountTable.addStyle(accountCellStyle);
-			
+
 			Cell statementPeriodHeader = new Cell();
 			statementPeriodHeader.add(new Paragraph("Statement Period"));
 			statementPeriodHeader.addStyle(tableStyle);
-			
+
 			Cell accountNumber = new Cell();
 			accountNumber.add(new Paragraph("Account Number"));
 			accountNumber.addStyle(tableStyle);
-			
+
 			Cell statementPeriod = new Cell();
 			statementPeriod.add(new Paragraph(dateRange));
-			statementPeriod.addStyle(tableStyle); 
-			
+			statementPeriod.addStyle(tableStyle);
+
 			Cell accountNumberHeader = new Cell();
 			accountNumberHeader.add(new Paragraph(String.valueOf(profileId)));
 			accountNumberHeader.addStyle(tableStyle);
-			
+
 			// Table table
-			Table table = new Table(new float[]{1F, 0.5F, 1F, 1F, 2F}, false); // In this float example, the float numbers represent table size. However, it's really isn't updating automatically since it isn't a largeTable.
+			Table table = new Table(new float[] { 1F, 0.5F, 1F, 1F, 2F }, false); // In this float example, the float
+																					// numbers represent table size.
+																					// However, it's really isn't
+																					// updating automatically since it
+																					// isn't a largeTable.
 
 			table.setWidth(UnitValue.createPercentValue(100));
 			table.addStyle(tableCellStyle);
@@ -207,10 +206,11 @@ public class ExportPDFService {
 				isEmptyList = true;
 			} else {
 
-				for (TransactionObject t : transactionObjects) { // Dynamically creates the table based on the size of arrList
+				for (TransactionObject t : transactionObjects) { // Dynamically creates the table based on the size of
+																	// arrList
 					table.addCell(t.getDate().toString());
 					table.addCell(t.getTransactionReference());
-					if (t.getTransactionType().equals("Withdraw")) { 
+					if (t.getTransactionType().equals("Withdraw")) {
 
 						table.addCell(String.valueOf(t.getAmount()));
 						table.addCell("");
@@ -250,7 +250,7 @@ public class ExportPDFService {
 					// Email the file (by fred)
 					emailServ.sendReportPdfEmail(dest, dateRange, userEmail, firstName);
 				}
-				
+
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

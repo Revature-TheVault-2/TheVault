@@ -1,13 +1,9 @@
 package com.revature.thevault.exportpdf;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.sql.Date;
-import java.text.DateFormat;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
-
-import javax.swing.text.StyleConstants.FontConstants;
 
 import org.junit.Test;
 import org.junit.jupiter.api.BeforeAll;
@@ -16,37 +12,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
-import com.itextpdf.forms.fields.borders.FormBorderFactory;
 import com.itextpdf.io.font.FontProgram;
 import com.itextpdf.io.font.FontProgramFactory;
 import com.itextpdf.io.image.ImageDataFactory;
-import com.itextpdf.kernel.colors.Color;
-import com.itextpdf.kernel.colors.ColorConstants;
-import com.itextpdf.kernel.colors.DeviceCmyk;
-import com.itextpdf.kernel.colors.DeviceRgb;
 import com.itextpdf.kernel.font.PdfFont;
 import com.itextpdf.kernel.font.PdfFontFactory;
-import com.itextpdf.kernel.pdf.PdfDictionary;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.Style;
-import com.itextpdf.layout.borders.Border;
-import com.itextpdf.layout.borders.SolidBorder;
-import com.itextpdf.layout.element.*;
-import com.itextpdf.layout.properties.HorizontalAlignment;
-import com.itextpdf.layout.properties.UnitValue;
+import com.itextpdf.layout.element.Image;
+import com.itextpdf.layout.element.Paragraph;
 import com.revature.thevault.repository.dao.AccountProfileRepository;
-import com.revature.thevault.repository.entity.DepositEntity;
-import com.revature.thevault.service.classes.EmailService;
 import com.revature.thevault.service.classes.ExportPDFService;
 import com.revature.thevault.service.classes.RandomStringService;
-import com.revature.thevault.service.classes.TransactionService;
+import com.revature.thevault.service.classes.Email.EmailService;
 import com.revature.thevault.service.dto.TransactionObject;
-
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-
-import java.awt.Desktop;
 
 @SpringBootTest
 public class ExportPDFTests {

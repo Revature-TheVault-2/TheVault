@@ -68,12 +68,6 @@ public class DepositService implements DepositServiceInterface {
 	public PostResponse createDeposit(DepositRequest depositRequest) {
 
 		try {
-<<<<<<< HEAD
-			//outer if (notificationAmount() != 0){
-			//if(depositRequest.getAmount() > "current user session".getNoficationAmount()){
-				// emailservice.NotifcationEmail(deposistRequest.getAmount())}}
-			
-=======
 	    	Optional<AccountEntity>  currentAccount = accountRepository.findById(depositRequest.getAccountId());
 	    	AccountProfileEntity currentUserProfile = accountProfileRepository.findByLogincredential(currentAccount.get().getLogincredentials());
 	
@@ -91,7 +85,6 @@ public class DepositService implements DepositServiceInterface {
 			 }
 			 
 		 
->>>>>>> 64f8b9ae0f6865205fdcbd0304034fcf6c382dd2
 			return PostResponse.builder().success(true)
 					.createdObject(Collections
 							.singletonList(convertDepositEntityToResponse(depositRepository.save(new DepositEntity(0,

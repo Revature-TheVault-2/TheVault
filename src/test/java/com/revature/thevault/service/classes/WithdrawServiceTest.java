@@ -71,12 +71,8 @@ class WithdrawServiceTest {
 
     private RequestTypeEntity requestType;
     private RequestStatusEntity requestStatusEntity;
-<<<<<<< HEAD
     private Date dateStored, dateStored2, dateStored3;
-=======
-    private Date dateStored;
     private String email;
->>>>>>> 64f8b9ae0f6865205fdcbd0304034fcf6c382dd2
 
     private LoginCredentialEntity loginCredentialEntity;
     private AccountTypeEntity accountTypeEntity;
@@ -123,7 +119,7 @@ class WithdrawServiceTest {
                 requestStatusEntity,
                 reference,
                 dateStored2,
-                amount
+                amount, email
         );
         storedWithdrawEntity3 = new WithdrawEntity(
                 3,
@@ -132,7 +128,7 @@ class WithdrawServiceTest {
                 requestStatusEntity,
                 reference,
                 dateStored3,
-                amount
+                amount, email
         );
         withdrawResponseObject = new WithdrawResponseObject(
                 storedWithdrawEntity.getPk_withdraw_id(),

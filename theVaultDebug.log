@@ -1485,3 +1485,126 @@ RETURNING: GetResponse(gotObject=[TransactionObject(transactionId=1, transaction
 2022-05-27 11:35:52,604 INFO dLog [http-nio-9000-exec-1] Class: class com.revature.thevault.presentation.controller.TransactionController
 Method: getTransactionHistoryByMonth
 RETURNING: GetResponse(gotObject=[TransactionObject(transactionId=1, transactionType=Deposit, transactionDetail=Cash, transactionReference=plz, date=2022-05-26, amount=600.0), TransactionObject(transactionId=2, transactionType=Deposit, transactionDetail=Direct Deposit, transactionReference=MOOLAH, date=2022-05-26, amount=400.0), TransactionObject(transactionId=3, transactionType=Deposit, transactionDetail=Cash, transactionReference=BIG MOOLAH, date=2022-05-26, amount=1500.0), TransactionObject(transactionId=4, transactionType=Deposit, transactionDetail=Cash, transactionReference=MONEY, date=2022-05-26, amount=1501.0), TransactionObject(transactionId=1, transactionType=Withdraw, transactionDetail=Personal, transactionReference=afds, date=2022-05-26, amount=100.0), TransactionObject(transactionId=2, transactionType=Withdraw, transactionDetail=Personal, transactionReference=Robbed, date=2022-05-26, amount=1500.0), TransactionObject(transactionId=3, transactionType=Withdraw, transactionDetail=Payment, transactionReference=Bills hit hard, date=2022-05-26, amount=1501.0)])
+2022-05-27 11:37:39,429 DEBUG dLog [http-nio-9000-exec-2] Class: class com.revature.thevault.presentation.controller.LoginController
+Method: findLoginCredential
+Arguments: [LoginRequest(username=fred12, password=fred21)]
+2022-05-27 11:37:39,445 DEBUG dLog [http-nio-9000-exec-2] CLASS: class com.revature.thevault.service.classes.LoginService
+METHOD: getLoginCredentialFromLogin
+ARGUMENTS: [fred12]
+2022-05-27 11:37:39,608 INFO dLog [http-nio-9000-exec-2] METHOD: getLoginCredentialFromLogin
+RETURNING: PostResponse(createdObject=[LoginResponseObject(userId=2, username=fred12, password=fred21)])
+2022-05-27 11:37:39,609 INFO dLog [http-nio-9000-exec-2] Class: class com.revature.thevault.presentation.controller.LoginController
+Method: findLoginCredential
+RETURNING: PostResponse(createdObject=[LoginResponseObject(userId=2, username=fred12, password=fred21)])
+2022-05-27 11:37:39,874 DEBUG dLog [http-nio-9000-exec-4] Class: class com.revature.thevault.presentation.controller.AccountProfileController
+Method: getProfile
+Arguments: [2]
+2022-05-27 11:37:39,887 DEBUG dLog [http-nio-9000-exec-4] CLASS: class com.revature.thevault.service.classes.AccountProfileService
+METHOD: getProfile
+ARGUMENTS: [AccountProfileRequest(profileId=2)]
+2022-05-27 11:37:40,000 INFO dLog [http-nio-9000-exec-4] METHOD: getProfile
+RETURNING: GetResponse(gotObject=[AccountProfileResponse(profileId=2, userId=2, firstName=Frederick, lastName=Doell, email=fjdoell@gmail.com, phoneNumber=3179226179, address=19150 Calico Aster Drive)])
+2022-05-27 11:37:40,000 INFO dLog [http-nio-9000-exec-4] Class: class com.revature.thevault.presentation.controller.AccountProfileController
+Method: getProfile
+RETURNING: GetResponse(gotObject=[AccountProfileResponse(profileId=2, userId=2, firstName=Frederick, lastName=Doell, email=fjdoell@gmail.com, phoneNumber=3179226179, address=19150 Calico Aster Drive)])
+2022-05-27 11:37:40,211 DEBUG dLog [http-nio-9000-exec-6] Class: class com.revature.thevault.presentation.controller.AccountController
+Method: getUserAccountList
+Arguments: [2, org.apache.catalina.session.StandardSessionFacade@556be406]
+2022-05-27 11:37:40,223 DEBUG dLog [http-nio-9000-exec-6] CLASS: class com.revature.thevault.service.classes.AccountService
+METHOD: getAccounts
+ARGUMENTS: [2]
+2022-05-27 11:37:40,382 INFO dLog [http-nio-9000-exec-6] METHOD: getAccounts
+RETURNING: GetResponse(gotObject=[AccountResponseObject(accountId=1, userId=2, accountType=Checking, availableBalance=900.0, pendingBalance=900.0)])
+2022-05-27 11:37:40,382 INFO dLog [http-nio-9000-exec-6] Class: class com.revature.thevault.presentation.controller.AccountController
+Method: getUserAccountList
+RETURNING: GetResponse(gotObject=[AccountResponseObject(accountId=1, userId=2, accountType=Checking, availableBalance=900.0, pendingBalance=900.0)])
+2022-05-27 11:37:41,344 DEBUG dLog [http-nio-9000-exec-8] Class: class com.revature.thevault.presentation.controller.AccountController
+Method: getUserAccountList
+Arguments: [2, org.apache.catalina.session.StandardSessionFacade@5aa9a029]
+2022-05-27 11:37:41,344 DEBUG dLog [http-nio-9000-exec-8] CLASS: class com.revature.thevault.service.classes.AccountService
+METHOD: getAccounts
+ARGUMENTS: [2]
+2022-05-27 11:37:41,493 INFO dLog [http-nio-9000-exec-8] METHOD: getAccounts
+RETURNING: GetResponse(gotObject=[AccountResponseObject(accountId=1, userId=2, accountType=Checking, availableBalance=900.0, pendingBalance=900.0)])
+2022-05-27 11:37:41,493 INFO dLog [http-nio-9000-exec-8] Class: class com.revature.thevault.presentation.controller.AccountController
+Method: getUserAccountList
+RETURNING: GetResponse(gotObject=[AccountResponseObject(accountId=1, userId=2, accountType=Checking, availableBalance=900.0, pendingBalance=900.0)])
+2022-05-27 11:37:44,007 DEBUG dLog [http-nio-9000-exec-10] Class: class com.revature.thevault.presentation.controller.TransactionController
+Method: getTransactionHistory
+Arguments: [Basic ZnJlZDEyOmZyZWQyMQ==, 1]
+2022-05-27 11:37:44,017 DEBUG dLog [http-nio-9000-exec-10] CLASS: class com.revature.thevault.service.classes.TransactionService
+METHOD: getTransactionHistory
+ARGUMENTS: [1]
+2022-05-27 11:37:44,031 DEBUG dLog [http-nio-9000-exec-10] CLASS: class com.revature.thevault.service.classes.DepositService
+METHOD: getAllUserDeposits
+ARGUMENTS: [1]
+2022-05-27 11:37:44,294 INFO dLog [http-nio-9000-exec-10] METHOD: getAllUserDeposits
+RETURNING: GetResponse(gotObject=[DepositResponseObject(depositId=1, accountId=1, depositType=Cash, reference=plz, dateDeposit=2022-05-26, amount=600.0), DepositResponseObject(depositId=2, accountId=1, depositType=Direct Deposit, reference=MOOLAH, dateDeposit=2022-05-26, amount=400.0), DepositResponseObject(depositId=3, accountId=1, depositType=Cash, reference=BIG MOOLAH, dateDeposit=2022-05-26, amount=1500.0), DepositResponseObject(depositId=4, accountId=1, depositType=Cash, reference=MONEY, dateDeposit=2022-05-26, amount=1501.0)])
+2022-05-27 11:37:44,294 DEBUG dLog [http-nio-9000-exec-10] CLASS: class com.revature.thevault.service.classes.WithdrawService
+METHOD: getAllUserWithdrawals
+ARGUMENTS: [1]
+2022-05-27 11:37:44,545 INFO dLog [http-nio-9000-exec-10] METHOD: getAllUserWithdrawals
+RETURNING: GetResponse(gotObject=[WithdrawResponseObject(withdrawId=1, accountId=1, requestType=Personal, requestStatus=Pending, reference=afds, dateWithdraw=2022-05-26, amount=100.0), WithdrawResponseObject(withdrawId=2, accountId=1, requestType=Personal, requestStatus=Pending, reference=Robbed, dateWithdraw=2022-05-26, amount=1500.0), WithdrawResponseObject(withdrawId=3, accountId=1, requestType=Payment, requestStatus=Pending, reference=Bills hit hard, dateWithdraw=2022-05-26, amount=1501.0)])
+2022-05-27 11:37:44,548 INFO dLog [http-nio-9000-exec-10] METHOD: getTransactionHistory
+RETURNING: GetResponse(gotObject=[TransactionObject(transactionId=1, transactionType=Deposit, transactionDetail=Cash, transactionReference=plz, date=2022-05-26, amount=600.0), TransactionObject(transactionId=2, transactionType=Deposit, transactionDetail=Direct Deposit, transactionReference=MOOLAH, date=2022-05-26, amount=400.0), TransactionObject(transactionId=3, transactionType=Deposit, transactionDetail=Cash, transactionReference=BIG MOOLAH, date=2022-05-26, amount=1500.0), TransactionObject(transactionId=4, transactionType=Deposit, transactionDetail=Cash, transactionReference=MONEY, date=2022-05-26, amount=1501.0), TransactionObject(transactionId=1, transactionType=Withdraw, transactionDetail=Personal, transactionReference=afds, date=2022-05-26, amount=100.0), TransactionObject(transactionId=2, transactionType=Withdraw, transactionDetail=Personal, transactionReference=Robbed, date=2022-05-26, amount=1500.0), TransactionObject(transactionId=3, transactionType=Withdraw, transactionDetail=Payment, transactionReference=Bills hit hard, date=2022-05-26, amount=1501.0)])
+2022-05-27 11:37:44,548 INFO dLog [http-nio-9000-exec-10] Class: class com.revature.thevault.presentation.controller.TransactionController
+Method: getTransactionHistory
+RETURNING: GetResponse(gotObject=[TransactionObject(transactionId=1, transactionType=Deposit, transactionDetail=Cash, transactionReference=plz, date=2022-05-26, amount=600.0), TransactionObject(transactionId=2, transactionType=Deposit, transactionDetail=Direct Deposit, transactionReference=MOOLAH, date=2022-05-26, amount=400.0), TransactionObject(transactionId=3, transactionType=Deposit, transactionDetail=Cash, transactionReference=BIG MOOLAH, date=2022-05-26, amount=1500.0), TransactionObject(transactionId=4, transactionType=Deposit, transactionDetail=Cash, transactionReference=MONEY, date=2022-05-26, amount=1501.0), TransactionObject(transactionId=1, transactionType=Withdraw, transactionDetail=Personal, transactionReference=afds, date=2022-05-26, amount=100.0), TransactionObject(transactionId=2, transactionType=Withdraw, transactionDetail=Personal, transactionReference=Robbed, date=2022-05-26, amount=1500.0), TransactionObject(transactionId=3, transactionType=Withdraw, transactionDetail=Payment, transactionReference=Bills hit hard, date=2022-05-26, amount=1501.0)])
+2022-05-27 11:37:46,029 DEBUG dLog [http-nio-9000-exec-2] Class: class com.revature.thevault.presentation.controller.TransactionController
+Method: getTransactionHistoryByMonth
+Arguments: [Basic ZnJlZDEyOmZyZWQyMQ==, 1, 2022, 4, 2]
+2022-05-27 11:37:46,030 DEBUG dLog [http-nio-9000-exec-2] CLASS: class com.revature.thevault.service.classes.TransactionService
+METHOD: getTransactionHistoryByMonth
+ARGUMENTS: [1, 4, 2022, 2]
+2022-05-27 11:37:46,030 DEBUG dLog [http-nio-9000-exec-2] CLASS: class com.revature.thevault.service.classes.DepositService
+METHOD: getAllUserDepositsByMonth
+ARGUMENTS: [1, 4, 2022]
+2022-05-27 11:37:46,245 INFO dLog [http-nio-9000-exec-2] METHOD: getAllUserDepositsByMonth
+RETURNING: GetResponse(gotObject=[DepositResponseObject(depositId=1, accountId=1, depositType=Cash, reference=plz, dateDeposit=2022-05-26, amount=600.0), DepositResponseObject(depositId=2, accountId=1, depositType=Direct Deposit, reference=MOOLAH, dateDeposit=2022-05-26, amount=400.0), DepositResponseObject(depositId=3, accountId=1, depositType=Cash, reference=BIG MOOLAH, dateDeposit=2022-05-26, amount=1500.0), DepositResponseObject(depositId=4, accountId=1, depositType=Cash, reference=MONEY, dateDeposit=2022-05-26, amount=1501.0)])
+2022-05-27 11:37:46,246 DEBUG dLog [http-nio-9000-exec-2] CLASS: class com.revature.thevault.service.classes.WithdrawService
+METHOD: getAllUserWithdrawlsByMonth
+ARGUMENTS: [1, 4, 2022]
+2022-05-27 11:37:46,444 INFO dLog [http-nio-9000-exec-2] METHOD: getAllUserWithdrawlsByMonth
+RETURNING: GetResponse(gotObject=[WithdrawResponseObject(withdrawId=1, accountId=1, requestType=Personal, requestStatus=Pending, reference=afds, dateWithdraw=2022-05-26, amount=100.0), WithdrawResponseObject(withdrawId=2, accountId=1, requestType=Personal, requestStatus=Pending, reference=Robbed, dateWithdraw=2022-05-26, amount=1500.0), WithdrawResponseObject(withdrawId=3, accountId=1, requestType=Payment, requestStatus=Pending, reference=Bills hit hard, dateWithdraw=2022-05-26, amount=1501.0)])
+2022-05-27 11:37:46,446 DEBUG dLog [http-nio-9000-exec-2] CLASS: class com.revature.thevault.service.classes.AccountService
+METHOD: getAccount
+ARGUMENTS: [1]
+2022-05-27 11:37:46,450 INFO dLog [http-nio-9000-exec-2] METHOD: getAccount
+RETURNING: GetResponse(gotObject=[AccountResponseObject(accountId=1, userId=2, accountType=Checking, availableBalance=900.0, pendingBalance=900.0)])
+2022-05-27 11:37:46,451 DEBUG dLog [http-nio-9000-exec-2] CLASS: class com.revature.thevault.service.classes.DepositService
+METHOD: getUserDepositsByAccountIdAndDateBetween
+ARGUMENTS: [1, 2022-04-30, 2022-05-31]
+2022-05-27 11:37:46,510 INFO dLog [http-nio-9000-exec-2] METHOD: getUserDepositsByAccountIdAndDateBetween
+RETURNING: [DepositEntity(pk_deposit_id=1, accountentity=AccountEntity(pk_account_id=1, logincredentials=LoginCredentialEntity(pkUserId=2, username=fred12, password=fred21), accountTypeEntity=AccountTypeEntity(pk_account_type_id=1, name=Checking), available_balance=900.0, pending_balance=900.0), deposittypeentity=DepositTypeEntity(pk_deposit_type_id=1, name=Cash), reference=plz, dateDeposit=2022-05-26, amount=600.0, email=null), DepositEntity(pk_deposit_id=2, accountentity=AccountEntity(pk_account_id=1, logincredentials=LoginCredentialEntity(pkUserId=2, username=fred12, password=fred21), accountTypeEntity=AccountTypeEntity(pk_account_type_id=1, name=Checking), available_balance=900.0, pending_balance=900.0), deposittypeentity=DepositTypeEntity(pk_deposit_type_id=3, name=Direct Deposit), reference=MOOLAH, dateDeposit=2022-05-26, amount=400.0, email=null), DepositEntity(pk_deposit_id=3, accountentity=AccountEntity(pk_account_id=1, logincredentials=LoginCredentialEntity(pkUserId=2, username=fred12, password=fred21), accountTypeEntity=AccountTypeEntity(pk_account_type_id=1, name=Checking), available_balance=900.0, pending_balance=900.0), deposittypeentity=DepositTypeEntity(pk_deposit_type_id=1, name=Cash), reference=BIG MOOLAH, dateDeposit=2022-05-26, amount=1500.0, email=null), DepositEntity(pk_deposit_id=4, accountentity=AccountEntity(pk_account_id=1, logincredentials=LoginCredentialEntity(pkUserId=2, username=fred12, password=fred21), accountTypeEntity=AccountTypeEntity(pk_account_type_id=1, name=Checking), available_balance=900.0, pending_balance=900.0), deposittypeentity=DepositTypeEntity(pk_deposit_type_id=1, name=Cash), reference=MONEY, dateDeposit=2022-05-26, amount=1501.0, email=null)]
+2022-05-27 11:37:46,511 DEBUG dLog [http-nio-9000-exec-2] CLASS: class com.revature.thevault.service.classes.WithdrawService
+METHOD: findByAccountIdAndDateBetween
+ARGUMENTS: [1, 2022-04-30, 2022-05-31]
+2022-05-27 11:37:46,568 INFO dLog [http-nio-9000-exec-2] METHOD: findByAccountIdAndDateBetween
+RETURNING: [WithdrawEntity(pk_withdraw_id=1, accountentity=AccountEntity(pk_account_id=1, logincredentials=LoginCredentialEntity(pkUserId=2, username=fred12, password=fred21), accountTypeEntity=AccountTypeEntity(pk_account_type_id=1, name=Checking), available_balance=900.0, pending_balance=900.0), requesttypeentity=RequestTypeEntity(pk_request_type_id=2, name=Personal), requeststatusentity=RequestStatusEntity(pk_request_status_id=1, name=Pending), reference=afds, dateWithdraw=2022-05-26, amount=100.0, email=null), WithdrawEntity(pk_withdraw_id=2, accountentity=AccountEntity(pk_account_id=1, logincredentials=LoginCredentialEntity(pkUserId=2, username=fred12, password=fred21), accountTypeEntity=AccountTypeEntity(pk_account_type_id=1, name=Checking), available_balance=900.0, pending_balance=900.0), requesttypeentity=RequestTypeEntity(pk_request_type_id=2, name=Personal), requeststatusentity=RequestStatusEntity(pk_request_status_id=1, name=Pending), reference=Robbed, dateWithdraw=2022-05-26, amount=1500.0, email=null), WithdrawEntity(pk_withdraw_id=3, accountentity=AccountEntity(pk_account_id=1, logincredentials=LoginCredentialEntity(pkUserId=2, username=fred12, password=fred21), accountTypeEntity=AccountTypeEntity(pk_account_type_id=1, name=Checking), available_balance=900.0, pending_balance=900.0), requesttypeentity=RequestTypeEntity(pk_request_type_id=1, name=Payment), requeststatusentity=RequestStatusEntity(pk_request_status_id=1, name=Pending), reference=Bills hit hard, dateWithdraw=2022-05-26, amount=1501.0, email=null)]
+2022-05-27 11:37:46,570 DEBUG dLog [http-nio-9000-exec-2] CLASS: class com.revature.thevault.service.classes.ExportPDFService
+METHOD: createPDF
+ARGUMENTS: [[TransactionObject(transactionId=1, transactionType=Deposit, transactionDetail=Cash, transactionReference=plz, date=2022-05-26, amount=600.0), TransactionObject(transactionId=2, transactionType=Deposit, transactionDetail=Direct Deposit, transactionReference=MOOLAH, date=2022-05-26, amount=400.0), TransactionObject(transactionId=3, transactionType=Deposit, transactionDetail=Cash, transactionReference=BIG MOOLAH, date=2022-05-26, amount=1500.0), TransactionObject(transactionId=4, transactionType=Deposit, transactionDetail=Cash, transactionReference=MONEY, date=2022-05-26, amount=1501.0), TransactionObject(transactionId=1, transactionType=Withdraw, transactionDetail=Personal, transactionReference=afds, date=2022-05-26, amount=100.0), TransactionObject(transactionId=2, transactionType=Withdraw, transactionDetail=Personal, transactionReference=Robbed, date=2022-05-26, amount=1500.0), TransactionObject(transactionId=3, transactionType=Withdraw, transactionDetail=Payment, transactionReference=Bills hit hard, date=2022-05-26, amount=1501.0)], 4, 2022, 2, 0.0]
+2022-05-27 11:37:46,582 DEBUG dLog [http-nio-9000-exec-2] CLASS: class com.revature.thevault.service.classes.RandomStringService
+METHOD: getSaltString
+ARGUMENTS: []
+2022-05-27 11:37:46,592 INFO dLog [http-nio-9000-exec-2] METHOD: getSaltString
+RETURNING: GMRNBAKLCN3Y4VDIR7
+2022-05-27 11:37:46,897 DEBUG dLog [http-nio-9000-exec-2] CLASS: class com.revature.thevault.service.classes.Email.EmailService
+METHOD: sendReportPdfEmail
+ARGUMENTS: [src/main/resources/pdf/GMRNBAKLCN3Y4VDIR7myMonthStatement.pdf, 2022-04-30 to 2022-05-31, fjdoell@gmail.com, Frederick]
+2022-05-27 11:37:46,942 DEBUG dLog [http-nio-9000-exec-2] CLASS: class com.revature.thevault.service.classes.Email.EmailHelperService
+METHOD: sendEmailWithAttachment
+ARGUMENTS: [fjdoell@gmail.com, Copy of Banking Reports from 2022-04-30 to 2022-05-31, Hello Frederick,
+
+Attached are your reports that you requested from 2022-04-30 to 2022-05-31.If you did not request this report, please contact your local bank at your earliest convenience., src/main/resources/pdf/GMRNBAKLCN3Y4VDIR7myMonthStatement.pdf]
+2022-05-27 11:37:48,795 INFO dLog [http-nio-9000-exec-2] METHOD: sendEmailWithAttachment
+RETURNING: true
+2022-05-27 11:37:48,797 INFO dLog [http-nio-9000-exec-2] METHOD: sendReportPdfEmail
+RETURNING: NULL VALUE
+2022-05-27 11:37:48,798 INFO dLog [http-nio-9000-exec-2] METHOD: createPDF
+RETURNING: NULL VALUE
+2022-05-27 11:37:48,798 INFO dLog [http-nio-9000-exec-2] METHOD: getTransactionHistoryByMonth
+RETURNING: GetResponse(gotObject=[TransactionObject(transactionId=1, transactionType=Deposit, transactionDetail=Cash, transactionReference=plz, date=2022-05-26, amount=600.0), TransactionObject(transactionId=2, transactionType=Deposit, transactionDetail=Direct Deposit, transactionReference=MOOLAH, date=2022-05-26, amount=400.0), TransactionObject(transactionId=3, transactionType=Deposit, transactionDetail=Cash, transactionReference=BIG MOOLAH, date=2022-05-26, amount=1500.0), TransactionObject(transactionId=4, transactionType=Deposit, transactionDetail=Cash, transactionReference=MONEY, date=2022-05-26, amount=1501.0), TransactionObject(transactionId=1, transactionType=Withdraw, transactionDetail=Personal, transactionReference=afds, date=2022-05-26, amount=100.0), TransactionObject(transactionId=2, transactionType=Withdraw, transactionDetail=Personal, transactionReference=Robbed, date=2022-05-26, amount=1500.0), TransactionObject(transactionId=3, transactionType=Withdraw, transactionDetail=Payment, transactionReference=Bills hit hard, date=2022-05-26, amount=1501.0)])
+2022-05-27 11:37:48,798 INFO dLog [http-nio-9000-exec-2] Class: class com.revature.thevault.presentation.controller.TransactionController
+Method: getTransactionHistoryByMonth
+RETURNING: GetResponse(gotObject=[TransactionObject(transactionId=1, transactionType=Deposit, transactionDetail=Cash, transactionReference=plz, date=2022-05-26, amount=600.0), TransactionObject(transactionId=2, transactionType=Deposit, transactionDetail=Direct Deposit, transactionReference=MOOLAH, date=2022-05-26, amount=400.0), TransactionObject(transactionId=3, transactionType=Deposit, transactionDetail=Cash, transactionReference=BIG MOOLAH, date=2022-05-26, amount=1500.0), TransactionObject(transactionId=4, transactionType=Deposit, transactionDetail=Cash, transactionReference=MONEY, date=2022-05-26, amount=1501.0), TransactionObject(transactionId=1, transactionType=Withdraw, transactionDetail=Personal, transactionReference=afds, date=2022-05-26, amount=100.0), TransactionObject(transactionId=2, transactionType=Withdraw, transactionDetail=Personal, transactionReference=Robbed, date=2022-05-26, amount=1500.0), TransactionObject(transactionId=3, transactionType=Withdraw, transactionDetail=Payment, transactionReference=Bills hit hard, date=2022-05-26, amount=1501.0)])

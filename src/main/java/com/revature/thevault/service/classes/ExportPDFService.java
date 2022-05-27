@@ -32,6 +32,11 @@ import com.revature.thevault.repository.entity.AccountProfileEntity;
 import com.revature.thevault.service.classes.Email.EmailService;
 import com.revature.thevault.service.dto.TransactionObject;
 
+/**	Creates a PDF file.
+ * 
+ * @author David Dominguez
+ *
+ */
 @Service("exportPDFService")
 public class ExportPDFService {
 
@@ -44,6 +49,21 @@ public class ExportPDFService {
 	@Autowired
 	private AccountProfileRepository profileRepos;
 
+	/**
+	 * Creates a PDF File given the proper parameters. <br>
+	 * The PDF's Account Table on the top right, the main table in the middle, as well as the user information on the left below the logo are all dynamically created.
+	 * 
+	 * <br>
+	 * <img src="../../../../../../resources/img/Example.png" width="460px" height="440px">
+	 * <br> Example image above for layout.
+	 * @param transactionObjects
+	 * @param month
+	 * @param year
+	 * @param profileId
+	 * @param ourCurrentBalance
+	 * @throws FileNotFoundException
+	 * @throws MalformedURLException
+	 */
 	public void createPDF(List<TransactionObject> transactionObjects, int month, int year, int profileId, float ourCurrentBalance)
 			throws FileNotFoundException, MalformedURLException {
 		Calendar cal = Calendar.getInstance();

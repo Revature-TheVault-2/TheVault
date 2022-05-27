@@ -28,7 +28,7 @@ export class NewpasswordComponent implements OnInit {
   ) { }
 
   error:boolean = false;
-  errorMessage: string = "Error";
+  errorMessage: string = "Error, please check your Reset Token and passwords and try again.";
   loginUser!: LoginUser
   resetPassword!: resetPassword
 
@@ -96,7 +96,7 @@ export class NewpasswordComponent implements OnInit {
 
   onSubmit(): void {
     this.error = false;
-    this.errorMessage = "Error";
+    // this.errorMessage = "Error";
     this.submitted = true;
 
   /* istanbul ignore next */
@@ -123,23 +123,26 @@ export class NewpasswordComponent implements OnInit {
     next: (data: boolean) => {
       if (data == false){
         console.log("This was false");
+        this.form.reset();
+        this.error = true;
 
 
 
       }else{
         
         this.routingAllocator.login();
+        this.success = true;
 
       }
 
       
     },
-    error: (err: Error) => {
-      /* istanbul ignore next */
-        console.error("profile observer error: " + err);
-        this.error = true;
-      /* istanbul ignore next */
-        this.onReset();},
+    // error: (err: Error) => {
+    //   /* istanbul ignore next */
+    //     console.error("profile observer error: " + err);
+    //     this.error = true;
+    //   /* istanbul ignore next */
+    //     this.onReset();},
   
     
     complete: () => console.log("Response lets you know what happened")

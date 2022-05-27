@@ -188,10 +188,18 @@ public class EmailService {
 		emailSender.send(message);	
 	}
 	
+	
+	/**
+	 * generates a password-reset email containing a token and a link
+	 * 
+	 * @param token
+	 * @param toEmail
+	 *
+	 */
 	public void sendPasswordResetLink(String token, String toEmail) {
 //		System.out.println("Inside the sendPasswordResetLink method");
 		String subject = "The Vault: Password Reset Requested";
-		String resetLink = "http://localhost:4200/newpassword";
+		String resetLink = "http://ec2-44-201-212-50.compute-1.amazonaws.com:9000/newpassword";
 		String body = "Valued Customer:  A password reset has been requested for your account at The Vault. \n If this was from you, please copy the token below and follow this link to reset your password: " + resetLink + "\n"+ token;
 //		System.out.println(toEmail);
 		

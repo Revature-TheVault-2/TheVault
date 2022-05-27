@@ -4,13 +4,12 @@ public class PasswordResetRequest {
 
 	private String password;
 	private String token;
-//	private int fkUserId;
 	
 	public PasswordResetRequest(String password, String token) {
 		super();
 		this.password = password;
 		this.token = token;
-//		this.fkUserId = fkUserId;
+
 	}
 
 	public String getPassword() {

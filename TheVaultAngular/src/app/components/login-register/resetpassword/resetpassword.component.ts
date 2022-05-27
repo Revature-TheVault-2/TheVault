@@ -24,8 +24,8 @@ export class ResetpasswordComponent implements OnInit {
 
   error:boolean = false;
   success:boolean = false;
-  errorMessage: string = "Please check your email for a link to reset your password";
-  successMessage: string = "Success!";
+  errorMessage: string = "Please double-check your Username and try again. Contact customer support if you continue to experience problems";
+  successMessage: string = "Success! Check your email.";
   loginUser!: LoginUser
 
   form: FormGroup = new FormGroup({
@@ -110,7 +110,8 @@ resetPassword(){
 loginObserver = {
   next: (data: boolean) => {
     if (data){
-      this.routingAllocator.login();
+      this.success = true;
+      // this.routingAllocator.login();
     }
     else 
     this.error = true;

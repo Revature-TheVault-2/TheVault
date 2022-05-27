@@ -141,10 +141,6 @@ public class LoginService implements LoginServiceInterface {
                 loginCredentialEntity.getPkUserId(),
                 loginCredentialEntity.getUsername(),
                 loginCredentialEntity.getPassword()
-<<<<<<< HEAD
-=======
-
->>>>>>> afc7b6d03e9190d9860abef2e96d3461907316e2
         );
     }
 

@@ -36,11 +36,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter{
 			.and()
 		.csrf().disable() // Disables CSRF protection.
 		.authorizeRequests()
-<<<<<<< HEAD
 			.antMatchers("/login", "/create", "/profile/create","/resetpassword","/newpassword").permitAll() // Whitelist of URLs that can be accessed without credentials.
-=======
-			.antMatchers("/login", "/create", "/profile/create").permitAll() // Whitelist of URLs that can be accessed without credentials.
->>>>>>> afc7b6d03e9190d9860abef2e96d3461907316e2
 			.anyRequest().authenticated()
 			.and()
 		.httpBasic() // Enable HTTP Basic Authentication.
@@ -72,11 +68,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter{
 	@Bean
 	CorsConfigurationSource corsConfigurationSource() {
 		CorsConfiguration configuration = new CorsConfiguration();
-<<<<<<< HEAD
-		configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200"));
-=======
 		configuration.setAllowedOrigins(Arrays.asList("http://44.201.212.50:9001"));
->>>>>>> afc7b6d03e9190d9860abef2e96d3461907316e2
 		configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE"));
 		configuration.setAllowedHeaders(Arrays.asList("authorization", "content-type"));
 		configuration.setAllowCredentials(true);

@@ -26,6 +26,11 @@ public interface AccountProfileRepository extends JpaRepository<AccountProfileEn
 
 	
 
+	AccountProfileEntity findByLogincredential(Optional<AccountEntity> findById);
+	
+
+	
+
 //    @Query(value =
 //            "UPDATE account_profile_table apt " +
 //            "WHERE apt.pk_profile_id = 1? " +

@@ -20,11 +20,7 @@ public class LoginCredentialEntity {
     @Column(name = "pk_user_id")
     @GeneratedValue(generator = "login_credential_table_pk_user_id_seq", strategy = GenerationType.SEQUENCE)
     @SequenceGenerator(allocationSize = 1, name = "login_credential_table_pk_user_id_seq", sequenceName = "login_credential_table_pk_user_id_seq")
-<<<<<<< HEAD
-    Integer pkuserid;
-=======
     int pkUserId;
->>>>>>> afc7b6d03e9190d9860abef2e96d3461907316e2
     
 
     @Column(name = "username")

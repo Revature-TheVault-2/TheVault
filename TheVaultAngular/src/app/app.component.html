@@ -1,8 +1,4 @@
 <router-outlet></router-outlet>
-<<<<<<< HEAD
-
-
-=======
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
       <a *ngIf="isLoggedIn()" class="navbar-brand" routerLink="/account-view">The Vault</a>
@@ -25,7 +21,7 @@
             <a *ngIf="isLoggedIn()" (click)="logout()" routerLink="/" class="nav-link">Logout</a>
           </li>
           <li class="nav-item">
-            <button class="btn btn-light" (click)="toggleTheme()" id="theme-button" style="position: absolute top right;">{{buttonText}}</button>
+            <button class="btn btn-light" (click)="toggleTheme()" id="theme-button" style="position: absolute top right;">Change Theme</button>
           </li>
         </ul>
       </div>
@@ -34,4 +30,3 @@
 <div class="container-fluid">
     <router-outlet></router-outlet>
 </div>
->>>>>>> afc7b6d03e9190d9860abef2e96d3461907316e2

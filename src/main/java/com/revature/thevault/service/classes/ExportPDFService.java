@@ -146,7 +146,7 @@ public class ExportPDFService {
 			
 			// Table Creation			
 			// Table accountTable
-			Table accountTable = new Table(new float[]{2F, 3F});
+			Table accountTable = new Table(new float[]{3F, 2F});
 			accountTable.setWidth(UnitValue.createPercentValue(100));
 			accountTable.addStyle(accountCellStyle);
 			
@@ -165,6 +165,11 @@ public class ExportPDFService {
 			Cell accountNumberHeader = new Cell();
 			accountNumberHeader.add(new Paragraph(String.valueOf(profileId)));
 			accountNumberHeader.addStyle(tableStyle);
+			
+			accountTable.addHeaderCell(statementPeriodHeader);
+			accountTable.addHeaderCell(accountNumberHeader);
+			accountTable.addCell(statementPeriod);
+			accountTable.addCell(accountNumber);
 			
 			// Table table
 			Table transactionTable = new Table(new float[]{1F, 0.5F, 1F, 1F, 2F}, false); // In this float example, the float numbers represent table size. However, it's really isn't updating automatically since it isn't a largeTable.

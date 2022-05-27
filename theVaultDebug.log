@@ -1,0 +1,55 @@
+2022-05-27 15:25:42,877 DEBUG dLog [http-nio-9000-exec-2] Class: class com.revature.thevault.presentation.controller.LoginController
+Method: findLoginCredential
+Arguments: [LoginRequest(username=user, password=password)]
+2022-05-27 15:25:42,882 DEBUG dLog [http-nio-9000-exec-2] CLASS: class com.revature.thevault.service.classes.LoginService
+METHOD: getLoginCredentialFromLogin
+ARGUMENTS: [user]
+2022-05-27 15:25:42,989 INFO dLog [http-nio-9000-exec-2] METHOD: getLoginCredentialFromLogin
+RETURNING: PostResponse(createdObject=[LoginResponseObject(userId=1, username=user, password=password)])
+2022-05-27 15:25:42,990 INFO dLog [http-nio-9000-exec-2] Class: class com.revature.thevault.presentation.controller.LoginController
+Method: findLoginCredential
+RETURNING: PostResponse(createdObject=[LoginResponseObject(userId=1, username=user, password=password)])
+2022-05-27 15:25:43,269 DEBUG dLog [http-nio-9000-exec-4] Class: class com.revature.thevault.presentation.controller.AccountProfileController
+Method: getProfile
+Arguments: [1]
+2022-05-27 15:25:43,274 DEBUG dLog [http-nio-9000-exec-4] CLASS: class com.revature.thevault.service.classes.AccountProfileService
+METHOD: getProfile
+ARGUMENTS: [AccountProfileRequest(profileId=1)]
+2022-05-27 15:25:43,348 INFO dLog [http-nio-9000-exec-4] METHOD: getProfile
+RETURNING: GetResponse(gotObject=[AccountProfileResponse(profileId=1, userId=1, firstName=eric, lastName=mateo, email=ericmateo5675@gmail.com, phoneNumber=phonenumber, address=Home address)])
+2022-05-27 15:25:43,348 INFO dLog [http-nio-9000-exec-4] Class: class com.revature.thevault.presentation.controller.AccountProfileController
+Method: getProfile
+RETURNING: GetResponse(gotObject=[AccountProfileResponse(profileId=1, userId=1, firstName=eric, lastName=mateo, email=ericmateo5675@gmail.com, phoneNumber=phonenumber, address=Home address)])
+2022-05-27 15:25:43,513 DEBUG dLog [http-nio-9000-exec-6] Class: class com.revature.thevault.presentation.controller.AccountController
+Method: getUserAccountList
+Arguments: [1, org.apache.catalina.session.StandardSessionFacade@9b6e998]
+2022-05-27 15:25:43,517 DEBUG dLog [http-nio-9000-exec-6] CLASS: class com.revature.thevault.service.classes.AccountService
+METHOD: getAccounts
+ARGUMENTS: [1]
+2022-05-27 15:25:43,562 INFO dLog [http-nio-9000-exec-6] METHOD: getAccounts
+RETURNING: GetResponse(gotObject=[])
+2022-05-27 15:25:43,562 INFO dLog [http-nio-9000-exec-6] Class: class com.revature.thevault.presentation.controller.AccountController
+Method: getUserAccountList
+RETURNING: GetResponse(gotObject=[])
+2022-05-27 15:25:50,042 DEBUG dLog [http-nio-9000-exec-8] Class: class com.revature.thevault.presentation.controller.ResetPasswordController
+Method: requestPasswordResetLink
+Arguments: [LoginCredentialEntity(pkuserid=null, username=user, password=)]
+2022-05-27 15:25:50,074 DEBUG dLog [http-nio-9000-exec-8] CLASS: class com.revature.thevault.service.classes.PwResetTokenService
+METHOD: generateResetToken
+ARGUMENTS: [1]
+2022-05-27 15:25:50,077 INFO dLog [http-nio-9000-exec-8] METHOD: generateResetToken
+RETURNING: 1f6n5e3z6n7f9u5k5d0x0q7n6z
+2022-05-27 15:25:50,194 DEBUG dLog [http-nio-9000-exec-8] CLASS: class com.revature.thevault.service.classes.EmailService
+METHOD: sendPasswordResetLink
+ARGUMENTS: [1f6n5e3z6n7f9u5k5d0x0q7n6z, ericmateo5675@gmail.com]
+2022-05-27 15:25:51,611 INFO dLog [http-nio-9000-exec-8] METHOD: sendPasswordResetLink
+RETURNING: NULL VALUE
+2022-05-27 15:25:51,611 INFO dLog [http-nio-9000-exec-8] Class: class com.revature.thevault.presentation.controller.ResetPasswordController
+Method: requestPasswordResetLink
+RETURNING: true
+2022-05-27 15:28:18,022 DEBUG dLog [http-nio-9000-exec-1] Class: class com.revature.thevault.presentation.controller.ResetPasswordController
+Method: submitPasswordReset
+Arguments: [PasswordResetRequestModel [password=1234, token=1f6n5e3z6n7f9u5k5d0x0q7n6z]]
+2022-05-27 15:28:34,711 INFO dLog [http-nio-9000-exec-1] Class: class com.revature.thevault.presentation.controller.ResetPasswordController
+Method: submitPasswordReset
+RETURNING: true

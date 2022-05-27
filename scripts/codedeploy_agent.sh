@@ -1,4 +1,5 @@
 echo "          ((((((((((     updating existing packages START     ))))))))))          "
+cd
 sudo yum update -y
 echo "          ((((((((((     updating existing packages END     ))))))))))          "
 

@@ -8,6 +8,7 @@ const ROUTES = {
   detail: ['account-detail'],
   profile: ['profile'],
   editProfile: ['edit-profile'],
+  resetpassword : ['resetpassword'],
   budgetCalculator: ['budget-calculator']
 }
 
@@ -31,5 +32,8 @@ export class RoutingAllocatorService {
 
   editProfile():void{this.router.navigate(ROUTES.editProfile)};
 
+  resetpassword() : void {this.router.navigate(ROUTES.resetpassword)};
+
   budgetCalculator():void{this.router.navigate(ROUTES.budgetCalculator)};
+
 }

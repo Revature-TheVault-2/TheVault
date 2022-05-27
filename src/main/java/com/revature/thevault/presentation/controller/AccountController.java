@@ -23,7 +23,18 @@ import com.revature.thevault.presentation.model.response.builder.DeleteResponse;
 import com.revature.thevault.presentation.model.response.builder.GetResponse;
 import com.revature.thevault.presentation.model.response.builder.PostResponse;
 import com.revature.thevault.presentation.model.response.builder.PutResponse;
+import com.revature.thevault.repository.entity.LoginCredentialEntity;
 import com.revature.thevault.service.classes.AccountService;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
+
+
+
 @RestController("accountController")
 @RequestMapping("/account")
 public class AccountController {
@@ -72,6 +83,7 @@ public class AccountController {
     @GetMapping(path = "/test")
     public String testController(){
         return "You have pinged the Vault 2 Server";
+
     }
 
 }

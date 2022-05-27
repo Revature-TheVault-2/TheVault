@@ -28,6 +28,8 @@ import { CreateAccountComponent } from './components/account/create-account/crea
 import { TransferGenerateComponent } from './components/transaction/transfer-generate/transfer-generate.component';
 
 import { AuthInterceptorService } from './utils/auth-interceptor.service';
+import { ResetpasswordComponent } from './components/login-register/resetpassword/resetpassword.component';
+import { NewpasswordComponent } from './components/login-register/newpassword/newpassword.component';
 import { AlertComponent } from './components/alert/alert.component';
 import { BudgetCalculatorComponent } from './components/budget-calculator/budget-calculator.component';
 
@@ -54,6 +56,8 @@ import { BudgetCalculatorComponent } from './components/budget-calculator/budget
     CreateAccountComponent,
     WithdrawDetailComponent,
     TransferGenerateComponent,
+    ResetpasswordComponent,
+    NewpasswordComponent,
     AlertComponent,
     BudgetCalculatorComponent
   ],

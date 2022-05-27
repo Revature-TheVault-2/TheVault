@@ -15,7 +15,7 @@ phases:
     commands:
     - echo Entered the build phase...
     - echo Build started on `date`
-    - export JAVA_HOME=/usr/lib/jvm/java-11-openjdk
+    - export JAVA_HOME='/usr/lib/jvm/java-11-openjdk'
     - mvn clean package -DskipTests
     finally:
     - echo This always runs even if the install command fails

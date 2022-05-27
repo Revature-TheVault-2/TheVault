@@ -11,9 +11,10 @@ ng build
 cd
 http-server TheVault/TheVaultAngular/dist/the-vault -p 9001 \
    http-server > /dev/null 2> /dev/null < /dev/null &
-
 cd
-cd TheVault/target/
+cd TheVault/
+mvn clean install -DskipTests
+cd target/
 echo =========================================================================
 echo "In target folder"
 echo =========================================================================

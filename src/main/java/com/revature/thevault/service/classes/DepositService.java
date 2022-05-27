@@ -74,7 +74,7 @@ public class DepositService implements DepositServiceInterface {
 	//    	depositRequest.findById(depositRequest.getAccountId());
 		    if(currentUserProfile.getNotificationAmount() != 0.0f){
 		    	if(depositRequest.getAmount() > currentUserProfile.getNotificationAmount()){
-		    		emailService.transactionAmountEmail(-(depositRequest.getAmount()), currentUserProfile); 
+		    		emailService.transactionAmountEmail(depositRequest.getAmount(), currentUserProfile); 
 		    	}
 		   	}
 		    

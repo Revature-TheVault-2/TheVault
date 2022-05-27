@@ -8,6 +8,11 @@ import { NewUser } from 'src/app/models/users/new-user.model';
 import { PostProfile } from 'src/app/models/users/responses/post-profile';
 import Validation from 'src/app/utils/validation';
 import { UserHandlerService } from 'src/app/_services/user/user-handler.service';
+import { LoginCredential} from 'src/app/models/login/login-credential.model';
+import { LoginUser } from 'src/app/models/users/login-user.model';
+import { GlobalStorageService } from 'src/app/_services/global-storage.service';
+import { Token } from '@angular/compiler';
+import { throwError } from 'rxjs';
 
 
 @Component({
@@ -17,24 +22,32 @@ import { UserHandlerService } from 'src/app/_services/user/user-handler.service'
 })
 export class ResetpasswordComponent implements OnInit {
 
-  constructor(
-    private routingAllocator: RoutingAllocatorService,
-    private userHandler: UserHandlerService,
-    private formBuilder: FormBuilder
-  ) { }
-
   error:boolean = false;
-  errorMessage: string = "Error";
-
   success:boolean = false;
-  successMessage: string = "Success!";
+  errorMessage: string = "Please double-check your Username and try again. Contact customer support if you continue to experience problems";
+  successMessage: string = "Success! Check your email.";
+  loginUser!: LoginUser
 
   form: FormGroup = new FormGroup({
-    username: new FormControl('')
+    username: new FormControl(''),
+    password: new FormControl(''),
     
   });
   submitted = false;
   posts: any;
+
+  // loginCredential!: LoginCredential
+  
+  constructor(
+    private formBuilder: FormBuilder,
+    private routingAllocator: RoutingAllocatorService,
+    private userHandler: UserHandlerService,
+    private globalStorage: GlobalStorageService,
+    private router: RoutingAllocatorService
+  ) { }
+
+
+
 
   ngOnInit(): void {
     this.initializeForm();
@@ -69,9 +82,10 @@ export class ResetpasswordComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.error = false;
-    this.errorMessage = "Error";
     this.submitted = true;
+
+    // this.error = false;
+    // this.errorMessage = "Error";
 
   /* istanbul ignore next */
     if (this.form.invalid) {
@@ -81,9 +95,35 @@ export class ResetpasswordComponent implements OnInit {
     
     if (userN != null) {
 
-      // this.newUser = new NewUser(userN, firstN, lastN, email, addr, phoneN, passW);
-      // this.registerUser();
-    }
+      //uses loginUser model to pass along object with username and blank password
+      this.loginUser = new LoginUser(userN,"");
+      this.resetPassword();
+    
   }
 
+}
+/**
+ * userHandler called to build the request (body and endpoint)
+ */
+resetPassword(){
+  this.userHandler.resetPassword(this.loginUser.username, this.loginUser.password).subscribe(this.loginObserver);
+}
+
+loginObserver = {
+  next: (data: boolean) => {
+    if (data){
+      //success banner if true
+      this.success = true;
+    }else{
+      //error message if false
+      this.error = true;
+      this.form.reset();
+
+    } 
+
+    
+  },
+    
+  complete: () => console.log("Nothing to see here, move along.")
+}
 }

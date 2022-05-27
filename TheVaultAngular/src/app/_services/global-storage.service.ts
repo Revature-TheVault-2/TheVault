@@ -34,7 +34,9 @@ export class GlobalStorageService {
     this.httpOptions.headers = this.httpOptions.headers.delete('authorization');
   }
 
-  public getHttpOptions() {return this.httpOptions}
+  public getHttpOptions() {
+    
+    return this.httpOptions}
 
   public setProfile(user: Profile): void {this.userProfile = user}
 

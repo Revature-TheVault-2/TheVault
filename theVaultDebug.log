@@ -8,3 +8,292 @@ METHOD: generateResetToken
 ARGUMENTS: [2]
 2022-05-27 12:06:40,514 INFO dLog [main] METHOD: generateResetToken
 RETURNING: 1q6v5f3v6y6a7q6h0m0x5o1p4q
+2022-05-27 13:45:31,253 DEBUG dLog [http-nio-9000-exec-2] Class: class com.revature.thevault.presentation.controller.LoginController
+Method: findLoginCredential
+Arguments: [LoginRequest(username=user, password=password)]
+2022-05-27 13:45:31,256 DEBUG dLog [http-nio-9000-exec-2] CLASS: class com.revature.thevault.service.classes.LoginService
+METHOD: getLoginCredentialFromLogin
+ARGUMENTS: [user]
+2022-05-27 13:45:31,322 ERROR dLog [http-nio-9000-exec-2] CONTROLLER CLASS: class com.revature.thevault.service.classes.LoginService
+METHOD: getLoginCredentialFromLogin
+THROWING EXCEPTION CLASS: class com.revature.thevault.service.exceptions.InvalidInputException
+MESSAGE: 400 BAD_REQUEST "User was not found"
+2022-05-27 13:45:31,322 ERROR dLog [http-nio-9000-exec-2] CONTROLLER CLASS: class com.revature.thevault.presentation.controller.LoginController
+METHOD: findLoginCredential
+THROWING EXCEPTION: class com.revature.thevault.service.exceptions.InvalidInputException
+2022-05-27 13:45:37,180 DEBUG dLog [http-nio-9000-exec-4] Class: class com.revature.thevault.presentation.controller.LoginController
+Method: findLoginCredential
+Arguments: [LoginRequest(username=user, password=password)]
+2022-05-27 13:45:37,180 DEBUG dLog [http-nio-9000-exec-4] CLASS: class com.revature.thevault.service.classes.LoginService
+METHOD: getLoginCredentialFromLogin
+ARGUMENTS: [user]
+2022-05-27 13:45:37,209 ERROR dLog [http-nio-9000-exec-4] CONTROLLER CLASS: class com.revature.thevault.service.classes.LoginService
+METHOD: getLoginCredentialFromLogin
+THROWING EXCEPTION CLASS: class com.revature.thevault.service.exceptions.InvalidInputException
+MESSAGE: 400 BAD_REQUEST "User was not found"
+2022-05-27 13:45:37,209 ERROR dLog [http-nio-9000-exec-4] CONTROLLER CLASS: class com.revature.thevault.presentation.controller.LoginController
+METHOD: findLoginCredential
+THROWING EXCEPTION: class com.revature.thevault.service.exceptions.InvalidInputException
+2022-05-27 13:47:38,986 DEBUG dLog [http-nio-9000-exec-6] Class: class com.revature.thevault.presentation.controller.LoginController
+Method: newLogin
+Arguments: [NewLoginCredentialsRequest(username=lala, password=password)]
+2022-05-27 13:47:38,986 DEBUG dLog [http-nio-9000-exec-6] CLASS: class com.revature.thevault.service.classes.LoginService
+METHOD: createNewLogin
+ARGUMENTS: [NewLoginCredentialsRequest(username=lala, password=password)]
+2022-05-27 13:47:39,251 INFO dLog [http-nio-9000-exec-6] METHOD: createNewLogin
+RETURNING: PostResponse(createdObject=[LoginResponseObject(userId=1, username=lala, password=password)])
+2022-05-27 13:47:39,251 INFO dLog [http-nio-9000-exec-6] Class: class com.revature.thevault.presentation.controller.LoginController
+Method: newLogin
+RETURNING: PostResponse(createdObject=[LoginResponseObject(userId=1, username=lala, password=password)])
+2022-05-27 13:47:39,281 DEBUG dLog [http-nio-9000-exec-8] Class: class com.revature.thevault.presentation.controller.AccountProfileController
+Method: createProfile
+Arguments: [ProfileCreateRequest(userId=1, firstName=Pedro, lastName=P, email=ericmateo5675@gmail.com, phoneNumber=123456789, address=whyyouaskforthislol, notificationAmount=0.0)]
+2022-05-27 13:47:39,284 DEBUG dLog [http-nio-9000-exec-8] CLASS: class com.revature.thevault.service.classes.AccountProfileService
+METHOD: createProfile
+ARGUMENTS: [ProfileCreateRequest(userId=1, firstName=Pedro, lastName=P, email=ericmateo5675@gmail.com, phoneNumber=123456789, address=whyyouaskforthislol, notificationAmount=0.0)]
+2022-05-27 13:47:39,306 ERROR dLog [http-nio-9000-exec-8] CONTROLLER CLASS: class com.revature.thevault.service.classes.AccountProfileService
+METHOD: createProfile
+THROWING EXCEPTION CLASS: class java.lang.NullPointerException
+MESSAGE: Cannot invoke "com.revature.thevault.service.classes.LoginService.findUserByUserId(int)" because "com.revature.thevault.service.classes.AccountProfileService.loginService" is null
+2022-05-27 13:47:39,306 ERROR dLog [http-nio-9000-exec-8] CONTROLLER CLASS: class com.revature.thevault.presentation.controller.AccountProfileController
+METHOD: createProfile
+THROWING EXCEPTION: class java.lang.NullPointerException
+2022-05-27 13:54:04,104 DEBUG dLog [http-nio-9000-exec-10] Class: class com.revature.thevault.presentation.controller.LoginController
+Method: findLoginCredential
+Arguments: [LoginRequest(username=lala, password=password)]
+2022-05-27 13:54:04,104 DEBUG dLog [http-nio-9000-exec-10] CLASS: class com.revature.thevault.service.classes.LoginService
+METHOD: getLoginCredentialFromLogin
+ARGUMENTS: [lala]
+2022-05-27 13:54:04,145 INFO dLog [http-nio-9000-exec-10] METHOD: getLoginCredentialFromLogin
+RETURNING: PostResponse(createdObject=[LoginResponseObject(userId=1, username=lala, password=password)])
+2022-05-27 13:54:04,145 INFO dLog [http-nio-9000-exec-10] Class: class com.revature.thevault.presentation.controller.LoginController
+Method: findLoginCredential
+RETURNING: PostResponse(createdObject=[LoginResponseObject(userId=1, username=lala, password=password)])
+2022-05-27 13:54:04,261 DEBUG dLog [http-nio-9000-exec-2] Class: class com.revature.thevault.presentation.controller.AccountProfileController
+Method: getProfile
+Arguments: [1]
+2022-05-27 13:54:04,261 DEBUG dLog [http-nio-9000-exec-2] CLASS: class com.revature.thevault.service.classes.AccountProfileService
+METHOD: getProfile
+ARGUMENTS: [AccountProfileRequest(profileId=1)]
+2022-05-27 13:54:04,295 ERROR dLog [http-nio-9000-exec-2] CONTROLLER CLASS: class com.revature.thevault.service.classes.AccountProfileService
+METHOD: getProfile
+THROWING EXCEPTION CLASS: class com.revature.thevault.service.exceptions.InvalidRequestException
+MESSAGE: 400 BAD_REQUEST "invalid request"
+2022-05-27 13:54:04,295 ERROR dLog [http-nio-9000-exec-2] CONTROLLER CLASS: class com.revature.thevault.presentation.controller.AccountProfileController
+METHOD: getProfile
+THROWING EXCEPTION: class com.revature.thevault.service.exceptions.InvalidRequestException
+2022-05-27 13:54:34,127 DEBUG dLog [http-nio-9000-exec-4] Class: class com.revature.thevault.presentation.controller.LoginController
+Method: findLoginCredential
+Arguments: [LoginRequest(username=user2, password=password)]
+2022-05-27 13:54:34,128 DEBUG dLog [http-nio-9000-exec-4] CLASS: class com.revature.thevault.service.classes.LoginService
+METHOD: getLoginCredentialFromLogin
+ARGUMENTS: [user2]
+2022-05-27 13:54:34,147 INFO dLog [http-nio-9000-exec-4] METHOD: getLoginCredentialFromLogin
+RETURNING: PostResponse(createdObject=[LoginResponseObject(userId=2, username=user2, password=password)])
+2022-05-27 13:54:34,148 INFO dLog [http-nio-9000-exec-4] Class: class com.revature.thevault.presentation.controller.LoginController
+Method: findLoginCredential
+RETURNING: PostResponse(createdObject=[LoginResponseObject(userId=2, username=user2, password=password)])
+2022-05-27 13:54:34,194 DEBUG dLog [http-nio-9000-exec-6] Class: class com.revature.thevault.presentation.controller.AccountProfileController
+Method: getProfile
+Arguments: [2]
+2022-05-27 13:54:34,194 DEBUG dLog [http-nio-9000-exec-6] CLASS: class com.revature.thevault.service.classes.AccountProfileService
+METHOD: getProfile
+ARGUMENTS: [AccountProfileRequest(profileId=2)]
+2022-05-27 13:54:34,223 ERROR dLog [http-nio-9000-exec-6] CONTROLLER CLASS: class com.revature.thevault.service.classes.AccountProfileService
+METHOD: getProfile
+THROWING EXCEPTION CLASS: class com.revature.thevault.service.exceptions.InvalidRequestException
+MESSAGE: 400 BAD_REQUEST "invalid request"
+2022-05-27 13:54:34,224 ERROR dLog [http-nio-9000-exec-6] CONTROLLER CLASS: class com.revature.thevault.presentation.controller.AccountProfileController
+METHOD: getProfile
+THROWING EXCEPTION: class com.revature.thevault.service.exceptions.InvalidRequestException
+2022-05-27 13:56:51,341 DEBUG dLog [http-nio-9000-exec-8] Class: class com.revature.thevault.presentation.controller.LoginController
+Method: findLoginCredential
+Arguments: [LoginRequest(username=user, password=password)]
+2022-05-27 13:56:51,341 DEBUG dLog [http-nio-9000-exec-8] CLASS: class com.revature.thevault.service.classes.LoginService
+METHOD: getLoginCredentialFromLogin
+ARGUMENTS: [user]
+2022-05-27 13:56:51,355 ERROR dLog [http-nio-9000-exec-8] CONTROLLER CLASS: class com.revature.thevault.service.classes.LoginService
+METHOD: getLoginCredentialFromLogin
+THROWING EXCEPTION CLASS: class com.revature.thevault.service.exceptions.InvalidInputException
+MESSAGE: 400 BAD_REQUEST "User was not found"
+2022-05-27 13:56:51,355 ERROR dLog [http-nio-9000-exec-8] CONTROLLER CLASS: class com.revature.thevault.presentation.controller.LoginController
+METHOD: findLoginCredential
+THROWING EXCEPTION: class com.revature.thevault.service.exceptions.InvalidInputException
+2022-05-27 13:56:55,961 DEBUG dLog [http-nio-9000-exec-10] Class: class com.revature.thevault.presentation.controller.LoginController
+Method: findLoginCredential
+Arguments: [LoginRequest(username=user, password=password)]
+2022-05-27 13:56:55,961 DEBUG dLog [http-nio-9000-exec-10] CLASS: class com.revature.thevault.service.classes.LoginService
+METHOD: getLoginCredentialFromLogin
+ARGUMENTS: [user]
+2022-05-27 13:56:55,977 ERROR dLog [http-nio-9000-exec-10] CONTROLLER CLASS: class com.revature.thevault.service.classes.LoginService
+METHOD: getLoginCredentialFromLogin
+THROWING EXCEPTION CLASS: class com.revature.thevault.service.exceptions.InvalidInputException
+MESSAGE: 400 BAD_REQUEST "User was not found"
+2022-05-27 13:56:55,977 ERROR dLog [http-nio-9000-exec-10] CONTROLLER CLASS: class com.revature.thevault.presentation.controller.LoginController
+METHOD: findLoginCredential
+THROWING EXCEPTION: class com.revature.thevault.service.exceptions.InvalidInputException
+2022-05-27 14:17:36,441 DEBUG dLog [http-nio-9000-exec-2] Class: class com.revature.thevault.presentation.controller.LoginController
+Method: findLoginCredential
+Arguments: [LoginRequest(username=lala, password=password)]
+2022-05-27 14:17:36,441 DEBUG dLog [http-nio-9000-exec-2] CLASS: class com.revature.thevault.service.classes.LoginService
+METHOD: getLoginCredentialFromLogin
+ARGUMENTS: [lala]
+2022-05-27 14:17:36,461 INFO dLog [http-nio-9000-exec-2] METHOD: getLoginCredentialFromLogin
+RETURNING: PostResponse(createdObject=[LoginResponseObject(userId=1, username=lala, password=password)])
+2022-05-27 14:17:36,461 INFO dLog [http-nio-9000-exec-2] Class: class com.revature.thevault.presentation.controller.LoginController
+Method: findLoginCredential
+RETURNING: PostResponse(createdObject=[LoginResponseObject(userId=1, username=lala, password=password)])
+2022-05-27 14:17:36,524 DEBUG dLog [http-nio-9000-exec-4] Class: class com.revature.thevault.presentation.controller.AccountProfileController
+Method: getProfile
+Arguments: [1]
+2022-05-27 14:17:36,524 DEBUG dLog [http-nio-9000-exec-4] CLASS: class com.revature.thevault.service.classes.AccountProfileService
+METHOD: getProfile
+ARGUMENTS: [AccountProfileRequest(profileId=1)]
+2022-05-27 14:17:36,584 INFO dLog [http-nio-9000-exec-4] METHOD: getProfile
+RETURNING: GetResponse(gotObject=[AccountProfileResponse(profileId=1, userId=1, firstName=eric, lastName=mateo, email=ericmateo5675@gmail.com, phoneNumber=phonenumber, address=Home address)])
+2022-05-27 14:17:36,584 INFO dLog [http-nio-9000-exec-4] Class: class com.revature.thevault.presentation.controller.AccountProfileController
+Method: getProfile
+RETURNING: GetResponse(gotObject=[AccountProfileResponse(profileId=1, userId=1, firstName=eric, lastName=mateo, email=ericmateo5675@gmail.com, phoneNumber=phonenumber, address=Home address)])
+2022-05-27 14:17:36,624 DEBUG dLog [http-nio-9000-exec-6] Class: class com.revature.thevault.presentation.controller.AccountController
+Method: getUserAccountList
+Arguments: [1, org.apache.catalina.session.StandardSessionFacade@58336533]
+2022-05-27 14:17:36,627 DEBUG dLog [http-nio-9000-exec-6] CLASS: class com.revature.thevault.service.classes.AccountService
+METHOD: getAccounts
+ARGUMENTS: [1]
+2022-05-27 14:17:36,646 INFO dLog [http-nio-9000-exec-6] METHOD: getAccounts
+RETURNING: GetResponse(gotObject=[])
+2022-05-27 14:17:36,646 INFO dLog [http-nio-9000-exec-6] Class: class com.revature.thevault.presentation.controller.AccountController
+Method: getUserAccountList
+RETURNING: GetResponse(gotObject=[])
+2022-05-27 14:19:03,814 DEBUG dLog [http-nio-9000-exec-9] Class: class com.revature.thevault.presentation.controller.LoginController
+Method: findLoginCredential
+Arguments: [LoginRequest(username=lala, password=password)]
+2022-05-27 14:19:03,814 DEBUG dLog [http-nio-9000-exec-9] CLASS: class com.revature.thevault.service.classes.LoginService
+METHOD: getLoginCredentialFromLogin
+ARGUMENTS: [lala]
+2022-05-27 14:19:03,962 INFO dLog [http-nio-9000-exec-9] METHOD: getLoginCredentialFromLogin
+RETURNING: PostResponse(createdObject=[LoginResponseObject(userId=1, username=lala, password=password)])
+2022-05-27 14:19:03,962 INFO dLog [http-nio-9000-exec-9] Class: class com.revature.thevault.presentation.controller.LoginController
+Method: findLoginCredential
+RETURNING: PostResponse(createdObject=[LoginResponseObject(userId=1, username=lala, password=password)])
+2022-05-27 14:19:04,027 DEBUG dLog [http-nio-9000-exec-1] Class: class com.revature.thevault.presentation.controller.AccountProfileController
+Method: getProfile
+Arguments: [1]
+2022-05-27 14:19:04,027 DEBUG dLog [http-nio-9000-exec-1] CLASS: class com.revature.thevault.service.classes.AccountProfileService
+METHOD: getProfile
+ARGUMENTS: [AccountProfileRequest(profileId=1)]
+2022-05-27 14:19:04,090 INFO dLog [http-nio-9000-exec-1] METHOD: getProfile
+RETURNING: GetResponse(gotObject=[AccountProfileResponse(profileId=1, userId=1, firstName=eric, lastName=mateo, email=ericmateo5675@gmail.com, phoneNumber=phonenumber, address=Home address)])
+2022-05-27 14:19:04,091 INFO dLog [http-nio-9000-exec-1] Class: class com.revature.thevault.presentation.controller.AccountProfileController
+Method: getProfile
+RETURNING: GetResponse(gotObject=[AccountProfileResponse(profileId=1, userId=1, firstName=eric, lastName=mateo, email=ericmateo5675@gmail.com, phoneNumber=phonenumber, address=Home address)])
+2022-05-27 14:19:04,251 DEBUG dLog [http-nio-9000-exec-3] Class: class com.revature.thevault.presentation.controller.AccountController
+Method: getUserAccountList
+Arguments: [1, org.apache.catalina.session.StandardSessionFacade@6d1542b6]
+2022-05-27 14:19:04,252 DEBUG dLog [http-nio-9000-exec-3] CLASS: class com.revature.thevault.service.classes.AccountService
+METHOD: getAccounts
+ARGUMENTS: [1]
+2022-05-27 14:19:04,266 INFO dLog [http-nio-9000-exec-3] METHOD: getAccounts
+RETURNING: GetResponse(gotObject=[])
+2022-05-27 14:19:04,267 INFO dLog [http-nio-9000-exec-3] Class: class com.revature.thevault.presentation.controller.AccountController
+Method: getUserAccountList
+RETURNING: GetResponse(gotObject=[])
+2022-05-27 14:31:30,618 DEBUG dLog [http-nio-9000-exec-6] Class: class com.revature.thevault.presentation.controller.LoginController
+Method: findLoginCredential
+Arguments: [LoginRequest(username=lala, password=password)]
+2022-05-27 14:31:30,618 DEBUG dLog [http-nio-9000-exec-6] CLASS: class com.revature.thevault.service.classes.LoginService
+METHOD: getLoginCredentialFromLogin
+ARGUMENTS: [lala]
+2022-05-27 14:31:30,728 INFO dLog [http-nio-9000-exec-6] METHOD: getLoginCredentialFromLogin
+RETURNING: PostResponse(createdObject=[LoginResponseObject(userId=1, username=lala, password=password)])
+2022-05-27 14:31:30,728 INFO dLog [http-nio-9000-exec-6] Class: class com.revature.thevault.presentation.controller.LoginController
+Method: findLoginCredential
+RETURNING: PostResponse(createdObject=[LoginResponseObject(userId=1, username=lala, password=password)])
+2022-05-27 14:31:30,795 DEBUG dLog [http-nio-9000-exec-8] Class: class com.revature.thevault.presentation.controller.AccountProfileController
+Method: getProfile
+Arguments: [1]
+2022-05-27 14:31:30,796 DEBUG dLog [http-nio-9000-exec-8] CLASS: class com.revature.thevault.service.classes.AccountProfileService
+METHOD: getProfile
+ARGUMENTS: [AccountProfileRequest(profileId=1)]
+2022-05-27 14:31:30,863 INFO dLog [http-nio-9000-exec-8] METHOD: getProfile
+RETURNING: GetResponse(gotObject=[AccountProfileResponse(profileId=1, userId=1, firstName=eric, lastName=mateo, email=ericmateo5675@gmail.com, phoneNumber=phonenumber, address=Home address)])
+2022-05-27 14:31:30,863 INFO dLog [http-nio-9000-exec-8] Class: class com.revature.thevault.presentation.controller.AccountProfileController
+Method: getProfile
+RETURNING: GetResponse(gotObject=[AccountProfileResponse(profileId=1, userId=1, firstName=eric, lastName=mateo, email=ericmateo5675@gmail.com, phoneNumber=phonenumber, address=Home address)])
+2022-05-27 14:31:30,983 DEBUG dLog [http-nio-9000-exec-10] Class: class com.revature.thevault.presentation.controller.AccountController
+Method: getUserAccountList
+Arguments: [1, org.apache.catalina.session.StandardSessionFacade@5f51882d]
+2022-05-27 14:31:30,983 DEBUG dLog [http-nio-9000-exec-10] CLASS: class com.revature.thevault.service.classes.AccountService
+METHOD: getAccounts
+ARGUMENTS: [1]
+2022-05-27 14:31:31,034 INFO dLog [http-nio-9000-exec-10] METHOD: getAccounts
+RETURNING: GetResponse(gotObject=[])
+2022-05-27 14:31:31,034 INFO dLog [http-nio-9000-exec-10] Class: class com.revature.thevault.presentation.controller.AccountController
+Method: getUserAccountList
+RETURNING: GetResponse(gotObject=[])
+2022-05-27 14:38:06,437 DEBUG dLog [http-nio-9000-exec-3] Class: class com.revature.thevault.presentation.controller.LoginController
+Method: findLoginCredential
+Arguments: [LoginRequest(username=lala, password=password)]
+2022-05-27 14:38:06,437 DEBUG dLog [http-nio-9000-exec-3] CLASS: class com.revature.thevault.service.classes.LoginService
+METHOD: getLoginCredentialFromLogin
+ARGUMENTS: [lala]
+2022-05-27 14:38:07,442 INFO dLog [http-nio-9000-exec-3] METHOD: getLoginCredentialFromLogin
+RETURNING: PostResponse(createdObject=[LoginResponseObject(userId=1, username=lala, password=password)])
+2022-05-27 14:38:07,442 INFO dLog [http-nio-9000-exec-3] Class: class com.revature.thevault.presentation.controller.LoginController
+Method: findLoginCredential
+RETURNING: PostResponse(createdObject=[LoginResponseObject(userId=1, username=lala, password=password)])
+2022-05-27 14:38:07,560 DEBUG dLog [http-nio-9000-exec-5] Class: class com.revature.thevault.presentation.controller.AccountProfileController
+Method: getProfile
+Arguments: [1]
+2022-05-27 14:38:07,560 DEBUG dLog [http-nio-9000-exec-5] CLASS: class com.revature.thevault.service.classes.AccountProfileService
+METHOD: getProfile
+ARGUMENTS: [AccountProfileRequest(profileId=1)]
+2022-05-27 14:38:07,594 INFO dLog [http-nio-9000-exec-5] METHOD: getProfile
+RETURNING: GetResponse(gotObject=[AccountProfileResponse(profileId=1, userId=1, firstName=eric, lastName=mateo, email=ericmateo5675@gmail.com, phoneNumber=phonenumber, address=Home address)])
+2022-05-27 14:38:07,594 INFO dLog [http-nio-9000-exec-5] Class: class com.revature.thevault.presentation.controller.AccountProfileController
+Method: getProfile
+RETURNING: GetResponse(gotObject=[AccountProfileResponse(profileId=1, userId=1, firstName=eric, lastName=mateo, email=ericmateo5675@gmail.com, phoneNumber=phonenumber, address=Home address)])
+2022-05-27 14:38:07,643 DEBUG dLog [http-nio-9000-exec-7] Class: class com.revature.thevault.presentation.controller.AccountController
+Method: getUserAccountList
+Arguments: [1, org.apache.catalina.session.StandardSessionFacade@11eab2df]
+2022-05-27 14:38:07,643 DEBUG dLog [http-nio-9000-exec-7] CLASS: class com.revature.thevault.service.classes.AccountService
+METHOD: getAccounts
+ARGUMENTS: [1]
+2022-05-27 14:38:07,665 INFO dLog [http-nio-9000-exec-7] METHOD: getAccounts
+RETURNING: GetResponse(gotObject=[])
+2022-05-27 14:38:07,665 INFO dLog [http-nio-9000-exec-7] Class: class com.revature.thevault.presentation.controller.AccountController
+Method: getUserAccountList
+RETURNING: GetResponse(gotObject=[])
+2022-05-27 14:42:30,948 DEBUG dLog [http-nio-9000-exec-2] Class: class com.revature.thevault.presentation.controller.LoginController
+Method: findLoginCredential
+Arguments: [LoginRequest(username=user, password=password)]
+2022-05-27 14:42:30,954 DEBUG dLog [http-nio-9000-exec-2] CLASS: class com.revature.thevault.service.classes.LoginService
+METHOD: getLoginCredentialFromLogin
+ARGUMENTS: [user]
+2022-05-27 14:42:31,392 INFO dLog [http-nio-9000-exec-2] METHOD: getLoginCredentialFromLogin
+RETURNING: PostResponse(createdObject=[LoginResponseObject(userId=1, username=user, password=password)])
+2022-05-27 14:42:31,392 INFO dLog [http-nio-9000-exec-2] Class: class com.revature.thevault.presentation.controller.LoginController
+Method: findLoginCredential
+RETURNING: PostResponse(createdObject=[LoginResponseObject(userId=1, username=user, password=password)])
+2022-05-27 14:42:31,732 DEBUG dLog [http-nio-9000-exec-4] Class: class com.revature.thevault.presentation.controller.AccountProfileController
+Method: getProfile
+Arguments: [1]
+2022-05-27 14:42:31,735 DEBUG dLog [http-nio-9000-exec-4] CLASS: class com.revature.thevault.service.classes.AccountProfileService
+METHOD: getProfile
+ARGUMENTS: [AccountProfileRequest(profileId=1)]
+2022-05-27 14:42:31,946 INFO dLog [http-nio-9000-exec-4] METHOD: getProfile
+RETURNING: GetResponse(gotObject=[AccountProfileResponse(profileId=1, userId=1, firstName=eric, lastName=mateo, email=ericmateo5675@gmail.com, phoneNumber=phonenumber, address=Home address)])
+2022-05-27 14:42:31,946 INFO dLog [http-nio-9000-exec-4] Class: class com.revature.thevault.presentation.controller.AccountProfileController
+Method: getProfile
+RETURNING: GetResponse(gotObject=[AccountProfileResponse(profileId=1, userId=1, firstName=eric, lastName=mateo, email=ericmateo5675@gmail.com, phoneNumber=phonenumber, address=Home address)])
+2022-05-27 14:42:32,009 DEBUG dLog [http-nio-9000-exec-6] Class: class com.revature.thevault.presentation.controller.AccountController
+Method: getUserAccountList
+Arguments: [1, org.apache.catalina.session.StandardSessionFacade@1c2d34cd]
+2022-05-27 14:42:32,013 DEBUG dLog [http-nio-9000-exec-6] CLASS: class com.revature.thevault.service.classes.AccountService
+METHOD: getAccounts
+ARGUMENTS: [1]
+2022-05-27 14:42:32,032 INFO dLog [http-nio-9000-exec-6] METHOD: getAccounts
+RETURNING: GetResponse(gotObject=[])
+2022-05-27 14:42:32,033 INFO dLog [http-nio-9000-exec-6] Class: class com.revature.thevault.presentation.controller.AccountController
+Method: getUserAccountList
+RETURNING: GetResponse(gotObject=[])

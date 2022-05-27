@@ -12,6 +12,6 @@ cd TheVault/
 export JAVA_HOME='/usr/lib/jvm/java-11-openjdk'
 mvn clean install -DskipTests
 cd
-cd /home/ec2-user/TheVault/target
+cd /TheVault/target
 java -jar demo-0.0.1-SNAPSHOT.jar \
     *.jar > /dev/null 2> /dev/null < /dev/null &

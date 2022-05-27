@@ -70,14 +70,19 @@ public class DepositService implements DepositServiceInterface {
 	    	Optional<AccountEntity>  currentAccount = accountRepository.findById(depositRequest.getAccountId());
 	    	AccountProfileEntity currentUserProfile = accountProfileRepository.findByLogincredential(currentAccount.get().getLogincredentials());
 	
+	    	float balancePostWithdrawal = currentAccount.get().getAvailable_balance() - depositRequest.getAmount(); 
 	
 	//    	depositRequest.findById(depositRequest.getAccountId());
 		    if(currentUserProfile.getNotificationAmount() != 0.0f){
 		    	if(depositRequest.getAmount() > currentUserProfile.getNotificationAmount()){
-		    		emailService.transactionAmountEmail(depositRequest.getAmount(), currentUserProfile); 
+		    		emailService.transactionAmountEmail(-(depositRequest.getAmount()), currentUserProfile); 
 		    	}
 		   	}
 		    
+			 if(balancePostWithdrawal < 0){
+				 emailService.overdraftEmail(balancePostWithdrawal, currentUserProfile); 
+			 }
+			 
 		 
 			return PostResponse.builder().success(true)
 					.createdObject(Collections

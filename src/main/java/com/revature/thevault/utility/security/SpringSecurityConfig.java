@@ -36,7 +36,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter{
 			.and()
 		.csrf().disable() // Disables CSRF protection.
 		.authorizeRequests()
-			.antMatchers("/login", "/create", "/profile/create").permitAll() // Whitelist of URLs that can be accessed without credentials.
+			.antMatchers("/login", "/create", "/profile/create","/resetpassword","/newpassword").permitAll() // Whitelist of URLs that can be accessed without credentials.
 			.anyRequest().authenticated()
 			.and()
 		.httpBasic() // Enable HTTP Basic Authentication.

@@ -1,6 +1,9 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Token } from '@angular/compiler';
 import { Injectable } from '@angular/core';
+import { LoginCredential } from 'src/app/models/login/login-credential.model';
 import { PostLogin } from 'src/app/models/login/responses/post-login';
+// import { PostReset } from 'src/app/models/login/responses/post-reset';
 import { LoginUser } from 'src/app/models/users/login-user.model';
 import { NewUser } from 'src/app/models/users/new-user.model';
 import { Profile } from 'src/app/models/users/profile.model';
@@ -9,7 +12,12 @@ import { PostProfile } from 'src/app/models/users/responses/post-profile';
 import { PutProfile } from 'src/app/models/users/responses/put-profile';
 import { GlobalStorageService } from '../global-storage.service';
 
+
+
 const AUTH_API = 'http://ec2-44-201-212-50.compute-1.amazonaws.com:9000/';
+
+const params = new HttpParams()
+  .set('token','token');
 
 const ENDPOINTS = {
   LOGIN: `${AUTH_API}login`,
@@ -17,7 +25,10 @@ const ENDPOINTS = {
   // VALIDATE: `${AUTH_API}login/validate`,
   CREATE_PROFILE: `${AUTH_API}profile/create`,
   GET_PROFILE: `${AUTH_API}profile/get/`,
-  UPDATE_PROFILE: `${AUTH_API}profile/update`
+  UPDATE_PROFILE: `${AUTH_API}profile/update`,
+  RESET_PASSWORD: `${AUTH_API}resetpassword`,
+  NEW_PASSWORD: `${AUTH_API}newpassword`,
+
 }
 
 @Injectable({
@@ -48,6 +59,7 @@ export class UserHandlerService {
 
   createNewLogin(username: string, password: string) {
     console.log(username);
+    console.log(ENDPOINTS.NEW_LOGIN);
     return this.http.post<PostLogin>(
       ENDPOINTS.NEW_LOGIN,
       JSON.stringify(
@@ -91,4 +103,36 @@ export class UserHandlerService {
       ),
       this.globalStorage.getHttpOptions());
   }
+
+  resetPassword(username: string, password: string){
+    
+    console.log(username);
+    console.log(ENDPOINTS.RESET_PASSWORD);
+    return this.http.post<boolean>(
+      ENDPOINTS.RESET_PASSWORD,
+      JSON.stringify(
+        {
+          username:username,
+          password:password
+        }
+      ),
+      this.globalStorage.getHttpOptions());
+      
+  }
+
+  newPassword(token: string, password: string){
+
+   
+    return this.http.post<boolean>(
+      ENDPOINTS.NEW_PASSWORD,
+      JSON.stringify(
+        {
+          token:token,
+          password:password
+        }
+      ),
+      this.globalStorage.getHttpOptions());
+            
+  
+}
 }

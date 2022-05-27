@@ -168,6 +168,11 @@ public class ExportPDFService {
 			accountTable.addCell(statementPeriod);
 			accountTable.addCell(accountNumber);
 			
+			accountTable.addHeaderCell(statementPeriodHeader);
+			accountTable.addHeaderCell(accountNumberHeader);
+			accountTable.addCell(statementPeriod);
+			accountTable.addCell(accountNumber);
+			
 			// Table table
 			Table transactionTable = new Table(new float[]{1F, 0.5F, 1F, 1F, 2F}, false); // In this float example, the float numbers represent table size. However, it's really isn't updating automatically since it isn't a largeTable.
 

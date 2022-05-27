@@ -167,10 +167,10 @@ public class ExportPDFService {
 			accountNumberHeader.addStyle(tableStyle);
 			
 			// Table table
-			Table table = new Table(new float[]{1F, 0.5F, 1F, 1F, 2F}, false); // In this float example, the float numbers represent table size. However, it's really isn't updating automatically since it isn't a largeTable.
+			Table transactionTable = new Table(new float[]{1F, 0.5F, 1F, 1F, 2F}, false); // In this float example, the float numbers represent table size. However, it's really isn't updating automatically since it isn't a largeTable.
 
-			table.setWidth(UnitValue.createPercentValue(100));
-			table.addStyle(tableCellStyle);
+			transactionTable.setWidth(UnitValue.createPercentValue(100));
+			transactionTable.addStyle(tableCellStyle);
 
 			Cell Date = new Cell();
 			Date.add(new Paragraph("Date"));
@@ -192,32 +192,32 @@ public class ExportPDFService {
 			Balance.add(new Paragraph("Balance"));
 			Balance.addStyle(tableStyle);
 
-			table.addHeaderCell(Date);
-			table.addHeaderCell(Ref);
-			table.addHeaderCell(Withdrawals);
-			table.addHeaderCell(Deposits);
-			table.addHeaderCell(Balance);
-			table.setFont(futuraBold);
+			transactionTable.addHeaderCell(Date);
+			transactionTable.addHeaderCell(Ref);
+			transactionTable.addHeaderCell(Withdrawals);
+			transactionTable.addHeaderCell(Deposits);
+			transactionTable.addHeaderCell(Balance);
+			transactionTable.setFont(futuraBold);
 
 			if (transactionObjects.size() < 1) {
 				isEmptyList = true;
 			} else {
 
 				for (TransactionObject t : transactionObjects) { // Dynamically creates the table based on the size of arrList
-					table.addCell(t.getDate().toString());
-					table.addCell(t.getTransactionReference());
+					transactionTable.addCell(t.getDate().toString());
+					transactionTable.addCell(t.getTransactionReference());
 					if (t.getTransactionType().equals("Withdraw")) { 
 
-						table.addCell(String.valueOf(t.getAmount()));
-						table.addCell("");
+						transactionTable.addCell(String.valueOf(t.getAmount()));
+						transactionTable.addCell("");
 						ourCurrentBalance = ourCurrentBalance - t.getAmount();
 					} else {
-						table.addCell("");
-						table.addCell(String.valueOf(t.getAmount()));
+						transactionTable.addCell("");
+						transactionTable.addCell(String.valueOf(t.getAmount()));
 						ourCurrentBalance = ourCurrentBalance + t.getAmount();
 					}
-					table.addCell(String.valueOf(ourCurrentBalance));
-					table.addStyle(tableCellStyle);
+					transactionTable.addCell(String.valueOf(ourCurrentBalance));
+					transactionTable.addStyle(tableCellStyle);
 				}
 
 				// Style Appending
@@ -230,7 +230,8 @@ public class ExportPDFService {
 				document.add(logo); // All Images Read from Root folder.
 				document.add(theVaultInfo);
 				document.add(accInfo);
-				document.add(table);
+				document.add(accountTable);
+				document.add(transactionTable);
 				if (isEmptyList)
 					document.add(emptyTransactions);
 

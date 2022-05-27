@@ -1,5 +1,7 @@
 server:
+
   port: 9000
+
   
 spring:
   autoconfigure:
@@ -13,6 +15,7 @@ spring:
     username: eric
     password: helloWorld1
 
+
     driver-class-name: org.postgresql.Driver
   jpa: 
     database-platform: org.hibernate.dialect.PostgreSQLDialect
@@ -24,8 +27,10 @@ spring:
 spring.mail.host: smtp.gmail.com
 spring.mail.port: 587
 
+
 spring.mail.username: vault.at.revature@gmail.com
 spring.mail.password: cvyppeqgxhekrroi
 spring.mail.properties.mail.smtp.auth: true #needs to be here for email to work, ignore the warning
 spring.mail.properties.mail.smtp.starttls.enable: true #needs to be here for email to work, ignore the warni
+
 

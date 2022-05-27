@@ -95,14 +95,16 @@ export class ResetpasswordComponent implements OnInit {
     
     if (userN != null) {
 
-      // this.newUser = new NewUser(userN, firstN, lastN, email, addr, phoneN, passW);
+      //uses loginUser model to pass along object with username and blank password
       this.loginUser = new LoginUser(userN,"");
-      // this.credentials = loginUser;
       this.resetPassword();
     
   }
 
 }
+/**
+ * userHandler called to build the request (body and endpoint)
+ */
 resetPassword(){
   this.userHandler.resetPassword(this.loginUser.username, this.loginUser.password).subscribe(this.loginObserver);
 }
@@ -110,23 +112,18 @@ resetPassword(){
 loginObserver = {
   next: (data: boolean) => {
     if (data){
+      //success banner if true
       this.success = true;
-      // this.routingAllocator.login();
-    }
-    else 
-    this.error = true;
-    this.form.reset();
+    }else{
+      //error message if false
+      this.error = true;
+      this.form.reset();
 
-       
+    } 
+
     
   },
-  error: (err: Error) => {
-    /* istanbul ignore next */
-      console.error("profile observer error: " + err);
-      this.error = true;
-    /* istanbul ignore next */
-      this.onReset();},
-  
-  complete: () => console.log("Response lets you know what happened")
+    
+  complete: () => console.log("Nothing to see here, move along.")
 }
 }

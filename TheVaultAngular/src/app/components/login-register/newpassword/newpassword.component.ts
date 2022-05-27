@@ -1,10 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { RoutingAllocatorService } from 'src/app/_services/app_control/routing-allocator.service';
-
-
-
-
 import { PostReset } from 'src/app/models/reset/responses/post-reset';
 import { NewUser } from 'src/app/models/users/new-user.model';
 import { PostProfile } from 'src/app/models/users/responses/post-profile';
@@ -96,7 +92,6 @@ export class NewpasswordComponent implements OnInit {
 
   onSubmit(): void {
     this.error = false;
-    // this.errorMessage = "Error";
     this.submitted = true;
 
   /* istanbul ignore next */
@@ -104,32 +99,33 @@ export class NewpasswordComponent implements OnInit {
       return;
     }
     
+    //gets password and token value from form
     let passW = this.form.get('password')?.value;
     let tokenValue = this.form.get('token')?.value;
-    // console.log(tokenValue);
     if (passW != null && tokenValue != null) {
 
-      // this.newUser = new NewUser(userN, firstN, lastN, email, addr, phoneN, passW);
-      // this.registerUser();
+     
+      //sets resetPassword model with gathered values, sends to newPassword
       this.resetPassword = new resetPassword(passW,tokenValue);
       this.newPassword()
     }
   }
+  /**
+   * utilizes user-handler service to build the request, including endpoint and body
+   */
   newPassword(){
     this.userHandler.newPassword(this.resetPassword.password, this.resetPassword.token).subscribe(this.loginObserver);
   }
   
   loginObserver = {
     next: (data: boolean) => {
+      //if it returns false, it will reset the form and display an error message
       if (data == false){
-        console.log("This was false");
         this.form.reset();
         this.error = true;
 
-
-
       }else{
-        
+        //if it returns true, it will give the success message at the top of the page
         this.routingAllocator.login();
         this.success = true;
 
@@ -137,15 +133,9 @@ export class NewpasswordComponent implements OnInit {
 
       
     },
-    // error: (err: Error) => {
-    //   /* istanbul ignore next */
-    //     console.error("profile observer error: " + err);
-    //     this.error = true;
-    //   /* istanbul ignore next */
-    //     this.onReset();},
-  
+     
     
-    complete: () => console.log("Response lets you know what happened")
+    complete: () => console.log("Nothing to see here. Move along.")
   }
 
 }

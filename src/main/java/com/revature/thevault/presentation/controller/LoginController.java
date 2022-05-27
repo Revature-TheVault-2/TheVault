@@ -69,7 +69,7 @@ public class LoginController {
  * @return true 
  * @throws nullpointerexception
  */
-    @PutMapping ("/reset-password")
+//    @PutMapping ("/reset-password")
     public PutResponse resetPassword(@RequestBody ResetPasswordRequest resetPasswordRequest){
         return loginService.resetPassword(resetPasswordRequest);
     }

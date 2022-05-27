@@ -1,5 +1,8 @@
 package com.revature.thevault.presentation.controller;
 
+import java.util.Collections;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -39,13 +42,14 @@ public class ResetPasswordController {
 	@Autowired
 	AccountProfileRepository accountProfileRepository;
 	
-	@Autowired
-	
+	@Autowired	
 	public ResetPasswordController() {}
 	
 	
-	@PostMapping("/resetrequest")
-	public @ResponseBody String requestPasswordResetLink(@RequestBody LoginCredentialEntity loginCredentialEntity) {
+	@PostMapping("/resetpassword")
+	public boolean requestPasswordResetLink(@RequestBody LoginCredentialEntity loginCredentialEntity) {
+		boolean success = true;
+		System.out.println("in requestPasswordResetLink endpoint");
 		LoginCredentialEntity findLogin = loginRepository.findByUsername(loginCredentialEntity.getUsername());
 		System.out.println(findLogin);
 		try {
@@ -63,38 +67,45 @@ public class ResetPasswordController {
 			System.out.println(email + "  this is the email it found");
 			System.out.println("After email string created---------------");			
 			emailService.sendPasswordResetLink(token, email);
+			
 		} catch(NullPointerException nullException) {
 			System.out.println("Invalid email reset requested.");
 			System.out.println(nullException);
+//			return Collections.singletonMap("response","Bad email or username");
+			success= false;
+			return success;
 			}
-		finally{}
 		
-		return "Sent";
+//		return Collections.singletonMap("response","Sent a message");
+//		return ("Sent");
+		return success;
 	}
 	
-	@GetMapping("/change")
+	@GetMapping("/newpassword")
 	public String submitPasswordReset(@RequestParam(name="token") String token) {
 		System.out.println("user fwd to password reset page");
 		return "reset password page goes here";
 	}
 
 	
-	@PostMapping("/change")
-	public boolean submitPasswordReset(@RequestParam(name="token") String token,@RequestBody PasswordResetRequest pwResetModel) {
+	@PostMapping("/newpassword")
+	public boolean submitPasswordReset(@RequestBody PasswordResetRequest pwResetModel) {
+		boolean success = false;
 		try {
 			System.out.println(pwResetModel);
-			System.out.println(token + "  is the token from the param");
-			PasswordReset passReset = resetPasswordRepository.findByToken(token);
+//			System.out.println(token + "  is the token from the param");
+			PasswordReset passReset = resetPasswordRepository.findByToken(pwResetModel.getToken());
 			int userId = passReset.getFkUserId();
 			LoginCredentialEntity loginCredentialEntity = loginRepository.findByPkuserid(userId);
 			loginCredentialEntity.setPassword(pwResetModel.getPassword());
 			loginRepository.save(loginCredentialEntity);
-			resetPasswordRepository.deleteByToken(token);
+//			resetPasswordRepository.deleteByToken(pwResetModel.getToken());
 			
 		}catch(Exception e) {
-			
+			System.out.println(e);
+			return success;
 		}
-		
-		return false;
+		success = true;
+		return success;
 	}
 }

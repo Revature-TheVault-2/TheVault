@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { RoutingAllocatorService } from 'src/app/_services/app_control/routing-allocator.service';
 
 
@@ -8,6 +8,11 @@ import { NewUser } from 'src/app/models/users/new-user.model';
 import { PostProfile } from 'src/app/models/users/responses/post-profile';
 import Validation from 'src/app/utils/validation';
 import { UserHandlerService } from 'src/app/_services/user/user-handler.service';
+import { LoginCredential} from 'src/app/models/login/login-credential.model';
+import { LoginUser } from 'src/app/models/users/login-user.model';
+import { GlobalStorageService } from 'src/app/_services/global-storage.service';
+import { Token } from '@angular/compiler';
+import { throwError } from 'rxjs';
 
 
 @Component({
@@ -17,33 +22,51 @@ import { UserHandlerService } from 'src/app/_services/user/user-handler.service'
 })
 export class ResetpasswordComponent implements OnInit {
 
-  constructor(
-    private routingAllocator: RoutingAllocatorService,
-  ) { }
-
   error:boolean = false;
-  errorMessage: string = "Error";
-
   success:boolean = false;
+  errorMessage: string = "Please check your email for a link to reset your password";
   successMessage: string = "Success!";
+  loginUser!: LoginUser
 
   form: FormGroup = new FormGroup({
     username: new FormControl(''),
-    firstname: new FormControl(''),
-    lastname: new FormControl(''),
-    email: new FormControl(''),
-    address: new FormControl(''),
-    phoneNumber: new FormControl(''),
     password: new FormControl(''),
-    confirmPassword: new FormControl('')
+    
   });
   submitted = false;
   posts: any;
 
+  // loginCredential!: LoginCredential
+  
+  constructor(
+    private formBuilder: FormBuilder,
+    private routingAllocator: RoutingAllocatorService,
+    private userHandler: UserHandlerService,
+    private globalStorage: GlobalStorageService,
+    private router: RoutingAllocatorService
+  ) { }
+
+
+
+
   ngOnInit(): void {
+    this.initializeForm();
   }
 
-
+  initializeForm():void{
+    this.form = this.formBuilder.group(
+      {        
+        username: [
+          '',
+          [
+            Validators.required,
+            Validators.minLength(4),
+            Validators.maxLength(25)
+          ]
+        ]
+      }
+    );
+  }
 
   goToLogin(): void {
     this.routingAllocator.login();
@@ -59,27 +82,50 @@ export class ResetpasswordComponent implements OnInit {
   }
 
   onSubmit(): void {
+    this.submitted = true;
+
     // this.error = false;
     // this.errorMessage = "Error";
-    this.submitted = true;
 
   /* istanbul ignore next */
     if (this.form.invalid) {
       return;
     }
     let userN = this.form.get('username')?.value;
-    let firstN = this.form.get('firstName')?.value;
-    let lastN = this.form.get('lastName')?.value;
-    let email = this.form.get('email')?.value;
-    let addr = this.form.get('address')?.value;
-    let phoneN = this.form.get('phoneNumber')?.value;
-    let passW = this.form.get('password')?.value;
-    if (userN != null && firstN != null && lastN != null && email != null && addr != null 
-       && phoneN != null && passW != null) {
-         
+    
+    if (userN != null) {
+
       // this.newUser = new NewUser(userN, firstN, lastN, email, addr, phoneN, passW);
-      // this.registerUser();
-    }
+      this.loginUser = new LoginUser(userN,"");
+      // this.credentials = loginUser;
+      this.resetPassword();
+    
   }
 
+}
+resetPassword(){
+  this.userHandler.resetPassword(this.loginUser.username, this.loginUser.password).subscribe(this.loginObserver);
+}
+
+loginObserver = {
+  next: (data: boolean) => {
+    if (data){
+      this.routingAllocator.login();
+    }
+    else 
+    this.error = true;
+    this.form.reset();
+
+       
+    
+  },
+  error: (err: Error) => {
+    /* istanbul ignore next */
+      console.error("profile observer error: " + err);
+      this.error = true;
+    /* istanbul ignore next */
+      this.onReset();},
+  
+  complete: () => console.log("Response lets you know what happened")
+}
 }

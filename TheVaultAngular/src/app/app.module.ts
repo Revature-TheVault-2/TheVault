@@ -29,6 +29,11 @@ import { TransferGenerateComponent } from './components/transaction/transfer-gen
 
 import { AuthInterceptorService } from './utils/auth-interceptor.service';
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+import { ResetpasswordComponent } from './components/login-register/resetpassword/resetpassword.component';
+import { NewpasswordComponent } from './components/login-register/newpassword/newpassword.component';
+>>>>>>> 1b7c1b9f0ab8cfaa4e86a1d3714bbaecfb4792a8
 import { AlertComponent } from './components/alert/alert.component';
 <<<<<<< HEAD
 =======
@@ -63,11 +68,16 @@ import { BudgetCalculatorComponent } from './components/budget-calculator/budget
     TransferGenerateComponent,
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     AlertComponent
 =======
     AccountTransactionByMonthComponent
 >>>>>>> 38f11cde1cbe751113059a7ef0020f8835f59afb
 =======
+=======
+    ResetpasswordComponent,
+    NewpasswordComponent,
+>>>>>>> 1b7c1b9f0ab8cfaa4e86a1d3714bbaecfb4792a8
     AlertComponent,
     BudgetCalculatorComponent
 >>>>>>> 64f8b9ae0f6865205fdcbd0304034fcf6c382dd2

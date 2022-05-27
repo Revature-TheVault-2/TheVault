@@ -8,7 +8,7 @@ import { GlobalStorageService } from './_services/global-storage.service';
   styleUrls: ['./app.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class AppComponent {
+export class AppComponent {  
   title = 'TheVault';
  buttonText: String = "Light Mode";
 

@@ -142,9 +142,12 @@ public class LoginService implements LoginServiceInterface {
                 loginCredentialEntity.getUsername(),
                 loginCredentialEntity.getPassword()
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 64f8b9ae0f6865205fdcbd0304034fcf6c382dd2
+=======
+>>>>>>> 1b7c1b9f0ab8cfaa4e86a1d3714bbaecfb4792a8
         );
     }
 

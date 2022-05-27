@@ -17,6 +17,14 @@ public interface AccountProfileRepository extends JpaRepository<AccountProfileEn
     AccountProfileEntity findByLogincredential(LoginCredentialEntity loginCredentialEntity);
 
     AccountProfileEntity deleteByLogincredential(LoginCredentialEntity loginCredentialEntity);
+    
+//    AccountProfileEntity findByPkProfileId(int id);
+    
+
+	AccountProfileEntity findByLogincredential(Optional<AccountEntity> findById);
+	
+
+	
 
 	AccountProfileEntity findByLogincredential(Optional<AccountEntity> findById);
 	

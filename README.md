@@ -1,110 +1,96 @@
-# TheVault
-Project 3 - Banking application
+# TheVault2
+Project 3 - Banking application with added features
 
 ## Project Descriptions
 
-Revature Banking App
+A banking application where you can create and manage checking and savings accounts.
 
----
 
 ## Technologies Used
 
-empty for now
+- Java
+- PostgreSQL
+- Angular
+  - HTML
+  - CSS
+  - TypeScript
+- Spring
+  - Spring Security
+  - Spring Mail
+  - Spring Data
+  - Spring WebMVC
+  - Spring DevTools
+- Amazon AWS
+  - EC2
+  - CodeBuild
+  - CodeDeploy
+  - CodePipeline
+  - RDS  
+- Maven
+- Lombok
+- Jackson Databind
+- JUnit Jupiter
+- Mockito
+- H2
 
----
 
 ## Features
 
-empty for now
+- Email Alerts
+- Authentication
+- Export PDFs
+- Budget Calculator
+- Reset Password
+- Notifications
+- Light Mode
 
----
+## Recomendations for Future Sprints
 
-### Conventions
-
-### Working on the Project
-
-- Camel Case for names 
-  - `variableName`
-
-
-- Clear variable names, and clear commenting (but do not overcomment)
-  - ~~a = 1~~
-  - `number = 1`
-
-
-- Tests for every component on completion
-- 
->Follow TDD as much as reasonably possible, it is easier to make tests as you progress than all at the end
-
-- Create a feature branch whenever you are working on something with your team
-
-```shell session
-
-//To get the repository on your local machine use git clone with the url
-
-$ git clone git@github.com:DementedTiger/TheVault.git
-
-// or if ssh is not setup 
-
-$ git clone https://github.com/DementedTiger/TheVault.git
-
-// This will create a folder that is initialized with git and the branches that exist on the remote git
-// Starting from main branch, first check if your branch already exists that you wish to work on with
-
-$ git branch -a
-
-// This will tell you your local branches and the remote branches
-// If the branch you are creating does not exist, make a new branch with the below command
-
-$ git branch newFeature
-
-// Switch to that branch with either git switch or git checkout
-
-$ git switch newFeature  || or || $ git checkout newFeature
-
-// Now when you are working on this new feature branch, make sure to tell your team
-// If for example you are working on login with your team and you wish to implement input, create a new feature branch of the login branch
-
-// CURRENT BRANCH LOGIN
-$ git branch loginInput
-$ git switch loginInput
-
-// Now this creates a copy of what your team has done on the login branch, do your work and then add and commit it to your local branch
-
-$ git add .
-$ git commit -m "message related to what you did"
-
-// This saves it locally, now go to your shared team feature branch of login and merge what you did
-$ git switch login
-
-// First before merging your local changes, ensure no one else has done anything new on the branch by pulling from the remote branch
-$ git pull origin login
-
-// Deal with any new remote commits and conflicts that could arise in your IDE of choice
-// Once this is complete git add and commit the merge with the remote
-// Now merge in your feature branch of login feature branch while on the branch you wish to merge it into
-
-// CURRENT BRANCH LOGIN
-$ git merge loginInput
-
-// Deal with any new conflicts if they arise like with the remote pull origin from login
-// On success, push to the remote feature branch for your team to have access to it
-
-$ git push origin login
-
-// Delete your local branch once you are done with it.
-
-$ git branch -d loginInput
-
-```
-
-- **NEVER** work on main or dev_branch directly
+- Implement password hashing.
+- Use OAuth2 authentication.
+- Force HTTPS instead of HTTP.
+- Allow for overdrafting in the code for withdrawals.
+- Find a way to save the budget from the budget calculator.
+- Tracking updating totals for withdrawals and deposits.
+- Create different user types.
+- Be able to lock or unlock an account when travelling.
+- etc.
 
 
-- Commit at the minimum daily
-  - **Ensure** you have useful messages with them
+## Usage
 
----
+1. When the page loads after startup, you will land on the login page. If you already have an account, you may log in, otherwise click the register button.
+2. On the register account page, fill in your information and hit submit. You will be routed back to the log in page.
+3. Now with an account created, enter your credentials and log in.
+4. On the home page, you may edit your profile or create, delete, or access any accounts you may have.
+5. On the edit profile page, you can update your personal information and set up email notifications, correct the fields you wish to change and hit submit.
+6. To create an account, click on the drop down menu and select the type of account you wish to make and hit submit. A card will show up with that account's information.
+7. To delete an account, you simply need to hit the delete button under the card associated with the account you wish to delete.
+8. To select an account, click on the button that is on the card for the account you wish to work on.
+9. Now, within the account selected, you will see the current and pending balances, the transaction history and be able to make transactions.
+10. To create a transaction, click on the dropdown menu in the navbar above the account details. Here, you can select what kind of transaction you wish to perform.
+11. For withdrawals and deposits, simply fill out the fields and hit submit.
+12. For transfers, you must have another account, you will hit select on the account you wish to transfer to, enter the amount, and hit submit.
+13. From any page once you've logged in, you can access the budget calculator. In the budget calculator you can set your monthly income and expenses to see how you can budget your monthly expenditure.
+14. Where the transaction history appears, next to the search bar, there is an option to get a monthly report. Doing so will produce a pdf of your statments from the range selected.
+15. On the main log in page, there is a button to reset password button that will take you to a new page, it will take in an email. You will recieve an email with a token and and a link to a new page. The link will take you to a page that will take in the token and a new password and update the password accordingly.
+16. Finally, when you are done. Click the logout button.
+
 
 ## Contributors
 
+- Brody Stevens
+- Jake Rowe
+- Caleb Gulledge
+- Gibbons Alty
+- Frederick Doell
+- Christian Castro
+- Colin Modderman
+- Eric Mateo
+- David Dominguez
+- Dillon Meier
+- Frank Carag
+- Kendrickp Garcia
+- Kimberly Vargas
+- Stephen Brady
+- Ramzy Malak

@@ -29,8 +29,8 @@ public class AccountProfileService implements AccountProfileInterface {
     @Autowired
     private AccountProfileRepository accountProfileRepository;
 
-    @Autowired
-    private LoginService loginService;
+    
+    private static LoginService loginService;
 
     /**
      * Takes the ID from the param, and then creates a LoginCredential with just an ID.

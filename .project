@@ -42,6 +42,7 @@
 	<filteredResources>
 		<filter>
 <<<<<<< HEAD
+<<<<<<< HEAD
 			<id>1652976549487</id>
 		</filter>
 	</filteredResources>
@@ -58,6 +59,9 @@
 			<id>1653424589298</id>
 >>>>>>> c25cb62c5ed3063fadf3594cc99b3e60cbc3d745
 >>>>>>> 64f8b9ae0f6865205fdcbd0304034fcf6c382dd2
+=======
+			<id>1653424589298</id>
+>>>>>>> 1b7c1b9f0ab8cfaa4e86a1d3714bbaecfb4792a8
 			<name></name>
 			<type>30</type>
 			<matcher>

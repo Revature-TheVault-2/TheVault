@@ -13,7 +13,7 @@ import { Withdraw } from 'src/app/models/transaction/withdraw.model';
 import { GlobalStorageService } from '../global-storage.service';
 
 
-const AUTH_API = 'http://ec2-50-17-120-160.compute-1.amazonaws.com:9000/';
+const AUTH_API = 'http://ec2-44-201-212-50.compute-1.amazonaws.com:9000/';
 
 const ENDPOINTS = {
   CREATE_DEPOSIT: `${AUTH_API}deposit/create`,

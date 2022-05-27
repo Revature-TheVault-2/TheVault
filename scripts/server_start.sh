@@ -1,4 +1,9 @@
 #!/usr/bin/env bash
+cd
+cd TheVault/
+git stash
+git pull
+
 cd TheVault/TheVaultAngular
 npm install
 npm audit fix --force

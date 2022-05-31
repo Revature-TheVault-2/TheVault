@@ -17,7 +17,7 @@ describe('AccountInfoComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(AccountInfoComponent);
     component = fixture.componentInstance;
-    component.account = new Account(1, 1, "Checking", 111, 111);
+    component.account = new Account(1, 1, "Checking", 111, 111,);
     fixture.detectChanges();
   });
 

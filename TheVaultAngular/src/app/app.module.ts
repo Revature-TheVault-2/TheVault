@@ -28,27 +28,12 @@ import { CreateAccountComponent } from './components/account/create-account/crea
 import { TransferGenerateComponent } from './components/transaction/transfer-generate/transfer-generate.component';
 
 import { AuthInterceptorService } from './utils/auth-interceptor.service';
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 8d557c4a04e08e1e12d1d3caa408235ff1484c96
 import { ResetpasswordComponent } from './components/login-register/resetpassword/resetpassword.component';
 import { NewpasswordComponent } from './components/login-register/newpassword/newpassword.component';
->>>>>>> 1b7c1b9f0ab8cfaa4e86a1d3714bbaecfb4792a8
-import { AlertComponent } from './components/alert/alert.component';
-<<<<<<< HEAD
-=======
-import { AccountTransactionByMonthComponent } from './components/account/account-transaction-by-month/account-transaction-by-month.component';
->>>>>>> 38f11cde1cbe751113059a7ef0020f8835f59afb
-=======
-import { BudgetCalculatorComponent } from './components/budget-calculator/budget-calculator.component';
-<<<<<<< HEAD
->>>>>>> 64f8b9ae0f6865205fdcbd0304034fcf6c382dd2
-=======
->>>>>>> 8d557c4a04e08e1e12d1d3caa408235ff1484c96
 
+import { AlertComponent } from './components/alert/alert.component';
+
+import { BudgetCalculatorComponent } from './components/budget-calculator/budget-calculator.component';
 @NgModule({
   declarations: [
     AppComponent,

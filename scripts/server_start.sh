@@ -4,9 +4,10 @@ cd TheVault/
 git stash
 git pull
 
+cd
 cd TheVault/TheVaultAngular
-npm install
-npm audit fix --force
+#npm install
+#npm audit fix --force
 ng build
 cd
 http-server TheVault/TheVaultAngular/dist/the-vault -p 9001 \

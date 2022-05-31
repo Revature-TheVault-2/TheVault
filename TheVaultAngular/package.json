@@ -7,7 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "nyc --reporter=html jasmine",
-    "test-cover": "istanbul cover --include-all-sources spec/specs.js && istanbul check-coverage"
+    "test-cover": "istanbul cover --include-all-sources spec/specs.js && istanbul check-coverage",
+    "postinstall": "ngcc --properties es5 browser module main --first-only"
   },
   "private": true,
   "dependencies": {

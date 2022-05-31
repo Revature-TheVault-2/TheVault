@@ -14,7 +14,7 @@ export class TransferGenerateService {
   ) { }
 
   createTransfer(transfer: TransferRequest) {
-    let putTransferUrl = 'http://ec2-44-201-212-50.compute-1.amazonaws.com:9000/';
+    let putTransferUrl = 'http://ec2-35-174-165-54.compute-1.amazonaws.com:9000/';
     console.log(transfer);
     return this.http.put<TransferRequest>(putTransferUrl, JSON.stringify({
       ownerAccountId: transfer.ownerAccountId,

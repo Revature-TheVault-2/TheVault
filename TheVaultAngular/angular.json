@@ -27,25 +27,10 @@
               "src/assets"
             ],
             "styles": [
-<<<<<<< HEAD
-<<<<<<< HEAD
-               "src/styles.css",
-               {
-                "input": "src/DarkMode.css",
-                "bundleName": "Dark-Mode",
-                "inject": false
-              },
-              {
-                "input": "src/LightMode.css",
-                "bundleName": "Light-Mode",
-                "inject": false
-              }
-=======
               "src/styles.css"
->>>>>>> 64f8b9ae0f6865205fdcbd0304034fcf6c382dd2
-=======
-              "src/styles.css"
->>>>>>> 8d557c4a04e08e1e12d1d3caa408235ff1484c96
+
+              
+
             ],
             "scripts": []
           },

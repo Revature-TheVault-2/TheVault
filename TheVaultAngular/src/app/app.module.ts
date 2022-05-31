@@ -67,8 +67,8 @@ import { BudgetCalculatorComponent } from './components/budget-calculator/budget
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    AppBootstrapModule,
-    /*Ng2SearchPipeModule*/
+    Ng2SearchPipeModule,
+    AppBootstrapModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

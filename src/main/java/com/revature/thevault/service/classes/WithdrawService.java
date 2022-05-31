@@ -110,6 +110,7 @@ public class WithdrawService implements WithdrawServiceInterface {
     @Override
     public PostResponse createWithdrawal(WithdrawRequest withdrawRequest) {
 <<<<<<< HEAD
+<<<<<<< HEAD
     	// float balancePostWithdrawal = sessionUser.getAvaiable_balance() - withdrawRequest.getAmount(); 
     	
     //Outer if(notificationAmount != 0){
@@ -119,6 +120,8 @@ public class WithdrawService implements WithdrawServiceInterface {
     	// if(balancePostWithdrawal < 0){
     	// emailservice.overdraftEmail(balancePostWithdrawal); }
 =======
+=======
+>>>>>>> 8d557c4a04e08e1e12d1d3caa408235ff1484c96
     	
     	Optional<AccountEntity>  currentAccount = accountRepository.findById(withdrawRequest.getAccountId());
     	AccountProfileEntity currentUserProfile = accountProfileRepository.findByLogincredential(currentAccount.get().getLogincredentials());
@@ -138,7 +141,10 @@ public class WithdrawService implements WithdrawServiceInterface {
 		 
 		 
 		 
+<<<<<<< HEAD
 >>>>>>> 64f8b9ae0f6865205fdcbd0304034fcf6c382dd2
+=======
+>>>>>>> 8d557c4a04e08e1e12d1d3caa408235ff1484c96
         return PostResponse.builder()
                 .success(true)
                 .createdObject( Collections.singletonList(
@@ -158,8 +164,30 @@ public class WithdrawService implements WithdrawServiceInterface {
                 )
                 .build();
     }
+    
+    /**
+     * Generates a get response with the list generated in the findByAccountIdAndRequestType method
+     * 
+     * @param accountId
+     * @param requestName is requestType
+     * @return A get response with the found list of withdraws
+     */
+    @Override
+    public GetResponse getAlLUserWithdrawalsOfType(int accountId, String requestName) {
+        return GetResponse.builder()
+                .success(true)
+                .gotObject(
+                        convertEntityListToResponses(
+                                findByAccountIdAndRequestType(accountId, requestName)
+                        )
+                )
+                .build();
+    }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 8d557c4a04e08e1e12d1d3caa408235ff1484c96
     /**
      * Gets a list of all withdraws associated with an account by the ID of the account
      * 
@@ -200,6 +228,7 @@ public class WithdrawService implements WithdrawServiceInterface {
 		throw e;
 	}
     }
+<<<<<<< HEAD
 =======
 	/**
 	 * Gets a list of all withdraws associated with an account by the ID of the
@@ -214,6 +243,8 @@ public class WithdrawService implements WithdrawServiceInterface {
 		return GetResponse.builder().success(true).gotObject(convertEntityListToResponses(withdrawEntities)).build();
 	}
 >>>>>>> 64f8b9ae0f6865205fdcbd0304034fcf6c382dd2
+=======
+>>>>>>> 8d557c4a04e08e1e12d1d3caa408235ff1484c96
 
 	/**
 	 * Creates a list of withdraws based on account Id
@@ -226,6 +257,7 @@ public class WithdrawService implements WithdrawServiceInterface {
 				new AccountEntity(accountId, new LoginCredentialEntity(), new AccountTypeEntity(), 0, 0));
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
     
     /**
@@ -245,6 +277,8 @@ public class WithdrawService implements WithdrawServiceInterface {
                 )
         );
     }
+=======
+>>>>>>> 8d557c4a04e08e1e12d1d3caa408235ff1484c96
     
     /**
      * Creates a list of withdraws based on account Id
@@ -256,9 +290,11 @@ public class WithdrawService implements WithdrawServiceInterface {
 	 * @return List<DepositEntity>
 	 * @author Frederick
      */
-    private List<WithdrawEntity> findByAccountIdAndDateBetween(int accountId, Date startDate, Date endDate) {
-        return withdrawRepository.findByAccountIdAndDatesBetween(accountId, startDate, endDate);
+    public List<WithdrawEntity> findByAccountIdAndDateBetween(int accountId, Date startDate, Date endDate) {
+    	System.out.println("WITHDRAWLS BETWEEN: " + startDate.toString() + " to " + endDate.toString());
+        return withdrawRepository.findByAccountIdAndDatesBetween(accountId, startDate.toString(), endDate.toString());
     }
+<<<<<<< HEAD
 =======
 	/**
 	 * Generates a get response with the list generated in the
@@ -274,6 +310,8 @@ public class WithdrawService implements WithdrawServiceInterface {
 				.gotObject(convertEntityListToResponses(findByAccountIdAndRequestType(accountId, requestName))).build();
 	}
 >>>>>>> 64f8b9ae0f6865205fdcbd0304034fcf6c382dd2
+=======
+>>>>>>> 8d557c4a04e08e1e12d1d3caa408235ff1484c96
 
 	/**
 	 * Creates an optional object of a withdraw by finding based on the ID, then if
@@ -328,6 +366,7 @@ public class WithdrawService implements WithdrawServiceInterface {
                                 .build();
         }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
         /**
          * Creates a list of withdraws based on account Id
@@ -468,7 +507,22 @@ public class WithdrawService implements WithdrawServiceInterface {
                                 withdrawEntity.getAmount());
         }
 =======
+=======
+>>>>>>> 8d557c4a04e08e1e12d1d3caa408235ff1484c96
     /**
+	 * Deletes all withdraws of an account by accountId
+	 * 
+	 * @param An Integer accountId, we believe due to path variable
+	 * @return A Delete response with an empty list
+	 */
+	@Override
+	public DeleteResponse deleteAllWithdraws(Integer accountId) {
+		withdrawRepository.deleteByAccountentity(
+				new AccountEntity(accountId, new LoginCredentialEntity(), new AccountTypeEntity(), 0, 0));
+		return DeleteResponse.builder().success(true).deletedObject(Collections.EMPTY_LIST).build();
+	}
+	
+	/**
      * Creates a list of withdraws that are filtered by account id and request type
      * 
      * @param accountId
@@ -514,6 +568,7 @@ public class WithdrawService implements WithdrawServiceInterface {
                 withdrawEntity.getDateWithdraw().toLocalDate(),
                 withdrawEntity.getAmount()
 		);
+<<<<<<< HEAD
 =======
 		Optional<WithdrawEntity> withdrawEntityOptional = withdrawRepository.findById(withdrawId);
 		// Optional means that it can be null if it doesn't find anything
@@ -599,6 +654,8 @@ public class WithdrawService implements WithdrawServiceInterface {
 				withdrawEntity.getRequeststatusentity().getName(), withdrawEntity.getReference(),
 				withdrawEntity.getDate_withdraw().toLocalDate(), withdrawEntity.getAmount());
 >>>>>>> 64f8b9ae0f6865205fdcbd0304034fcf6c382dd2
+=======
+>>>>>>> 8d557c4a04e08e1e12d1d3caa408235ff1484c96
 	}
 >>>>>>> 38f11cde1cbe751113059a7ef0020f8835f59afb
 }

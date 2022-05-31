@@ -15,11 +15,11 @@ import java.util.List;
 public interface WithdrawRepository extends JpaRepository<WithdrawEntity, Integer> {
 
     List<WithdrawEntity> findByAccountentity(AccountEntity accountEntity);
-    @Query("select w from WithdrawEntity w where "
-    		+ "w.accountentity = :id "
-    		+ "AND w.dateWithdraw <= :dateEnd "
-    		+ "AND w.dateWithdraw >= :dateStart")
-    List<WithdrawEntity> findByAccountIdAndDatesBetween(int id, Date dateStart, Date dateEnd);
+    @Query(value = "select * from withdraw_table w where "
+    		+ "w.fk_account_id = :id "
+    		+ "AND w.date_withdraw between cast(:dateStart AS timestamp) and cast(:dateEnd AS timestamp)",
+    		nativeQuery = true)
+    List<WithdrawEntity> findByAccountIdAndDatesBetween(int id, String dateStart, String dateEnd);
     List<WithdrawEntity> findByAccountentityAndRequesttypeentity(AccountEntity accountEntity, RequestTypeEntity requestTypeByName);
 
     @Transactional

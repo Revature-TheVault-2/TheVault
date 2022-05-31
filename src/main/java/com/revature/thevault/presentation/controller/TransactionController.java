@@ -41,10 +41,9 @@ public class TransactionController {
         return transactionService.getTransactionHistory(accountId);
     }
     
-    @GetMapping("/history/{accountId}/{year}/{month}")
-    public GetResponse getTransactionHistoryByMonth(@RequestHeader("Authorization") String token, @PathVariable Integer accountId, @PathVariable Integer year, @PathVariable Integer month) throws FileNotFoundException, MalformedURLException {
-
-    	return transactionService.getTransactionHistoryByMonth(accountId, month, year);
+    @GetMapping("/history/{accountId}/{year}/{month}/{profileId}")
+    public GetResponse getTransactionHistoryByMonth(@RequestHeader("Authorization") String token, @PathVariable Integer accountId, @PathVariable Integer year, @PathVariable Integer month, @PathVariable Integer profileId) throws FileNotFoundException, MalformedURLException {
+    	return transactionService.getTransactionHistoryByMonth(accountId, month, year, profileId);
     }
 
 }

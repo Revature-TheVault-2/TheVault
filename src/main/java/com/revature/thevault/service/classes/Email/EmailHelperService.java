@@ -98,7 +98,7 @@ public class EmailHelperService {
 		helper.setSubject(subject);
 
 		FileSystemResource file = new FileSystemResource(new File(pathToFileAttachment));
-		helper.addAttachment("Report", file); // Calling it a report right now.
+		helper.addAttachment("Report.pdf", file); // Calling it a report right now.
 
 		try {
 			emailSender.send(message);

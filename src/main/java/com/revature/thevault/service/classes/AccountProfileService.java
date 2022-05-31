@@ -122,10 +122,14 @@ public class AccountProfileService implements AccountProfileInterface {
                             updateProfileRequest.getPhoneNumber(),
                             updateProfileRequest.getAddress(),
 <<<<<<< HEAD
+<<<<<<< HEAD
                             0
 =======
                             updateProfileRequest.getNotificationAmount()
 >>>>>>> 64f8b9ae0f6865205fdcbd0304034fcf6c382dd2
+=======
+                            updateProfileRequest.getNotificationAmount()
+>>>>>>> 8d557c4a04e08e1e12d1d3caa408235ff1484c96
                     )))))
                     .build();
         } catch (Exception e) {

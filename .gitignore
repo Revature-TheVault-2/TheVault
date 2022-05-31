@@ -163,8 +163,11 @@ nbdist/
 .DS_Store
 Thumbs.db
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 38f11cde1cbe751113059a7ef0020f8835f59afb
 =======
+=======
+>>>>>>> 8d557c4a04e08e1e12d1d3caa408235ff1484c96
 
 # IDE - VSCode
 .vscode/*
@@ -248,6 +251,10 @@ nbdist/
 # System Files
 .DS_Store
 Thumbs.db
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 8d557c4a04e08e1e12d1d3caa408235ff1484c96
 /.metadata/
 *.log
 >>>>>>> 64f8b9ae0f6865205fdcbd0304034fcf6c382dd2

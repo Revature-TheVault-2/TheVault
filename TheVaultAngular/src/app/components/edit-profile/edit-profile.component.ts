@@ -58,10 +58,15 @@ export class EditProfileComponent implements OnInit {
       this.profile.address = this.address;
       this.profile.notificationAmount = this.notificationAmount;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
       console.log(this.notificationAmount);
       console.log(this.firstName);
 >>>>>>> 64f8b9ae0f6865205fdcbd0304034fcf6c382dd2
+=======
+      console.log(this.notificationAmount);
+      console.log(this.firstName);
+>>>>>>> 8d557c4a04e08e1e12d1d3caa408235ff1484c96
       this.userHandler.updateProfile(this.profile, this.profile.profileId, this.globalStorage.getUserId()).subscribe(this.updateProfileObserver);
     }else return;
   }

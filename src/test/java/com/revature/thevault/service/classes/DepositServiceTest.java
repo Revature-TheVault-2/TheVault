@@ -4,12 +4,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.ArgumentMatchers.anyString;
 
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -28,23 +28,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
-
 import com.revature.thevault.presentation.model.request.DepositRequest;
 import com.revature.thevault.presentation.model.request.WithdrawRequest;
 import com.revature.thevault.presentation.model.response.builder.DeleteResponse;
 import com.revature.thevault.presentation.model.response.builder.GetResponse;
 import com.revature.thevault.presentation.model.response.builder.PostResponse;
+import com.revature.thevault.repository.dao.AccountProfileRepository;
+import com.revature.thevault.repository.dao.AccountRepository;
 import com.revature.thevault.repository.dao.DepositRepository;
 import com.revature.thevault.repository.entity.AccountEntity;
+import com.revature.thevault.repository.entity.AccountProfileEntity;
 import com.revature.thevault.repository.entity.AccountTypeEntity;
 import com.revature.thevault.repository.entity.DepositEntity;
 import com.revature.thevault.repository.entity.DepositTypeEntity;
 import com.revature.thevault.repository.entity.LoginCredentialEntity;
-import com.revature.thevault.repository.entity.WithdrawEntity;
 import com.revature.thevault.service.dto.DepositResponseObject;
-import com.revature.thevault.service.exceptions.InvalidAccountIdException;
 import com.revature.thevault.service.exceptions.InvalidAmountException;
-import com.revature.thevault.service.exceptions.InvalidDepositIdException;
 import com.revature.thevault.service.exceptions.InvalidRequestException;
 
 @Ignore
@@ -59,6 +58,13 @@ private DepositRepository depositRepository;
 
 @MockBean
 private DepositTypeService depositTypeService;
+
+@MockBean
+private AccountRepository accountRepository;
+
+@MockBean
+private AccountProfileRepository accountProfileRepository;
+
 private int userId;
 private int depositId;
 private int badDepositId;
@@ -78,6 +84,7 @@ private List<String> depositType;
     private LoginCredentialEntity loginCredentialEntity;
     private DepositTypeEntity depositTypeEntity;
     private AccountTypeEntity accountTypeEntity;
+    private AccountProfileEntity accountProfileEntity;
     @BeforeAll
     void setup(){
         MockitoAnnotations.openMocks(this);
@@ -92,6 +99,10 @@ depositType.add("Cash");
 depositType.add("Cheque");
 depositType.add("Direct Deposit");
 badDepositId = -1;
+
+accountProfileEntity = new AccountProfileEntity(
+		accountId, loginCredentialEntity, "firstName", "lastName", 
+		"someEmail@email.com", "12312341234", "Personal Drive", amount);
     }
         @BeforeEach
         void setupBeforeEach(){
@@ -121,7 +132,7 @@ badDepositId = -1;
                     depositTypeEntity,
                     reference,
                     dateStored2,
-                    amount
+                    amount, email
             );
             storedDepositEntity3 = new DepositEntity(
                     3,
@@ -129,7 +140,7 @@ badDepositId = -1;
                     depositTypeEntity,
                     reference,
                     dateStored3,
-                    amount
+                    amount, email
             );
             optionalDeposit = Optional.of(storedDepositEntity);
             depositResponseObject = new DepositResponseObject(
@@ -159,7 +170,8 @@ badDepositId = -1;
 
             Mockito.when(depositTypeService.findDepositTypeEntityByName("cash")).thenReturn(depositTypeEntity);
             Mockito.when(depositRepository.findById(depositId)).thenReturn(optionalDeposit);
-           
+            Mockito.when(accountProfileRepository.findByLogincredential(loginCredentialEntity)).thenReturn(accountProfileEntity);
+           Mockito.when(accountRepository.findById(anyInt())).thenReturn(Optional.of(accountEntity));
         }
 
         @Test
@@ -234,7 +246,7 @@ badDepositId = -1;
                     .success(true)
                             .gotObject(Arrays.asList(depositResponseObject2, depositResponseObject3))
                                     .build();
-    				Mockito.when(depositRepository.findByAccountIdAndDatesBetween(anyInt(), any(Date.class), any(Date.class)))
+    				Mockito.when(depositRepository.findByAccountIdAndDatesBetween(anyInt(), anyString(), anyString()))
     				.thenReturn(Arrays.asList(storedDepositEntity2, storedDepositEntity3));
     				assertEquals(getDepositsResponse, depositService.getAllUserDepositsByMonth(accountId, 4, 2022));
         }

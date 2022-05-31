@@ -5,6 +5,8 @@ import com.revature.thevault.presentation.model.request.WithdrawRequest;
 import com.revature.thevault.presentation.model.response.builder.DeleteResponse;
 import com.revature.thevault.presentation.model.response.builder.GetResponse;
 import com.revature.thevault.presentation.model.response.builder.PostResponse;
+import com.revature.thevault.repository.dao.AccountProfileRepository;
+import com.revature.thevault.repository.dao.AccountRepository;
 import com.revature.thevault.repository.dao.WithdrawRepository;
 import com.revature.thevault.repository.entity.*;
 import com.revature.thevault.service.dto.WithdrawResponseObject;
@@ -37,6 +39,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.ArgumentMatchers.anyString;
 
 @Ignore
 @SpringBootTest
@@ -57,6 +60,12 @@ class WithdrawServiceTest {
     @MockBean
     private RequestStatusService requestStatusService;
     
+    @MockBean
+	private AccountRepository accountRepository;
+    
+    @MockBean
+    private AccountProfileRepository accountProfileRepository;
+    
 //    @MockBean
 //    private EmailService emailService;
 
@@ -71,14 +80,20 @@ class WithdrawServiceTest {
     private RequestTypeEntity requestType;
     private RequestStatusEntity requestStatusEntity;
 <<<<<<< HEAD
+<<<<<<< HEAD
     private Date dateStored, dateStored2, dateStored3;
 =======
     private Date dateStored;
     private String email;
 >>>>>>> 64f8b9ae0f6865205fdcbd0304034fcf6c382dd2
+=======
+    private Date dateStored, dateStored2, dateStored3;
+    private String email;
+>>>>>>> 8d557c4a04e08e1e12d1d3caa408235ff1484c96
 
     private LoginCredentialEntity loginCredentialEntity;
     private AccountTypeEntity accountTypeEntity;
+    private AccountProfileEntity accountProfileEntity;
 
     @BeforeAll
     void setup(){
@@ -91,6 +106,10 @@ class WithdrawServiceTest {
 
         requestType = new RequestTypeEntity(1, "Retail");
         requestStatusEntity = new RequestStatusEntity(1, "Pending");
+        
+        accountProfileEntity = new AccountProfileEntity(
+        		accountId, loginCredentialEntity, "firstName", "lastName", 
+        		"someEmail@email.com", "12312341234", "Personal Drive", amount);
     }
 
     @BeforeEach
@@ -122,7 +141,7 @@ class WithdrawServiceTest {
                 requestStatusEntity,
                 reference,
                 dateStored2,
-                amount
+                amount, email
         );
         storedWithdrawEntity3 = new WithdrawEntity(
                 3,
@@ -131,7 +150,7 @@ class WithdrawServiceTest {
                 requestStatusEntity,
                 reference,
                 dateStored3,
-                amount
+                amount, email
         );
         withdrawResponseObject = new WithdrawResponseObject(
                 storedWithdrawEntity.getPk_withdraw_id(),
@@ -162,6 +181,8 @@ class WithdrawServiceTest {
         );
         Mockito.when(requestTypeService.getRequestTypeByName("Retail")).thenReturn(requestType);
         Mockito.when(requestStatusService.getRequestStatusByName("Pending")).thenReturn(requestStatusEntity);
+        Mockito.when(accountProfileRepository.findByLogincredential(loginCredentialEntity)).thenReturn(accountProfileEntity);
+        Mockito.when(accountRepository.findById(anyInt())).thenReturn(Optional.of(accountEntity));
     }
 
     @Test
@@ -262,7 +283,7 @@ class WithdrawServiceTest {
                 .success(true)
                         .gotObject(Arrays.asList(withdrawResponseObject2, withdrawResponseObject3))
                                 .build();
-				Mockito.when(withdrawRepository.findByAccountIdAndDatesBetween(anyInt(), any(Date.class), any(Date.class)))
+				Mockito.when(withdrawRepository.findByAccountIdAndDatesBetween(anyInt(), anyString(), anyString()))
 				.thenReturn(Arrays.asList(storedWithdrawEntity2, storedWithdrawEntity3));
 				assertEquals(getWithdrawsResponse, withdrawService.getAllUserWithdrawlsByMonth(accountId, 4, 2022));
     }

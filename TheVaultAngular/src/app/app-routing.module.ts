@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppBootstrapComponent } from './app-bootstrap/app-bootstrap.component';
 import { AccountProfileComponent } from './components/account-profile/account-profile.component';
 import { AccountDetailComponent } from './components/account/account-detail/account-detail.component';
-import { AccountTransactionByMonthComponent } from './components/account/account-transaction-by-month/account-transaction-by-month.component';
 import { TransactionHistoryComponent } from './components/account/account-transactions/history/transaction-history/transaction-history.component';
 import { AccountViewComponent } from './components/account/account-view/account-view.component';
 import { BudgetCalculatorComponent } from './components/budget-calculator/budget-calculator.component';
@@ -40,10 +39,6 @@ const routes: Routes = [
   {
     component: TransactionHistoryComponent,
     path: 'account-history'
-  },
-  {
-    component: AccountTransactionByMonthComponent,
-    path: 'account-history-month'
   },
   {
     component: AccountProfileComponent,

@@ -1,14 +1,11 @@
 package com.revature.thevault.presentation.controller;
 
-import java.util.Collections;
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.thevault.repository.dao.AccountProfileRepository;
@@ -17,8 +14,8 @@ import com.revature.thevault.repository.dao.ResetPasswordRepository;
 import com.revature.thevault.repository.entity.LoginCredentialEntity;
 import com.revature.thevault.repository.entity.PasswordReset;
 import com.revature.thevault.repository.entity.PasswordResetRequest;
-import com.revature.thevault.service.classes.EmailService;
 import com.revature.thevault.service.classes.PwResetTokenService;
+import com.revature.thevault.service.classes.Email.EmailService;
 
 @CrossOrigin("*")
 @RestController
@@ -57,7 +54,7 @@ public class ResetPasswordController {
 		LoginCredentialEntity findLogin = loginRepository.findByUsername(loginCredentialEntity.getUsername());
 		
 		try {
-			int fkUserId = findLogin.getPkuserid();
+			int fkUserId = findLogin.getPkUserId();
 			String token = pwResetTokenService.generateResetToken(fkUserId);
 			System.out.println("THE TOKEN HAS BEEN CREATED");
 			//creates a password reset record in the db with token and userID
@@ -99,7 +96,7 @@ public class ResetPasswordController {
 		try {
 			PasswordReset passReset = resetPasswordRepository.findByToken(pwResetModel.getToken());
 			int userId = passReset.getFkUserId();
-			LoginCredentialEntity loginCredentialEntity = loginRepository.findByPkuserid(userId);
+			LoginCredentialEntity loginCredentialEntity = loginRepository.findByPkUserId(userId);
 			loginCredentialEntity.setPassword(pwResetModel.getPassword());
 			loginRepository.save(loginCredentialEntity);
 

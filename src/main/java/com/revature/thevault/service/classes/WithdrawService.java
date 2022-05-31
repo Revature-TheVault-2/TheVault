@@ -8,8 +8,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-import javax.persistence.EntityNotFoundException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -29,7 +27,6 @@ import com.revature.thevault.repository.entity.WithdrawEntity;
 import com.revature.thevault.service.classes.Email.EmailService;
 import com.revature.thevault.service.dto.WithdrawResponseObject;
 import com.revature.thevault.service.exceptions.InvalidAccountIdException;
-import com.revature.thevault.service.exceptions.InvalidRequestException;
 import com.revature.thevault.service.exceptions.InvalidWithdrawIdRequest;
 import com.revature.thevault.service.interfaces.WithdrawServiceInterface;
 

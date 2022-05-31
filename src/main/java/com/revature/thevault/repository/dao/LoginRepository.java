@@ -4,8 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import com.revature.thevault.repository.entity.LoginCredentialEntity;
-
 @Repository("loginRepository")
 public interface LoginRepository extends JpaRepository<LoginCredentialEntity, Integer> {
 
@@ -14,12 +12,8 @@ public interface LoginRepository extends JpaRepository<LoginCredentialEntity, In
    <S extends LoginCredentialEntity> S save(S entity);
 
    //left this just in case, not sure what the Optional was about
-//    Optional<LoginCredentialEntity> findByPkuserid(int integer);
     
-    LoginCredentialEntity findByPkuserid(int integer);
-//    Optional<LoginCredentialEntity> findByPkuserid(int integer);
-
-    Optional<LoginCredentialEntity> findByPkUserId(int integer);
+    LoginCredentialEntity findByPkUserId(int integer);
 
 
     @Query("select l from LoginCredentialEntity l where l.username= ?1 and l.password = ?2")

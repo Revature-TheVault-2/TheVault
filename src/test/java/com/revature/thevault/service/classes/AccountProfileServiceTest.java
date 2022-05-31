@@ -72,7 +72,7 @@ class AccountProfileServiceTest {
                 500.00f
         );
         goodAccountResponse = new AccountProfileResponse(
-                normalAccountProfileEntity.getPk_profile_id(),
+                normalAccountProfileEntity.getPkProfileId(),
                 normalAccountProfileEntity.getLogincredential().getPkUserId(),
                 normalAccountProfileEntity.getFirst_name(),
                 normalAccountProfileEntity.getLast_name(),
@@ -89,7 +89,7 @@ class AccountProfileServiceTest {
 
     private AccountProfileResponse convertToProfileResponseEntity(AccountProfileEntity entity){
         return new AccountProfileResponse(
-                entity.getPk_profile_id(),
+                entity.getPkProfileId(),
                 entity.getLogincredential().getPkUserId(),
                 entity.getFirst_name(),
                 entity.getLast_name(),
@@ -176,7 +176,7 @@ class AccountProfileServiceTest {
         PostResponse postResponse = PostResponse.builder()
                 .success(true)
                 .createdObject(Collections.singletonList(new AccountProfileResponse(
-                        storedProfileEntity.getPk_profile_id(),
+                        storedProfileEntity.getPkProfileId(),
                         storedProfileEntity.getLogincredential().getPkUserId(),
                         storedProfileEntity.getFirst_name(),
                         storedProfileEntity.getLast_name(),
@@ -195,7 +195,7 @@ class AccountProfileServiceTest {
                 .thenReturn(normalLoginCredentialEntity);
 
        UpdateProfileRequest pcr = new UpdateProfileRequest(
-               normalAccountProfileEntity.getPk_profile_id(),
+               normalAccountProfileEntity.getPkProfileId(),
                loginService.findUserByUserId(normalAccountProfileEntity.getLogincredential().getPkUserId()).getPkUserId(),
                normalAccountProfileEntity.getFirst_name(),
                normalAccountProfileEntity.getLast_name(),
@@ -233,7 +233,7 @@ class AccountProfileServiceTest {
                 .thenReturn(optionalProfile);
 
         AccountProfileResponse goodAccountResponse = new AccountProfileResponse(
-                normalAccountProfileEntity.getPk_profile_id(),
+                normalAccountProfileEntity.getPkProfileId(),
                 normalAccountProfileEntity.getLogincredential().getPkUserId(),
                 normalAccountProfileEntity.getFirst_name(),
                 normalAccountProfileEntity.getLast_name(),

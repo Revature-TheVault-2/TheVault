@@ -14,7 +14,7 @@ import { GlobalStorageService } from '../global-storage.service';
 
 
 
-const AUTH_API = 'http://ec2-44-201-212-50.compute-1.amazonaws.com:9000/';
+const AUTH_API = 'http://ec2-35-174-165-54.compute-1.amazonaws.com:9000/';
 
 const params = new HttpParams()
   .set('token','token');

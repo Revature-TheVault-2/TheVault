@@ -12,7 +12,6 @@
   },
   "private": true,
   "dependencies": {
-<<<<<<< HEAD
     "@angular/animations": "~13.3.9",
     "@angular/common": "~13.3.9",
     "@angular/compiler": "~13.3.9",
@@ -21,17 +20,6 @@
     "@angular/platform-browser": "~13.3.9",
     "@angular/platform-browser-dynamic": "~13.3.9",
     "@angular/router": "~13.3.9",
-=======
-    "@angular/animations": "~13.1.0",
-    "@angular/common": "~13.1.0",
-    "@angular/compiler": "~13.1.0",
-    "@angular/core": "~13.1.0",
-    "@angular/forms": "~13.1.0",
-    "@angular/platform-browser": "~13.1.0",
-    "@angular/platform-browser-dynamic": "~13.1.0",
-    "@angular/router": "~13.1.0",
-    "angular-bootstrap-md": "^13.0.0",
->>>>>>> 1b7c1b9f0ab8cfaa4e86a1d3714bbaecfb4792a8
     "angular-in-memory-web-api": "^0.13.0",
     "body-parser": "^1.19.2",
     "bootstrap": "^5.1.3",

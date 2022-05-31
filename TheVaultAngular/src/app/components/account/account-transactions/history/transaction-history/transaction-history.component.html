@@ -1,7 +1,12 @@
 <div class="container mt-3">
     <h2 class="display-4">Transaction History</h2>
-    <app-alert></app-alert>
-    <form class="d-flex">
+    <app-alert></app-alert>    
+    <form class="d-flex" (ngSubmit)="onSubmit()">
+        <input class="form-control me-2" type="month" id="start" name="start"
+            [min]="pastString" [max]="todayString" [(ngModel)]="selected">
+        <!-- <input class="form-control me-2" type="search" placeholder="Search" [(ngModel)]="term"
+            [ngModelOptions]="{standalone: true}" aria-label="Search"> -->
+        <input type="submit" class="form-control me-2 btn btn-info" value="Get Statement For Month">
       <input class="form-control me-2" type="search" placeholder="Search" [(ngModel)]="term" [ngModelOptions]="{standalone: true}" aria-label="Search">
     </form>
     <br>

@@ -22,10 +22,10 @@ export class GlobalStorageService {
   activeAccount!: Account;
   getAccount!: GetAccount;
   accounts!: Account[];
+  transSuccess!: boolean;
+  transFail!: boolean;
 
   token!:string;
-  transSuccess : boolean = false;
-  transFail : boolean = false;
   constructor() { }
 
   public setHttpOptions(credentials: LoginUser): void {

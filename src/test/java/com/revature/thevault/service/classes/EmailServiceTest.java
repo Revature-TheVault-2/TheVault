@@ -41,7 +41,7 @@ public class EmailServiceTest {
 	void setup() {
 		String emailto = "TheVaultBankTeam@gmail.com";
 		currentUserProfile = new AccountProfileEntity();
-		currentUserProfile.setPk_profile_id(1);
+		currentUserProfile.setPkProfileId(1);
 		currentUserProfile.setLogincredential(null);
 		currentUserProfile.setFirst_name("john");
 		currentUserProfile.setLast_name("test");

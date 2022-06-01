@@ -77,7 +77,7 @@ public class ExportPDFService {
 
 		// Document Creation
 		String randPath = strServ.getSaltString();
-		String dest = "src/main/resources/pdf/" + randPath + "myMonthStatement.pdf";
+		String dest = "/home/ec2-user/TheVault/src/main/resources/pdf/" + randPath + "myMonthStatement.pdf";
 		PdfWriter writer = new PdfWriter(dest); // Writer can create PDF files
 		PdfDocument pdfFile = new PdfDocument(writer); // Point of entry to work with a PDF file.
 		Document document = new Document(pdfFile); // Desired output is a Document Object. The actual PDF file
@@ -86,9 +86,9 @@ public class ExportPDFService {
 		try {
 
 			// Variables
-			final String FUTURA = "src/main/resources/otf/Futura-Std-Medium.otf";
-			final String FUTURABOLD = "src/main/resources/otf/Futura-Std-Book.otf";
-			final String FUTURABOOK = "src/main/resources/otf/Futura-Std-Bold.otf";
+			final String FUTURA = "/home/ec2-user/TheVault/src/main/resources/otf/Futura-Std-Medium.otf";
+			final String FUTURABOLD = "/home/ec2-user/TheVault/src/main/resources/otf/Futura-Std-Book.otf";
+			final String FUTURABOOK = "/home/ec2-user/TheVault/src/main/resources/otf/Futura-Std-Bold.otf";
 			
 			Optional<AccountProfileEntity> profileInfo = profileRepos.findById(profileId);
 
@@ -128,7 +128,7 @@ public class ExportPDFService {
 
 			// Image Initialization
 			Image logo = new Image(
-					ImageDataFactory.create("src/main/resources/img/vault_logo.png"));
+					ImageDataFactory.create("/home/ec2-user/TheVault/src/main/resources/img/vault_logo.png"));
 
 			// Colors
 			Color orange = new DeviceRgb(242, 105, 38);

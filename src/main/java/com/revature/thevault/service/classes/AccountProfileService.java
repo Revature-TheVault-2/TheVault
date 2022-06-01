@@ -29,8 +29,8 @@ public class AccountProfileService implements AccountProfileInterface {
     @Autowired
     private AccountProfileRepository accountProfileRepository;
 
-    
-    private static LoginService loginService;
+    @Autowired
+    private LoginService loginService;
 
     /**
      * Takes the ID from the param, and then creates a LoginCredential with just an ID.
@@ -73,9 +73,11 @@ public class AccountProfileService implements AccountProfileInterface {
      */
     @Override
     public PostResponse createProfile(ProfileCreateRequest profileCreateRequest) {
+//    	System.out.println("USER ID: "+profileCreateRequest.getUserId());
+//    	System.out.println("USER FROM DAO: "+loginService.findUserByUserId(profileCreateRequest.getUserId()));
         AccountProfileEntity createdProfileEntity = new AccountProfileEntity(
                 0,
-                loginService.findUserByUserId(profileCreateRequest.getUserId()),
+                new LoginCredentialEntity(profileCreateRequest.getUserId(), null, null),
                 profileCreateRequest.getFirstName(),
                 profileCreateRequest.getLastName(),
                 profileCreateRequest.getEmail(),
@@ -111,11 +113,13 @@ public class AccountProfileService implements AccountProfileInterface {
         try {
         	System.out.println("here ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
         	System.out.println(updateProfileRequest);
+        	int userId = updateProfileRequest.getUserId();
+        	System.out.println(userId);
             return PutResponse.builder()
                     .success(true)
                     .updatedObject(Collections.singletonList(convertEntityToResponse(accountProfileRepository.save(new AccountProfileEntity(
                             updateProfileRequest.getProfileId(),
-                            loginService.findUserByUserId(updateProfileRequest.getUserId()),
+                            loginService.findUserByUserId(userId),
                             updateProfileRequest.getFirstName(),
                             updateProfileRequest.getLastName(),
                             updateProfileRequest.getEmail(),
@@ -125,6 +129,7 @@ public class AccountProfileService implements AccountProfileInterface {
                     )))))
                     .build();
         } catch (Exception e) {
+        	e.printStackTrace();
             throw new InvalidRequestException(HttpStatus.BAD_REQUEST, "invalid request");
         }
     }

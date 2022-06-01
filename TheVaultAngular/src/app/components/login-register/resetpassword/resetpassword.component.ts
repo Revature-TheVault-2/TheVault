@@ -113,7 +113,7 @@ loginObserver = {
   next: (data: boolean) => {
     if (data){
       //success banner if true
-      this.success = true;
+      this.routingAllocator.newpassword();
     }else{
       //error message if false
       this.error = true;

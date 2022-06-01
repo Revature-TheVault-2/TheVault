@@ -1,0 +1,122 @@
+
+
+<div *ngIf="error">
+  <div class="alert alert-danger" role="alert">
+    {{errorMessage}}
+  </div>
+</div>
+
+<div *ngIf="success">
+  <div class="alert alert-success" role="alert">
+    {{successMessage}}
+  </div>
+</div>
+
+<div id='loginBox'>
+  <img class="login-vault-title" src="https://media.discordapp.net/attachments/940739263656509560/945780916066869318/vault_logo.png" alt="templogo">
+<br>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      
+        <div class="login-form-group">
+            <label>Username</label>
+            <input
+                type="text"
+                id="username"
+                name="username"
+                formControlName="username"
+                class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && f['username'].errors }"
+            />
+        <div *ngIf="submitted && f['username'].errors" class="invalid-feedback feedback-text">
+          <div *ngIf="f['username'].errors['required']">Username is required</div>
+          <div *ngIf="f['username'].errors['minlength']">
+            Username invalid
+          </div>
+          <div *ngIf="f['username'].errors['maxlength']">
+            Username too long
+          </div>
+        </div>
+      </div>
+
+      <div class="login-form-group">
+        <label>Password</label>
+        <input
+          type="password"
+          formControlName="password"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && f['password'].errors }"
+        />
+        <div *ngIf="submitted && f['password'].errors" class="invalid-feedback feedback-text">
+          <div *ngIf="f['password'].errors['required']">Password is required</div>
+          <div *ngIf="f['password'].errors['minlength']">
+            Password invalid
+          </div>
+          <div *ngIf="f['password'].errors['maxlength']">
+            Password too long
+          </div>
+        </div>
+      </div>
+      <!-- <button type="submit" class="btn" routerLink="/resetpassword">Reset Password</button> -->
+
+      <br>      
+      <!-- Our reset button goes here -->
+
+      <!-- routerLink="/resetpassword" -->
+      <!-- <p style="cursor: pointer" id="resetPasswordLink" >Reset Password</p> -->
+      
+
+      <p style="cursor: pointer" id="resetPasswordLink"  routerLink="/resetpassword" >Reset Password</p>
+      
+
+
+      <div class="login-form-group">
+        <button type="submit" class="btn btn-primary">Login</button>
+        <button type="submit" class="btn btn-primary"a id='newProfileLink' routerLink="/register">Register</button>
+        <br>
+        
+      </div>
+
+      <div class="alert alert-warning" *ngIf="submitted && isLoginFailed">
+        Signup failed!<br />{{ errorMessage }}
+      </div>
+    </form>
+    <br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>

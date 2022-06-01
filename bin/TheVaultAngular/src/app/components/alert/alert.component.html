@@ -1,0 +1,11 @@
+<!-- Success Transaction Alert -->
+<div *ngIf="transSuccess" class="alert alert-success alert-dismissible fade show col-sm-7 mx-auto" role="alert">
+    <strong>Your Transaction was a success!</strong>
+    <button type="button" class="btn-close" (click)="setTransSuccess(false)" aria-label="Close"></button>
+</div>
+
+<!-- Failed Transaction Alert -->
+<div *ngIf="transFail" class="alert alert-danger alert-dismissible fade show col-sm-7 mx-auto" role="alert">
+    <strong>Your Transaction failed!</strong>
+    <button type="button" class="btn-close" (click)="setTransFail(false)" aria-label="Close"></button>
+</div>

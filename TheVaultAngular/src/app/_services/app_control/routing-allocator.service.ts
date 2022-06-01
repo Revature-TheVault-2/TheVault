@@ -38,5 +38,7 @@ export class RoutingAllocatorService {
   newpassword() : void {this.router.navigate(ROUTES.newpassword)};
 
   budgetCalculator():void{this.router.navigate(ROUTES.budgetCalculator)};
+  
+  newPassword():void{this.router.navigate(ROUTES.newpassword)};
 
 }

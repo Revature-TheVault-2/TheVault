@@ -9,7 +9,8 @@ import { TransferRequest } from 'src/app/models/transaction/request/transfer-req
 import { LoginUser } from 'src/app/models/users/login-user.model';
 import { GlobalStorageService } from '../global-storage.service';
 
-const AUTH_API = 'http://ec2-35-174-165-54.compute-1.amazonaws.com:9000/';
+
+const AUTH_API = 'http://35.174.165.54:9000/';
 
 
 const ENDPOINTS = {

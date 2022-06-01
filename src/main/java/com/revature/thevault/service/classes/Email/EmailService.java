@@ -129,8 +129,9 @@ public class EmailService {
 	public void sendPasswordResetLink(String token, String toEmail) {
 //		System.out.println("Inside the sendPasswordResetLink method");
 		String subject = "The Vault: Password Reset Requested";
-		String resetLink = "http://ec2-44-201-212-50.compute-1.amazonaws.com:9000/newpassword";
-		String body = "Valued Customer:  A password reset has been requested for your account at The Vault. \n If this was from you, please copy the token below and follow this link to reset your password: " + resetLink + "\n"+ token;
+		String resetLink = "http://35.174.165.54:9001/newpassword";
+		String body = "Valued Customer:  A password reset has been requested for your account at The Vault. \n If this was from you, please copy the token below and follow this link to reset your password: " + resetLink + "\n\n"
+				+ "Token: " + token;
 //		System.out.println(toEmail);
 		
 		emailHelper.sendEmail(toEmail,subject, body);

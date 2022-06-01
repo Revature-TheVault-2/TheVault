@@ -18,6 +18,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
+import java.util.Optional;
 
 @Service("loginService")
 public class LoginService implements LoginServiceInterface {
@@ -110,7 +111,8 @@ public class LoginService implements LoginServiceInterface {
 	 */
 	@Override
 	public LoginCredentialEntity findUserByUserId(int userId) {
-		return loginRepository.findById(userId).orElse(null);
+		System.out.println("SERVICE USER ID: "+userId);
+		return loginRepository.findByPkUserId(userId);
 	}
 
 	/**

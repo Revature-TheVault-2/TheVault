@@ -23,7 +23,7 @@ echo "          ((((((((((     installing node END     ))))))))))          "
 echo "          ((((((((((     installing angular START     ))))))))))          "
 cd
 cd TheVault/TheVaultAngular/
-sudo npm install -g @angular/cli
+sudo npm install -g @angular/cli@13.1.3
 sudo npm install -g http-server
 echo "          ((((((((((     installing angular END     ))))))))))          "
 

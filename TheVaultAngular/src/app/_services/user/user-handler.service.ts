@@ -14,7 +14,7 @@ import { GlobalStorageService } from '../global-storage.service';
 
 
 
-const AUTH_API = 'http://localhost:9000/';
+const AUTH_API = 'http://35.174.165.54:9000/';
 
 const params = new HttpParams()
   .set('token','token');

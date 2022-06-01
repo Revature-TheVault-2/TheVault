@@ -35,5 +35,7 @@ export class RoutingAllocatorService {
   resetpassword() : void {this.router.navigate(ROUTES.resetpassword)};
 
   budgetCalculator():void{this.router.navigate(ROUTES.budgetCalculator)};
+  
+  newPassword():void{this.router.navigate(ROUTES.newpassword)};
 
 }

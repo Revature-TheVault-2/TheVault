@@ -1,5 +1,5 @@
 <h1>Make a Deposit</h1>
-<form #depositForm class="was-validated" (ngSubmit)="onClickSubmit(Wbox.value, depositType.value, reference.value)">
+<form #depositForm class="was-validated" style="margin: 10px;" (ngSubmit)="onClickSubmit(Wbox.value, depositType.value, reference.value)">
     <div class="col-md-1">
       <label for="Wbox" class="form-label">Deposit:</label>
       <input type="number" class="form-control" min="1" id="Wbox" #Wbox placeholder="Desired Amount" name="withdrawbox" required ngModel>

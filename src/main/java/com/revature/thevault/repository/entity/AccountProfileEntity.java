@@ -23,7 +23,7 @@ public class AccountProfileEntity {
     @SequenceGenerator(allocationSize = 1, name = "account_profile_table_pk_profile_id_seq", sequenceName = "account_profile_table_pk_profile_id_seq")
     int pkProfileId;
     
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name = "fk_user_id")
 //    int userId;
     LoginCredentialEntity logincredential;

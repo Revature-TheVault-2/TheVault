@@ -130,7 +130,7 @@ public class EmailService {
 //		System.out.println("Inside the sendPasswordResetLink method");
 		String subject = "The Vault: Password Reset Requested";
 		String resetLink = "http://35.174.165.54:9001/newpassword";
-		String body = "Valued Customer:  A password reset has been requested for your account at The Vault. \n If this was from you, please copy the token below and follow this link to reset your password: " + resetLink + "\n\n"
+		String body = "Valued Customer:  A password reset has been requested for your account at The Vault. \n If this was from you, please use the token below to reset your password." + "\n\n"
 				+ "Token: " + token;
 //		System.out.println(toEmail);
 		

@@ -1,7 +1,6 @@
 package com.revature.thevault.presentation.model.request;
 
 
-import com.revature.thevault.presentation.model.GenericLoginRequest;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;

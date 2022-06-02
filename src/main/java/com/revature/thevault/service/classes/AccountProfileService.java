@@ -53,7 +53,6 @@ public class AccountProfileService implements AccountProfileInterface {
         try {
             return GetResponse.builder()
             		.success(true)
-//                    .gotObject(Collections.singletonList(convertEntityToResponse(accountProfileRepository.getById(accountProfileRequest.getProfileId()))))
                     .gotObject(Collections.singletonList(convertEntityToResponse(profile)))
                     .build();
         } catch (Exception e) {
@@ -74,14 +73,17 @@ public class AccountProfileService implements AccountProfileInterface {
      */
     @Override
     public PostResponse createProfile(ProfileCreateRequest profileCreateRequest) {
+//    	System.out.println("USER ID: "+profileCreateRequest.getUserId());
+//    	System.out.println("USER FROM DAO: "+loginService.findUserByUserId(profileCreateRequest.getUserId()));
         AccountProfileEntity createdProfileEntity = new AccountProfileEntity(
                 0,
-                loginService.findUserByUserId(profileCreateRequest.getUserId()),
+                new LoginCredentialEntity(profileCreateRequest.getUserId(), null, null),
                 profileCreateRequest.getFirstName(),
                 profileCreateRequest.getLastName(),
                 profileCreateRequest.getEmail(),
                 profileCreateRequest.getPhoneNumber(),
-                profileCreateRequest.getAddress()
+                profileCreateRequest.getAddress(),
+                0
         );
 
         AccountProfileResponse convertedCreatedEntity = convertEntityToResponse(accountProfileRepository.save(createdProfileEntity));
@@ -109,19 +111,25 @@ public class AccountProfileService implements AccountProfileInterface {
     @Override
     public PutResponse updateProfile(UpdateProfileRequest updateProfileRequest) {
         try {
+        	System.out.println("here ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+        	System.out.println(updateProfileRequest);
+        	int userId = updateProfileRequest.getUserId();
+        	System.out.println(userId);
             return PutResponse.builder()
                     .success(true)
                     .updatedObject(Collections.singletonList(convertEntityToResponse(accountProfileRepository.save(new AccountProfileEntity(
                             updateProfileRequest.getProfileId(),
-                            loginService.findUserByUserId(updateProfileRequest.getUserId()),
+                            loginService.findUserByUserId(userId),
                             updateProfileRequest.getFirstName(),
                             updateProfileRequest.getLastName(),
                             updateProfileRequest.getEmail(),
                             updateProfileRequest.getPhoneNumber(),
-                            updateProfileRequest.getAddress()
+                            updateProfileRequest.getAddress(),
+                            updateProfileRequest.getNotificationAmount()
                     )))))
                     .build();
         } catch (Exception e) {
+        	e.printStackTrace();
             throw new InvalidRequestException(HttpStatus.BAD_REQUEST, "invalid request");
         }
     }
@@ -157,7 +165,7 @@ public class AccountProfileService implements AccountProfileInterface {
      */
     private AccountProfileResponse convertEntityToResponse(AccountProfileEntity accountProfileEntity) {
         return new AccountProfileResponse(
-                accountProfileEntity.getPk_profile_id(),
+                accountProfileEntity.getPkProfileId(),
                 accountProfileEntity.getLogincredential().getPkUserId(),
                 accountProfileEntity.getFirst_name(),
                 accountProfileEntity.getLast_name(),

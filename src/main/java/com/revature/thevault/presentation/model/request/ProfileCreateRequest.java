@@ -20,4 +20,5 @@ public class ProfileCreateRequest {
     String email;
     String phoneNumber;
     String address;
+    float notificationAmount; // only added because tests were yelling at us
 }

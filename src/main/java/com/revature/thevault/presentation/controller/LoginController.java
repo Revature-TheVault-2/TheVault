@@ -7,15 +7,19 @@ import com.revature.thevault.presentation.model.response.LoginResponse;
 import com.revature.thevault.presentation.model.response.builder.PostResponse;
 
 import com.revature.thevault.presentation.model.response.builder.PutResponse;
+import com.revature.thevault.repository.entity.LoginCredentialEntity;
 import com.revature.thevault.service.classes.AccountProfileService;
 import com.revature.thevault.service.classes.LoginService;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin("*")
+
 @RestController("loginController")
-@RequestMapping("/login")
+//@RequestMapping("/login")
 public class LoginController {
 
     @Autowired
@@ -55,9 +59,9 @@ public class LoginController {
      */
 
     @ResponseStatus(HttpStatus.OK)
-    @PostMapping("/validate")
+    @PostMapping("/login")
     public PostResponse findLoginCredential(@RequestBody LoginRequest loginRequest){
-        return loginService.getLoginCredentialFromLogin(loginRequest);
+        return loginService.getLoginCredentialFromLogin(loginRequest.getUsername());
     }
 /**
  * Controller that resets the password 
@@ -65,7 +69,7 @@ public class LoginController {
  * @return true 
  * @throws nullpointerexception
  */
-    @PutMapping ("/reset-password")
+//    @PutMapping ("/reset-password")
     public PutResponse resetPassword(@RequestBody ResetPasswordRequest resetPasswordRequest){
         return loginService.resetPassword(resetPasswordRequest);
     }

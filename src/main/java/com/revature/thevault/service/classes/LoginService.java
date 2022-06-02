@@ -18,6 +18,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
+import java.util.Optional;
 
 @Service("loginService")
 public class LoginService implements LoginServiceInterface {
@@ -25,8 +26,6 @@ public class LoginService implements LoginServiceInterface {
 	@Autowired
 	private LoginRepository loginRepository;
 
-//    @Autowired
-//    private AccountProfileService accountProfileService;
 
 	/**
 	 * Service layer method that checks the login credentials
@@ -49,11 +48,11 @@ public class LoginService implements LoginServiceInterface {
 	 * @return PostResponse
 	 */
 	@Override
-	public PostResponse getLoginCredentialFromLogin(LoginRequest loginRequest) {
+	public PostResponse getLoginCredentialFromLogin(String username) {
 		try {
 			return PostResponse.builder().success(true)
 					.createdObject(Collections.singletonList(convertEntityToResponse(loginRepository
-							.findByUsernameAndPassword(loginRequest.getUsername(), loginRequest.getPassword()))))
+							.findByUsername(username))))
 					.build();
 		} catch (Exception e) {
 			throw new InvalidInputException("User was not found");
@@ -98,16 +97,12 @@ public class LoginService implements LoginServiceInterface {
 		try {
 			LoginCredentialEntity loginCredentialEntity = loginRepository
 					.findByUsername(resetPasswordRequest.getUsername());
-//            AccountProfileResponse accountProfileResponse = (AccountProfileResponse) accountProfileService.getProfile(new AccountProfileRequest(loginCredentialEntity.getPk_user_id())).getGotObject().get(0);
 			loginCredentialEntity.setPassword(passwordResetter.toString());
-//            if(accountProfileResponse.getEmail().contentEquals(resetPasswordRequest.getEmail()))
 			return PutResponse.builder().success(true)
 					.updatedObject(Collections.singletonList(loginRepository.save(loginCredentialEntity))).build();
-//            else throw new InvalidRequestException(HttpStatus.BAD_REQUEST, "invalid Email");
 		} catch (NullPointerException e) {
 			throw new InvalidRequestException(HttpStatus.BAD_REQUEST, "invalid request");
 		}
-
 	}
 	/**
 	 * Service layer that finds the user by ID
@@ -116,7 +111,8 @@ public class LoginService implements LoginServiceInterface {
 	 */
 	@Override
 	public LoginCredentialEntity findUserByUserId(int userId) {
-		return loginRepository.findById(userId).orElse(null);
+		System.out.println("SERVICE USER ID: "+userId);
+		return loginRepository.findByPkUserId(userId);
 	}
 
 	/**
@@ -146,9 +142,7 @@ public class LoginService implements LoginServiceInterface {
         return new LoginResponseObject(
                 loginCredentialEntity.getPkUserId(),
                 loginCredentialEntity.getUsername(),
-                loginCredentialEntity.getPassword(),
-                JWTUtility.generateJWT(loginCredentialEntity.getPkUserId(), loginCredentialEntity.getUsername())
-
+                loginCredentialEntity.getPassword()
         );
     }
 

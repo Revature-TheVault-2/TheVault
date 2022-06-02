@@ -7,7 +7,10 @@ const ROUTES = {
   select: ['account-view'],
   detail: ['account-detail'],
   profile: ['profile'],
-  editProfile: ['edit-profile']
+  editProfile: ['edit-profile'],
+  resetpassword : ['resetpassword'],
+  newpassword : ['newpassword'],
+  budgetCalculator: ['budget-calculator']
 }
 
 @Injectable({
@@ -29,4 +32,13 @@ export class RoutingAllocatorService {
   accountView():void{this.router.navigate(ROUTES.select)};
 
   editProfile():void{this.router.navigate(ROUTES.editProfile)};
+
+  resetpassword() : void {this.router.navigate(ROUTES.resetpassword)};
+
+  newpassword() : void {this.router.navigate(ROUTES.newpassword)};
+
+  budgetCalculator():void{this.router.navigate(ROUTES.budgetCalculator)};
+  
+  newPassword():void{this.router.navigate(ROUTES.newpassword)};
+
 }

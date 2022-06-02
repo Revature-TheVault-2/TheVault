@@ -72,6 +72,7 @@ CREATE TABLE account_profile_table (
     email VARCHAR UNIQUE NOT NULL,
     phone_number VARCHAR UNIQUE NOT NULL,
     address VARCHAR NOT NULL,
+    notification_amount DECIMAL(10, 2),
     FOREIGN KEY (fk_user_id) REFERENCES login_credential_table(pk_user_id)
 );
 
@@ -125,27 +126,28 @@ VALUES
 
 INSERT INTO deposit_type_table
 VALUES
-    (default, 'Cash'),
-    (default, 'Cheque'),
-    (default, 'Direct Deposit'),
-    (default, 'Transfer');
+    (1, 'Cash'),
+    (2, 'Cheque'),
+    (3, 'Direct Deposit'),
+    (4, 'Transfer');
 
 INSERT INTO request_status_table
 VALUES
-    (default, 'Pending'),
-    (default, 'Completed'),
-    (default, 'Failed');
+    (1, 'Pending'),
+    (2, 'Completed'),
+    (3, 'Failed');
 
 INSERT INTO request_type_table
 VALUES
-    (default, 'Payment'),
-    (default, 'Personal'),
-    (default, 'Transfer');
+    (1, 'Payment'),
+    (2, 'Personal'),
+    (3, 'Transfer'),
+    (4, 'Tech');
 
 INSERT INTO account_type_table
 VALUES
-    (default, 'Checking'),
-    (default, 'Savings');
+    (1, 'Checking'),
+    (2, 'Savings');
 
 --INSERT INTO account_table
 --VALUES

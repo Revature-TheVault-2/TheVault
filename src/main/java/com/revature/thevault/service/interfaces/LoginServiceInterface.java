@@ -1,5 +1,7 @@
 package com.revature.thevault.service.interfaces;
 
+import java.util.Optional;
+
 import com.revature.thevault.presentation.model.request.LoginRequest;
 import com.revature.thevault.presentation.model.request.NewLoginCredentialsRequest;
 import com.revature.thevault.presentation.model.request.ResetPasswordRequest;
@@ -12,7 +14,7 @@ import com.revature.thevault.service.exceptions.InvalidInputException;
 public interface LoginServiceInterface {
     LoginResponse checkLogin(LoginRequest loginRequest);
 
-    PostResponse getLoginCredentialFromLogin(LoginRequest loginRequest);
+    PostResponse getLoginCredentialFromLogin(String username);
 
     PostResponse createNewLogin(NewLoginCredentialsRequest newLoginRequest) throws InvalidInputException;
 

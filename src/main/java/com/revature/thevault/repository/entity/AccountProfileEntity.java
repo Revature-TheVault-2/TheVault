@@ -21,10 +21,11 @@ public class AccountProfileEntity {
     @Column(name = "pk_profile_id")
     @GeneratedValue(generator = "account_profile_table_pk_profile_id_seq", strategy = GenerationType.SEQUENCE)
     @SequenceGenerator(allocationSize = 1, name = "account_profile_table_pk_profile_id_seq", sequenceName = "account_profile_table_pk_profile_id_seq")
-    int pk_profile_id;
+    int pkProfileId;
     
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name = "fk_user_id")
+//    int userId;
     LoginCredentialEntity logincredential;
     
     @Column(name = "first_name")
@@ -41,6 +42,12 @@ public class AccountProfileEntity {
     
     @Column(name = "address")
     String address;
+    
+    @Column(name = "notification_amount", nullable=true)
+    float notificationAmount;
+
+    
+    
     
     
 }

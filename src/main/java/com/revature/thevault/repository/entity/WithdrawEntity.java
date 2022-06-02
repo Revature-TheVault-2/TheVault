@@ -39,9 +39,11 @@ public class WithdrawEntity {
     String reference;
     
     @Column(name = "date_withdraw")
-    Date date_withdraw;
+    Date dateWithdraw;
     
     @Column(name = "amount")
     float amount;
+    
+    String email;
 
 }

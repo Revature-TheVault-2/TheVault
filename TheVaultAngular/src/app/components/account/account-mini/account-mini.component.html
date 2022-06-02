@@ -1,33 +1,33 @@
-<div class="">
+<div>
     <div class="shadow">
         <div class="card">
-            <div class="card-body">
+            <div style="color: White; background-color: #474C55; padding: 10px">
                 <div class="d-flex flex-column">
                     <div class="d-flex justify-content-center">
-                        <div class="p-2">
+                        <div >
                             <!-- <span class="badge badge-primary">{{account.accountType}} Account</span>  -->
-                            <span class="p-2">{{account.accountType}} Account</span>
+                            <span >{{account.accountType}} Account</span>
                         </div>
                     </div>
                     <div class="d-flex justify-content-center">
-                        <div class="p-2">
+                        <div >
                             <!-- <span class="badge badge-primary">Id: {{account.accountId}}</span>    -->
-                            <span class="p-2">Id: {{account.accountId}}</span>       
+                            <span >Id: {{account.accountId}}</span>       
                         </div>
                     </div>
                 </div>
                 <br>
                 <div class="d-flex flex-column">   
-                    <div class="p-2">
+                    <div >
                         Available Balance: {{account.availableBalance | currency}}
                     </div>
-                    <div class="p-2">
+                    <div >
                         Pending Balance: {{account.pendingBalance | currency}}
                     </div>
                 </div>
                 <br>
                 <div class="d-flex justify-content-center">
-                    <button type="button" class="btn btn-outline-primary" (click)="goToDetail(account)">View Details</button>
+                    <button type="button" class="btn btn-primary" (click)="goToDetail(account)">View Details</button>
                 </div>
             </div>
         </div>

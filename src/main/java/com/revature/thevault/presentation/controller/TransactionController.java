@@ -5,6 +5,10 @@ import com.revature.thevault.service.classes.TransactionService;
 import com.revature.thevault.service.exceptions.InvalidAuthorizationError;
 import com.revature.thevault.utility.JWTInfo;
 import com.revature.thevault.utility.JWTUtility;
+
+import java.io.FileNotFoundException;
+import java.net.MalformedURLException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -34,9 +38,12 @@ public class TransactionController {
 	 */
     @GetMapping("/history/{accountId}")
     public GetResponse getTransactionHistory(@RequestHeader("Authorization") String token, @PathVariable Integer accountId) {
-        JWTInfo parsedJWT = JWTUtility.verifyUser(token);
-        if(parsedJWT != null) return transactionService.getTransactionHistory(accountId);
-        else throw new InvalidAuthorizationError(HttpStatus.UNAUTHORIZED, "No valid JWT");
+        return transactionService.getTransactionHistory(accountId);
+    }
+    
+    @GetMapping("/history/{accountId}/{year}/{month}/{profileId}")
+    public GetResponse getTransactionHistoryByMonth(@RequestHeader("Authorization") String token, @PathVariable Integer accountId, @PathVariable Integer year, @PathVariable Integer month, @PathVariable Integer profileId) throws FileNotFoundException, MalformedURLException {
+    	return transactionService.getTransactionHistoryByMonth(accountId, month, year, profileId);
     }
 
 }

@@ -1,12 +1,11 @@
 package com.revature.thevault.repository.dao;
 
-import com.revature.thevault.repository.entity.AccountProfileEntity;
-import com.revature.thevault.repository.entity.LoginCredentialEntity;
+
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.NamedNativeQuery;
+import com.revature.thevault.repository.entity.AccountProfileEntity;
+import com.revature.thevault.repository.entity.LoginCredentialEntity;
 
 @Repository("accountProfileRepository")
 public interface AccountProfileRepository extends JpaRepository<AccountProfileEntity, Integer> {
@@ -14,6 +13,12 @@ public interface AccountProfileRepository extends JpaRepository<AccountProfileEn
     AccountProfileEntity findByLogincredential(LoginCredentialEntity loginCredentialEntity);
 
     AccountProfileEntity deleteByLogincredential(LoginCredentialEntity loginCredentialEntity);
+    
+    AccountProfileEntity findBypkProfileId(int id);
+	
+	
+
+	
 
 //    @Query(value =
 //            "UPDATE account_profile_table apt " +
